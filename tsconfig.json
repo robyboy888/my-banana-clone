@@ -20,14 +20,13 @@
     ],
     "baseUrl": ".",
     "paths": {
-      // 保持原有配置，用于 src 文件夹中的文件
-      "@/*": ["./src/*"], 
+      // 💥 关键修正：所有以 @/ 开头的路径都映射到 ./src/*
+      // 这包含了 @/lib/*, @/components/*, @/types/*
+      "@/*": ["./src/*"] 
       
-      // 💥 新增：解决 @/types/prompt 模块查找问题
-      "@/types/*": ["./types/*"],
-      
-      // 💥 新增：解决 @/lib/supabaseService 模块查找问题
-      "@/lib/*": ["./lib/*"]
+      // 注意：现在不需要额外的 @/lib/* 映射了
+      // 如果您的 types 文件夹也在 src 内部 (src/types/prompt.ts), 
+      // 那么它也已经被上面的 @/* 包含了。
     }
   },
   "include": [
