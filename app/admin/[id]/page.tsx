@@ -1,9 +1,9 @@
-// app/admin/[id]/page.tsx
+// app/admin/[id]/page.tsx (修正后的 Server Component)
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { supabaseServiceRole } from '@/lib/supabaseService';
-import { Prompt } from '@/types/prompt'; // 假设类型已创建
-import ClientEditFormWrapper from '@/components/ClientEditFormWrapper'; // 💥 新组件
+// ⚠️ 注意：不再需要引入 supabaseServiceRole 或 Prompt
+
+import ClientEditFormWrapper from '@/components/ClientEditFormWrapper';
 
 interface EditPageProps {
     params: {
@@ -11,28 +11,15 @@ interface EditPageProps {
     };
 }
 
-// 💥 服务器组件：获取编辑数据
+// 💥 Server Component：现在只负责校验 ID 并渲染客户端包装器
 export default async function EditPromptPage({ params }: EditPageProps) {
     
-    const promptId = parseInt(params.id);
+    const promptId = params.id;
     
-    if (isNaN(promptId)) {
-        notFound(); // ID 无效
+    if (isNaN(parseInt(promptId))) {
+         // 理论上 Next.js 路由不会传入非数字，但做个校验
+         notFound(); 
     }
-
-    // 1. 获取 ID 对应的记录
-    const { data: promptData, error } = await supabaseServiceRole
-        .from('prompts')
-        .select('*')
-        .eq('id', promptId)
-        .single();
-
-    if (error || !promptData) {
-        console.error(`Error fetching prompt ID ${promptId}:`, error);
-        notFound(); // 记录不存在或错误
-    }
-
-    const initialPrompt = promptData as Prompt;
 
     return (
         <div className="container mx-auto p-8 max-w-4xl">
@@ -46,8 +33,8 @@ export default async function EditPromptPage({ params }: EditPageProps) {
                 </Link>
             </div>
 
-            {/* 💥 重点：使用一个客户端组件来包装 AdminPromptForm，并处理 onSuccess 逻辑 */}
-            <ClientEditFormWrapper initialPrompt={initialPrompt} />
+            {/* 💥 重点：传入 ID，让客户端包装器通过 API 获取数据 */}
+            <ClientEditFormWrapper promptId={promptId} />
         </div>
     );
 }
