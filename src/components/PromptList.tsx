@@ -1,19 +1,16 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
-// 确保您的 PromptItem, ListItem, CopyButton 路径正确
 import PromptItem from './PromptItem'; 
 import ListItem from './ListItem'; 
 import CopyButton from './CopyButton'; 
 
-// 定义数据类型 (必须与您的 Supabase 表结构匹配)
+// 定义数据类型 (保持与之前一致)
 interface Prompt {
     id: number;
     title: string;
-    content: string; // 原始提示词
-    original_image_url: string; // 原始图
-    
-    // 以下是优化和用户上传字段
+    content: string; 
+    original_image_url: string; 
     optimized_prompt?: string;
     optimized_image_url?: string;
     user_portrait_url?: string;
@@ -26,6 +23,8 @@ type ViewMode = 'grid' | 'list';
 // 两种模式下的分页大小
 const GRID_PAGE_SIZE = 50; 
 const LIST_PAGE_SIZE = 30; 
+// 💥 新增常量：假设您的总数据量在 600 条左右
+const MAX_DATA_TO_FETCH = 600; 
 
 export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[] }) {
     
@@ -38,45 +37,42 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
     const [currentPage, setCurrentPage] = useState(1); 
     
     // 强制显示 "加载更多" 按钮，直到最后一页 API 返回数据不足为止
-    // 只要初始数据不为空，就假定有更多数据
-    const [hasMore, setHasMore] = useState(initialPrompts.length > 0); 
+    const [hasMore, setHasMore] = useState(initialPrompts.length > 0 && initialPrompts.length === GRID_PAGE_SIZE); 
+    
+    // 💥 跟踪列表视图是否已加载全部数据
+    const [fullDataLoaded, setFullDataLoaded] = useState(initialPrompts.length >= MAX_DATA_TO_FETCH); 
+
 
     /**
      * 客户端分页逻辑 (仅用于列表视图)
-     * 计算当前页应该显示的数据子集
      */
     const visiblePrompts = useMemo(() => {
         if (viewMode === 'list') {
-            // Client-side Pagination: 根据页码和 LIST_PAGE_SIZE 切割数组
             const start = (currentPage - 1) * LIST_PAGE_SIZE;
             const end = start + LIST_PAGE_SIZE;
             return prompts.slice(start, end);
         }
-        // 网格模式使用全部已加载的数据
         return prompts; 
     }, [prompts, viewMode, currentPage]);
 
     /**
-     * 计算总页数 (仅用于列表视图)
+     * 计算总页数 (用于列表视图)
      */
     const totalPages = useMemo(() => {
-        // 避免除以零
         if (prompts.length === 0) return 1;
-        // 计算总页数
+        // 如果是列表视图，则使用 LIST_PAGE_SIZE 计算总页数
         return Math.ceil(prompts.length / LIST_PAGE_SIZE);
     }, [prompts.length]);
-
+    
+    
     /**
-     * 加载更多数据的函数 (仅用于网格视图)
-     * 调用 Next.js 的 API 路由
+     * 💥 新增函数：用于列表视图，一次性加载全部数据（最多 600 条）
      */
-    const loadMore = useCallback(async () => {
+    const fetchFullDataset = useCallback(async () => {
         setIsLoading(true);
-        // 新的起始点即已加载的数据长度
-        const newOffset = prompts.length; 
-
         try {
-            const response = await fetch(`/api/prompts?offset=${newOffset}`);
+            // 从 offset 0 开始，使用很大的 limit
+            const response = await fetch(`/api/prompts?offset=0&limit=${MAX_DATA_TO_FETCH}`); 
             
             if (!response.ok) {
                 throw new Error(`API call failed with status: ${response.status}`);
@@ -84,17 +80,45 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
 
             const data: Prompt[] = await response.json(); 
             
-            // 诊断日志
-            console.log(`[DIAGNOSTIC] Loading more prompts with offset: ${newOffset}`);
-            console.log(`[DIAGNOSTIC] API returned ${data.length} new prompts.`);
-
-
             if (data && data.length > 0) {
-                // 关键行：追加新数据
+                // 用全量数据替换现有状态
+                setPrompts(data); 
+                setFullDataLoaded(true); // 标记为已加载全量数据
+                setHasMore(false); // 此时网格视图也不需要再加载了
+            } else {
+                 setHasMore(false); 
+            }
+
+        } catch (error) {
+            console.error('Error loading full dataset:', error);
+            alert('加载全部数据失败。');
+        } finally {
+            setIsLoading(false);
+        }
+    }, []); 
+
+    
+    /**
+     * 现有函数：用于网格视图的无限滚动
+     */
+    const loadMore = useCallback(async () => {
+        setIsLoading(true);
+        const newOffset = prompts.length; 
+
+        try {
+            const response = await fetch(`/api/prompts?offset=${newOffset}`);
+            // ... (其余 loadMore 逻辑保持不变) ...
+            
+            if (!response.ok) {
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+
+            const data: Prompt[] = await response.json(); 
+            
+            if (data && data.length > 0) {
                 setPrompts(prev => [...prev, ...data]);
             }
             
-            // 如果返回的数据少于 PAGE_SIZE，说明没有更多了
             if (!data || data.length < GRID_PAGE_SIZE) {
                 setHasMore(false); 
             }
@@ -107,10 +131,23 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
         }
     }, [prompts.length]); 
 
+    
+    /**
+     * 💥 新增函数：处理视图切换逻辑
+     */
+    const handleViewModeSwitch = (mode: ViewMode) => {
+        setViewMode(mode);
+        setCurrentPage(1); // 切换视图时重置页码
+
+        // 如果切换到列表视图，并且尚未加载全部数据，则触发全量加载
+        if (mode === 'list' && !fullDataLoaded) {
+            fetchFullDataset();
+        }
+    };
+
 
     // --- 渲染逻辑 ---
     
-    // 如果初始数据为空，显示友好提示
     if (prompts.length === 0 && !isLoading) {
         return <p className="text-center mt-12 text-gray-500">数据库中没有数据。</p>;
     }
@@ -120,17 +157,14 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
             {/* 视图切换按钮区域 */}
             <div className="flex justify-end space-x-2 mb-4">
                 <button
-                    onClick={() => setViewMode('grid')}
+                    onClick={() => handleViewModeSwitch('grid')}
                     className={`p-2 rounded ${viewMode === 'grid' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'}`}
                     title="网格视图 (无限加载)"
                 >
                     网格视图
                 </button>
                 <button
-                    onClick={() => {
-                        setViewMode('list');
-                        setCurrentPage(1); // 切换视图时重置页码
-                    }}
+                    onClick={() => handleViewModeSwitch('list')}
                     className={`p-2 rounded ${viewMode === 'list' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'}`}
                     title="列表视图 (翻页模式)"
                 >
@@ -138,13 +172,20 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
                 </button>
             </div>
 
+            {/* 加载指示器 */}
+            {isLoading && (
+                 <div className="text-center p-4 text-yellow-600 font-semibold">
+                    {viewMode === 'list' ? '正在加载全部数据...' : '加载中...'}
+                 </div>
+            )}
+
+
             {/* --- 视图内容 --- */}
             
             {viewMode === 'grid' && (
                 // 网格视图：使用 PromptItem (大卡片) 和无限加载
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {/* PromptItem 组件需要您从 page.tsx 移动过来并创建 */}
                         {prompts.map((prompt) => (
                             <PromptItem key={prompt.id} prompt={prompt} /> 
                         ))}
@@ -173,13 +214,17 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
                 // 列表视图：使用 ListItem (紧凑模式) 和客户端翻页
                 <>
                     <div className="space-y-3">
-                        {/* ListItem 组件需要您新建 */}
                         {visiblePrompts.map((prompt) => (
                             <ListItem key={prompt.id} prompt={prompt} /> 
                         ))}
+                        
                         {/* 列表为空时的提示 (如果加载了数据但当前页没数据) */}
                         {visiblePrompts.length === 0 && prompts.length > 0 && (
                             <p className="text-center text-gray-500">当前页没有数据，请尝试调整页码。</p>
+                        )}
+                        
+                        {visiblePrompts.length === 0 && !fullDataLoaded && !isLoading && (
+                            <p className="text-center text-gray-500">请稍候，正在加载全部数据...</p>
                         )}
                     </div>
 
@@ -203,12 +248,6 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
                             </button>
                         </div>
                     )}
-                    
-                    {/* 提示用户在列表模式下需要先加载数据 */}
-                    {prompts.length < LIST_PAGE_SIZE && (
-                         <p className="text-center mt-8 text-sm text-yellow-600">提示：在切换到列表视图前，请在网格视图中点击 '加载更多' 以获取更多数据，确保翻页正常工作。</p>
-                    )}
-
                 </>
             )}
         </>
