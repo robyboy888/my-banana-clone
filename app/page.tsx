@@ -1,16 +1,47 @@
-// app/page.tsx - 修正版本
+// app/page.tsx
+// Server Component (默认)
 
+// 禁用缓存，确保每次请求都从 Supabase 获取最新数据
 export const revalidate = 0; 
 
-import { supabase } from '@/lib/supabase'
-// 移除不必要的 Image 和 CopyButton 导入，因为它们应该在 PromptList 中处理
-import PromptList from '@/components/PromptList'; // 👈 确保导入
+import { supabase } from '@/lib/supabase'; // 确保您的 Supabase 客户端配置路径正确
+import PromptList from '@/components/PromptList'; // 导入 Client Component
 
+// 定义首次加载的数据量
 const PAGE_SIZE = 50; 
-// ... (getPrompts 函数保持不变) ...
 
+/**
+ * 异步函数：从 Supabase 获取初始 Prompt 数据
+ * 在服务器端执行
+ */
+async function getPrompts() {
+  const { data, error } = await supabase
+    .from('prompts')
+    .select('*') 
+    .order('created_at', { ascending: false })
+    .limit(PAGE_SIZE) 
+
+  if (error) {
+    // 在 Vercel 部署日志中打印错误
+    console.error("Error fetching initial data:", error);
+    return [];
+  }
+  
+  if (data) {
+      // 诊断日志 (仅在 Vercel 构建或运行时可见)
+      console.log(`[DIAGNOSTIC] Initial prompts loaded: ${data.length} out of ${PAGE_SIZE}`);
+  }
+  
+  return data || [];
+}
+
+/**
+ * 主页面组件 (Server Component)
+ * 负责获取数据并传递给 Client Component
+ */
 export default async function HomePage() {
-  const initialPrompts = await getPrompts() // 👈 变量名改为 initialPrompts
+  // 1. 获取初始 Prompt 数据
+  const initialPrompts = await getPrompts();
 
   return (
     <div className="container mx-auto p-4">
@@ -25,11 +56,10 @@ export default async function HomePage() {
         />
       </div>
 
-      {/* 💥 核心修正：在这里渲染 Client Component，并传递数据 */}
+      {/* 2. 核心：渲染 Client Component 并传递初始数据 */}
+      {/* PromptList 包含瀑布流、展示逻辑和分页交互（按钮/API调用） */}
       <PromptList initialPrompts={initialPrompts} /> 
 
-      {/* 移除原先所有重复的网格和 Prompt 渲染逻辑 */}
-
     </div>
-  )
+  );
 }
