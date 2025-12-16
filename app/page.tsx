@@ -1,65 +1,45 @@
-// app/page.tsx
-// Server Component (默认)
+// /app/page.tsx
+import { supabaseServiceRole } from '@/lib/supabaseService';
+import PromptList from '@/components/PromptList'; 
+import { Prompt } from '@/types/prompt'; // 确保 Prompt 类型已导入
 
-// 禁用缓存，确保每次请求都从 Supabase 获取最新数据
-export const revalidate = 0; 
+// ----------------------------------------------------
+// 💥 关键修复：强制动态渲染，禁用 Next.js 缓存
+// ----------------------------------------------------
+// 这将确保每次访问页面时，都会重新获取最新数据，而不是使用构建时的静态缓存。
+export const dynamic = 'force-dynamic'; 
 
-import { supabase } from '@/lib/supabase'; // 确保您的 Supabase 客户端配置路径正确
-import PromptList from '@/components/PromptList'; // 导入 Client Component
 
-// 定义首次加载的数据量
-const PAGE_SIZE = 50; 
-
-/**
- * 异步函数：从 Supabase 获取初始 Prompt 数据
- * 在服务器端执行
- */
-async function getPrompts() {
-  const { data, error } = await supabase
-    .from('prompts')
-    .select('*') 
-    .order('created_at', { ascending: false })
-    .limit(PAGE_SIZE) 
-
-  if (error) {
-    // 在 Vercel 部署日志中打印错误
-    console.error("Error fetching initial data:", error);
-    return [];
-  }
-  
-  if (data) {
-      // 诊断日志 (仅在 Vercel 构建或运行时可见)
-      console.log(`[DIAGNOSTIC] Initial prompts loaded: ${data.length} out of ${PAGE_SIZE}`);
-  }
-  
-  return data || [];
-}
-
-/**
- * 主页面组件 (Server Component)
- * 负责获取数据并传递给 Client Component
- */
 export default async function HomePage() {
-  // 1. 获取初始 Prompt 数据
-  const initialPrompts = await getPrompts();
+    
+    // 1. 获取数据 (使用与 Admin 页相同的服务权限客户端，保证权限最高)
+    // 注意：如果您的前端列表需要低权限（anon key），请替换为对应的客户端。
+    // 但为保证数据加载成功，我们暂用 serviceRole。
+    const { data: prompts, error } = await supabaseServiceRole
+        .from('prompts')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-8">Prompt 优化与对比</h1>
-      
-      {/* 搜索组件占位符（保持不变） */}
-      <div className="mb-8 p-4 bg-gray-100 rounded-lg">
-        <input 
-          type="text" 
-          placeholder="搜索 Prompt..." 
-          className="w-full p-3 rounded-lg border border-gray-300" 
-        />
-      </div>
+    // 2. 错误处理
+    if (error) {
+        console.error('Failed to fetch prompts (HomePage):', error);
+        // 如果数据获取失败，显示明确的错误信息
+        return (
+            <div className="p-6 text-center">
+                <h1 className="text-3xl font-bold mb-6 text-red-600">数据加载失败</h1>
+                <p className="text-lg text-red-500">
+                    抱歉，加载提示词列表失败。请检查网络或联系管理员。
+                </p>
+                <p className="text-sm text-red-400 mt-2">错误详情: {error.message || '未知数据库错误'}</p>
+            </div>
+        );
+    }
 
-      {/* 2. 核心：渲染 Client Component 并传递初始数据 */}
-      {/* PromptList 包含瀑布流、展示逻辑和分页交互（按钮/API调用） */}
-      <PromptList initialPrompts={initialPrompts} /> 
-
-    </div>
-  );
+    // 3. 渲染列表组件
+    return (
+        <div className="p-6">
+            {/* PromptList 组件应该处理网格/列表视图切换 */}
+            <PromptList initialPrompts={prompts as Prompt[] || []} />
+        </div>
+    );
 }
