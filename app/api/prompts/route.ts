@@ -35,7 +35,7 @@ export async function GET(request: Request) {
     try {
         // 3. 安全地执行 Supabase 查询
         const { data, error } = await supabase
-            .from('prompts')
+            .from('prompt-assets')
             .select('*')
             .order('created_at', { ascending: false })
             .range(start, end);

@@ -18,7 +18,7 @@ export async function GET(request: NextRequest, context: any) {
 
     try {
         const { data: promptData, error } = await supabaseServiceRole
-            .from('prompts') // <--- 确认这里是 'prompts'
+            .from('prompt-assets') // <--- 确认这里是 'prompts'
             .select('*')
             .eq('id', promptId)
             .single();
