@@ -1,16 +1,15 @@
-// app/api/admin/[id]/route.ts
+// app/api/admin/[id]/route.ts (修正后的代码)
 import { supabaseServiceRole } from '@/lib/supabaseService';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server'; // 引入 NextRequest
 
-interface Context {
-    params: {
-        id: string;
-    };
-}
+// ⚠️ 删除了自定义的 Context 接口，让 TypeScript 使用 Next.js 提供的隐式类型
 
 // GET 请求：获取单个记录用于编辑
-export async function GET(request: Request, context: Context) {
-    const promptId = parseInt(context.params.id);
+// 💥 关键修正：直接在参数中解构 { params }
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+    
+    // 1. 从解构后的 params 中安全获取 id
+    const promptId = parseInt(params.id);
 
     if (isNaN(promptId)) {
         return NextResponse.json({ message: 'Invalid ID' }, { status: 400 });
