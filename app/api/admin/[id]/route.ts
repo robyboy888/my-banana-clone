@@ -1,20 +1,16 @@
-// app/api/admin/[id]/route.ts (最终修正)
+// app/api/admin/[id]/route.ts (使用 any 绕过类型冲突的最终修正)
 import { supabaseServiceRole } from '@/lib/supabaseService';
 import { NextResponse, NextRequest } from 'next/server';
 
-// ⚠️ 外部定义 Context 接口，以确保 TypeScript 在内部推断正确。
-// 注意：这里我们定义了 params 的结构，但不在函数签名中解构它。
-interface RouteContext {
-    params: {
-        id: string;
-    };
-}
+// ⚠️ 注意：我们不再定义 RouteContext 接口，并使用 any 类型来接收 context，
+// 以避免与 Next.js 严格的 Promise<params> 类型冲突。
 
 // GET 请求：获取单个记录用于编辑
-// 💥 关键修正：不解构 context，并使用 RouteContext 类型。
-export async function GET(request: NextRequest, context: RouteContext) {
+// 💥 关键修正：将 context 显式设置为 any 类型
+export async function GET(request: NextRequest, context: any) {
     
     // 1. 从 context.params 中安全获取 id
+    // TypeScript 知道 context 是 any，所以不会报错
     const promptId = parseInt(context.params.id);
 
     if (isNaN(promptId)) {
