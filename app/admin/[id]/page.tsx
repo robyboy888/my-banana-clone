@@ -1,7 +1,7 @@
-// app/admin/[id]/page.tsx (修正后的 Server Component)
+// app/admin/[id]/page.tsx (最终版本：不进行数据检查)
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-// ⚠️ 注意：不再需要引入 supabaseServiceRole 或 Prompt
+import { notFound } from 'next/navigation'; // ⚠️ 注意：如果不需要，可以移除
+// ⚠️ 确认：没有引入 supabaseServiceRole
 
 import ClientEditFormWrapper from '@/components/ClientEditFormWrapper';
 
@@ -11,13 +11,13 @@ interface EditPageProps {
     };
 }
 
-// 💥 Server Component：现在只负责校验 ID 并渲染客户端包装器
 export default async function EditPromptPage({ params }: EditPageProps) {
     
     const promptId = params.id;
     
+    // 💥 关键点：这是唯一可能触发 notFound() 的地方。
+    // 如果您的 ID 格式是纯数字，这个检查可以保留。
     if (isNaN(parseInt(promptId))) {
-         // 理论上 Next.js 路由不会传入非数字，但做个校验
          notFound(); 
     }
 
@@ -33,7 +33,7 @@ export default async function EditPromptPage({ params }: EditPageProps) {
                 </Link>
             </div>
 
-            {/* 💥 重点：传入 ID，让客户端包装器通过 API 获取数据 */}
+            {/* 传递 ID，让客户端处理数据获取和 404 逻辑 */}
             <ClientEditFormWrapper promptId={promptId} />
         </div>
     );
