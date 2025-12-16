@@ -11,18 +11,20 @@ export const dynamic = 'force-dynamic';
 
 interface EditPageProps {
     params: {
-        // 💥 文件夹重命名后，params 键名必须同步更新为 promptId
-        promptId: string; 
+		promptId: string;
+        // 添加 id 以防 Next.js 错误解析
+        id?: string;
     };
 }
 
 // Server Component：只负责校验 ID 格式和渲染客户端包装器
 export default async function EditPromptPage({ params }: EditPageProps) {
     
-    // 从新的 params 键名中获取 ID
-    const promptId = params.promptId;
+	// 💥 关键修正：优先使用 promptId，否则使用 id
+    const rawId = params.promptId || params.id;
     
-    // 简单的 ID 格式校验。如果传入的是非数字，则返回 404
+    const promptId = rawId ? String(rawId) : '';
+    
     if (isNaN(parseInt(promptId))) {
          notFound(); 
     }
