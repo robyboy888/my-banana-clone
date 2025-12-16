@@ -1,9 +1,12 @@
 // app/api/admin/create/route.ts
 import { NextResponse } from 'next/server';
-import { supabaseServiceRole } from '@/lib/supabaseService'; // 💥 假设您创建了 service_role 客户端
+import { supabaseServiceRole } from '@/lib/supabaseService'; 
 
-// Supabase Storage 桶名
-const BUCKET_NAME = 'prompt-images';
+// 强制动态渲染，防止 Vercel 缓存
+export const dynamic = 'force-dynamic'; 
+
+// 💥 关键修正：使用我们新的、已创建的备用 Bucket 名称
+const BUCKET_NAME = 'prompt-assets'; 
 
 /**
  * 辅助函数：处理文件上传到 Supabase Storage
@@ -15,6 +18,7 @@ async function uploadFile(file: File, folder: string): Promise<string> {
     // 生成唯一文件名
     const filePath = `${folder}/${Date.now()}-${file.name.replace(/\s/g, '_')}`;
 
+    // 💥 使用 BUCKET_NAME 变量
     const { data, error } = await supabaseServiceRole.storage
         .from(BUCKET_NAME)
         .upload(filePath, buffer, {
@@ -23,6 +27,7 @@ async function uploadFile(file: File, folder: string): Promise<string> {
         });
 
     if (error) {
+        // 确保错误信息能被捕获
         throw new Error(`文件上传失败: ${error.message}`);
     }
 
@@ -67,7 +72,7 @@ export async function POST(request: Request) {
             // ... 其他字段
         };
 
-        // 4. 插入到 Supabase 数据库
+        // 4. 插入到 Supabase 数据库 (注意：这里依然是 'prompts' 表名，不需要修改)
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .insert([finalData])
