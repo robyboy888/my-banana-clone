@@ -10,7 +10,9 @@ interface Prompt {
     id: number;
     title: string;
     content: string;
-    optimized_image_url?: string; // 用于悬浮缩略图
+	// 💥 关键修正：确保以下两个字段存在且标记为可选 (Optional)
+    optimized_prompt?: string;        // 👈 新增/修正：优化后的提示词
+    optimized_image_url?: string;     // 👈 确保此字段也存在 (用于悬浮图片)
 }
 
 export default function ListItem({ prompt }: { prompt: Prompt }) {
