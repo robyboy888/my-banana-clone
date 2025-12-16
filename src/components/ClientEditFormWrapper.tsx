@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import AdminPromptForm from '@/components/AdminPromptForm';
 import { Prompt } from '@/types/prompt'; // 确保您的 Prompt 类型定义已正确导入
 import { useState, useEffect } from 'react';
-import { Spinner } from '@/components/ui/spinner'; // 假设您有一个加载 Spinner 组件
+    // import { Spinner } from '@/components/ui/spinner'; // 假设您有一个加载 Spinner 组件
 
 interface ClientEditFormWrapperProps {
     promptId: string; // 从 Server Component 接收的 ID
@@ -64,7 +64,6 @@ export default function ClientEditFormWrapper({ promptId }: ClientEditFormWrappe
         // 使用 Spinner 或简单的文本提示
         return (
             <div className="flex justify-center items-center h-40">
-                {/* <Spinner /> */} 
                 <p className="text-gray-600">正在加载记录...</p>
             </div>
         );
