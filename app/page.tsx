@@ -4,6 +4,8 @@ export const revalidate = 0;
 import { supabase } from '@/lib/supabase'
 import Image from 'next/image'; 
 import CopyButton from '@/components/CopyButton'; // 确保路径正确
+// 💥 关键修正：在这里定义 PAGE_SIZE
+const PAGE_SIZE = 50; // 首次加载数量
 
 // ... [getPrompts 函数保持不变] ...
 
