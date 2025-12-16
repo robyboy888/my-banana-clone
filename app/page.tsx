@@ -1,4 +1,11 @@
-// app/page.tsx
+// app/page.tsx 或 app/api/prompts/route.ts
+
+// 这行代码会告诉 Vercel，每次请求时都重新获取数据，
+// 从而禁用默认的静态缓存。
+export const revalidate = 0; 
+
+// ... 您的 Supabase 数据获取逻辑 ...
+
 import { supabase } from '@/lib/supabase'
 
 // Next.js 14 中，获取数据可以直接在 Server Component 中进行
