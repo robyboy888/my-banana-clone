@@ -17,7 +17,7 @@ export async function GET(request: NextRequest, context: any) {
         return NextResponse.json({ message: 'Invalid ID' }, { status: 400 });
     }
 
-    try {
+	try {
         const { data: promptData, error } = await supabaseServiceRole
             .from('prompts')
             .select('*')
@@ -25,7 +25,8 @@ export async function GET(request: NextRequest, context: any) {
             .single();
 
         if (error) {
-            console.error('Supabase fetch error:', error);
+            // 💥 关键点 1：将 Supabase 原始错误打印出来
+            console.error('SUPABASE_QUERY_ERROR:', error); 
             return NextResponse.json({ 
                 message: 'Database error fetching record', 
                 details: error.message 
@@ -33,12 +34,17 @@ export async function GET(request: NextRequest, context: any) {
         }
 
         if (!promptData) {
+            // 💥 关键点 2：记录找不到数据的日志
+            console.warn(`RECORD_NOT_FOUND_ID: ${promptId}`);
             return NextResponse.json({ message: 'Record not found' }, { status: 404 });
         }
 
         return NextResponse.json(promptData);
 
     } catch (e: any) {
+        // 💥 关键点 3：记录所有意料之外的错误 (如网络、环境问题)
+        console.error('UNEXPECTED_API_ERROR:', e);
         return NextResponse.json({ message: 'Internal server error', details: e.message }, { status: 500 });
     }
+}
 }
