@@ -39,27 +39,30 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
     const loadMore = useCallback(async () => {
         setIsLoading(true);
         const newOffset = prompts.length; // 新的起始点即已加载的数据长度
+		
 
         try {
-            // 💥 调用安全的 Next.js API 路由，传递偏移量
             const response = await fetch(`/api/prompts?offset=${newOffset}`);
             
-            if (!response.ok) {
-                // 如果 API 路由返回非 200 状态码
-                throw new Error('Failed to fetch more data from server API.');
-            }
+            // ... (错误处理) ...
 
             const data: Prompt[] = await response.json(); 
+            
+            // 💥 新增诊断日志
+            console.log(`[DIAGNOSTIC] Loading more prompts with offset: ${newOffset}`);
+            console.log(`[DIAGNOSTIC] API returned ${data.length} new prompts.`);
+
 
             if (data && data.length > 0) {
-                // 将新数据追加到现有列表中
+                // 关键行：追加新数据
                 setPrompts(prev => [...prev, ...data]);
+                
+                // 💥 新增诊断日志
+                console.log(`[DIAGNOSTIC] Total prompts after append: ${prompts.length + data.length}`);
             }
-            
-            // 如果返回的数据少于 PAGE_SIZE，说明没有更多了
-            if (!data || data.length < PAGE_SIZE) {
-                setHasMore(false);
-            }
+            // ...
+
+
         } catch (error) {
             console.error('Error loading more data:', error);
             alert('加载更多数据失败，请检查网络或联系管理员。');
