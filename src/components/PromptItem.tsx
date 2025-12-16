@@ -16,9 +16,15 @@ interface Prompt {
     user_background_url?: string;
 }
 
-// 辅助函数：判断是否需要禁用优化 (针对 Supabase/外部 URL)
-const isExternalUrl = (url: string | undefined) => {
-    return url && typeof url === 'string' && url.includes('supabase.co');
+// -----------------------------------------------------------------
+// 💥 关键修正：确保函数返回严格的 boolean 类型 (true 或 false)
+// -----------------------------------------------------------------
+const isExternalUrl = (url: string | undefined): boolean => {
+    // 明确检查 url 是否存在且是字符串，然后返回布尔值
+    if (!url || typeof url !== 'string') {
+        return false;
+    }
+    return url.includes('supabase.co');
 };
 
 
@@ -32,7 +38,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
         >
             <h2 className="text-2xl font-bold text-yellow-700 mb-4">{prompt.title}</h2>
 
-            {/* 用户参考图片 (肖像 + 背景) - 修正 unoptimized 属性 */}
+            {/* 用户参考图片 (肖像 + 背景) */}
             {(prompt.user_portrait_url || prompt.user_background_url) && (
                 <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                     <h3 className="font-bold text-blue-700 mb-2 text-sm">用户参考输入：</h3>
@@ -45,7 +51,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
                                     alt="用户肖像"
                                     fill
                                     style={{ objectFit: 'cover' }}
-                                    // 💥 修复点：强制禁用优化
+                                    // 修正点：调用修正后的函数
                                     unoptimized={isExternalUrl(prompt.user_portrait_url)}
                                 />
                                 <span className="absolute top-0 left-0 bg-red-600 text-white text-xs px-1">肖像</span>
@@ -59,7 +65,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
                                     alt="用户背景"
                                     fill
                                     style={{ objectFit: 'cover' }}
-                                    // 💥 修复点：强制禁用优化
+                                    // 修正点：调用修正后的函数
                                     unoptimized={isExternalUrl(prompt.user_background_url)}
                                 />
                                 <span className="absolute top-0 left-0 bg-green-600 text-white text-xs px-1">背景</span>
@@ -69,7 +75,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
                 </div>
             )}
             
-            {/* 原始图片与优化图片对比区 - 修正 unoptimized 属性 */}
+            {/* 原始图片与优化图片对比区 */}
             <div className="flex space-x-2 mb-4">
                 
                 {/* 原始图片 */}
@@ -81,7 +87,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
                             fill
                             sizes="33vw"
                             style={{ objectFit: 'cover' }}
-                            // 💥 修复点：强制禁用优化
+                            // 修正点：调用修正后的函数
                             unoptimized={isExternalUrl(prompt.original_image_url)}
                         />
                         <span className="absolute bottom-0 right-0 bg-gray-900 text-white text-xs px-1 rounded-tl-lg">原始图</span>
@@ -97,7 +103,7 @@ export default function PromptItem({ prompt }: { prompt: Prompt }) {
                             fill
                             sizes="33vw"
                             style={{ objectFit: 'cover' }}
-                            // 💥 修复点：强制禁用优化
+                            // 修正点：调用修正后的函数
                             unoptimized={isExternalUrl(prompt.optimized_image_url)}
                         />
                         <span className="absolute bottom-0 right-0 bg-green-600 text-white text-xs px-1 rounded-tl-lg">优化图</span>
