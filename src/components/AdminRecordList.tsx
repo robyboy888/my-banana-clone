@@ -4,12 +4,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Prompt } from '@/types/prompt';
-import ListItem from './ListItem'; // 假设您使用 ListItem 渲染列表行
-import PromptItem from './PromptItem'; // 假设您使用 PromptItem 渲染网格卡片
+import ListItem from './ListItem'; 
+import PromptItem from './PromptItem'; 
 import { useRouter } from 'next/navigation';
 
 // ----------------------------------------------------
-// 💥 修复类型错误 (最新的构建失败)
+// 修复类型错误 (最新的构建失败)
 // ----------------------------------------------------
 interface AdminRecordListProps {
     initialPrompts: Prompt[];
@@ -29,7 +29,7 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
         }
 
         try {
-            // 假设您有一个删除 API 路由，例如 /api/admin/[promptId]/route.ts
+            // 假设您有一个删除 API 路由，例如 /api/admin/delete/[promptId]
             const response = await fetch(`/api/admin/delete/${promptId}`, {
                 method: 'DELETE',
             });
@@ -58,7 +58,7 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
     return (
         <div className="space-y-6">
             
-            {/* 顶部控制区域：返回、新增、视图切换 */}
+            {/* 顶部控制区域：返回、新增、视图切换 - 保持不变 */}
             <div className="flex justify-between items-center mb-4 border-b pb-4">
                 <div className="space-x-4">
                     <Link 
@@ -99,9 +99,22 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
                 <div className={`
                     ${isGrid ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}
                 `}>
-                    {prompts.map(prompt => {
-                        const actionButtons = (
-                            <div className="flex space-x-2 mt-2">
+                    {prompts.map(prompt => (
+                        <div key={prompt.id} className={isGrid ? 'shadow-lg rounded-xl overflow-hidden' : 'border p-4 rounded-lg flex justify-between items-center'}>
+                            
+                            {/* 1. 渲染 PromptItem 或 ListItem (只传递 prompt) */}
+                            {isGrid ? (
+                                <PromptItem 
+                                    prompt={prompt} 
+                                />
+                            ) : (
+                                <ListItem 
+                                    prompt={prompt} 
+                                />
+                            )}
+                            
+                            {/* 💥 2. 核心修正：直接在这里渲染操作按钮，避免 actions props 冲突 */}
+                            <div className="flex space-x-2 p-2 self-end">
                                 {/* 💥 P1 修复：编辑链接 (解决 404) */}
                                 <Link 
                                     href={`/admin/edit?id=${prompt.id}`} 
@@ -117,34 +130,10 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
                                     删除
                                 </button>
                             </div>
-                        );
-
-                        return (
-                            <React.Fragment key={prompt.id}>
-                                {isGrid ? (
-                                    // 假设 PromptItem 接收 prompt 和 actionButtons
-                                    <PromptItem 
-                                        prompt={prompt} 
-                                        actions={actionButtons} 
-                                    />
-                                ) : (
-                                    // 假设 ListItem 接收 prompt 和 actionButtons
-                                    <ListItem 
-                                        prompt={prompt} 
-                                        actions={actionButtons} 
-                                    />
-                                )}
-                            </React.Fragment>
-                        );
-                    })}
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
     );
 }
-
-// ----------------------------------------------------
-// ⚠️ 额外提醒：如果您的 ListItem/PromptItem 不支持 actions props，
-// 您需要将上面的 Link 和 Button 逻辑移动到 ListItem/PromptItem 内部，
-// 并确保在它们内部使用 `href={`/admin/edit?id=${prompt.id}`}`
-// ----------------------------------------------------
