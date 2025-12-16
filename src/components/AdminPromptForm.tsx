@@ -19,12 +19,16 @@ interface AdminPromptFormProps {
 }
 
 // ----------------------------------------------------
-// 辅助组件：图片预览
+// 辅助组件：图片预览 (修正版)
 // ----------------------------------------------------
 const PreviewImage: React.FC<{ url: string | File, alt: string }> = ({ url, alt }) => {
     // 如果是 File 对象，创建本地 URL 用于预览
     const src = url instanceof File ? URL.createObjectURL(url) : url;
     
+    // 💥 关键修正：
+    // 如果 url 是 File 对象 (即本地预览)，或者 url 是远程 Supabase 地址，都需要禁用优化
+    const shouldBeUnoptimized = url instanceof File || (typeof url === 'string' && url.includes('supabase.co'));
+
     return (
         <div className="mt-2 relative w-full h-32 border border-gray-300 rounded-lg overflow-hidden">
             <Image
@@ -33,7 +37,8 @@ const PreviewImage: React.FC<{ url: string | File, alt: string }> = ({ url, alt 
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-contain"
-                unoptimized={typeof url === 'string' && url.includes('supabase.co')}
+                // 启用修正后的 unoptimized 逻辑
+                unoptimized={shouldBeUnoptimized} 
             />
         </div>
     );
