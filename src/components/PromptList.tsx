@@ -28,9 +28,9 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
     const [prompts, setPrompts] = useState(initialPrompts);
     // 状态管理：标记是否正在加载中，用于禁用按钮
     const [isLoading, setIsLoading] = useState(false);
-    // 状态管理：标记是否还有更多数据可加载
-    // 假设如果初始数据达到 PAGE_SIZE，则可能有更多数据
-    const [hasMore, setHasMore] = useState(initialPrompts.length === PAGE_SIZE); 
+	// 💥 关键修正：如果数据量 > 0，则假定有更多数据。
+    // 更安全的做法是：initialPrompts.length >= 1
+    const [hasMore, setHasMore] = useState(initialPrompts.length >= PAGE_SIZE || initialPrompts.length > 0);
 
     /**
      * 加载更多数据的函数，调用 Next.js 的 API 路由

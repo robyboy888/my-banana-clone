@@ -12,13 +12,19 @@ async function getPrompts() {
     .from('prompts')
     .select('*') 
     .order('created_at', { ascending: false })
-    .limit(50) 
+    .limit(PAGE_SIZE) 
 
   if (error) {
     console.error("Error fetching data:", error)
     return []
   }
-  return data
+  
+  // 💥 新增诊断日志
+  if (data) {
+      console.log(`[DIAGNOSTIC] Initial prompts loaded: ${data.length} out of ${PAGE_SIZE}`);
+  }
+  
+  return data || []
 }
 
 export default async function HomePage() {
