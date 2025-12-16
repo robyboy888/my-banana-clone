@@ -1,5 +1,4 @@
 // app/api/admin/create/route.ts
-export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { supabaseServiceRole } from '@/lib/supabaseService'; // 确保路径正确
 
