@@ -232,8 +232,9 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 </button>
                 
                 {/* 3. 预览区域 */}
-                {(urlString || isFile) && (
-                    <PreviewImage url={currentUrl} alt={`${label}预览`} />
+				{/* 💥 修正：只有当 currentUrl 确定存在时才渲染，并断言其类型非空 */}
+                {currentUrl && (
+                    <PreviewImage url={currentUrl as string | File} alt={`${label}预览`} />
                 )}
             </div>
         );
