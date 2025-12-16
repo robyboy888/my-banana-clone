@@ -19,18 +19,17 @@ interface Prompt {
     user_background_url?: string;
 }
 
-const PAGE_SIZE = 50; // 每次加载 50 条
+const PAGE_SIZE = 50; 
 
-// PromptList 组件接收从服务器组件传递过来的初始数据
 export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[] }) {
     
-    // 状态管理：存储当前已加载的 Prompt 列表
+    // ... (状态定义保持不变) ...
     const [prompts, setPrompts] = useState(initialPrompts);
-    // 状态管理：标记是否正在加载中，用于禁用按钮
     const [isLoading, setIsLoading] = useState(false);
-	// 💥 关键修正：修改 hasMore 的初始化逻辑
-    // 只要初始数据不为空 (即 initialPrompts.length > 0)，我们就假设有更多数据，
-    // 从而让“加载更多”按钮显示出来。
+    
+    // 💥 关键最终修正：
+    // 如果初始数据量大于 0 (说明查询成功)，则假定有更多数据。
+    // 这将强制按钮显示出来，直到加载到真正最后一页时再隐藏。
     const [hasMore, setHasMore] = useState(initialPrompts.length > 0);
 
     /**
