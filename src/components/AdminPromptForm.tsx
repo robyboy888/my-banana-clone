@@ -192,8 +192,10 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         const currentFile = fileChanges[fieldKey];
         const currentUrl = formData[urlKey];
         
-        // 确定当前状态是文件对象还是 URL 字符串
-        const isFile = currentUrl instanceof File;
+		// 确定当前状态是文件对象还是 URL 字符串
+        // 💥 修正：使用属性检查来判断它是否为 File/Blob 对象，避免 Node.js 环境下找不到 File 构造函数。
+        const isFile = currentUrl && typeof currentUrl === 'object' && 'size' in currentUrl && 'type' in currentUrl;
+        
         const urlString = isFile ? undefined : (currentUrl as string);
         
         // 确定按钮上的提示文本
