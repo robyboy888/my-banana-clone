@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin/:promptId(\\d{1,})",
+      "destination": "/admin/[promptId]"
+    }
+  ]
+}
