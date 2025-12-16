@@ -9,13 +9,14 @@ import PromptItem from './PromptItem';
 import { useRouter } from 'next/navigation';
 
 // ----------------------------------------------------
-// 修复类型错误 (最新的构建失败)
+// 修复类型错误 (最新的构建失败已通过 /app/admin/page.tsx 解决)
 // ----------------------------------------------------
 interface AdminRecordListProps {
     initialPrompts: Prompt[];
 }
 
 export default function AdminRecordList({ initialPrompts }: AdminRecordListProps) {
+    // 使用 state 来管理数据，便于删除后更新列表
     const [prompts, setPrompts] = useState(initialPrompts);
     const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
     const router = useRouter();
@@ -29,7 +30,7 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
         }
 
         try {
-            // 假设您有一个删除 API 路由，例如 /api/admin/delete/[promptId]
+            // 假设删除 API 路由是 /api/admin/delete/[promptId]
             const response = await fetch(`/api/admin/delete/${promptId}`, {
                 method: 'DELETE',
             });
@@ -58,7 +59,7 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
     return (
         <div className="space-y-6">
             
-            {/* 顶部控制区域：返回、新增、视图切换 - 保持不变 */}
+            {/* 顶部控制区域：返回、新增、视图切换 */}
             <div className="flex justify-between items-center mb-4 border-b pb-4">
                 <div className="space-x-4">
                     <Link 
@@ -99,22 +100,30 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
                 <div className={`
                     ${isGrid ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}
                 `}>
-                    {prompts.map(prompt => (
-                        <div key={prompt.id} className={isGrid ? 'shadow-lg rounded-xl overflow-hidden' : 'border p-4 rounded-lg flex justify-between items-center'}>
+                    {/* 💥 修复 index 缺失的类型错误：在 map 中获取 index */}
+                    {prompts.map((prompt, index) => (
+                        <div 
+                            key={prompt.id} 
+                            // 在列表模式下添加边框和布局
+                            className={isGrid ? 'shadow-lg rounded-xl overflow-hidden flex flex-col' : 'border p-4 rounded-lg flex justify-between items-start'}
+                        >
                             
-                            {/* 1. 渲染 PromptItem 或 ListItem (只传递 prompt) */}
+                            {/* 1. 渲染 PromptItem 或 ListItem (只传递 prompt 和 index) */}
                             {isGrid ? (
+                                // 假设 PromptItem 只需要 prompt
                                 <PromptItem 
                                     prompt={prompt} 
                                 />
                             ) : (
+                                // 💥 关键修正：传递 index 属性，修复最新的类型错误
                                 <ListItem 
                                     prompt={prompt} 
+                                    index={index} 
                                 />
                             )}
                             
-                            {/* 💥 2. 核心修正：直接在这里渲染操作按钮，避免 actions props 冲突 */}
-                            <div className="flex space-x-2 p-2 self-end">
+                            {/* 2. 操作按钮：直接渲染，避免 props 冲突 */}
+                            <div className="flex space-x-2 p-2 mt-auto w-full justify-end">
                                 {/* 💥 P1 修复：编辑链接 (解决 404) */}
                                 <Link 
                                     href={`/admin/edit?id=${prompt.id}`} 
