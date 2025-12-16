@@ -1,5 +1,5 @@
 // app/admin/page.tsx
-
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { supabaseServiceRole } from '@/lib/supabaseService'; // 用于获取数据
 import AdminRecordList from '@/components/AdminRecordList'; // 新组件：列表显示

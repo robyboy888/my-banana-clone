@@ -123,62 +123,74 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         }
     }, [isEditMode, initialPrompt]);
 
+// ----------------------------------------------------
+// 提交逻辑 (修正版)
+// ----------------------------------------------------
+const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+    
+    // 1. 构造 FormData，用于 API 传输文件和文本数据
+    const submissionData = new FormData();
 
-    // ----------------------------------------------------
-    // 提交逻辑
-    // ----------------------------------------------------
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError(null);
-        setIsSubmitting(true);
-        
-        // 1. 构造 FormData，用于 API 传输文件和文本数据
-        const submissionData = new FormData();
-        
-        // 添加 ID (仅编辑模式)
-        if (isEditMode && initialPrompt?.id) {
-            submissionData.append('id', String(initialPrompt.id));
+    // 确定目标 API 路径和方法
+    const apiPath = isEditMode ? `/api/admin/update/${initialPrompt?.id}` : '/api/admin/create';
+    const method = 'POST'; // 统一使用 POST，并通过 API Path 或 ID 区分
+    
+    // --- 💥 关键修正区域开始 ---
+    
+    // 构造文本数据对象，只包含需要插入数据库的字段
+    const dataToInsert: { [key: string]: any } = {};
+    
+    // 遍历所有表单数据，收集非文件字段
+    Object.entries(formData).forEach(([key, value]) => {
+        // 只收集 string 类型的值（即 title, content 等）
+        if (typeof value === 'string') {
+            dataToInsert[key] = value;
         }
+    });
 
-        // 添加文本数据
-        Object.entries(formData).forEach(([key, value]) => {
-            // 只发送 string 类型的值，跳过 File 对象
-            if (typeof value === 'string') {
-                submissionData.append(key, value);
-            }
+    // 💥 将所有文本数据序列化为 JSON 字符串，并作为 'data' 字段附加
+    submissionData.append('data', JSON.stringify(dataToInsert));
+    
+    // 添加 ID (仅编辑模式，用于 API 路由的 [promptId] 或 URL 参数)
+    // 注意：我们现在使用新的 /api/admin/update/[promptId] 路由或在 URL 参数中传递
+    if (isEditMode && initialPrompt?.id) {
+        // 如果编辑API是 /api/admin/update/[promptId]，这里可能不需要单独添加ID
+        // 如果是 /api/admin/update，且需要通过 FormData 传 ID，则保留
+        // 考虑到编辑模式路径是 /api/admin/update/[promptId]，这里可以删除
+    }
+    
+    // 添加文件数据 (这部分保持不变)
+    Object.entries(fileChanges).forEach(([key, file]) => {
+        if (file) {
+            submissionData.append(key, file); 
+        }
+    });
+    
+    // --- 💥 关键修正区域结束 ---
+
+    // 2. 发送请求
+    try {
+        const response = await fetch(apiPath, {
+            method: method,
+            body: submissionData, // 自动设置正确的 Content-Type
         });
 
-        // 添加文件数据
-        Object.entries(fileChanges).forEach(([key, file]) => {
-            if (file) {
-                // key: 'originalImage', 'optimizedImage', etc.
-                submissionData.append(key, file); 
-            }
-        });
-
-        // 2. 选择 API 路由
-        const apiPath = isEditMode ? '/api/admin/update' : '/api/admin/create';
-
-        try {
-            const response = await fetch(apiPath, {
-                method: 'POST',
-                body: submissionData, // 自动设置正确的 Content-Type
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || '操作失败，请检查服务器日志。');
-            }
-
-            // 成功后，调用传入的 onSuccess 回调
-            onSuccess();
-
-        } catch (err: any) {
-            setError(err.message || '未知错误发生，请重试。');
-        } finally {
-            setIsSubmitting(false);
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || errorData.message || '操作失败，请检查服务器日志。');
         }
-    };
+
+        onSuccess();
+
+    } catch (err: any) {
+        setError(err.message || '未知错误发生，请重试。');
+    } finally {
+        setIsSubmitting(false);
+    }
+};
     
     // ----------------------------------------------------
     // 辅助函数：渲染文件选择器 (封装了按钮逻辑)
