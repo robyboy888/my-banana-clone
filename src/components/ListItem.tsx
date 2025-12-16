@@ -1,18 +1,17 @@
-// components/ListItem.tsx (Client Component)
+// components/ListItem.tsx
 
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import CopyButton from './CopyButton'; // 确保路径正确
+import CopyButton from './CopyButton'; 
 
+// 确保这里的 Prompt 接口与 PromptList 中的定义一致
 interface Prompt {
-    // ... (Prompt 接口定义) ...
     id: number;
     title: string;
-    content: string;
-	// 💥 关键修正：确保以下两个字段存在且标记为可选 (Optional)
-    optimized_prompt?: string;        // 👈 新增/修正：优化后的提示词
-    optimized_image_url?: string;     // 👈 确保此字段也存在 (用于悬浮图片)
+    content: string; 
+    optimized_prompt?: string; 
+    optimized_image_url?: string; // 关键：悬浮缩略图需要这个字段
 }
 
 export default function ListItem({ prompt }: { prompt: Prompt }) {
@@ -31,13 +30,14 @@ export default function ListItem({ prompt }: { prompt: Prompt }) {
             </div>
 
             {/* 右侧：复制按钮 */}
+            {/* 复制优化提示词，如果不存在则复制原始提示词 */}
             <CopyButton
                 textToCopy={prompt.optimized_prompt || prompt.content} 
                 label="复制"
                 className="bg-green-500 text-white py-1 px-3 rounded-md text-sm hover:bg-green-600 transition"
             />
             
-            {/* 💥 悬浮缩略图 (如果有优化图) */}
+            {/* 悬浮缩略图 (如果鼠标悬浮且有优化图 URL) */}
             {isHovered && prompt.optimized_image_url && (
                 <div className="absolute right-full top-0 mr-4 z-50 p-1 bg-white border border-gray-300 shadow-xl rounded-lg w-36 h-36">
                     <Image
