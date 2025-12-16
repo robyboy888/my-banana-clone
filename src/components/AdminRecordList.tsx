@@ -53,7 +53,7 @@ export default function AdminRecordList({ prompts }: AdminRecordListProps) {
 
                         {/* 💥 编辑按钮 (取代复制按钮) */}
                         <Link 
-                            href={`/admin/${prompt.id}`} // 动态路由到编辑页面
+                            href={`/admin/edit?id=${prompt.id}`} // 动态路由到编辑页面
                             className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-medium"
                         >
                             编辑 &rarr;
