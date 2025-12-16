@@ -1,18 +1,21 @@
 // app/admin/page.tsx
 
+'use client'; // 💥 关键修正：将整个页面标记为 Client Component
+
 import AdminPromptForm from '@/components/AdminPromptForm';
 import Link from 'next/link';
-
-// 这个页面将默认是 Server Component，但内部使用了 Client Component (AdminPromptForm)
+import { useRouter } from 'next/navigation'; // 导入 useRouter 用于客户端跳转
 
 export default function AdminPage() {
     
-    // 成功处理函数：新增成功后，可以跳转回主页
+    const router = useRouter();
+    
+    // 💥 关键修正：handleSuccess 现在定义在 Client Component 中
     const handleSuccess = () => {
-        // 实际应用中，您可能需要使用 next/navigation 的 useRouter().push('/')
-        // 为了保持这个文件是 Server Component (如果需要)，我们只进行简单的 console log
-        console.log('Prompt record added successfully. Navigating to home page is recommended.');
         alert('Prompt 记录新增成功！');
+        
+        // 使用 useRouter 进行客户端路由跳转
+        router.push('/'); 
     };
 
     return (
@@ -27,13 +30,10 @@ export default function AdminPage() {
                 </Link>
             </div>
 
-            {/* 放置新增/编辑表单组件 */}
-            {/* 默认以新增模式启动，不传入 initialPrompt */}
+            {/* 传递 onSuccess 函数给 AdminPromptForm (现在两者都是客户端组件，函数可以传递) */}
             <AdminPromptForm 
                 onSuccess={handleSuccess} 
             />
-            
-            {/* ⚠️ 注意：未来如果您要实现编辑功能，需要根据 URL 参数获取 ID，并传递 initialPrompt */}
             
             <p className="mt-8 text-sm text-gray-500 text-center">
                 请确保您的 SUPABASE_SERVICE_ROLE_KEY 已配置，否则无法进行新增或修改操作。
