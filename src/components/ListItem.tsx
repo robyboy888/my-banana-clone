@@ -18,7 +18,7 @@ interface Prompt {
 
 interface ListItemProps {
     prompt: Prompt;
-    // 💥 修正：新增 index 属性的定义
+    // 列表视图需要接收 index
     index: number; 
 }
 
@@ -32,15 +32,16 @@ const isExternalUrl = (url: string | undefined): boolean => {
 
 
 /**
- * ListItem 组件：用于列表视图中展示单个 Prompt 的行
+ * ListItem 组件：用于列表视图中展示单个 Prompt 的行 (最终样式修正版)
  */
 export default function ListItem({ prompt, index }: ListItemProps) {
     const [isHovered, setIsHovered] = useState(false);
     const previewImageUrl = prompt.original_image_url;
 
     return (
-        // 限制最大宽度，增加垂直内边距，居中
-        <div className="flex items-start space-x-4 border-b border-gray-200 py-4 max-w-4xl mx-auto">
+        // 💥 修正 1：将 max-w-4xl 增大到 max-w-6xl 或 max-w-7xl (这里使用 6xl)
+        // 增加垂直内边距 (py-5) 使其更高
+        <div className="flex items-start space-x-6 border-b border-gray-200 py-5 max-w-6xl mx-auto">
             
             {/* 0. 行号显示 */}
             <div className="flex-shrink-0 w-8 pt-1 text-lg font-bold text-gray-400">
@@ -54,19 +55,20 @@ export default function ListItem({ prompt, index }: ListItemProps) {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 {/* 标题 */}
-                <h3 className="text-lg font-bold text-gray-800 truncate mb-1">
+                <h3 className="text-lg font-bold text-gray-800 truncate mb-2">
                     {prompt.title}
                 </h3>
                 
                 {/* 原始提示词 - 使用 line-clamp-2 */}
                 <div className="text-sm text-gray-600 space-y-1">
                     <p className="font-semibold">原始提示词:</p>
+                    {/* h-10 保证了行高 */}
                     <p className="line-clamp-2 h-10 overflow-hidden text-gray-700">{prompt.content}</p> 
                 </div>
 
                 {/* 优化提示词 (如果存在) */}
                 {prompt.optimized_prompt && (
-                    <div className="text-sm mt-2 space-y-1">
+                    <div className="text-sm mt-3 space-y-1">
                         <p className="font-semibold text-gray-600">优化后提示词:</p>
                         <p className="line-clamp-2 h-10 overflow-hidden text-green-700">{prompt.optimized_prompt}</p>
                     </div>
@@ -77,10 +79,10 @@ export default function ListItem({ prompt, index }: ListItemProps) {
                     <div 
                         className="absolute top-0 z-50 p-2 bg-white border border-gray-300 rounded-lg shadow-xl"
                         style={{ 
-                            // 强制悬浮框在触发元素的右侧显示，避免左侧出框
                             left: '100%', 
-                            marginLeft: '15px', // 增加一些间距
-                            width: '280px', // 稍微调大一点
+                            // 增加 marginLeft 保证悬浮框和文本区有更多间隔
+                            marginLeft: '40px', 
+                            width: '280px', 
                             height: 'auto'
                         }}
                     >
@@ -100,15 +102,16 @@ export default function ListItem({ prompt, index }: ListItemProps) {
             </div>
 
             {/* 2. 复制按钮区域 */}
-            <div className="flex flex-col space-y-2 flex-shrink-0 w-36 ml-6">
+            {/* 💥 修正 2：增加按钮区域的宽度 (w-48) 和按钮间的空间 (space-y-4) */}
+            <div className="flex flex-col space-y-4 flex-shrink-0 w-48 ml-6">
                 <CopyButton
                     textToCopy={prompt.optimized_prompt || prompt.content} 
-                    label="复制优化"
+                    label="复制优化提示词"
                     className="bg-yellow-500 text-white py-2 rounded-md text-sm hover:bg-yellow-600 transition"
                 />
                 <CopyButton
                     textToCopy={prompt.content} 
-                    label="复制原始"
+                    label="复制原始提示词"
                     className="bg-gray-200 text-gray-800 py-2 rounded-md text-sm hover:bg-gray-300 transition"
                 />
             </div>
