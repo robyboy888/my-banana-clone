@@ -211,12 +211,24 @@ export default function PromptList({ initialPrompts }: { initialPrompts: Prompt[
             )}
 
             {viewMode === 'list' && (
-                // 列表视图：使用 ListItem (紧凑模式) 和客户端翻页
+				// 列表视图：使用 ListItem (紧凑模式) 和客户端翻页
                 <>
                     <div className="space-y-3">
-                        {visiblePrompts.map((prompt) => (
-                            <ListItem key={prompt.id} prompt={prompt} /> 
-                        ))}
+                        {/* 💥 关键修正：在 map 循环中计算索引 (i) 和起始行号 */}
+                        {visiblePrompts.map((prompt, i) => {
+                            // 计算当前页的起始行号 (基于 1)
+                            const baseIndex = (currentPage - 1) * LIST_PAGE_SIZE;
+                            const globalIndex = baseIndex + i + 1;
+
+                            return (
+                                // 传递计算出的行号 globalIndex 给 ListItem 组件
+                                <ListItem 
+                                    key={prompt.id} 
+                                    prompt={prompt} 
+                                    index={globalIndex} // 💥 新增 index prop
+                                /> 
+                            );
+                        })}
                         
                         {/* 列表为空时的提示 (如果加载了数据但当前页没数据) */}
                         {visiblePrompts.length === 0 && prompts.length > 0 && (
