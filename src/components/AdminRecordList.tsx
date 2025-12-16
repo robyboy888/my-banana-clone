@@ -1,66 +1,150 @@
-// components/AdminRecordList.tsx
+// /src/components/AdminRecordList.tsx
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { Prompt } from '@/types/prompt';
+import ListItem from './ListItem'; // 假设您使用 ListItem 渲染列表行
+import PromptItem from './PromptItem'; // 假设您使用 PromptItem 渲染网格卡片
+import { useRouter } from 'next/navigation';
 
-interface PromptListItem {
-    id: number;
-    title: string;
-    original_image_url: string;
-    created_at: string;
-}
-
+// ----------------------------------------------------
+// 💥 修复类型错误 (最新的构建失败)
+// ----------------------------------------------------
 interface AdminRecordListProps {
-    prompts: PromptListItem[];
+    initialPrompts: Prompt[];
 }
 
-export default function AdminRecordList({ prompts }: AdminRecordListProps) {
+export default function AdminRecordList({ initialPrompts }: AdminRecordListProps) {
+    const [prompts, setPrompts] = useState(initialPrompts);
+    const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
+    const router = useRouter();
+
+    // ----------------------------------------------------
+    // 异步删除逻辑
+    // ----------------------------------------------------
+    const handleDelete = async (promptId: number) => {
+        if (!confirm('确定要删除这条记录吗？')) {
+            return;
+        }
+
+        try {
+            // 假设您有一个删除 API 路由，例如 /api/admin/[promptId]/route.ts
+            const response = await fetch(`/api/admin/delete/${promptId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || '删除失败，请检查服务器日志。');
+            }
+
+            // 客户端状态更新：从列表中移除已删除项
+            setPrompts(prev => prev.filter(p => p.id !== promptId));
+            alert('记录删除成功！');
+
+        } catch (error: any) {
+            console.error('Deletion error:', error);
+            alert(`删除操作失败: ${error.message}`);
+        }
+    };
     
-    // TODO: 未来可以在这里实现删除逻辑
-
-    if (prompts.length === 0) {
-        return <p className="text-center text-gray-500 mt-10">目前没有记录。</p>;
-    }
-
+    // ----------------------------------------------------
+    // 渲染
+    // ----------------------------------------------------
+    
+    const isGrid = viewMode === 'grid';
+    
     return (
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <ul className="divide-y divide-gray-200">
-                {prompts.map((prompt) => (
-                    <li key={prompt.id} className="p-4 hover:bg-gray-50 flex items-center justify-between">
-                        
-                        {/* 记录信息 */}
-                        <div className="flex items-center space-x-4">
-                            {/* 缩略图 */}
-                            {prompt.original_image_url && (
-                                <Image 
-                                    src={prompt.original_image_url} 
-                                    alt={prompt.title} 
-                                    width={64} 
-                                    height={64} 
-                                    className="object-cover rounded-md flex-shrink-0"
-                                    unoptimized // 避免 Vercel 优化器找不到远程图片
-                                />
-                            )}
-                            
-                            {/* 标题和时间 */}
-                            <div>
-                                <p className="text-lg font-medium text-gray-900">{prompt.title}</p>
-                                <p className="text-sm text-gray-500">ID: {prompt.id}</p>
-                                <p className="text-sm text-gray-500">创建于: {new Date(prompt.created_at).toLocaleDateString()}</p>
-                            </div>
-                        </div>
+        <div className="space-y-6">
+            
+            {/* 顶部控制区域：返回、新增、视图切换 */}
+            <div className="flex justify-between items-center mb-4 border-b pb-4">
+                <div className="space-x-4">
+                    <Link 
+                        href="/" 
+                        className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition"
+                    >
+                        &larr; 返回前端列表
+                    </Link>
+                    <Link 
+                        href="/admin/new" 
+                        className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                    >
+                        + 新增记录
+                    </Link>
+                </div>
+                
+                {/* 视图切换按钮 */}
+                <div className="flex space-x-2">
+                    <button 
+                        onClick={() => setViewMode('list')}
+                        className={`p-2 rounded ${!isGrid ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-800'}`}
+                    >
+                        列表视图
+                    </button>
+                    <button 
+                        onClick={() => setViewMode('grid')}
+                        className={`p-2 rounded ${isGrid ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-800'}`}
+                    >
+                        网格视图
+                    </button>
+                </div>
+            </div>
 
-                        {/* 💥 编辑按钮 (取代复制按钮) */}
-                        <Link 
-                            href={`/admin/edit?id=${prompt.id}`} // 动态路由到编辑页面
-                            className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-medium"
-                        >
-                            编辑 &rarr;
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            {/* 列表/网格渲染区域 */}
+            {prompts.length === 0 ? (
+                <p className="text-center text-gray-500 mt-10">暂无记录。</p>
+            ) : (
+                <div className={`
+                    ${isGrid ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}
+                `}>
+                    {prompts.map(prompt => {
+                        const actionButtons = (
+                            <div className="flex space-x-2 mt-2">
+                                {/* 💥 P1 修复：编辑链接 (解决 404) */}
+                                <Link 
+                                    href={`/admin/edit?id=${prompt.id}`} 
+                                    className="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition"
+                                >
+                                    编辑
+                                </Link>
+                                
+                                <button
+                                    onClick={() => handleDelete(prompt.id)}
+                                    className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition"
+                                >
+                                    删除
+                                </button>
+                            </div>
+                        );
+
+                        return (
+                            <React.Fragment key={prompt.id}>
+                                {isGrid ? (
+                                    // 假设 PromptItem 接收 prompt 和 actionButtons
+                                    <PromptItem 
+                                        prompt={prompt} 
+                                        actions={actionButtons} 
+                                    />
+                                ) : (
+                                    // 假设 ListItem 接收 prompt 和 actionButtons
+                                    <ListItem 
+                                        prompt={prompt} 
+                                        actions={actionButtons} 
+                                    />
+                                )}
+                            </React.Fragment>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 }
+
+// ----------------------------------------------------
+// ⚠️ 额外提醒：如果您的 ListItem/PromptItem 不支持 actions props，
+// 您需要将上面的 Link 和 Button 逻辑移动到 ListItem/PromptItem 内部，
+// 并确保在它们内部使用 `href={`/admin/edit?id=${prompt.id}`}`
+// ----------------------------------------------------
