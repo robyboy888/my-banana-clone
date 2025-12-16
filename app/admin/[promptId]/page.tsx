@@ -1,24 +1,26 @@
-// app/admin/[id]/page.tsx
+// app/admin/[promptId]/page.tsx
 
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-// ⚠️ 注意：不再需要引入 supabaseServiceRole 或 Prompt
 import ClientEditFormWrapper from '@/components/ClientEditFormWrapper'; 
 
+
 // 💥 关键修正：强制动态渲染
-// 阻止 Vercel 缓存由 notFound() 导致的 404 页面结果，确保每次都执行代码。
+// 确保 Vercel 每次都执行代码，防止缓存 404 结果。
 export const dynamic = 'force-dynamic'; 
 
 interface EditPageProps {
     params: {
-        id: string;
+        // 💥 文件夹重命名后，params 键名必须同步更新为 promptId
+        promptId: string; 
     };
 }
 
-// 💥 Server Component：现在只负责校验 ID 格式和渲染客户端包装器
+// Server Component：只负责校验 ID 格式和渲染客户端包装器
 export default async function EditPromptPage({ params }: EditPageProps) {
     
-    const promptId = params.id;
+    // 从新的 params 键名中获取 ID
+    const promptId = params.promptId;
     
     // 简单的 ID 格式校验。如果传入的是非数字，则返回 404
     if (isNaN(parseInt(promptId))) {
@@ -37,7 +39,7 @@ export default async function EditPromptPage({ params }: EditPageProps) {
                 </Link>
             </div>
 
-            {/* 传递 ID，让客户端包装器通过 /api/admin/[id] 获取数据并处理加载/错误状态 */}
+            {/* 传递 ID，让客户端包装器通过 /api/admin/[promptId] 获取数据 */}
             <ClientEditFormWrapper promptId={promptId} />
         </div>
     );
