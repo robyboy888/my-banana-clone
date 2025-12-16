@@ -8,7 +8,7 @@ import Image from 'next/image';
 async function getPrompts() {
   const { data, error } = await supabase
     .from('prompts')
-    .select('*') // 确保选择所有字段，包括新增的 user_portrait_url 和 user_background_url
+    .select('*') // 确保选择所有字段
     .order('created_at', { ascending: false })
     .limit(50) 
 
@@ -44,7 +44,7 @@ export default async function HomePage() {
           >
             <h2 className="text-2xl font-bold text-yellow-700 mb-4">{prompt.title}</h2>
 
-            {/* 💥 新增区域：用户提供的参考图片 (肖像 + 背景) */}
+            {/* 用户参考图片 (肖像 + 背景) */}
             {(prompt.user_portrait_url || prompt.user_background_url) && (
                 <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                     <h3 className="font-bold text-blue-700 mb-2 text-sm">用户参考输入：</h3>
@@ -76,6 +76,7 @@ export default async function HomePage() {
                     </div>
                 </div>
             )}
+            
             {/* 原始图片与优化图片对比区 */}
             <div className="flex space-x-2 mb-4">
               
@@ -126,10 +127,27 @@ export default async function HomePage() {
                 )}
             </div>
 
-            {/* 复制按钮 */}
-            <button className="mt-4 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition">
-              复制优化提示词
-            </button>
+            {/* 💥 复制按钮区：现在包含两个按钮 💥 */}
+            <div className="mt-4 flex space-x-2">
+                {/* 1. 复制优化提示词（主按钮） */}
+                <button 
+                    className="flex-1 bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition"
+                    // 实际实现复制逻辑时，需要将这个组件改为 'use client'
+                    // onClick={() => copyToClipboard(prompt.optimized_prompt || prompt.content)}
+                >
+                  复制优化提示词
+                </button>
+                
+                {/* 2. 复制原始提示词（次按钮） */}
+                <button 
+                    className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition"
+                    // 实际实现复制逻辑时，需要将这个组件改为 'use client'
+                    // onClick={() => copyToClipboard(prompt.content)}
+                >
+                  复制原始提示词
+                </button>
+            </div>
+            {/* ---------------------------------- */}
           </div>
         ))}
         {prompts.length === 0 && <p className="text-gray-500">数据库中没有数据。</p>}
