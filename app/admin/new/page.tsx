@@ -1,37 +1,36 @@
-// app/admin/new/page.tsx
+'use client';
 
-'use client'; 
-
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import AdminPromptForm from '@/components/AdminPromptForm';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 export default function NewPromptPage() {
-    
     const router = useRouter();
-    
+
     const handleSuccess = () => {
-        alert('Prompt 记录新增成功！');
-        // 新增成功后，跳转回列表页
-        router.push('/admin'); 
+        alert('记录新增成功！');
+        router.push('/admin');
+        router.refresh(); // 确保列表页数据刷新
     };
 
     return (
         <div className="container mx-auto p-8 max-w-4xl">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-4xl font-extrabold text-gray-800">新增 Prompt 记录</h1>
+            <div className="flex justify-between items-center mb-8 border-b pb-6">
+                <div>
+                    <h1 className="text-3xl font-extrabold text-gray-800">新增 Prompt 记录</h1>
+                    <p className="text-gray-400 text-sm mt-1">创建一个新的 AI 提示词展示案例</p>
+                </div>
                 <Link 
                     href="/admin" 
-                    className="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition"
+                    className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition shadow-sm text-sm font-bold"
                 >
-                    &larr; 返回列表
+                    返回列表
                 </Link>
             </div>
 
-            {/* AdminPromptForm 默认以新增模式启动 */}
-            <AdminPromptForm 
-                onSuccess={handleSuccess} 
-            />
+            {/* 直接使用全能表单，不传 initialPrompt 默认就是新增模式 */}
+            <AdminPromptForm onSuccess={handleSuccess} />
         </div>
     );
 }
