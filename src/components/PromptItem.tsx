@@ -157,7 +157,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 {isAdmin ? (
                     <div className="flex space-x-2 border-t pt-4 border-gray-100">
                         <Link 
-                            href={`/admin/edit?id=${prompt.id}`}
+                            href={`/admin/edit/${prompt.id}`}
                             className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center text-xs font-bold hover:bg-blue-700 transition"
                         >
                             编辑

@@ -106,8 +106,8 @@ export default function ListItem({ prompt, index, isAdmin = false }: ListItemPro
                 {isAdmin && (
                     <div className="flex items-center space-x-4 border-l pl-8 border-gray-100">
                         <Link 
-                            href={`/admin/edit?id=${prompt.id}`}
-                            className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-100"
+                            href={`/admin/edit/${item.id}`} 
+							className="text-indigo-600 hover:text-indigo-900"
                         >
                             编辑
                         </Link>
