@@ -1,23 +1,37 @@
-'use client';
-
+import { createClient } from '@/lib/supabaseServer'; // 确保路径对应你的服务端 Supabase 客户端
 import { useState } from 'react';
-import Link from 'next/link';
+import AdminClientList from './AdminClientList'; // 我们稍后创建这个文件
 
-// 1. 定义 Prompt 接口
-interface Prompt {
-  id: number;
-  title: string;
-  content: string;
-  original_image_url: string;
+// 注意：这个文件头部不要加 'use client'
+export default async function AdminPage() {
+  const supabase = createClient();
+  
+  // 从数据库获取真实数据
+  const { data: prompts, error } = await supabase
+    .from('prompts')
+    .select('*')
+    .order('id', { ascending: false });
+
+  if (error) {
+    return <div className="p-10 text-red-500">加载失败: {error.message}</div>;
+  }
+
+  // 将数据传给客户端组件进行搜索和展示
+  return <AdminClientList initialPrompts={prompts || []} />;
 }
 
-// 2. 核心修复：为 initialPrompts 设置默认空数组 = []
-// 这样在 Next.js 构建预渲染时，即使没有数据也不会崩溃
-export default function AdminList({ initialPrompts = [] }: { initialPrompts?: Prompt[] }) {
-  const [searchQuery, setSearchQuery] = useState('');
+// --- 为了方便你直接复制，我把客户端组件逻辑直接写在下面作为内部组件 ---
+// --- 实际开发建议将其抽离到同目录下的 AdminClientList.tsx ---
 
-  // 3. 过滤逻辑：增加对 initialPrompts 的安全判定
-  const filteredData = (initialPrompts || []).filter((item) => {
+'use client'; // 在文件底部切换到客户端模式是不行的，所以我们必须确保逻辑正确
+
+import React from 'react';
+import Link from 'next/link';
+
+function AdminClientList({ initialPrompts = [] }: { initialPrompts: any[] }) {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const filteredData = initialPrompts.filter((item) => {
     if (!item) return false;
     const searchLower = searchQuery.toLowerCase();
     return (
@@ -36,7 +50,6 @@ export default function AdminList({ initialPrompts = [] }: { initialPrompts?: Pr
             <p className="text-slate-500 text-sm">共 {filteredData.length} 条数据</p>
           </div>
           
-          {/* 🔍 搜索框 */}
           <div className="relative">
             <input
               type="text"
@@ -49,14 +62,11 @@ export default function AdminList({ initialPrompts = [] }: { initialPrompts?: Pr
               <button 
                 onClick={() => setSearchQuery('')}
                 className="absolute right-4 top-3 text-slate-400 hover:text-slate-600"
-              >
-                ✕
-              </button>
+              >✕</button>
             )}
           </div>
         </div>
 
-        {/* 数据列表/表格 */}
         <div className="bg-white rounded-[24px] shadow-sm border border-slate-100 overflow-hidden">
           <table className="w-full text-left border-collapse">
             <thead className="bg-slate-50 border-b border-slate-100">
@@ -84,10 +94,9 @@ export default function AdminList({ initialPrompts = [] }: { initialPrompts?: Pr
             </tbody>
           </table>
           
-          {/* 空状态处理 */}
           {filteredData.length === 0 && (
             <div className="p-20 text-center text-slate-400">
-              {initialPrompts.length === 0 ? "暂无数据，请检查数据库连接" : "未找到匹配的结果"}
+              {initialPrompts.length === 0 ? "数据库无数据或连接失败" : "未找到匹配的结果"}
             </div>
           )}
         </div>
