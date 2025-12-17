@@ -14,7 +14,8 @@ interface Prompt {
     optimized_image_url?: string;
     user_portrait_url?: string;
     source_x_account?: string;
-    tags?: string[]; // 必须加上这个，否则下方 prompt.tags 会报错
+// 修改这里：允许 tags 为 any 类型，因为 jsonb 在 TS 中比较特殊
+    tags?: any;
 }
 
 const isExternalUrl = (url: string | undefined): boolean => {
