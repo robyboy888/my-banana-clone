@@ -18,4 +18,5 @@ export interface Prompt {
     // 时间戳 (如果您的数据库包含)
     created_at?: string; 
     updated_at?: string; 
+	source_x_account?: string; // 👈 必须在这里加上这个字段
 }

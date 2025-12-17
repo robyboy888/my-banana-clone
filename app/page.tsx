@@ -14,24 +14,30 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
         setMounted(true);
     }, []);
 
-    // 1. 核心搜索逻辑：多维度模糊匹配
+    // 1. 核心搜索逻辑：多维度模糊匹配 (已修复 TypeScript 类型报错)
     const filteredPrompts = useMemo(() => {
         if (!searchQuery.trim()) return initialPrompts;
         const query = searchQuery.toLowerCase();
-        return initialPrompts.filter(prompt => 
-            prompt.title?.toLowerCase().includes(query) ||
-            prompt.content?.toLowerCase().includes(query) ||
-            prompt.source_x_account?.toLowerCase().includes(query)
-        );
+        
+        return initialPrompts.filter(prompt => {
+            // 安全地处理可能为 undefined 的字段
+            const title = (prompt.title ?? '').toLowerCase();
+            const content = (prompt.content ?? '').toLowerCase();
+            const xAccount = (prompt.source_x_account ?? '').toLowerCase();
+            
+            return title.includes(query) || 
+                   content.includes(query) || 
+                   xAccount.includes(query);
+        });
     }, [searchQuery, initialPrompts]);
 
     if (!mounted) return null;
 
     return (
-        /* 💥 背景：低疲劳浅蓝灰梯度 */
+        /* 💥 背景：大师级低疲劳浅蓝灰梯度 */
         <div className="min-h-screen bg-[#F8FAFC] selection:bg-indigo-100 selection:text-indigo-900">
             
-            {/* 头部区域：带动画的 Hero Section */}
+            {/* 头部区域：Hero Section */}
             <div className="max-w-[1600px] mx-auto px-6 pt-16 pb-12">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
                     <div className="space-y-2 animate-in fade-in slide-in-from-left duration-700">
@@ -45,7 +51,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
 
                     {/* 2. 大师级搜索栏设计 */}
                     <div className="relative w-full lg:w-[500px] group">
-                        {/* 搜索栏上方的动态计数标签 */}
+                        {/* 动态计数标签 */}
                         <div className={`absolute -top-7 right-2 transition-all duration-300 ${searchQuery ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
                             <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
                                 Found {filteredPrompts.length} prompts
@@ -85,7 +91,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
                                 `}
                             />
 
-                            {/* 清除按钮动画 */}
+                            {/* 清除按钮 */}
                             {searchQuery && (
                                 <button 
                                     onClick={() => setSearchQuery('')}
@@ -103,7 +109,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
                 </div>
             </div>
 
-            {/* 3. 网格内容区域：5 列布局 */}
+            {/* 3. 网格内容区域 */}
             <div className="max-w-[1600px] mx-auto px-6 pb-32">
                 {filteredPrompts.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 animate-in fade-in zoom-in duration-500">
@@ -114,7 +120,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
                         ))}
                     </div>
                 ) : (
-                    /* 搜索为空的优雅状态 */
+                    /* 搜索为空状态 */
                     <div className="py-40 flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom duration-500">
                         <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-6">
                             <svg className="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +128,6 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
                             </svg>
                         </div>
                         <h3 className="text-2xl font-bold text-slate-400">No prompts found</h3>
-                        <p className="text-slate-400 mt-2">Try searching for something else, like "portrait" or "cyberpunk".</p>
                         <button 
                             onClick={() => setSearchQuery('')}
                             className="mt-8 px-8 py-3 bg-slate-900 text-white rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200"
@@ -133,10 +138,9 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
                 )}
             </div>
 
-            {/* 极简页脚 */}
             <footer className="py-12 border-t border-slate-100 text-center">
-                <p className="text-slate-300 text-xs font-bold uppercase tracking-[0.2em]">
-                    Curated with passion &copy; 2024 Banana Clone
+                <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.3em]">
+                    Banana Clone &bull; Master Design Systems
                 </p>
             </footer>
         </div>
