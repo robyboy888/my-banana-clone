@@ -3,21 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// 1. 定义 Prompt 接口（确保字段与数据库一致）
+// 1. 定义 Prompt 接口
 interface Prompt {
   id: number;
   title: string;
   content: string;
   original_image_url: string;
-  // 根据需要添加其他字段
 }
 
-// 2. 为组件参数指定类型
-export default function AdminList({ initialPrompts }: { initialPrompts: Prompt[] }) {
+// 2. 核心修复：为 initialPrompts 设置默认空数组 = []
+// 这样在 Next.js 构建预渲染时，即使没有数据也不会崩溃
+export default function AdminList({ initialPrompts = [] }: { initialPrompts?: Prompt[] }) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  // 过滤逻辑
-  const filteredData = initialPrompts.filter((item) => {
+  // 3. 过滤逻辑：增加对 initialPrompts 的安全判定
+  const filteredData = (initialPrompts || []).filter((item) => {
+    if (!item) return false;
     const searchLower = searchQuery.toLowerCase();
     return (
       item.title?.toLowerCase().includes(searchLower) ||
@@ -48,7 +49,9 @@ export default function AdminList({ initialPrompts }: { initialPrompts: Prompt[]
               <button 
                 onClick={() => setSearchQuery('')}
                 className="absolute right-4 top-3 text-slate-400 hover:text-slate-600"
-              >✕</button>
+              >
+                ✕
+              </button>
             )}
           </div>
         </div>
@@ -80,9 +83,11 @@ export default function AdminList({ initialPrompts }: { initialPrompts: Prompt[]
               ))}
             </tbody>
           </table>
+          
+          {/* 空状态处理 */}
           {filteredData.length === 0 && (
             <div className="p-20 text-center text-slate-400">
-              未找到匹配的结果
+              {initialPrompts.length === 0 ? "暂无数据，请检查数据库连接" : "未找到匹配的结果"}
             </div>
           )}
         </div>
