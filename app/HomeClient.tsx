@@ -6,105 +6,109 @@ import { Prompt } from '../src/types/prompt';
 
 export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Prompt[] }) {
     const [searchQuery, setSearchQuery] = useState('');
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid'); // 视图切换状态
     const [isFocused, setIsFocused] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // 从本地存储读取视图偏好
+        const savedView = localStorage.getItem('banana-view-mode') as 'grid' | 'list';
+        if (savedView) setViewMode(savedView);
         setMounted(true);
     }, []);
+
+    const toggleView = (mode: 'grid' | 'list') => {
+        setViewMode(mode);
+        localStorage.setItem('banana-view-mode', mode);
+    };
 
     const filteredPrompts = useMemo(() => {
         const data = Array.isArray(initialPrompts) ? initialPrompts : [];
         if (!searchQuery.trim()) return data;
-        
         const query = searchQuery.toLowerCase();
         return data.filter(prompt => {
-            const title = (prompt?.title ?? '').toLowerCase();
-            const content = (prompt?.content ?? '').toLowerCase();
-            const author = (prompt?.source_x_account ?? '').toLowerCase();
-            return title.includes(query) || content.includes(query) || author.includes(query);
+            return (prompt?.title ?? '').toLowerCase().includes(query) || 
+                   (prompt?.content ?? '').toLowerCase().includes(query);
         });
     }, [searchQuery, initialPrompts]);
 
-    if (!mounted) return <div className="min-h-screen bg-slate-50" />;
+    if (!mounted) return <div className="min-h-screen bg-[#020617]" />;
 
     return (
-        /* 1. 微梯度感背景设计 */
-        <div className="min-h-screen bg-gradient-to-br from-[#F8FAFC] via-[#F1F5F9] to-[#E2E8F0] selection:bg-indigo-100">
+        /* 深色背景：参考 OpenNana 的高级黑 */
+        <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-indigo-500/30">
             
-            {/* Header 与 搜索区域 */}
-            <div className="max-w-[1600px] mx-auto px-6 pt-20 pb-16">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
-                    
-                    {/* 标题动画 */}
-                    <div className="space-y-4 animate-in fade-in slide-in-from-top duration-1000">
-                        <h1 className="text-6xl font-black text-slate-900 tracking-tighter italic">
-                            Banana <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Clone</span>
+            {/* 顶部背景微光特效 */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-600/10 blur-[120px] pointer-events-none" />
+
+            <div className="max-w-[1600px] mx-auto px-6 pt-16 pb-12 relative z-10">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                    <div className="space-y-2">
+                        <h1 className="text-5xl font-black tracking-tighter italic text-white">
+                            Banana <span className="text-indigo-500">Clone</span>
                         </h1>
-                        <p className="text-slate-500 font-semibold text-xl max-w-lg leading-relaxed border-l-4 border-indigo-500 pl-4">
-                            Premium library of AI prompts for creative masters. 
-                        </p>
+                        <p className="text-slate-400 font-medium">Curated AI Prompt Library for Masters.</p>
                     </div>
 
-                    {/* 2. 磨砂质感搜索框 */}
-                    <div className="relative w-full lg:w-[550px] group">
-                        <div className={`relative transition-all duration-700 ease-in-out transform ${isFocused ? 'scale-[1.03]' : 'scale-100'}`}>
-                            <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none text-indigo-500">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-
+                    {/* 搜索与视图切换组合栏 */}
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                        {/* 搜索框 */}
+                        <div className="relative w-full sm:w-[400px]">
                             <input
                                 type="text"
-                                placeholder="Search the future..."
+                                placeholder="Search prompts..."
                                 value={searchQuery}
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`w-full pl-16 pr-12 py-6 bg-white/70 backdrop-blur-xl border-2 rounded-[32px] outline-none transition-all duration-500 ${
-                                    isFocused 
-                                    ? 'border-indigo-400 shadow-[0_20px_50px_rgba(79,70,229,0.15)] bg-white' 
-                                    : 'border-white shadow-lg'
+                                className={`w-full pl-12 pr-4 py-4 bg-slate-900/50 backdrop-blur-md border-2 rounded-2xl outline-none transition-all duration-300 ${
+                                    isFocused ? 'border-indigo-500 shadow-[0_0_20px_rgba(99,102,241,0.3)]' : 'border-slate-800'
                                 }`}
                             />
+                            <svg className="absolute left-4 top-4.5 w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+
+                        {/* 视图切换按钮 */}
+                        <div className="flex bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+                            <button 
+                                onClick={() => toggleView('grid')}
+                                className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+                            >
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                            </button>
+                            <button 
+                                onClick={() => toggleView('list')}
+                                className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+                            >
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" /></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* 3. 动态悬浮卡片展示区 */}
+            {/* 动态内容区 */}
             <div className="max-w-[1600px] mx-auto px-6 pb-32">
                 {filteredPrompts.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10">
-                        {filteredPrompts.map((prompt, index) => (
-                            <div 
-                                key={prompt.id} 
-                                className="transition-all duration-500 hover:-translate-y-3 hover:rotate-1"
-                                style={{ animationDelay: `${index * 50}ms` }}
-                            >
-                                <div className="bg-white rounded-[24px] shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-white">
+                    <div className={
+                        viewMode === 'grid' 
+                        ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8" 
+                        : "flex flex-col gap-4 max-w-5xl mx-auto"
+                    }>
+                        {filteredPrompts.map((prompt) => (
+                            <div key={prompt.id} className={`transition-all duration-300 hover:-translate-y-1 ${viewMode === 'list' ? 'w-full' : ''}`}>
+                                <div className={`bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:bg-slate-900/80 transition-all ${viewMode === 'list' ? 'flex' : ''}`}>
                                     <PromptItem prompt={prompt} isAdmin={false} />
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <div className="py-40 text-center animate-pulse">
-                        <div className="text-slate-300 text-8xl mb-4 font-black">?</div>
-                        <h3 className="text-2xl font-bold text-slate-400">No prompts found</h3>
-                        <button onClick={() => setSearchQuery('')} className="mt-6 text-indigo-600 font-black hover:underline tracking-widest uppercase text-sm">
-                            &larr; Return to Library
-                        </button>
-                    </div>
+                    <div className="py-40 text-center text-slate-600">No prompts match your search.</div>
                 )}
             </div>
-
-            <footer className="py-20 border-t border-slate-200 text-center bg-white/30 backdrop-blur-sm">
-                <p className="text-slate-400 text-[11px] font-black uppercase tracking-[0.5em]">
-                    Banana Clone &bull; Master Design Systems &bull; 2024
-                </p>
-            </footer>
         </div>
     );
 }
