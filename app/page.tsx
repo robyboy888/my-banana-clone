@@ -1,45 +1,144 @@
-// /app/page.tsx
-import { supabaseServiceRole } from '@/lib/supabaseService';
-import PromptList from '@/components/PromptList'; 
-import { Prompt } from '@/types/prompt'; // 确保 Prompt 类型已导入
+'use client';
 
-// ----------------------------------------------------
-// 💥 关键修复：强制动态渲染，禁用 Next.js 缓存
-// ----------------------------------------------------
-// 这将确保每次访问页面时，都会重新获取最新数据，而不是使用构建时的静态缓存。
-export const dynamic = 'force-dynamic'; 
+import React, { useState, useMemo, useEffect } from 'react';
+import PromptItem from '@/components/PromptItem';
+import { Prompt } from '@/types/prompt';
 
+export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] }) {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
-export default async function HomePage() {
-    
-    // 1. 获取数据 (使用与 Admin 页相同的服务权限客户端，保证权限最高)
-    // 注意：如果您的前端列表需要低权限（anon key），请替换为对应的客户端。
-    // 但为保证数据加载成功，我们暂用 serviceRole。
-    const { data: prompts, error } = await supabaseServiceRole
-        .from('prompts')
-        .select('*')
-        .order('created_at', { ascending: false });
+    // 确保客户端渲染一致性
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-    // 2. 错误处理
-    if (error) {
-        console.error('Failed to fetch prompts (HomePage):', error);
-        // 如果数据获取失败，显示明确的错误信息
-        return (
-            <div className="p-6 text-center">
-                <h1 className="text-3xl font-bold mb-6 text-red-600">数据加载失败</h1>
-                <p className="text-lg text-red-500">
-                    抱歉，加载提示词列表失败。请检查网络或联系管理员。
-                </p>
-                <p className="text-sm text-red-400 mt-2">错误详情: {error.message || '未知数据库错误'}</p>
-            </div>
+    // 1. 核心搜索逻辑：多维度模糊匹配
+    const filteredPrompts = useMemo(() => {
+        if (!searchQuery.trim()) return initialPrompts;
+        const query = searchQuery.toLowerCase();
+        return initialPrompts.filter(prompt => 
+            prompt.title?.toLowerCase().includes(query) ||
+            prompt.content?.toLowerCase().includes(query) ||
+            prompt.source_x_account?.toLowerCase().includes(query)
         );
-    }
+    }, [searchQuery, initialPrompts]);
 
-    // 3. 渲染列表组件
+    if (!mounted) return null;
+
     return (
-        <div className="p-6">
-            {/* PromptList 组件应该处理网格/列表视图切换 */}
-            <PromptList initialPrompts={prompts as Prompt[] || []} />
+        /* 💥 背景：低疲劳浅蓝灰梯度 */
+        <div className="min-h-screen bg-[#F8FAFC] selection:bg-indigo-100 selection:text-indigo-900">
+            
+            {/* 头部区域：带动画的 Hero Section */}
+            <div className="max-w-[1600px] mx-auto px-6 pt-16 pb-12">
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+                    <div className="space-y-2 animate-in fade-in slide-in-from-left duration-700">
+                        <h1 className="text-5xl font-black text-slate-900 tracking-tight italic">
+                            Banana <span className="text-indigo-600">Clone</span>
+                        </h1>
+                        <p className="text-slate-500 font-medium text-lg max-w-md leading-relaxed">
+                            Premium library of AI prompts for creative masters. 
+                        </p>
+                    </div>
+
+                    {/* 2. 大师级搜索栏设计 */}
+                    <div className="relative w-full lg:w-[500px] group">
+                        {/* 搜索栏上方的动态计数标签 */}
+                        <div className={`absolute -top-7 right-2 transition-all duration-300 ${searchQuery ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                                Found {filteredPrompts.length} prompts
+                            </span>
+                        </div>
+
+                        {/* 搜索框本体 */}
+                        <div className={`relative transition-all duration-500 ease-out transform ${isFocused ? 'scale-[1.02]' : 'scale-100'}`}>
+                            <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                                <svg 
+                                    className={`w-5 h-5 transition-colors duration-300 ${isFocused ? 'text-indigo-500' : 'text-slate-300'}`} 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+
+                            <input
+                                type="text"
+                                placeholder="Search by title, content or author..."
+                                value={searchQuery}
+                                onFocus={() => setIsFocused(true)}
+                                onBlur={() => setIsFocused(false)}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className={`
+                                    w-full pl-14 pr-12 py-5 
+                                    bg-white/80 backdrop-blur-xl
+                                    border-2 transition-all duration-300
+                                    rounded-[24px] outline-none text-slate-700 font-medium
+                                    placeholder:text-slate-300 placeholder:font-normal
+                                    ${isFocused 
+                                        ? 'border-indigo-500 shadow-[0_20px_40px_rgba(79,70,229,0.12)] bg-white' 
+                                        : 'border-slate-100 shadow-[0_8px_20px_rgba(0,0,0,0.02)]'
+                                    }
+                                `}
+                            />
+
+                            {/* 清除按钮动画 */}
+                            {searchQuery && (
+                                <button 
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute inset-y-0 right-4 flex items-center group/clear"
+                                >
+                                    <div className="p-1 rounded-full group-hover/clear:bg-slate-100 transition-colors">
+                                        <svg className="w-5 h-5 text-slate-300 group-hover/clear:text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 3. 网格内容区域：5 列布局 */}
+            <div className="max-w-[1600px] mx-auto px-6 pb-32">
+                {filteredPrompts.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 animate-in fade-in zoom-in duration-500">
+                        {filteredPrompts.map((prompt) => (
+                            <div key={prompt.id} className="h-full">
+                                <PromptItem prompt={prompt} isAdmin={false} />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    /* 搜索为空的优雅状态 */
+                    <div className="py-40 flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom duration-500">
+                        <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+                            <svg className="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-bold text-slate-400">No prompts found</h3>
+                        <p className="text-slate-400 mt-2">Try searching for something else, like "portrait" or "cyberpunk".</p>
+                        <button 
+                            onClick={() => setSearchQuery('')}
+                            className="mt-8 px-8 py-3 bg-slate-900 text-white rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200"
+                        >
+                            Reset Search
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            {/* 极简页脚 */}
+            <footer className="py-12 border-t border-slate-100 text-center">
+                <p className="text-slate-300 text-xs font-bold uppercase tracking-[0.2em]">
+                    Curated with passion &copy; 2024 Banana Clone
+                </p>
+            </footer>
         </div>
     );
 }
