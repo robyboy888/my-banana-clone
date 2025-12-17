@@ -30,13 +30,32 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 <h2 className="text-lg font-bold text-slate-800 truncate leading-tight group-hover/card:text-[#3fc1c0] transition-colors">
                     {prompt.title}
                 </h2>
-                {prompt.source_x_account && (
-                    <div className="text-[11px] text-slate-500 mt-1">
-						<span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px]">作者</span>
-						{/* 先用 replace 把原有的 @ 删掉，再统一手动加上一个 @ */}
-						@{prompt.source_x_account.replace(/^@/, '')}
-					</div>
-                )}
+				{/* 作者 X 账号区域 */}
+				{prompt.source_x_account && (
+    <div className="text-[11px] mt-1 flex items-center group/author">
+        <span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold">
+            作者
+        </span>
+        
+        {/* 跳转链接：点击可直接跳转到 X 个人主页 */}
+        <a 
+            href={`https://x.com/${prompt.source_x_account.replace(/^@/, '')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-slate-500 hover:text-[#3fc1c0] transition-colors duration-200"
+        >
+            {/* X Logo 图标 */}
+            <svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            
+            {/* 自动处理后的账号名：永远只显示一个 @ */}
+            <span className="font-medium">
+                @{prompt.source_x_account.replace(/^@/, '')}
+            </span>
+        </a>
+    </div>
+)}
             </div>
 
             {/* 2. 图片对比区：Admin 风格圆角 */}
