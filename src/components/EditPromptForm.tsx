@@ -1,104 +1,217 @@
 // /src/components/EditPromptForm.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function EditPromptForm({ initialData }: { initialData: any }) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     
-    // 初始化表单状态
+    // 状态管理：基础文本
     const [formData, setFormData] = useState({
         title: initialData.title || '',
         content: initialData.content || '',
         optimized_prompt: initialData.optimized_prompt || '',
-        original_image_url: initialData.original_image_url || '',
     });
+
+    // 状态管理：图片预览地址（现有的 URL 或新选文件的 blob 地址）
+    const [previews, setPreviews] = useState({
+        original: initialData.original_image_url,
+        optimized: initialData.optimized_image_url,
+        portrait: initialData.user_portrait_url,
+        background: initialData.user_background_url,
+    });
+
+    // 状态管理：待上传的文件对象
+    const [files, setFiles] = useState<{ [key: string]: File | null }>({
+        originalImage: null,
+        optimizedImage: null,
+        portraitImage: null,
+        backgroundImage: null,
+    });
+
+    // 处理文件选择
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: string, previewKey: string) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setFiles(prev => ({ ...prev, [field]: file }));
+            setPreviews(prev => ({ ...prev, [previewKey]: URL.createObjectURL(file) }));
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // 💥 路径指向你截图中的 /api/admin/update 接口
+            const body = new FormData();
+            
+            // 1. 对应后端: formData.get('data') -> JSON 字符串
+            // 必须把旧的 URL 传回去，这样后端在没传新文件时能保留旧地址
+            const dataToSubmit = {
+                id: initialData.id,
+                ...formData,
+                original_image_url: initialData.original_image_url,
+                optimized_image_url: initialData.optimized_image_url,
+                user_portrait_url: initialData.user_portrait_url,
+                user_background_url: initialData.user_background_url,
+            };
+            body.append('data', JSON.stringify(dataToSubmit));
+
+            // 2. 对应后端: 处理文件字段
+            if (files.originalImage) body.append('originalImage', files.originalImage);
+            if (files.optimizedImage) body.append('optimizedImage', files.optimizedImage);
+            if (files.portraitImage) body.append('portraitImage', files.portraitImage);
+            if (files.backgroundImage) body.append('backgroundImage', files.backgroundImage);
+
             const response = await fetch('/api/admin/update', {
-                method: 'POST', // 或者按照你 API 定义的 PUT
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id: initialData.id,
-                    ...formData
-                }),
+                method: 'POST',
+                body: body, // FormData 不需要设置 Content-Type 标头
             });
 
-            if (!response.ok) throw new Error('保存失败');
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || '更新失败');
 
             alert('保存成功！');
-            router.push('/admin'); // 保存成功后返回列表
-            router.refresh();      // 刷新数据
-        } catch (error) {
-            console.error(error);
-            alert('操作失败，请检查网络或控制台日志');
+            router.push('/admin');
+            router.refresh();
+        } catch (error: any) {
+            alert(error.message);
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
-            {/* 标题输入 */}
-            <div>
-                <label className="block text-sm font-black text-gray-700 mb-2 uppercase tracking-widest">标题</label>
-                <input
-                    type="text"
-                    required
-                    value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition"
-                />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-12">
+            {/* 基础信息 */}
+            <section>
+                <h2 className="text-2xl font-black text-slate-800 mb-6 border-b pb-4">基础信息</h2>
+                <div className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">标题</label>
+                        <input
+                            type="text"
+                            required
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">原始提示词 (Content)</label>
+                        <textarea
+                            rows={5}
+                            required
+                            value={formData.content}
+                            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all outline-none"
+                        />
+                    </div>
+                </div>
+            </section>
 
-            {/* 原始提示词 */}
-            <div>
-                <label className="block text-sm font-black text-gray-700 mb-2 uppercase tracking-widest">原始提示词</label>
-                <textarea
-                    rows={4}
-                    required
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition"
-                />
-            </div>
+            {/* 优化信息 */}
+            <section>
+                <h2 className="text-2xl font-black text-slate-800 mb-6 border-b pb-4">优化信息</h2>
+                <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">优化后的提示词</label>
+                    <textarea
+                        rows={5}
+                        value={formData.optimized_prompt}
+                        onChange={(e) => setFormData({ ...formData, optimized_prompt: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all outline-none"
+                    />
+                </div>
+            </section>
 
-            {/* 优化提示词 */}
-            <div>
-                <label className="block text-sm font-black text-green-600 mb-2 uppercase tracking-widest">优化提示词</label>
-                <textarea
-                    rows={4}
-                    value={formData.optimized_prompt}
-                    onChange={(e) => setFormData({ ...formData, optimized_prompt: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-green-100 bg-green-50 focus:ring-2 focus:ring-green-500 outline-none transition text-green-800"
-                    placeholder="可选..."
-                />
-            </div>
+            {/* 图片资源 */}
+            <section>
+                <h2 className="text-2xl font-black text-slate-800 mb-6 border-b pb-4">图片资源</h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <ImageUploadBox 
+                        label="原始图片 (必选)" 
+                        id="originalImage" 
+                        preview={previews.original} 
+                        onChange={(e) => handleFileChange(e, 'originalImage', 'original')} 
+                    />
+                    <ImageUploadBox 
+                        label="优化图片 (可选)" 
+                        id="optimizedImage" 
+                        preview={previews.optimized} 
+                        onChange={(e) => handleFileChange(e, 'optimizedImage', 'optimized')} 
+                    />
+                </div>
 
-            {/* 提交按钮 */}
-            <div className="pt-4 flex space-x-4">
+                <div className="pt-8 border-t border-dashed">
+                    <p className="text-sm font-bold text-gray-500 mb-6">用户参考图片 (可选)</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <ImageUploadBox 
+                            label="用户肖像" 
+                            id="portraitImage" 
+                            preview={previews.portrait} 
+                            onChange={(e) => handleFileChange(e, 'portraitImage', 'portrait')} 
+                        />
+                        <ImageUploadBox 
+                            label="用户背景" 
+                            id="backgroundImage" 
+                            preview={previews.background} 
+                            onChange={(e) => handleFileChange(e, 'backgroundImage', 'background')} 
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* 按钮 */}
+            <div className="pt-12">
                 <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 disabled:bg-gray-300"
+                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black text-xl hover:bg-indigo-700 hover:-translate-y-1 transition-all shadow-xl shadow-indigo-100 disabled:bg-slate-300"
                 >
-                    {loading ? '正在保存...' : '保存修改'}
+                    {loading ? '正在同步云端数据...' : '保存修改内容'}
                 </button>
-                <button
-                    type="button"
+                <button 
+                    type="button" 
                     onClick={() => router.back()}
-                    className="px-8 py-4 bg-gray-100 text-gray-500 rounded-xl font-bold hover:bg-gray-200 transition"
+                    className="w-full mt-4 py-3 text-slate-400 font-bold hover:text-slate-600 transition"
                 >
-                    取消
+                    取消修改
                 </button>
             </div>
         </form>
+    );
+}
+
+// 内部组件：图片上传盒
+function ImageUploadBox({ label, id, preview, onChange }: any) {
+    return (
+        <div className="space-y-3">
+            <label className="block text-sm font-bold text-slate-600">{label}</label>
+            <div className="relative group overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 hover:border-blue-400 transition-all bg-slate-50 aspect-video flex flex-col items-center justify-center">
+                {preview ? (
+                    <>
+                        <img src={preview} alt="preview" className="absolute inset-0 w-full h-full object-contain p-2" />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <span className="text-white font-bold text-sm">更换图片</span>
+                        </div>
+                    </>
+                ) : (
+                    <span className="text-slate-400 text-sm">尚未上传图片</span>
+                )}
+                <input 
+                    type="file" 
+                    id={id} 
+                    className="absolute inset-0 opacity-0 cursor-pointer" 
+                    onChange={onChange} 
+                    accept="image/*"
+                />
+            </div>
+            <label htmlFor={id} className="block w-full py-3 bg-blue-500 text-white text-center rounded-xl font-bold text-sm hover:bg-blue-600 transition cursor-pointer">
+                选择并上传
+            </label>
+        </div>
     );
 }
