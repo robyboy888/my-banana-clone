@@ -185,14 +185,33 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
     );
 }
 
-// 内部组件：图片上传盒
-function ImageUploadBox({ label, id, preview, onChange }: any) {
+// 1. 先定义 ImageUploadBox 的属性类型
+interface ImageUploadBoxProps {
+    label: string;
+    id: string;
+    preview: string | null;
+    // 显式定义 onChange 的类型
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+// 2. 修正主组件中的调用方式 (确保 e 的类型被正确识别)
+// 在渲染部分，无需修改，TypeScript 现在能通过组件定义推导出 e 的类型
+<ImageUploadBox 
+    label="原始图片 (必选)" 
+    id="originalImage" 
+    preview={previews.original} 
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e, 'originalImage', 'original')} 
+/>
+
+// 3. 修正底部的 ImageUploadBox 组件定义
+function ImageUploadBox({ label, id, preview, onChange }: ImageUploadBoxProps) {
     return (
         <div className="space-y-3">
             <label className="block text-sm font-bold text-slate-600">{label}</label>
             <div className="relative group overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 hover:border-blue-400 transition-all bg-slate-50 aspect-video flex flex-col items-center justify-center">
                 {preview ? (
                     <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={preview} alt="preview" className="absolute inset-0 w-full h-full object-contain p-2" />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                             <span className="text-white font-bold text-sm">更换图片</span>
@@ -209,7 +228,7 @@ function ImageUploadBox({ label, id, preview, onChange }: any) {
                     accept="image/*"
                 />
             </div>
-            <label htmlFor={id} className="block w-full py-3 bg-blue-500 text-white text-center rounded-xl font-bold text-sm hover:bg-blue-600 transition cursor-pointer">
+            <label htmlFor={id} className="block w-full py-3 bg-blue-500 text-white text-center rounded-xl font-bold text-sm hover:bg-blue-600 transition cursor-pointer text-center">
                 选择并上传
             </label>
         </div>
