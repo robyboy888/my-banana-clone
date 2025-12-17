@@ -1,105 +1,82 @@
-// app/api/admin/create/route.ts
 import { NextResponse } from 'next/server';
-import { supabaseServiceRole } from '@/lib/supabaseService'; // 确保路径正确
+import { supabaseServiceRole } from '@/lib/supabaseService';
 
-// 强制动态渲染，防止 Vercel 静态缓存
 export const dynamic = 'force-dynamic';
 
-// 💥 关键修正 1：使用新的备用 Bucket 名称
-// 假设您已在 Supabase 中创建了名为 'prompt-assets' 的 Public 存储桶
 const BUCKET_NAME = 'prompt-assets';
 
 /**
- * 辅助函数：处理文件上传到 Supabase Storage
+ * 核心辅助函数：处理文件上传
  */
 async function uploadFile(file: File, folder: string): Promise<string> {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    
-    // 生成唯一文件名
     const filePath = `${folder}/${Date.now()}-${file.name.replace(/\s/g, '_')}`;
 
-    const { data, error } = await supabaseServiceRole.storage
-        .from(BUCKET_NAME) // 使用修正后的 BUCKET_NAME
+    const { error } = await supabaseServiceRole.storage
+        .from(BUCKET_NAME)
         .upload(filePath, buffer, {
             contentType: file.type,
             upsert: false,
         });
 
-    if (error) {
-        throw new Error(`文件上传失败: ${error.message}`);
-    }
+    if (error) throw new Error(`上传至 ${folder} 失败: ${error.message}`);
 
-    // 获取公开 URL
     const { data: publicUrlData } = supabaseServiceRole.storage
-        .from(BUCKET_NAME) // 使用修正后的 BUCKET_NAME
+        .from(BUCKET_NAME)
         .getPublicUrl(filePath);
 
     return publicUrlData.publicUrl;
 }
 
-
-// 处理 POST 请求：新增记录
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
         
-        // 1. 解析文本数据
+        // 1. 解析基础 JSON 数据
         const dataJson = formData.get('data') as string;
-        
-        // 💥 关键修正 2 (修复 TypeError)：防御性检查 'data' 字段是否存在
-        if (!dataJson) {
-            // 如果客户端没有发送 'data' 字段，则抛出错误
-            throw new Error("Missing 'data' field in form submission. Check client-side form data structure.");
-        }
-        
+        if (!dataJson) throw new Error("缺少 'data' 表单字段");
         const recordData = JSON.parse(dataJson);
         
-        // 💥 关键修正 3 (修复 TypeError)：防御性检查关键字段是否存在
-        if (!recordData || typeof recordData.title !== 'string') {
-            // 检查 recordData 是否为 null 或 title 字段是否缺失/无效
-            throw new Error("Invalid or incomplete data received. Missing or invalid 'title' field.");
-        }
-        
-        // 2. 处理文件上传，并更新 URL 字段
-        const uploadedUrls: { [key: string]: string } = {};
-        const fileFields = ['originalImage', 'optimizedImage', 'portraitImage', 'backgroundImage'];
+        if (!recordData.title) throw new Error("标题不能为空");
 
-        for (const field of fileFields) {
-            const file = formData.get(field) as File | null;
+        // 2. 映射前端 File Key 到数据库字段名
+        // 确保这里的 key 与 AdminPromptForm 中的 submissionData.append 保持严格一致
+        const uploadedUrls: { [key: string]: string } = {};
+        const fileMapping = [
+            { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
+            { key: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
+            { key: 'userPortrait', dbField: 'user_portrait_url', folder: 'portraits' },
+            { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
+        ];
+
+        for (const item of fileMapping) {
+            const file = formData.get(item.key) as File | null;
             if (file && file.size > 0) {
-                // 根据字段名，确定在数据库中对应的 URL 字段名
-                const urlFieldName = field.toLowerCase().replace('image', '_image_url').replace('portrait', 'user_portrait').replace('background', 'user_background');
-                const url = await uploadFile(file, urlFieldName.replace('_url', '')); // 上传到对应的文件夹
-                uploadedUrls[urlFieldName] = url;
+                const publicUrl = await uploadFile(file, item.folder);
+                uploadedUrls[item.dbField] = publicUrl;
             }
         }
-        
-        // 3. 构建最终要插入的数据
+
+        // 3. 构造插入对象
         const finalData = {
-            title: recordData.title,
-            content: recordData.content,
-            optimized_prompt: recordData.optimized_prompt,
-            ...uploadedUrls, // 插入新上传的图片 URL
-            // ... 其他字段
+            ...recordData,      // 包含 title, content, optimized_prompt, source_x_account
+            ...uploadedUrls,    // 包含新上传的图片 URL（会覆盖 recordData 中的旧值或空值）
+            created_at: new Date().toISOString()
         };
 
-        // 4. 插入到 Supabase 数据库 (注意：这里是数据表名 'prompts'，无需修改)
+        // 4. 写入数据库
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .insert([finalData])
             .select();
 
-        if (dbError) {
-            console.error('Database insertion error:', dbError);
-            return NextResponse.json({ error: dbError.message || '数据库插入失败' }, { status: 500 });
-        }
+        if (dbError) throw dbError;
 
-        return NextResponse.json({ message: 'Record created successfully', data }, { status: 201 });
+        return NextResponse.json({ message: '创建成功', data }, { status: 201 });
 
     } catch (e: any) {
-        // 打印更详细的错误堆栈
-        console.error('API processing error:', e.stack || e.message); 
-        return NextResponse.json({ error: e.message || 'Internal Server Error' }, { status: 500 });
+        console.error('新增 API 错误:', e.message);
+        return NextResponse.json({ error: e.message }, { status: 500 });
     }
 }

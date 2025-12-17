@@ -1,4 +1,3 @@
-// /src/components/AdminRecordList.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -6,22 +5,21 @@ import Link from 'next/link';
 import { Prompt } from '@/types/prompt';
 import ListItem from './ListItem'; 
 import PromptItem from './PromptItem'; 
-import { useRouter } from 'next/navigation';
 
 interface AdminRecordListProps {
     initialPrompts: Prompt[];
 }
 
 export default function AdminRecordList({ initialPrompts }: AdminRecordListProps) {
-    // prompts 状态保留，用于在删除后即时更新 UI
-    const [prompts, setPrompts] = useState(initialPrompts);
+    // prompts 状态保留
+    const [prompts] = useState(initialPrompts);
     const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
     const isGrid = viewMode === 'grid';
 
     return (
         <div className="space-y-6">
             
-            {/* 顶部控制区域 */}
+            {/* 顶部控制区域：返回、新增、视图切换 */}
             <div className="flex justify-between items-center mb-6 border-b pb-4">
                 <div className="space-x-4">
                     <Link 
@@ -38,17 +36,17 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
                     </Link>
                 </div>
                 
-                {/* 视图切换 */}
-                <div className="flex bg-gray-100 p-1 rounded-xl">
+                {/* 视图切换按钮 */}
+                <div className="flex bg-gray-100 p-1 rounded-xl shadow-inner">
                     <button 
                         onClick={() => setViewMode('list')}
-                        className={`px-4 py-2 rounded-lg text-xs font-bold transition ${!isGrid ? 'bg-white shadow text-indigo-600' : 'text-gray-400'}`}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${!isGrid ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-400 hover:text-gray-600'}`}
                     >
                         列表
                     </button>
                     <button 
                         onClick={() => setViewMode('grid')}
-                        className={`px-4 py-2 rounded-lg text-xs font-bold transition ${isGrid ? 'bg-white shadow text-indigo-600' : 'text-gray-400'}`}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${isGrid ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-400'}`}
                     >
                         网格
                     </button>
@@ -57,22 +55,21 @@ export default function AdminRecordList({ initialPrompts }: AdminRecordListProps
 
             {/* 渲染区域 */}
             {prompts.length === 0 ? (
-                <div className="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed">
-                    <p className="text-gray-400">数据库空空如也...</p>
+                <div className="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                    <p className="text-gray-400 font-medium">数据库空空如也...</p>
                 </div>
             ) : (
                 <div className={isGrid ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' : 'divide-y divide-gray-100'}>
                     {prompts.map((prompt, index) => (
-                        <div key={prompt.id} className={isGrid ? 'relative group' : ''}>
+                        <div key={prompt.id} className={isGrid ? 'h-full' : ''}>
                             {isGrid ? (
-                                // 网格模式：调用 PromptItem
+                                // 💥 关键点：为网格模式也传入 isAdmin={true}
                                 <PromptItem 
                                     prompt={prompt} 
-                                    // 如果 PromptItem 也需要管理功能，记得在 PromptItem 内部也加入 isAdmin 判断
+                                    isAdmin={true} 
                                 />
                             ) : (
-                                // 列表模式：调用合并后的 ListItem
-                                // 💥 关键：传入 isAdmin={true}，它会自动显示编辑和删除按钮
+                                // 列表模式
                                 <ListItem 
                                     prompt={prompt} 
                                     index={index + 1} 

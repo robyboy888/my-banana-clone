@@ -1,93 +1,64 @@
-// components/AdminPromptForm.tsx
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Image from 'next/image';
-import { Prompt } from '@/types/prompt'; // 确保这个类型文件已存在
+import { Prompt } from '@/types/prompt';
 
-// 定义用于表单状态的接口
-interface FormState extends Omit<Prompt, 'id'> {
-    // 移除 id，因为新增时没有 id
-    // original_image_url 等字段在 Prompt 接口中已定义
-}
-
-// 定义组件 Props
 interface AdminPromptFormProps {
-    // 传入 initialPrompt 时为编辑模式，否则为新增模式
-    initialPrompt?: Prompt;
+    initialPrompt?: Prompt; // 有它就是编辑，没它就是新增
     onSuccess: () => void;
 }
 
-// ----------------------------------------------------
-// 辅助组件：图片预览 (修正版)
-// ----------------------------------------------------
+// 预览组件
 const PreviewImage: React.FC<{ url: string | File, alt: string }> = ({ url, alt }) => {
-    // 如果是 File 对象，创建本地 URL 用于预览
     const src = url instanceof File ? URL.createObjectURL(url) : url;
-    
-    // 💥 关键修正：
-    // 如果 url 是 File 对象 (即本地预览)，或者 url 是远程 Supabase 地址，都需要禁用优化
     const shouldBeUnoptimized = url instanceof File || (typeof url === 'string' && url.includes('supabase.co'));
-
     return (
-        <div className="mt-2 relative w-full h-32 border border-gray-300 rounded-lg overflow-hidden">
-            <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-contain"
-                // 启用修正后的 unoptimized 逻辑
-                unoptimized={shouldBeUnoptimized} 
-            />
+        <div className="mt-2 relative w-full h-40 border border-gray-200 rounded-xl overflow-hidden bg-gray-50">
+            <Image src={src} alt={alt} fill className="object-contain" unoptimized={shouldBeUnoptimized} />
         </div>
     );
 };
 
-// ----------------------------------------------------
-// 主组件：AdminPromptForm
-// ----------------------------------------------------
 export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromptFormProps) {
+    const isEditMode = !!initialPrompt;
     
-    // 默认表单初始状态
-    const defaultFormState: FormState = useMemo(() => ({
+    const [formData, setFormData] = useState({
         title: '',
         content: '',
         optimized_prompt: '',
+        source_x_account: '', // 增加 X 账号支持
         original_image_url: '',
         optimized_image_url: '',
         user_portrait_url: '',
         user_background_url: '',
-    }), []);
+    });
 
-    const [formData, setFormData] = useState<FormState>(defaultFormState);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    
-    // 💥 用于存储待上传的 File 对象
-    const [fileChanges, setFileChanges] = useState<{ [key: string]: File | null }>({});
+    const [fileChanges, setFileChanges] = useState<{ [key: string]: File | null }>({
+        originalImage: null,
+        optimizedImage: null,
+        userPortrait: null,
+        userBackground: null,
+    });
 
-    // 💥 定义 Ref 引用所有文件输入框
     const fileRefs = {
         originalImage: useRef<HTMLInputElement>(null),
         optimizedImage: useRef<HTMLInputElement>(null),
         userPortrait: useRef<HTMLInputElement>(null),
         userBackground: useRef<HTMLInputElement>(null),
     };
-    
-    // 检查是否为编辑模式
-    const isEditMode = !!initialPrompt;
-    
-    // ----------------------------------------------------
-    // useEffect：初始化表单数据
-    // ----------------------------------------------------
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    // 初始化数据
     useEffect(() => {
         if (initialPrompt) {
-            // 编辑模式：使用初始数据填充表单
             setFormData({
                 title: initialPrompt.title || '',
                 content: initialPrompt.content || '',
                 optimized_prompt: initialPrompt.optimized_prompt || '',
+                source_x_account: (initialPrompt as any).source_x_account || '',
                 original_image_url: initialPrompt.original_image_url || '',
                 optimized_image_url: initialPrompt.optimized_image_url || '',
                 user_portrait_url: initialPrompt.user_portrait_url || '',
@@ -95,255 +66,116 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
             });
         }
     }, [initialPrompt]);
-    
-    // ----------------------------------------------------
-    // Handlers：处理输入和文件变化
-    // ----------------------------------------------------
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleFileChange = useCallback((
-        e: React.ChangeEvent<HTMLInputElement>, 
-        fileKey: 'originalImage' | 'optimizedImage' | 'userPortrait' | 'userBackground',
-        urlKey: keyof FormState // 对应 URL 字段，如 'original_image_url'
-    ) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fileKey: string, urlKey: string) => {
         const file = e.target.files?.[0];
-        
         if (file) {
-            // 存储 File 对象，用于提交时上传
             setFileChanges(prev => ({ ...prev, [fileKey]: file }));
-            
-            // 更新 formData，将 File 对象作为本地 URL 替代，用于预览
             setFormData(prev => ({ ...prev, [urlKey]: file as any }));
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(null);
+        setIsSubmitting(true);
+
+        try {
+            const submissionData = new FormData();
             
-        } else {
-            // 如果取消选择文件，清除 File 对象和 URL（如果它是 File 对象）
-            setFileChanges(prev => ({ ...prev, [fileKey]: null }));
+            // 文本数据
+            const dataToInsert = { ...formData };
+            // 移除那些已经是 File 对象的预览占位符，防止 JSON 解析出错
+            Object.keys(dataToInsert).forEach(key => {
+                if (typeof (dataToInsert as any)[key] === 'object') {
+                    (dataToInsert as any)[key] = isEditMode ? (initialPrompt as any)[key] : '';
+                }
+            });
             
-            // 恢复为初始 URL 或清空
-            const initialUrl = isEditMode ? initialPrompt?.[urlKey] || '' : '';
-            setFormData(prev => ({ ...prev, [urlKey]: initialUrl as any }));
+            submissionData.append('data', JSON.stringify(dataToInsert));
+
+            // 文件数据 - 确保这里的 Key 与后端 API 接收逻辑一致
+            if (fileChanges.originalImage) submissionData.append('originalImage', fileChanges.originalImage);
+            if (fileChanges.optimizedImage) submissionData.append('optimizedImage', fileChanges.optimizedImage);
+            if (fileChanges.userPortrait) submissionData.append('userPortrait', fileChanges.userPortrait); // 对应后端 portraitImage
+            if (fileChanges.userBackground) submissionData.append('userBackground', fileChanges.userBackground); // 对应后端 backgroundImage
+
+            const apiPath = isEditMode ? `/api/admin/update?id=${initialPrompt.id}` : '/api/admin/create';
+            const response = await fetch(apiPath, {
+                method: isEditMode ? 'PUT' : 'POST', // 规范化：更新用 PUT，新增用 POST
+                body: submissionData,
+            });
+
+            if (!response.ok) throw new Error('提交失败');
+            onSuccess();
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setIsSubmitting(false);
         }
-    }, [isEditMode, initialPrompt]);
+    };
 
-// ----------------------------------------------------
-// 提交逻辑 (修正版)
-// ----------------------------------------------------
-const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setIsSubmitting(true);
-    
-    // 1. 构造 FormData，用于 API 传输文件和文本数据
-    const submissionData = new FormData();
-
-    // 确定目标 API 路径和方法
-    const apiPath = isEditMode ? `/api/admin/update/${initialPrompt?.id}` : '/api/admin/create';
-    const method = 'POST'; // 统一使用 POST，并通过 API Path 或 ID 区分
-    
-    // --- 💥 关键修正区域开始 ---
-    
-    // 构造文本数据对象，只包含需要插入数据库的字段
-    const dataToInsert: { [key: string]: any } = {};
-    
-    // 遍历所有表单数据，收集非文件字段
-    Object.entries(formData).forEach(([key, value]) => {
-        // 只收集 string 类型的值（即 title, content 等）
-        if (typeof value === 'string') {
-            dataToInsert[key] = value;
-        }
-    });
-
-    // 💥 将所有文本数据序列化为 JSON 字符串，并作为 'data' 字段附加
-    submissionData.append('data', JSON.stringify(dataToInsert));
-    
-    // 添加 ID (仅编辑模式，用于 API 路由的 [promptId] 或 URL 参数)
-    // 注意：我们现在使用新的 /api/admin/update/[promptId] 路由或在 URL 参数中传递
-    if (isEditMode && initialPrompt?.id) {
-        // 如果编辑API是 /api/admin/update/[promptId]，这里可能不需要单独添加ID
-        // 如果是 /api/admin/update，且需要通过 FormData 传 ID，则保留
-        // 考虑到编辑模式路径是 /api/admin/update/[promptId]，这里可以删除
-    }
-    
-    // 添加文件数据 (这部分保持不变)
-    Object.entries(fileChanges).forEach(([key, file]) => {
-        if (file) {
-            submissionData.append(key, file); 
-        }
-    });
-    
-    // --- 💥 关键修正区域结束 ---
-
-    // 2. 发送请求
-    try {
-        const response = await fetch(apiPath, {
-            method: method,
-            body: submissionData, // 自动设置正确的 Content-Type
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || errorData.message || '操作失败，请检查服务器日志。');
-        }
-
-        onSuccess();
-
-    } catch (err: any) {
-        setError(err.message || '未知错误发生，请重试。');
-    } finally {
-        setIsSubmitting(false);
-    }
-};
-    
-    // ----------------------------------------------------
-    // 辅助函数：渲染文件选择器 (封装了按钮逻辑)
-    // ----------------------------------------------------
-    const renderFilePicker = (
-        fieldKey: 'originalImage' | 'optimizedImage' | 'userPortrait' | 'userBackground',
-        urlKey: keyof FormState,
-        label: string,
-        isRequired: boolean = false
-    ) => {
-        const currentFile = fileChanges[fieldKey];
-        const currentUrl = formData[urlKey];
-        
-		// 确定当前状态是文件对象还是 URL 字符串
-        // 💥 修正：使用属性检查来判断它是否为 File/Blob 对象，避免 Node.js 环境下找不到 File 构造函数。
-        const isFile = currentUrl && typeof currentUrl === 'object' && 'size' in currentUrl && 'type' in currentUrl;
-        
-        const urlString = isFile ? undefined : (currentUrl as string);
-        
-        // 确定按钮上的提示文本
-        const buttonText = isFile 
-            ? `已选择: ${currentFile?.name}` 
-            : urlString 
-                ? `图片已存在 (点击更换)` 
-                : `选择文件 (点击上传)`;
+    const renderFilePicker = (fieldKey: string, urlKey: string, label: string) => {
+        const currentUrl = (formData as any)[urlKey];
+        const isFile = currentUrl instanceof File;
 
         return (
-            <div className="space-y-2">
-                <label className="block text-sm font-medium">
-                    {label} {isRequired ? '(必选)' : '(可选)'}
-                </label>
-                
-                {/* 1. 隐藏原始的 input 框，并绑定 ref */}
+            <div className="space-y-2 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <label className="block text-sm font-bold text-gray-700">{label}</label>
                 <input 
                     type="file" 
-                    ref={fileRefs[fieldKey]} 
+                    ref={(fileRefs as any)[fieldKey]} 
                     onChange={(e) => handleFileChange(e, fieldKey, urlKey)} 
-                    accept="image/*" 
-                    className="hidden" // 💥 隐藏
-                    required={isRequired && !urlString && !isFile && !isEditMode}
+                    className="hidden" 
+                    accept="image/*"
                 />
-                
-                {/* 2. 自定义按钮，点击时触发隐藏 input 的 click 事件 */}
                 <button 
-                    type="button" 
-                    onClick={() => fileRefs[fieldKey].current?.click()}
-                    className="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:bg-gray-400"
-                    disabled={isSubmitting}
+                    type="button"
+                    onClick={() => (fileRefs as any)[fieldKey].current?.click()}
+                    className={`w-full py-2 px-4 rounded-lg text-xs font-bold transition ${isFile ? 'bg-green-500 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
-                    {buttonText}
+                    {isFile ? '✅ 已选择新文件' : currentUrl ? '🔄 更换图片' : '📁 上传图片'}
                 </button>
-                
-                {/* 3. 预览区域 */}
-				{/* 💥 修正：只有当 currentUrl 确定存在时才渲染，并断言其类型非空 */}
-                {currentUrl && (
-                    <PreviewImage url={currentUrl as string | File} alt={`${label}预览`} />
-                )}
+                {currentUrl && <PreviewImage url={currentUrl} alt={label} />}
             </div>
         );
     };
 
-    // ----------------------------------------------------
-    // 渲染表单
-    // ----------------------------------------------------
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 shadow-xl rounded-xl">
-            {/* 错误提示 */}
-            {error && (
-                <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                    {error}
+        <form onSubmit={handleSubmit} className="space-y-8">
+            {error && <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm">{error}</div>}
+
+            <section className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">核心内容</h3>
+                <div className="space-y-4">
+                    <input name="title" value={formData.title} onChange={handleInputChange} placeholder="Prompt 标题" required className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <textarea name="content" value={formData.content} onChange={handleInputChange} placeholder="原始提示词..." rows={4} required className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <textarea name="optimized_prompt" value={formData.optimized_prompt} onChange={handleInputChange} placeholder="优化后的提示词 (可选)..." rows={4} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <input name="source_x_account" value={formData.source_x_account} onChange={handleInputChange} placeholder="作者 X 账号 (例如: @username)" className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
                 </div>
-            )}
-            
-            {/* 1. 基础信息 */}
-            <h3 className="text-xl font-semibold text-gray-700 border-b pb-2">基础信息</h3>
-            
-            <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700">标题</label>
-                <input
-                    id="title"
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
-            
-            <div>
-                <label htmlFor="content" className="block text-sm font-medium text-gray-700">原始提示词 (Content)</label>
-                <textarea
-                    id="content"
-                    name="content"
-                    rows={4}
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+            </section>
 
-            {/* 2. 优化信息 */}
-            <h3 className="text-xl font-semibold text-gray-700 border-b pb-2 pt-4">优化信息</h3>
-            
-            <div>
-                <label htmlFor="optimized_prompt" className="block text-sm font-medium text-gray-700">优化后的提示词</label>
-                <textarea
-                    id="optimized_prompt"
-                    name="optimized_prompt"
-                    rows={4}
-                    value={formData.optimized_prompt || ''}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
-            
-            {/* 3. 图片上传区域 - 使用新的按钮渲染函数 */}
-            <h3 className="text-xl font-semibold text-gray-700 border-b pb-2 pt-4">图片资源</h3>
-            
-            <div className="grid grid-cols-2 gap-6">
-                {/* 原始图片 (必选) */}
-                {renderFilePicker('originalImage', 'original_image_url', '原始图片', true)}
-                
-                {/* 优化图片 (可选) */}
-                {renderFilePicker('optimizedImage', 'optimized_image_url', '优化图片')}
-            </div>
+            <section className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">图片资源</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {renderFilePicker('originalImage', 'original_image_url', '原始效果图')}
+                    {renderFilePicker('optimizedImage', 'optimized_image_url', '优化效果图')}
+                    {renderFilePicker('userPortrait', 'user_portrait_url', '用户参考肖像')}
+                    {renderFilePicker('userBackground', 'user_background_url', '用户参考背景')}
+                </div>
+            </section>
 
-            <h4 className="text-lg font-medium text-gray-600 border-b pb-2 pt-4">用户参考图片 (可选)</h4>
-
-            <div className="grid grid-cols-2 gap-6">
-                {/* 用户肖像 (可选) */}
-                {renderFilePicker('userPortrait', 'user_portrait_url', '用户肖像')}
-
-                {/* 用户背景 (可选) */}
-                {renderFilePicker('userBackground', 'user_background_url', '用户背景')}
-            </div>
-
-            {/* 4. 提交按钮 */}
-            <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 transition"
+            <button 
+                type="submit" 
+                disabled={isSubmitting} 
+                className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition disabled:opacity-50"
             >
-                {isSubmitting 
-                    ? (isEditMode ? '正在更新...' : '正在新增...') 
-                    : (isEditMode ? '更新记录' : '新增记录')
-                }
+                {isSubmitting ? '处理中...' : isEditMode ? '保存修改' : '立即发布'}
             </button>
         </form>
     );
