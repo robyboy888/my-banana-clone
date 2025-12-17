@@ -1,4 +1,3 @@
-// /src/components/ListItem.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -10,7 +9,7 @@ import { useRouter } from 'next/navigation';
 interface ListItemProps {
     prompt: any;
     index: number;
-    isAdmin?: boolean; // 新增：控制是否显示管理工具
+    isAdmin?: boolean; // 控制是否显示管理工具
 }
 
 const isExternalUrl = (url: string | undefined): boolean => {
@@ -106,8 +105,8 @@ export default function ListItem({ prompt, index, isAdmin = false }: ListItemPro
                 {isAdmin && (
                     <div className="flex items-center space-x-4 border-l pl-8 border-gray-100">
                         <Link 
-                            href={`/admin/edit/${item.id}`} 
-							className="text-indigo-600 hover:text-indigo-900"
+                            href={`/admin/edit/${prompt.id}`} 
+                            className="px-6 py-3 bg-indigo-50 text-indigo-600 rounded-xl font-bold text-sm hover:bg-indigo-100 transition"
                         >
                             编辑
                         </Link>
