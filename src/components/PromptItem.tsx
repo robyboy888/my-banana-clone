@@ -14,6 +14,7 @@ interface Prompt {
     optimized_image_url?: string;
     user_portrait_url?: string;
     source_x_account?: string;
+    tags?: string[]; // 必须加上这个，否则下方 prompt.tags 会报错
 }
 
 const isExternalUrl = (url: string | undefined): boolean => {
@@ -25,40 +26,54 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
     return (
         <div className="group/card bg-white p-5 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-[540px] border border-slate-100 relative">
             
-            {/* 1. 标题区 */}
+            {/* 1. 标题与信息区 */}
             <div className="mb-4">
+                {/* 标题 */}
                 <h2 className="text-lg font-bold text-slate-800 truncate leading-tight group-hover/card:text-[#3fc1c0] transition-colors">
                     {prompt.title}
                 </h2>
-				{/* 作者 X 账号区域 */}
-				{prompt.source_x_account && (
-    <div className="text-[11px] mt-1 flex items-center group/author">
-        <span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold">
-            作者
-        </span>
-        
-        {/* 跳转链接：点击可直接跳转到 X 个人主页 */}
-        <a 
-            href={`https://x.com/${prompt.source_x_account.replace(/^@/, '')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-slate-500 hover:text-[#3fc1c0] transition-colors duration-200"
-        >
-            {/* X Logo 图标 */}
-            <svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-            
-            {/* 自动处理后的账号名：永远只显示一个 @ */}
-            <span className="font-medium">
-                @{prompt.source_x_account.replace(/^@/, '')}
-            </span>
-        </a>
-    </div>
-)}
+
+                {/* 分类标签展示 */}
+                <div className="flex flex-wrap gap-1.5 mt-2 min-h-[20px]">
+                    {Array.isArray(prompt.tags) && prompt.tags.length > 0 ? (
+                        prompt.tags.map((tag: string) => (
+                            <span 
+                                key={tag} 
+                                className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-[#3fc1c0]/10 text-[#3fc1c0] border border-[#3fc1c0]/10"
+                            >
+                                #{tag}
+                            </span>
+                        ))
+                    ) : (
+                        <span className="text-[9px] text-slate-300 italic">未分类</span>
+                    )}
+                </div>
+
+                {/* 作者 X 账号区域 */}
+                {prompt.source_x_account && (
+                    <div className="text-[11px] mt-2 flex items-center group/author">
+                        <span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold shrink-0">
+                            作者
+                        </span>
+                        
+                        <a 
+                            href={`https://x.com/${prompt.source_x_account.replace(/^@/, '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center text-slate-500 hover:text-[#3fc1c0] transition-colors duration-200"
+                        >
+                            <svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                            <span className="font-medium truncate max-w-[120px]">
+                                @{prompt.source_x_account.replace(/^@/, '')}
+                            </span>
+                        </a>
+                    </div>
+                )}
             </div>
 
-            {/* 2. 图片对比区：Admin 风格圆角 */}
+            {/* 2. 图片对比区 */}
             <div className="flex space-x-2 mb-4">
                 <div className="relative w-1/2 h-32 rounded-2xl overflow-hidden bg-slate-100">
                     <Image src={prompt.original_image_url} alt="原图" fill className="object-cover" unoptimized={isExternalUrl(prompt.original_image_url)} />
@@ -72,7 +87,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 </div>
             </div>
 
-            {/* 3. 提示词内容：低疲劳感灰色区域 */}
+            {/* 3. 提示词内容 */}
             <div className="flex-grow space-y-4 overflow-hidden">
                 <div className="bg-[#f8fafb] p-3 rounded-2xl border border-slate-50">
                     <p className="text-[10px] font-black text-slate-300 uppercase mb-1">我的输入</p>
@@ -86,7 +101,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 </div>
             </div>
 
-            {/* 4. 底部按钮：Admin 同款配色 */}
+            {/* 4. 底部按钮 */}
             <div className="mt-5 pt-4 border-t border-slate-50 flex gap-2">
                 {!isAdmin ? (
                     <>
@@ -106,7 +121,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 )}
             </div>
 
-            {/* 头像 */}
+            {/* 悬浮头像 */}
             {prompt.user_portrait_url && (
                 <div className="absolute -top-2 -right-2 w-12 h-12 rounded-full border-4 border-[#f2f4f6] shadow-sm overflow-hidden z-20">
                     <Image src={prompt.user_portrait_url} fill alt="avatar" className="object-cover" unoptimized={isExternalUrl(prompt.user_portrait_url)} />
