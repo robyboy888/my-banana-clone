@@ -31,7 +31,11 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                     {prompt.title}
                 </h2>
                 {prompt.source_x_account && (
-                    <p className="text-[11px] text-slate-400 mt-0.5">@{prompt.source_x_account}</p>
+                    <div className="text-[11px] text-slate-500 mt-1">
+						<span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px]">作者</span>
+						{/* 先用 replace 把原有的 @ 删掉，再统一手动加上一个 @ */}
+						@{prompt.source_x_account.replace(/^@/, '')}
+					</div>
                 )}
             </div>
 
