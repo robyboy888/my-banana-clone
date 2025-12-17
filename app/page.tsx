@@ -2,6 +2,9 @@ import { supabase } from "../src/lib/supabase";
 import HomeClient from "./HomeClient";
 import React from 'react';
 
+// ✨ 加入这一行：禁用缓存，确保每次访问都抓取最新数据
+export const revalidate = 0; 
+
 export default async function Page() {
     let initialData = [];
     try {
