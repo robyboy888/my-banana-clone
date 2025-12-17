@@ -4,7 +4,8 @@ import Image from 'next/image';
 import CopyButton from './CopyButton'; 
 import React from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
+// src/components/PromptItem.tsx
+import React, { useState } from 'react';
 
 interface Prompt {
     id: number;
@@ -133,45 +134,44 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
     );
 }
 
-export default function CopyButton({ content }: { content: string }) {
+// 1. 内部辅助组件（去掉 default）
+function CopyButton({ content }: { content: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const success = await navigator.clipboard.writeText(content);
-    if (success) {
+    try {
+      await navigator.clipboard.writeText(content);
       setCopied(true);
-      // 1.5秒后恢复原状，模拟动画循环
-      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => setCopied(false), 2000); // 2秒后恢复
+    } catch (err) {
+      console.error('复制失败', err);
     }
   };
 
   return (
     <button
       onClick={handleCopy}
-      className={`
-        relative flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300
-        ${copied 
-          ? 'bg-green-500 text-white scale-95' // 复制后的变色和缩放动画
-          : 'bg-[#3fc1c0] text-white hover:bg-[#35a8a7] active:scale-95'
-        }
-      `}
+      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 active:scale-95 ${
+        copied ? 'bg-green-500 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+      }`}
     >
-      {/* 动态切换图标或文字 */}
       {copied ? (
-        <>
-          <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <span>已复制!</span>
-        </>
+        <><span>✓</span><span>已复制</span></>
       ) : (
-        <>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-          </svg>
-          <span>复制提示词</span>
-        </>
+        <><span>📋</span><span>复制提示词</span></>
       )}
     </button>
+  );
+}
+
+// 2. 唯一的默认导出
+export default function PromptItem({ prompt }: { prompt: any }) {
+  return (
+    <div className="border rounded-xl p-4">
+      {/* ... 其他展示内容 ... */}
+      <div className="mt-4">
+        <CopyButton content={prompt.content} />
+      </div>
+    </div>
   );
 }
