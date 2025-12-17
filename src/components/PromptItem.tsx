@@ -97,25 +97,38 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                     )}
                 </div>
 
-                {/* 作者 X 账号区域 */}
-                {prompt.source_x_account && (
-                    <div className="text-[11px] mt-2 flex items-center group/author">
-                        <span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold shrink-0">作者</span>
-                        <a 
-                            href={prompt.source_x_account.startsWith('http') ? prompt.source_x_account : `https://x.com/${prompt.source_x_account.replace(/^@/, '')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center text-slate-500 hover:text-[#3fc1c0] transition-colors duration-200"
-                        >
-                            <svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                            <span className="font-medium truncate max-w-[120px]">
-                                {prompt.source_x_account.split('/').pop()?.replace(/^@/, '') || '查看原文'}
-                            </span>
-                        </a>
-                    </div>
-                )}
+				{/* 作者 X 账号区域 */}
+				{prompt.source_x_account && (
+					<div className="text-[11px] mt-2 flex items-center group/author">
+						<span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold shrink-0">
+							作者
+						</span>
+						
+						<a 
+							href={prompt.source_x_account} // 直接跳转到数据库存的完整贴文 URL
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex items-center text-slate-500 hover:text-[#3fc1c0] transition-colors duration-200"
+						>
+							<svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
+								<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+							</svg>
+							<span className="font-medium truncate max-w-[120px]">
+								@{(() => {
+									// 智能提取账号名：从 URL 中提取 x.com/ 后的第一个片段
+									const url = prompt.source_x_account;
+									if (url.includes('x.com/') || url.includes('twitter.com/')) {
+										// 匹配域名后的第一段非斜杠文字
+										const match = url.match(/(?:x\.com|twitter\.com)\/([^\/\?\s]+)/);
+										return match ? match[1] : '查看原文';
+									}
+									// 如果存的是 @账号 格式，则去掉 @ 直接显示
+									return url.replace(/^@/, '');
+								})()}
+							</span>
+						</a>
+					</div>
+				)}
             </div>
 
             {/* 2. 图片对比区 */}
