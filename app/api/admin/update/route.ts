@@ -1,30 +1,37 @@
 import { NextResponse } from 'next/server';
-import { supabaseServiceRole } from '@/lib/supabaseService'; 
+import { supabaseServiceRole } from '@/lib/supabaseService';
 
-// 强制动态渲染
 export const dynamic = 'force-dynamic';
 
-// 💥 统一桶名 (确保与 create 接口一致)
 const BUCKET_NAME = 'prompt-assets';
 
 /**
- * 辅助函数：处理文件上传
+ * 核心辅助函数：处理文件上传
+ * 修复点：强制生成安全文件名，解决中文导致的 Invalid Key 报错
  */
 async function uploadFile(file: File, folder: string): Promise<string> {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     
-    // 生成唯一文件名，替换空格防止 URL 报错
-    const filePath = `${folder}/${Date.now()}-${file.name.replace(/\s/g, '_')}`;
+    // 1. 获取后缀名 (例如: .jpg)
+    const fileExtension = file.name.split('.').pop() || 'jpg';
+    
+    // 2. 生成安全文件名：文件夹/时间戳-随机数.后缀
+    // 彻底不再使用 file.name，解决中文路径报错问题
+    const safeFileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExtension}`;
+    const filePath = `${folder}/${safeFileName}`;
 
     const { error } = await supabaseServiceRole.storage
         .from(BUCKET_NAME)
         .upload(filePath, buffer, {
             contentType: file.type,
-            upsert: false,
+            upsert: false, // 设置为 false，即使重名也会生成新路径，防止 CDN 缓存旧图
         });
 
-    if (error) throw new Error(`文件上传失败: ${error.message}`);
+    if (error) {
+        console.error(`更新时上传失败: ${folder}`, error);
+        throw new Error(`上传至 ${folder} 失败: ${error.message}`);
+    }
 
     const { data: publicUrlData } = supabaseServiceRole.storage
         .from(BUCKET_NAME)
@@ -33,94 +40,60 @@ async function uploadFile(file: File, folder: string): Promise<string> {
     return publicUrlData.publicUrl;
 }
 
-/**
- * 辅助函数：删除旧文件 (节省存储空间)
- */
-async function deleteOldFile(oldUrl: string | undefined | null) {
-    if (!oldUrl || typeof oldUrl !== 'string' || oldUrl.includes('blob:')) return;
-    
-    try {
-        // 解析 Supabase URL 获取路径
-        // URL 格式: .../storage/v1/object/public/BUCKET_NAME/folder/filename.jpg
-        const parts = oldUrl.split(`${BUCKET_NAME}/`);
-        if (parts.length < 2) return;
-        
-        const filePath = parts[1];
-        await supabaseServiceRole.storage.from(BUCKET_NAME).remove([filePath]);
-    } catch (e) {
-        console.warn('删除旧文件失败，跳过:', oldUrl);
-    }
-}
-
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
         
-        // 1. 解析基础数据
+        // 1. 获取 ID（必须有 ID 才能更新）
+        const id = formData.get('id') as string;
+        if (!id) throw new Error("缺少记录 ID");
+
+        // 2. 解析 JSON 数据
         const dataJson = formData.get('data') as string;
-        if (!dataJson) throw new Error("缺少 'data' 字段");
-        
+        if (!dataJson) throw new Error("缺少 'data' 表单字段");
         const recordData = JSON.parse(dataJson);
-        const recordId = recordData.id;
 
-        if (!recordId) {
-            return NextResponse.json({ error: '记录 ID 缺失' }, { status: 400 });
-        }
-        
-        // 2. 准备更新的数据对象 (基础文本字段)
-        const updateData: any = {
-            title: recordData.title,
-            content: recordData.content,
-            optimized_prompt: recordData.optimized_prompt || null,
-            source_x_account: recordData.source_x_account || null,
-            updated_at: new Date().toISOString(),
-        };
-
-        // 3. 处理文件字段 (💥 这里的 formField 必须与 AdminPromptForm 的 submissionData.append 一致)
-        const fileFields = [
-            { formField: 'originalImage', dbField: 'original_image_url', folder: 'original' },
-            { formField: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
-            { formField: 'userPortrait', dbField: 'user_portrait_url', folder: 'portraits' },
-            { formField: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' },
+        // 3. 映射文件字段并处理上传
+        const uploadedUrls: { [key: string]: string } = {};
+        const fileMapping = [
+            { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
+            { key: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
+            { key: 'userPortrait', dbField: 'user_portrait_url', folder: 'portraits' },
+            { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
         ];
 
-        for (const { formField, dbField, folder } of fileFields) {
-            const file = formData.get(formField) as File | null;
-            const existingUrl = recordData[dbField]; // 拿到旧 URL
-            
-            if (file && file.size > 0) {
-                // 上传新图
-                const newUrl = await uploadFile(file, folder);
-                updateData[dbField] = newUrl;
-                
-                // 删除原有的旧图 (如果有)
-                if (existingUrl) {
-                    await deleteOldFile(existingUrl);
-                }
-            } else {
-                // 没传新图，保持原样 (如果 recordData 里带了，就保留)
-                if (existingUrl) {
-                    updateData[dbField] = existingUrl;
-                }
+        for (const item of fileMapping) {
+            const file = formData.get(item.key) as File | null;
+            // 检查是否有新文件上传
+            if (file && file instanceof File && file.size > 0) {
+                const publicUrl = await uploadFile(file, item.folder);
+                uploadedUrls[item.dbField] = publicUrl;
             }
         }
-        
-        // 4. 执行更新
+
+        // 4. 构造最终更新对象
+        const finalUpdateData = {
+            ...recordData,
+            ...uploadedUrls, // 只有新上传的字段会被覆盖
+            updated_at: new Date().toISOString()
+        };
+
+        // 5. 执行更新操作
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
-            .update(updateData)
-            .eq('id', recordId)
+            .update(finalUpdateData)
+            .eq('id', id)
             .select();
 
         if (dbError) throw dbError;
 
         return NextResponse.json({ 
             message: '更新成功', 
-            data: data?.[0] 
-        }, { status: 200 });
+            data 
+        });
 
     } catch (e: any) {
-        console.error('更新 API 错误:', e);
-        return NextResponse.json({ error: e.message || 'Internal Server Error' }, { status: 500 });
+        console.error('更新 API 错误:', e.message);
+        return NextResponse.json({ error: e.message }, { status: 500 });
     }
 }
