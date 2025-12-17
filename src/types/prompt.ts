@@ -19,4 +19,5 @@ export interface Prompt {
     created_at?: string; 
     updated_at?: string; 
 	source_x_account?: string; // 👈 必须在这里加上这个字段
+	tags?: any; // 添加这一行，兼容 jsonb 格式
 }

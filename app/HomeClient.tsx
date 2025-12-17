@@ -4,20 +4,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import PromptItem from '../src/components/PromptItem'; 
 import { Prompt } from '../src/types/prompt'; 
 
-// 在 HomeClient.tsx 顶部找到或添加这个接口定义
-interface Prompt {
-    id: number;
-    title: string;
-    content: string;
-    original_image_url: string; 
-    optimized_prompt?: string;
-    optimized_image_url?: string;
-    user_portrait_url?: string;
-    source_x_account?: string;
-// 修改这里：允许 tags 为 any 类型，因为 jsonb 在 TS 中比较特殊
-    tags?: any;
-}
-
 export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Prompt[] }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTag, setSelectedTag] = useState('全部');
