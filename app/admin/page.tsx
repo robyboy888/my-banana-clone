@@ -1,40 +1,55 @@
-// /app/admin/page.tsx
-import { supabaseServiceRole } from '@/lib/supabaseService';
-import AdminRecordList from '@/components/AdminRecordList'; 
-import { Prompt } from '@/types/prompt';
+'use client';
+import { useState } from 'react';
 
-// ----------------------------------------------------
-// 💥 修复 P3：强制动态渲染，防止 Vercel 缓存
-// ----------------------------------------------------
-export const dynamic = 'force-dynamic'; 
+export default function AdminList({ initialPrompts }) {
+  const [searchQuery, setSearchQuery] = useState('');
 
-export default async function AdminPage() {
-    
-    // 1. 获取数据
-    const { data: prompts, error } = await supabaseServiceRole
-        .from('prompts')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-    // 2. 错误处理
-    if (error) {
-        console.error('Failed to fetch prompts (AdminPage):', error);
-        // 如果数据获取失败，我们提供一个明确的错误信息
-        return (
-            <div className="p-6">
-                <h1 className="text-3xl font-bold mb-6">管理后台</h1>
-                <p className="p-4 text-red-600 bg-red-50 border border-red-200 rounded-lg">
-                    数据加载失败，错误信息: {error.message || '未知数据库错误'}
-                </p>
-            </div>
-        );
-    }
-
-    // 3. 渲染列表组件
+  // 过滤逻辑：匹配标题、内容或 ID
+  const filteredData = initialPrompts.filter((item) => {
+    const searchLower = searchQuery.toLowerCase();
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-6">提示词管理</h1>
-            <AdminRecordList initialPrompts={prompts as Prompt[] || []} />
-        </div>
+      item.title?.toLowerCase().includes(searchLower) ||
+      item.content?.toLowerCase().includes(searchLower) ||
+      item.id?.includes(searchLower)
     );
+  });
+
+  return (
+    <div className="p-4">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-xl font-bold">内容管理 ({filteredData.length})</h1>
+        
+        {/* 🔍 搜索框组件 */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="搜索提示词、内容或ID..."
+            className="w-80 px-4 py-2 border rounded-full text-sm focus:ring-2 focus:ring-teal-500 outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-2 text-gray-400 hover:text-gray-600"
+            >✕</button>
+          )}
+        </div>
+      </div>
+
+      {/* 表格中使用 filteredData 进行渲染 */}
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <table className="w-full text-left">
+           {/* ... 之前的 thead ... */}
+           <tbody>
+             {filteredData.map((item) => (
+               <tr key={item.id}>
+                 {/* ... 渲染行 ... */}
+               </tr>
+             ))}
+           </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }

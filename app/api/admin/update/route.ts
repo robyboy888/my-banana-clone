@@ -97,3 +97,5 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: e.message }, { status: 500 });
     }
 }
+// 增加这一行，让 PUT 请求也能运行 POST 的逻辑
+export const PUT = POST;
