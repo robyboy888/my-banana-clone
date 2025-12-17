@@ -96,6 +96,8 @@ export async function POST(request: Request) {
             title: recordData.title,
             content: recordData.content,
             optimized_prompt: recordData.optimized_prompt || null,
+			source_x_account: recordData.source_x_account || null, // 💥 添加
+			admin_notes: recordData.admin_notes || null,           // 💥 添加	
             // ... 其他非文件字段
         };
 
