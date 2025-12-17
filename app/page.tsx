@@ -14,8 +14,11 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
         setMounted(true);
     }, []);
 
-    // 1. 核心搜索逻辑：多维度模糊匹配 (已修复 TypeScript 类型报错)
+    // 1. 核心搜索逻辑：增加 initialPrompts 安全检查，防止白屏崩溃
     const filteredPrompts = useMemo(() => {
+        // 🛡️ 防御性检查：确保数据已传入且为数组
+        if (!initialPrompts || !Array.isArray(initialPrompts)) return [];
+        
         if (!searchQuery.trim()) return initialPrompts;
         const query = searchQuery.toLowerCase();
         
@@ -34,7 +37,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
     if (!mounted) return null;
 
     return (
-        /* 💥 背景：大师级低疲劳浅蓝灰梯度 */
+        /* 💥 背景：低疲劳浅蓝灰梯度 */
         <div className="min-h-screen bg-[#F8FAFC] selection:bg-indigo-100 selection:text-indigo-900">
             
             {/* 头部区域：Hero Section */}
@@ -51,10 +54,10 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
 
                     {/* 2. 大师级搜索栏设计 */}
                     <div className="relative w-full lg:w-[500px] group">
-                        {/* 动态计数标签 */}
+                        {/* 动态计数标签：使用可选链访问 length */}
                         <div className={`absolute -top-7 right-2 transition-all duration-300 ${searchQuery ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
                             <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
-                                Found {filteredPrompts.length} prompts
+                                Found {filteredPrompts?.length || 0} prompts
                             </span>
                         </div>
 
@@ -111,7 +114,7 @@ export default function HomePage({ initialPrompts }: { initialPrompts: Prompt[] 
 
             {/* 3. 网格内容区域 */}
             <div className="max-w-[1600px] mx-auto px-6 pb-32">
-                {filteredPrompts.length > 0 ? (
+                {filteredPrompts && filteredPrompts.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 animate-in fade-in zoom-in duration-500">
                         {filteredPrompts.map((prompt) => (
                             <div key={prompt.id} className="h-full">
