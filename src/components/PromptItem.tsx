@@ -18,15 +18,7 @@ interface Prompt {
 }
 
 // --- 2. 内部组件：带变色动画的静默复制按钮 ---
-function InlineCopyButton({ 
-    textToCopy, 
-    label, 
-    className 
-}: { 
-    textToCopy: string, 
-    label: string, 
-    className: string 
-}) {
+function InlineCopyButton({ textToCopy, label, className }: { textToCopy: string, label: string, className: string }) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
@@ -34,7 +26,7 @@ function InlineCopyButton({
         try {
             await navigator.clipboard.writeText(textToCopy);
             setCopied(true);
-            setTimeout(() => setCopied(false), 1500); 
+            setTimeout(() => setCopied(false), 1500); // 1.5秒后恢复颜色
         } catch (err) {
             console.error("复制失败:", err);
         }
@@ -61,21 +53,22 @@ function InlineCopyButton({
     );
 }
 
-// --- 3. 辅助函数 ---
+// --- 3. 辅助函数：判断是否为外部链接 ---
 const isExternalUrl = (url: string | undefined): boolean => {
     if (!url) return false;
     return url.includes('supabase.co') || url.startsWith('http');
 };
 
-// --- 4. 默认导出组件 ---
+// --- 4. 默认导出主组件 ---
 export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt, isAdmin?: boolean }) {
     
+    // 解析标签
     const tags = Array.isArray(prompt.tags) ? prompt.tags : [];
 
     return (
         <div className="group/card bg-white p-5 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-[560px] border border-slate-100 relative">
             
-            {/* 1. 标题与作者信息 */}
+            {/* 1. 标题与作者区 */}
             <div className="mb-4">
                 <h2 className="text-lg font-bold text-slate-800 truncate leading-tight group-hover/card:text-[#3fc1c0] transition-colors">
                     {prompt.title}
@@ -117,7 +110,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 )}
             </div>
 
-            {/* 2. 图片对比区 - 修复显示逻辑 */}
+            {/* 2. 图片对比区 - 核心修复点 */}
             <div className="flex space-x-2 mb-4">
                 {/* 原始图片 */}
                 <div className="relative w-1/2 h-32 rounded-2xl overflow-hidden bg-slate-100">
@@ -131,13 +124,13 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                     <span className="absolute bottom-2 left-2 bg-black/50 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full font-bold">原始</span>
                 </div>
 
-                {/* 优化图片 - 逻辑修正 */}
+                {/* 优化图片：如果没有优化图，则显示带模糊滤镜的原图 */}
                 <div className="relative w-1/2 h-32 rounded-2xl overflow-hidden bg-slate-100 border border-[#3fc1c0]/20">
                     <Image 
                         src={prompt.optimized_image_url || prompt.original_image_url} 
                         alt="优化" 
                         fill 
-                        className={`object-cover transition-all duration-500 ${!prompt.optimized_image_url ? 'grayscale opacity-40 blur-[1px]' : ''}`} 
+                        className={`object-cover transition-all duration-500 ${!prompt.optimized_image_url ? 'grayscale opacity-40 blur-[2px]' : ''}`} 
                         unoptimized={isExternalUrl(prompt.optimized_image_url || prompt.original_image_url)} 
                     />
                     <div className={`absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-bold shadow-sm ${
@@ -162,7 +155,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 </div>
             </div>
 
-            {/* 4. 底部动作区 */}
+            {/* 4. 底部按钮区 */}
             <div className="mt-5 pt-4 border-t border-slate-50 flex gap-2">
                 {!isAdmin ? (
                     <>
@@ -187,7 +180,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                 )}
             </div>
 
-            {/* 悬浮头像 */}
+            {/* 悬浮作者头像 */}
             {prompt.user_portrait_url && (
                 <div className="absolute -top-2 -right-2 w-12 h-12 rounded-full border-4 border-[#f2f4f6] shadow-sm overflow-hidden z-20">
                     <Image 

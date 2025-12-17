@@ -1,114 +1,37 @@
 import { supabaseServiceRole } from '@/lib/supabaseService';
-import React from 'react';
-import Link from 'next/link';
-import AdminSearchWrapper from './AdminSearchWrapper'; // 我们将搜索逻辑抽离
+import AdminRecordList from '@/components/AdminRecordList';
 
-// 1. 服务端组件：负责从数据库抓取数据
+// 1. 定义服务端组件（注意：没有 'use client'）
+// 这解决了 "Module not found: Can't resolve '@/lib/supabaseServer'" 的路径问题
 export default async function AdminPage() {
-  // 使用你现有的 supabaseServiceRole 获取数据
-  const { data: prompts, error } = await supabaseServiceRole
+  
+  // 2. 直接在服务端获取数据，这是最快、最安全的方式
+  // 使用你现有的 supabaseServiceRole 配置文件
+  const { data, error } = await supabaseServiceRole
     .from('prompts')
     .select('*')
     .order('id', { ascending: false });
 
+  // 3. 错误兜底处理
   if (error) {
     return (
-      <div className="p-10 text-center">
-        <p className="text-red-500 font-bold">数据库连接失败</p>
-        <code className="text-xs text-slate-400">{error.message}</code>
+      <div className="p-10 text-center min-h-screen bg-slate-50">
+        <div className="bg-white p-6 rounded-2xl shadow-sm inline-block border border-red-100">
+          <h1 className="text-red-500 font-bold mb-2">数据库连接失败</h1>
+          <p className="text-xs text-slate-400 font-mono">{error.message}</p>
+          <p className="mt-4 text-sm text-slate-500">请检查 Vercel 环境变量 SUPABASE_SERVICE_ROLE_KEY 是否配置</p>
+        </div>
       </div>
     );
   }
 
-  // 渲染页面框架，并将数据传给下层的搜索组件
+  // 4. 将数据传递给客户端组件 AdminRecordList
+  // AdminRecordList 负责 UI 渲染和前端搜索过滤
   return (
     <div className="p-8 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <AdminSearchWrapper initialPrompts={prompts || []} />
+        <AdminRecordList initialPrompts={data || []} />
       </div>
     </div>
-  );
-}
-
-// 2. 客户端组件：负责搜索过滤逻辑
-// 为了防止混合报错，我们将其定义在同一个文件内并妥善处理交互
-'use client'; 
-
-function AdminSearchWrapper({ initialPrompts }: { initialPrompts: any[] }) {
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  // 过滤逻辑
-  const filteredData = initialPrompts.filter((item) => {
-    if (!item) return false;
-    const searchLower = searchQuery.toLowerCase();
-    return (
-      item.title?.toLowerCase().includes(searchLower) ||
-      item.content?.toLowerCase().includes(searchLower) ||
-      item.id?.toString().includes(searchLower)
-    );
-  });
-
-  return (
-    <>
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-800">内容管理</h1>
-          <p className="text-slate-500 text-sm">当前库内共 {initialPrompts.length} 条数据</p>
-        </div>
-        
-        {/* 🔍 搜索框 */}
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="搜索标题、内容或 ID..."
-            className="w-80 px-5 py-2.5 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-[#3fc1c0] outline-none shadow-sm transition-all text-sm"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          {searchQuery && (
-            <button 
-              onClick={() => setSearchQuery('')}
-              className="absolute right-4 top-2.5 text-slate-400 hover:text-slate-600"
-            >✕</button>
-          )}
-        </div>
-      </div>
-
-      <div className="bg-white rounded-[24px] shadow-sm border border-slate-100 overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead className="bg-slate-50 border-b border-slate-100">
-            <tr>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">ID</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">标题</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase text-right">操作</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-50">
-            {filteredData.map((item) => (
-              <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                <td className="px-6 py-4 text-sm text-slate-400 font-mono">{item.id}</td>
-                <td className="px-6 py-4 text-sm font-medium text-slate-700 max-w-md truncate">
-                  {item.title}
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <Link 
-                    href={`/admin/edit/${item.id}`}
-                    className="inline-block bg-[#3fc1c0]/10 text-[#3fc1c0] px-4 py-1.5 rounded-lg font-bold text-xs hover:bg-[#3fc1c0] hover:text-white transition-all"
-                  >
-                    编辑
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        
-        {filteredData.length === 0 && (
-          <div className="p-20 text-center text-slate-400">
-            {initialPrompts.length === 0 ? "数据库为空" : "未找到相关结果"}
-          </div>
-        )}
-      </div>
-    </>
   );
 }
