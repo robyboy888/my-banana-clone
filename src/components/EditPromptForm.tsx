@@ -1,8 +1,16 @@
-// /src/components/EditPromptForm.tsx
+// src/components/EditPromptForm.tsx
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
+// 1. 定义 ImageUploadBox 的属性接口，解决 TypeScript 类型报错
+interface ImageUploadBoxProps {
+    label: string;
+    id: string;
+    preview: string | null;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function EditPromptForm({ initialData }: { initialData: any }) {
     const router = useRouter();
@@ -15,12 +23,12 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
         optimized_prompt: initialData.optimized_prompt || '',
     });
 
-    // 状态管理：图片预览地址（现有的 URL 或新选文件的 blob 地址）
+    // 状态管理：图片预览地址
     const [previews, setPreviews] = useState({
-        original: initialData.original_image_url,
-        optimized: initialData.optimized_image_url,
-        portrait: initialData.user_portrait_url,
-        background: initialData.user_background_url,
+        original: initialData.original_image_url || null,
+        optimized: initialData.optimized_image_url || null,
+        portrait: initialData.user_portrait_url || null,
+        background: initialData.user_background_url || null,
     });
 
     // 状态管理：待上传的文件对象
@@ -47,8 +55,7 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
         try {
             const body = new FormData();
             
-            // 1. 对应后端: formData.get('data') -> JSON 字符串
-            // 必须把旧的 URL 传回去，这样后端在没传新文件时能保留旧地址
+            // 构造传递给后端的 JSON 数据
             const dataToSubmit = {
                 id: initialData.id,
                 ...formData,
@@ -59,7 +66,7 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
             };
             body.append('data', JSON.stringify(dataToSubmit));
 
-            // 2. 对应后端: 处理文件字段
+            // 添加文件字段
             if (files.originalImage) body.append('originalImage', files.originalImage);
             if (files.optimizedImage) body.append('optimizedImage', files.optimizedImage);
             if (files.portraitImage) body.append('portraitImage', files.portraitImage);
@@ -67,7 +74,7 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
 
             const response = await fetch('/api/admin/update', {
                 method: 'POST',
-                body: body, // FormData 不需要设置 Content-Type 标头
+                body: body,
             });
 
             const result = await response.json();
@@ -129,7 +136,6 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
             {/* 图片资源 */}
             <section>
                 <h2 className="text-2xl font-black text-slate-800 mb-6 border-b pb-4">图片资源</h2>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <ImageUploadBox 
                         label="原始图片 (必选)" 
@@ -169,41 +175,16 @@ export default function EditPromptForm({ initialData }: { initialData: any }) {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black text-xl hover:bg-indigo-700 hover:-translate-y-1 transition-all shadow-xl shadow-indigo-100 disabled:bg-slate-300"
+                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black text-xl hover:bg-indigo-700 hover:-translate-y-1 transition-all shadow-xl disabled:bg-slate-300"
                 >
                     {loading ? '正在同步云端数据...' : '保存修改内容'}
-                </button>
-                <button 
-                    type="button" 
-                    onClick={() => router.back()}
-                    className="w-full mt-4 py-3 text-slate-400 font-bold hover:text-slate-600 transition"
-                >
-                    取消修改
                 </button>
             </div>
         </form>
     );
 }
 
-// 1. 先定义 ImageUploadBox 的属性类型
-interface ImageUploadBoxProps {
-    label: string;
-    id: string;
-    preview: string | null;
-    // 显式定义 onChange 的类型
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-// 2. 修正主组件中的调用方式 (确保 e 的类型被正确识别)
-// 在渲染部分，无需修改，TypeScript 现在能通过组件定义推导出 e 的类型
-<ImageUploadBox 
-    label="原始图片 (必选)" 
-    id="originalImage" 
-    preview={previews.original} 
-    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e, 'originalImage', 'original')} 
-/>
-
-// 3. 修正底部的 ImageUploadBox 组件定义
+// 提取出来的子组件，必须放在主组件外部或定义在主组件内部渲染逻辑之前
 function ImageUploadBox({ label, id, preview, onChange }: ImageUploadBoxProps) {
     return (
         <div className="space-y-3">
@@ -211,7 +192,6 @@ function ImageUploadBox({ label, id, preview, onChange }: ImageUploadBoxProps) {
             <div className="relative group overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 hover:border-blue-400 transition-all bg-slate-50 aspect-video flex flex-col items-center justify-center">
                 {preview ? (
                     <>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={preview} alt="preview" className="absolute inset-0 w-full h-full object-contain p-2" />
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                             <span className="text-white font-bold text-sm">更换图片</span>
@@ -228,8 +208,8 @@ function ImageUploadBox({ label, id, preview, onChange }: ImageUploadBoxProps) {
                     accept="image/*"
                 />
             </div>
-            <label htmlFor={id} className="block w-full py-3 bg-blue-500 text-white text-center rounded-xl font-bold text-sm hover:bg-blue-600 transition cursor-pointer text-center">
-                选择并上传
+            <label htmlFor={id} className="block w-full py-3 bg-blue-500 text-white text-center rounded-xl font-bold text-sm hover:bg-blue-600 transition cursor-pointer">
+                选择文件
             </label>
         </div>
     );
