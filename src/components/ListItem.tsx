@@ -3,117 +3,89 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import CopyButton from './CopyButton'; 
-// 确保 Prompt 类型被正确导入
-interface Prompt {
-    id: number;
-    title: string;
-    content: string; 
-    original_image_url: string; 
-    optimized_prompt?: string;
-    optimized_image_url?: string;
-    user_portrait_url?: string;
-    user_background_url?: string;
-}
+import Link from 'next/link';
+import CopyButton from './CopyButton';
 
 interface ListItemProps {
-    prompt: Prompt;
-    // 列表视图需要接收 index
-    index: number; 
+    prompt: any;
+    index: number;
 }
 
-// 辅助函数：判断是否需要禁用优化 (针对 Supabase/外部 URL)
 const isExternalUrl = (url: string | undefined): boolean => {
-    if (!url || typeof url !== 'string') {
-        return false;
-    }
+    if (!url || typeof url !== 'string') return false;
     return url.includes('supabase.co');
 };
 
-
-/**
- * ListItem 组件：用于列表视图中展示单个 Prompt 的行 (最终样式修正版)
- */
 export default function ListItem({ prompt, index }: ListItemProps) {
     const [isHovered, setIsHovered] = useState(false);
     const previewImageUrl = prompt.original_image_url;
 
     return (
-        // 💥 修正 1：将 max-w-4xl 增大到 max-w-6xl 或 max-w-7xl (这里使用 6xl)
-        // 增加垂直内边距 (py-5) 使其更高
-        <div className="flex items-start space-x-6 border-b border-gray-200 py-5 max-w-6xl mx-auto">
+        // 💥 样式：超宽布局 max-w-7xl，增加内边距 py-8
+        <div className="flex items-center space-x-12 border-b border-gray-100 py-8 max-w-7xl mx-auto px-8 hover:bg-gray-50 transition-all">
             
-            {/* 0. 行号显示 */}
-            <div className="flex-shrink-0 w-8 pt-1 text-lg font-bold text-gray-400">
-                {index}.
+            {/* 行号 */}
+            <div className="flex-shrink-0 w-12 text-2xl font-black text-gray-200">
+                {String(index).padStart(2, '0')}
             </div>
 
-            {/* 1. 悬浮图片触发区域 (Title & Content) */}
+            {/* 内容区 */}
             <div 
                 className="flex-1 min-w-0 relative"
                 onMouseEnter={() => previewImageUrl && setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                {/* 标题 */}
-                <h3 className="text-lg font-bold text-gray-800 truncate mb-2">
-                    {prompt.title}
-                </h3>
+                <h3 className="text-xl font-bold text-gray-800 truncate mb-3">{prompt.title}</h3>
                 
-                {/* 原始提示词 - 使用 line-clamp-2 */}
-                <div className="text-sm text-gray-600 space-y-1">
-                    <p className="font-semibold">原始提示词:</p>
-                    {/* h-10 保证了行高 */}
-                    <p className="line-clamp-2 h-10 overflow-hidden text-gray-700">{prompt.content}</p> 
+                <div className="flex flex-col space-y-2">
+                    <p className="font-bold text-gray-400 text-[10px] uppercase tracking-widest">Original Prompt</p>
+                    {/* 文本省略显示 */}
+                    <p className="line-clamp-2 h-10 text-gray-600 leading-relaxed text-sm">
+                        {prompt.content}
+                    </p>
                 </div>
 
-                {/* 优化提示词 (如果存在) */}
-                {prompt.optimized_prompt && (
-                    <div className="text-sm mt-3 space-y-1">
-                        <p className="font-semibold text-gray-600">优化后提示词:</p>
-                        <p className="line-clamp-2 h-10 overflow-hidden text-green-700">{prompt.optimized_prompt}</p>
-                    </div>
-                )}
-
-                {/* 悬浮图片预览 (Tooltip/Popover) */}
+                {/* 悬浮预览图定位 */}
                 {isHovered && previewImageUrl && (
-                    <div 
-                        className="absolute top-0 z-50 p-2 bg-white border border-gray-300 rounded-lg shadow-xl"
-                        style={{ 
-                            left: '100%', 
-                            // 增加 marginLeft 保证悬浮框和文本区有更多间隔
-                            marginLeft: '40px', 
-                            width: '280px', 
-                            height: 'auto'
-                        }}
-                    >
-                        <p className="text-sm font-semibold mb-1 text-gray-700">图片预览:</p>
-                        <div className="relative w-full h-40 overflow-hidden rounded-md">
-                            <Image
-                                src={previewImageUrl}
-                                alt={`${prompt.title} 预览`}
-                                fill
-                                sizes="280px"
-                                className="object-contain"
-                                unoptimized={isExternalUrl(previewImageUrl)}
+                    <div className="absolute top-0 z-50 p-3 bg-white border border-gray-200 rounded-2xl shadow-2xl"
+                         style={{ left: '100%', marginLeft: '50px', width: '350px' }}>
+                        <div className="relative w-full h-52 overflow-hidden rounded-xl bg-gray-50">
+                            <Image 
+                                src={previewImageUrl} 
+                                alt="Preview" 
+                                fill 
+                                className="object-contain" 
+                                unoptimized={isExternalUrl(previewImageUrl)} 
                             />
                         </div>
                     </div>
                 )}
             </div>
 
-            {/* 2. 复制按钮区域 */}
-            {/* 💥 修正 2：增加按钮区域的宽度 (w-48) 和按钮间的空间 (space-y-4) */}
-            <div className="flex flex-col space-y-4 flex-shrink-0 w-48 ml-6">
-                <CopyButton
-                    textToCopy={prompt.optimized_prompt || prompt.content} 
-                    label="复制优化提示词"
-                    className="bg-yellow-500 text-white py-2 rounded-md text-sm hover:bg-yellow-600 transition"
-                />
-                <CopyButton
-                    textToCopy={prompt.content} 
-                    label="复制原始提示词"
-                    className="bg-gray-200 text-gray-800 py-2 rounded-md text-sm hover:bg-gray-300 transition"
-                />
+            {/* 按钮组 */}
+            <div className="flex items-center space-x-12 flex-shrink-0">
+                
+                {/* 复制按钮组：垂直间隔加大 */}
+                <div className="flex flex-col space-y-4 w-44">
+                    <CopyButton 
+                        textToCopy={prompt.optimized_prompt || prompt.content} 
+                        label="复制优化提示词" 
+                        className="bg-yellow-500 hover:bg-yellow-600 text-white py-2.5 rounded-lg text-xs font-bold shadow-md transition"
+                    />
+                    <CopyButton 
+                        textToCopy={prompt.content} 
+                        label="复制原始提示词" 
+                        className="bg-gray-100 hover:bg-gray-200 text-gray-500 py-2.5 rounded-lg text-xs font-bold transition"
+                    />
+                </div>
+
+                {/* 💥 核心修复：根据你的截图目录，路径必须是 /admin/edit 并携带查询参数 id */}
+                <Link 
+                    href={`/admin/edit?id=${prompt.id}`}
+                    className="flex items-center justify-center px-10 py-4 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 hover:shadow-xl transition-all active:scale-95"
+                >
+                    编辑内容
+                </Link>
             </div>
         </div>
     );
