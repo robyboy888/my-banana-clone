@@ -1,130 +1,159 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { createBrowserClient } from '@supabase/ssr';
-import AdminPromptForm from '@/src/components/AdminPromptForm';
-import { Prompt } from '@/types/prompt';
-import Link from 'next/link';
+import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import { Save, ArrowLeft, Image as ImageIcon, Sparkles, Loader2 } from 'lucide-react';
 
 export default function EditPromptPage() {
-    const params = useParams();
-    const router = useRouter();
-    
-    const [prompt, setPrompt] = useState<Prompt | null>(null);
-    const [user, setUser] = useState<any>(null); // 新增：保存用户信息
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  const { id } = useParams();
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    content: '',
+    original_image_url: '',
+    optimized_image_url: '',
+    author_name: '',
+    author_avatar: ''
+  });
 
-    // 初始化客户端用于身份检查
-    const supabase = createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
-    useEffect(() => {
-        const initPage = async () => {
-            const promptId = params.id as string;
-            if (!promptId) return;
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from('prompts')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-            try {
-                // 1. 校验管理员身份 (确保用户信息被带出)
-                const { data: { session }, error: authError } = await supabase.auth.getSession();
-                
-                if (authError || !session) {
-                    console.log('未登录，跳转至登录页');
-                    router.push('/admin/login');
-                    return;
-                }
-                setUser(session.user);
-
-                // 2. 获取业务数据
-                const res = await fetch(`/api/prompts/${promptId}`);
-                
-                if (!res.ok) {
-                    const errorData = await res.json();
-                    throw new Error(errorData.error || '无法获取 Prompt 详情');
-                }
-                
-                const data = await res.json();
-                setPrompt(data);
-            } catch (err: any) {
-                console.error('Init Error:', err);
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        initPage();
-    }, [params.id, router, supabase.auth]);
-
-    const handleSuccess = () => {
-        alert('Prompt 记录更新成功！');
-        router.push('/admin');
-        router.refresh(); 
+      if (data) {
+        setFormData(data);
+      }
+      setLoading(false);
     };
+    fetchData();
+  }, [id, supabase]);
 
-    // 1. 加载状态 UI
-    if (loading) return (
-        <div className="flex flex-col justify-center items-center min-h-screen space-y-4 bg-gray-50">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-600"></div>
-            <p className="text-gray-500 font-medium">正在验证身份并调取详情...</p>
-        </div>
-    );
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    const { error } = await supabase
+      .from('prompts')
+      .update(formData)
+      .eq('id', id);
 
-    // 2. 错误处理 UI
-    if (error || !prompt) return (
-        <div className="max-w-xl mx-auto mt-20 p-8 bg-red-50 rounded-2xl border border-red-100 text-center">
-            <h2 className="text-red-700 text-xl font-bold mb-2">抱歉，出错了</h2>
-            <p className="text-red-500 mb-6">{error || '未找到该 Prompt 记录'}</p>
-            <Link 
-                href="/admin" 
-                className="px-6 py-2 bg-white border border-red-200 text-red-600 rounded-xl hover:bg-red-100 transition shadow-sm"
-            >
-                返回管理列表
-            </Link>
-        </div>
-    );
+    if (!error) {
+      router.push('/admin');
+      router.refresh();
+    }
+    setSaving(false);
+  };
 
-    // 3. 正常渲染
-    return (
-        <div className="min-h-screen bg-gray-50 pb-20">
-            {/* 顶部状态栏：展示管理员信息 */}
-            <div className="bg-white border-b mb-8">
-                <div className="container mx-auto px-8 h-14 flex items-center justify-end">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-gray-600 font-medium">管理员: {user?.email}</span>
-                    </div>
-                </div>
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+    </div>
+  );
+
+  return (
+    <div className="max-w-6xl mx-auto space-y-6">
+      {/* 顶部导航 */}
+      <div className="flex items-center justify-between mb-8">
+        <button 
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors font-bold text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" /> 返回列表
+        </button>
+        <h1 className="text-2xl font-black dark:text-white tracking-tight">编辑提示词记录</h1>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* 左侧：表单编辑 */}
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm space-y-6">
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-slate-400">标题</label>
+            <input 
+              className="w-full px-5 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-indigo-500 outline-none dark:text-white transition-all"
+              value={formData.title}
+              onChange={e => setFormData({...formData, title: e.target.value})}
+              placeholder="输入内容标题..."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-slate-400">优化后的提示词 (Optimized Prompt)</label>
+            <textarea 
+              className="w-full px-5 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-indigo-500 outline-none dark:text-white h-32 resize-none transition-all"
+              value={formData.content}
+              onChange={e => setFormData({...formData, content: e.target.value})}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                <ImageIcon className="w-3 h-3" /> 原始图片 URL
+              </label>
+              <input 
+                className="w-full px-5 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-indigo-500 outline-none dark:text-white text-xs transition-all font-mono"
+                value={formData.original_image_url}
+                onChange={e => setFormData({...formData, original_image_url: e.target.value})}
+              />
             </div>
-
-            <div className="container mx-auto px-8 max-w-4xl">
-                {/* 顶部导航和标题 */}
-                <div className="flex justify-between items-center mb-10 border-b pb-6">
-                    <div>
-                        <h1 className="text-3xl font-extrabold text-gray-800">编辑 Prompt</h1>
-                        <p className="text-gray-400 text-sm mt-1">
-                            ID: <span className="font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-600">{params.id}</span>
-                        </p>
-                    </div>
-                    <Link 
-                        href="/admin" 
-                        className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition shadow-sm text-sm font-bold"
-                    >
-                        &larr; 放弃修改
-                    </Link>
-                </div>
-
-                {/* 表单组件 */}
-                <div className="bg-white rounded-3xl shadow-sm border p-2">
-                    <AdminPromptForm 
-                        initialPrompt={prompt} 
-                        onSuccess={handleSuccess} 
-                    />
-                </div>
+            <div className="space-y-2">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-2 text-indigo-500">
+                <Sparkles className="w-3 h-3" /> 优化后图片 URL
+              </label>
+              <input 
+                className="w-full px-5 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-indigo-500 outline-none dark:text-white text-xs transition-all font-mono"
+                value={formData.optimized_image_url}
+                onChange={e => setFormData({...formData, optimized_image_url: e.target.value})}
+              />
             </div>
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={saving}
+            className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white rounded-2xl font-black text-sm tracking-widest shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
+          >
+            {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+            {saving ? '正在保存...' : '确认更新记录'}
+          </button>
+        </form>
+
+        {/* 右侧：实时对比预览 */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between px-2">
+            <label className="text-xs font-black uppercase tracking-widest text-slate-400">实时对比预览 (Live Preview)</label>
+            <span className="text-[10px] bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded-md font-bold">BEFORE / AFTER</span>
+          </div>
+          
+          <div className="sticky top-28 rounded-[32px] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl aspect-[4/3] bg-slate-200 dark:bg-slate-800 group">
+            {formData.original_image_url && formData.optimized_image_url ? (
+              <ReactCompareSlider
+                itemOne={<ReactCompareSliderImage src={formData.original_image_url} alt="Original" className="object-cover h-full" />}
+                itemTwo={<ReactCompareSliderImage src={formData.optimized_image_url} alt="Optimized" className="object-cover h-full" />}
+                className="h-full w-full"
+              />
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-slate-400 gap-3">
+                <ImageIcon className="w-12 h-12 opacity-20" />
+                <p className="text-xs font-bold uppercase tracking-tighter opacity-50">等待输入图片地址...</p>
+              </div>
+            )}
+          </div>
+          <p className="text-[10px] text-center text-slate-400 italic font-medium">拖动中间的滑块实时查看图片差异</p>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
