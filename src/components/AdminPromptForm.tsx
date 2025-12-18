@@ -90,7 +90,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExt}`;
         const filePath = `${folder}/${fileName}`;
 
-        const { data, error } = await supabase.storage
+        const { error } = await supabase.storage
             .from('prompt-assets')
             .upload(filePath, file, {
                 cacheControl: '3600',
@@ -143,13 +143,13 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 }
             }
 
-            // 3. 构建提交给 API 的 JSON 数据
+            // 3. 构建展平的数据负载 (直接包含所有字段，解决后端读取不到标题的问题)
             setUploadProgress('正在同步数据库...');
             const submissionPayload = {
                 ...formData,
                 ...finalUrls,
                 source_x_account: cleanXLink,
-                // 确保保留没有被新文件替换的旧图片 URL
+                // 确保保留没有被新文件替换的旧图片 URL 字符串
                 original_image_url: finalUrls.original_image_url || (typeof formData.original_image_url === 'string' ? formData.original_image_url : ''),
                 optimized_image_url: finalUrls.optimized_image_url || (typeof formData.optimized_image_url === 'string' ? formData.optimized_image_url : ''),
                 user_portrait_url: finalUrls.user_portrait_url || (typeof formData.user_portrait_url === 'string' ? formData.user_portrait_url : ''),
@@ -158,7 +158,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
 
             const apiPath = isEditMode ? `/api/admin/update` : '/api/admin/create';
             
-            // 4. 发起 JSON 请求 (后端全能接口将正确识别 title)
+            // 4. 发起 JSON 请求 (不再包裹在 data 键下)
             const response = await fetch(apiPath, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

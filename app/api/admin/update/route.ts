@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { supabaseServiceRole } from '@/src/lib/supabaseService';
+import { supabaseServiceRole } from '@/lib/supabaseService'; // 注意路径，确保与你项目一致
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     try {
         const cookieStore = await cookies();
         
-        // 1. 创建 SSR 客户端，必须包含 get/set/remove 才能维持登录态
+        // 1. 创建 SSR 客户端校验登录态
         const supabaseAuth = createServerClient(
             process.env.NEXT_PUBLIC_SUPABASE_URL!,
             process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -33,22 +33,35 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "管理员身份失效，请重新登录" }, { status: 401 });
         }
 
-        // 3. 解析请求数据
+        // 3. 核心修复：解析请求数据并保持高兼容性
         const body = await request.json();
-        const { id, data: recordData } = body;
+        
+        /**
+         * 兼容性解析逻辑：
+         * 如果前端传了 { id, data: { ... } }，我们取 body.data
+         * 如果前端传了展平的 { id, title, ... }，我们取除 id 外的所有字段
+         */
+        const id = body.id;
+        const recordData = body.data ? body.data : body;
 
-        if (!id || !recordData) {
-            return NextResponse.json({ error: "缺少必要参数" }, { status: 400 });
+        if (!id) {
+            return NextResponse.json({ error: "缺少必要参数 ID" }, { status: 400 });
         }
 
-        // 4. 准备更新数据
-        const { id: _, ...updateFields } = recordData;
+        // 4. 准备更新数据 (剔除干扰字段)
+        // 从解析出的内容中移除可能存在的 id 字段，避免主键更新冲突
+        const { id: _, created_at: __, ...updateFields } = recordData;
+        
+        if (!updateFields.title) {
+            return NextResponse.json({ error: "标题不能为空" }, { status: 400 });
+        }
+
         const finalUpdateData = {
             ...updateFields,
             updated_at: new Date().toISOString()
         };
 
-        // 5. 使用 Service Role 执行更新 (绕过数据库 RLS)
+        // 5. 执行更新
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .update(finalUpdateData)
@@ -60,7 +73,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: '更新成功', data });
 
     } catch (e: any) {
-        console.error('API Error:', e.message);
+        console.error('Update API Error:', e.message);
         return NextResponse.json({ error: e.message || "服务器内部错误" }, { status: 500 });
     }
 }
