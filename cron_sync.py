@@ -3,34 +3,55 @@ import requests
 import time
 from supabase import create_client, Client
 
-# --- 从环境变量读取配置 (更安全) ---
+# --- 配置区 ---
+# 目标网站 API 地址
 API_URL = "https://bananaprompts.fun/api/prompts"
+# 从环境变量读取 Supabase 配置（确保已在 GitHub Secrets 中设置）
 SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 
+# 安全限制：防止死循环，最多同步 50 页（约 1000 条数据）
+MAX_PAGES = 50 
+
 def sync():
     if not SUPABASE_URL or not SUPABASE_KEY:
-        print("❌ 错误：缺少环境变量 SUPABASE_URL 或 SUPABASE_KEY")
+        print("❌ 错误：缺少环境变量 NEXT_PUBLIC_SUPABASE_URL 或 SUPABASE_SERVICE_ROLE_KEY")
         return
 
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+    # 初始化 Supabase 客户端
+    try:
+        supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        print(f"❌ Supabase 连接初始化失败: {e}")
+        return
+
     current_page = 1
     has_more = True
     total_synced = 0
 
     print("🚀 开始自动同步任务...")
+    print(f"📡 目标地址: {API_URL}")
 
-    while has_more:
+    while has_more and current_page <= MAX_PAGES:
         try:
-            print(f"正在抓取第 {current_page} 页...")
-            response = requests.get(API_URL, params={'limit': 20, 'page': current_page}, timeout=15)
+            print(f"第 {current_page} 页: 正在抓取数据...", end=" ", flush=True)
+            
+            # 发起请求，设置 15 秒超时防止卡死
+            response = requests.get(
+                API_URL, 
+                params={'limit': 20, 'page': current_page}, 
+                timeout=15
+            )
+            response.raise_for_status() # 如果状态码不是 200 则抛出异常
+            
             data = response.json()
             prompts = data.get('data', [])
             
             if not prompts:
+                print("未发现更多数据。")
                 break
                 
-            # 格式化数据以符合你的表结构
+            # 格式化数据，确保与数据库字段一一对应
             formatted_data = []
             for item in prompts:
                 formatted_data.append({
@@ -42,20 +63,36 @@ def sync():
                     "source": "bananaprompts"
                 })
 
-            # 使用 Upsert 模式，title 冲突则跳过或更新
-            # 注意：确保你的数据库 title 字段有唯一约束（Unique Constraint）
+            # 执行 Upsert 操作：根据 title 冲突进行更新或插入
+            # 注意：请确保数据库中 prompts 表的 title 字段设置了 UNIQUE 约束
             supabase.table("prompts").upsert(formatted_data, on_conflict="title").execute()
             
-            total_synced += len(formatted_data)
-            has_more = data.get('pagination', {}).get('hasMore', False)
-            current_page += 1
-            time.sleep(1) # 适当延迟，保护目标网站 API
+            count = len(formatted_data)
+            total_synced += count
+            print(f"成功导入 {count} 条记录。")
             
+            # 更新翻页逻辑
+            pagination = data.get('pagination', {})
+            has_more = pagination.get('hasMore', False)
+            current_page += 1
+            
+            # 适当休眠 1.5 秒，避免请求过快被目标服务器封禁
+            time.sleep(1.5)
+            
+        except requests.exceptions.Timeout:
+            print(f"\n❌ 第 {current_page} 页请求超时，正在重试...")
+            time.sleep(5)
+            continue
         except Exception as e:
-            print(f"❌ 同步中断: {e}")
+            print(f"\n❌ 第 {current_page} 页同步发生致命错误: {e}")
             break
 
-    print(f"✅ 同步完成！共处理 {total_synced} 条数据。")
+    if current_page > MAX_PAGES:
+        print(f"⚠️ 警告：已达到预设的最大同步页数 ({MAX_PAGES})，任务自动终止。")
+
+    print("-" * 30)
+    print(f"✅ 任务结束！本次共成功同步数据: {total_synced} 条。")
+    print("-" * 30)
 
 if __name__ == "__main__":
     sync()
