@@ -6,11 +6,14 @@ export const dynamic = 'force-dynamic';
 const BUCKET_NAME = 'prompt-assets';
 
 /**
- * 处理文件上传
+ * 核心辅助函数：处理文件上传
+ * 逻辑：将文件 Buffer 上传至 Supabase Storage，并返回公共访问 URL
  */
 async function uploadFile(file: File, folder: string): Promise<string> {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
+    
+    // 生成安全的文件名，避免中文或特殊字符导致上传失败
     const fileExtension = file.name.split('.').pop() || 'jpg';
     const safeFileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExtension}`;
     const filePath = `${folder}/${safeFileName}`;
@@ -24,7 +27,7 @@ async function uploadFile(file: File, folder: string): Promise<string> {
 
     if (error) {
         console.error(`Supabase 上传失败详情:`, error);
-        throw new Error(`上传至 ${folder} 失败: ${error.message}`);
+        throw new Error(`上传文件至 ${folder} 失败: ${error.message}`);
     }
 
     const { data: publicUrlData } = supabaseServiceRole.storage
@@ -40,22 +43,27 @@ export async function POST(request: Request) {
         let recordData: any = {};
         let uploadedUrls: { [key: string]: string } = {};
 
-        // --- 核心修复：根据 Content-Type 动态解析 ---
+        // --- 1. 动态解析逻辑：解决 Content-Type was not one of... 报错 ---
         if (contentType.includes('application/json')) {
-            // 处理来自 Python 脚本或 JSON 请求的提交
+            // 兼容来自 Python 脚本 (cron_sync.py) 或前端 JSON 的提交
             recordData = await request.json();
         } 
         else if (contentType.includes('multipart/form-data')) {
-            // 处理来自后台管理页面（带图片）的提交
+            // 兼容来自后台管理页面 AdminPromptForm (带图片) 的提交
             const formData = await request.formData();
             
-            // 获取基础 JSON 数据
+            // 尝试解析名为 'data' 的 JSON 字符串字段（前端通常会包装一层）
             const dataJson = formData.get('data') as string;
             if (dataJson) {
                 recordData = JSON.parse(dataJson);
+            } else {
+                // 如果前端没包装，直接将 Form 字段转为对象
+                formData.forEach((value, key) => {
+                    if (typeof value === 'string') recordData[key] = value;
+                });
             }
 
-            // 处理文件上传映射
+            // --- 2. 自动化文件上传映射 ---
             const fileMapping = [
                 { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
                 { key: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
@@ -74,20 +82,24 @@ export async function POST(request: Request) {
             throw new Error(`不支持的请求格式: ${contentType}`);
         }
 
-        // --- 字段校验与兼容性处理 ---
-        if (!recordData.title) throw new Error("标题不能为空");
+        // --- 3. 字段校验与清洗：解决“标题不能为空”报错 ---
+        // 此时 recordData 已从 JSON 或 FormData 中获取
+        if (!recordData.title) {
+            console.error("接收到的无效数据对象:", recordData);
+            throw new Error("标题不能为空");
+        }
 
-        // 解决脚本中 source_link 和数据库 source_x_account 的映射问题
+        // --- 4. 字段兼容性翻译：解决 source_link / source_x_account 冲突 ---
         const finalSourceAccount = recordData.source_x_account || recordData.source_link;
 
-        // 构造最终入库对象
+        // --- 5. 构造最终入库对象 ---
         const finalData = {
             title: recordData.title,
             content: recordData.content,
             optimized_prompt: recordData.optimized_prompt,
             source_x_account: finalSourceAccount,
-            tags: recordData.tags || [],
-            // 如果是 JSON 提交，url 可能已经在 recordData 里；如果是 FormData，则在 uploadedUrls 里
+            tags: Array.isArray(recordData.tags) ? recordData.tags : (recordData.tags ? [recordData.tags] : []),
+            // 优先级：新上传的图片 URL > 传入的图片 URL 字符串
             original_image_url: uploadedUrls.original_image_url || recordData.original_image_url,
             optimized_image_url: uploadedUrls.optimized_image_url || recordData.optimized_image_url,
             user_portrait_url: uploadedUrls.user_portrait_url || recordData.user_portrait_url,
@@ -95,18 +107,21 @@ export async function POST(request: Request) {
             created_at: new Date().toISOString()
         };
 
-        // 写入数据库
-        const { data, error: dbError } = await supabaseServiceRole
+        // --- 6. 执行数据库写入 ---
+        const { data: dbResult, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .insert([finalData])
             .select();
 
         if (dbError) throw dbError;
 
-        return NextResponse.json({ message: '创建成功', data }, { status: 201 });
+        return NextResponse.json({ message: '记录创建成功', data: dbResult }, { status: 201 });
 
     } catch (e: any) {
-        console.error('新增 API 错误:', e.message);
-        return NextResponse.json({ error: e.message }, { status: 500 });
+        console.error('新增记录 API 失败详情:', e.message);
+        return NextResponse.json(
+            { error: e.message || '内部服务器错误' }, 
+            { status: 500 }
+        );
     }
 }

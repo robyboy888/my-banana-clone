@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Prompt } from '@/types/prompt';
-import { createBrowserClient } from '@supabase/ssr'; // 建议改用 ssr 客户端以保持会话一致
+import { createBrowserClient } from '@supabase/ssr';
 
 interface AdminPromptFormProps {
     initialPrompt?: Prompt;
@@ -23,7 +23,6 @@ const PreviewImage: React.FC<{ url: string | File, alt: string }> = ({ url, alt 
 export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromptFormProps) {
     const isEditMode = !!initialPrompt;
     
-    // 初始化适用于浏览器的 Supabase 客户端
     const supabase = createBrowserClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -58,7 +57,6 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
     const [uploadProgress, setUploadProgress] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
 
-    // 回显数据
     useEffect(() => {
         if (initialPrompt) {
             setFormData({
@@ -96,7 +94,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
             .from('prompt-assets')
             .upload(filePath, file, {
                 cacheControl: '3600',
-                upsert: true // 修改：upsert 设为 true 避免覆盖报错
+                upsert: true 
             });
 
         if (error) throw new Error(`上传失败: ${error.message}`);
@@ -115,12 +113,19 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         setUploadProgress('正在验证管理员权限...');
 
         try {
-            // 1. 获取最新会话，确保上传时 Token 是新鲜的
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                throw new Error("管理员身份失效，请重新登录");
+            if (!session) throw new Error("管理员身份失效，请重新登录");
+
+            // 1. 处理 X 链接清洗 (解决特殊字符报错)
+            let cleanXLink = formData.source_x_account;
+            if (cleanXLink && cleanXLink.includes('x.com')) {
+                try {
+                    const urlObj = new URL(cleanXLink);
+                    cleanXLink = `${urlObj.origin}${urlObj.pathname}`;
+                } catch (err) { /* 非 URL 字符串则忽略 */ }
             }
 
+            // 2. 依次上传新选中的文件
             const finalUrls: { [key: string]: string } = {};
             const fileMapping = [
                 { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
@@ -129,7 +134,6 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
             ];
 
-            // 2. 依次上传图片
             for (const item of fileMapping) {
                 const file = fileChanges[item.key];
                 if (file) {
@@ -139,12 +143,13 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 }
             }
 
-            // 3. 构建提交给 API 的数据
+            // 3. 构建提交给 API 的 JSON 数据
             setUploadProgress('正在同步数据库...');
-            const dataToSubmit = {
+            const submissionPayload = {
                 ...formData,
                 ...finalUrls,
-                // 确保如果不改图，保留原有的 URL 字符串
+                source_x_account: cleanXLink,
+                // 确保保留没有被新文件替换的旧图片 URL
                 original_image_url: finalUrls.original_image_url || (typeof formData.original_image_url === 'string' ? formData.original_image_url : ''),
                 optimized_image_url: finalUrls.optimized_image_url || (typeof formData.optimized_image_url === 'string' ? formData.optimized_image_url : ''),
                 user_portrait_url: finalUrls.user_portrait_url || (typeof formData.user_portrait_url === 'string' ? formData.user_portrait_url : ''),
@@ -153,13 +158,11 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
 
             const apiPath = isEditMode ? `/api/admin/update` : '/api/admin/create';
             
+            // 4. 发起 JSON 请求 (后端全能接口将正确识别 title)
             const response = await fetch(apiPath, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id: initialPrompt?.id,
-                    data: dataToSubmit 
-                }),
+                body: JSON.stringify(isEditMode ? { id: initialPrompt?.id, ...submissionPayload } : submissionPayload),
             });
 
             if (!response.ok) {
@@ -213,12 +216,12 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                     <input name="title" value={formData.title} onChange={handleInputChange} placeholder="标题" required className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
                     <textarea name="content" value={formData.content} onChange={handleInputChange} placeholder="原始提示词" rows={4} required className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
                     <textarea name="optimized_prompt" value={formData.optimized_prompt} onChange={handleInputChange} placeholder="优化后的提示词" rows={4} className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
-                    <input name="source_x_account" value={formData.source_x_account} onChange={handleInputChange} placeholder="作者 @账号" className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <input name="source_x_account" value={formData.source_x_account} onChange={handleInputChange} placeholder="作者 X 贴文地址 (例如: https://x.com/user/status/...)" className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">资源上传 (支持 20MB+)</h3>
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">资源上传</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {renderFilePicker('originalImage', 'original_image_url', '原始效果图')}
                     {renderFilePicker('optimizedImage', 'optimized_image_url', '优化效果图')}
