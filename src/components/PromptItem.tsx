@@ -13,7 +13,7 @@ interface Prompt {
     optimized_prompt?: string;
     optimized_image_url?: string;
     user_portrait_url?: string;
-    source_x_account?: string;
+    source_x_account?: string; // 这里存储的是 X 贴文的完整 URL
     tags?: any;
 }
 
@@ -53,10 +53,17 @@ function InlineCopyButton({ textToCopy, label, className }: { textToCopy: string
     );
 }
 
-// --- 3. 辅助函数：判断是否为外部链接 ---
+// --- 3. 辅助函数 ---
 const isExternalUrl = (url: string | undefined): boolean => {
     if (!url) return false;
     return url.includes('supabase.co') || url.startsWith('http');
+};
+
+// 提取 X 用户名的增强版：适配个人主页和具体贴文链接
+const getTwitterUsername = (url: string | undefined): string => {
+    if (!url) return "未知作者";
+    const match = url.match(/(?:x\.com|twitter\.com)\/([^\/\?\s]+)/);
+    return match ? `@${match[1]}` : "查看原文";
 };
 
 // --- 4. 默认导出主组件 ---
@@ -98,7 +105,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                             src={previewImage} 
                             alt="Large Preview" 
                             className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
-                            onClick={(e) => e.stopPropagation()} // 点击图片本身不关闭
+                            onClick={(e) => e.stopPropagation()} 
                         />
                         
                         {/* 底部标题提示 */}
@@ -129,6 +136,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                         )}
                     </div>
 
+                    {/* 作者显示与贴文跳转逻辑 */}
                     {prompt.source_x_account && (
                         <div className="text-[11px] mt-2 flex items-center group/author">
                             <span className="bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded mr-2 text-[9px] font-bold shrink-0">作者</span>
@@ -141,21 +149,16 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                                 <svg className="w-3 h-3 mr-1 fill-current" viewBox="0 0 24 24">
                                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                                 </svg>
-                                <span className="font-medium truncate max-w-[120px]">
-                                    @{(() => {
-                                        const url = prompt.source_x_account || "";
-                                        const match = url.match(/(?:x\.com|twitter\.com)\/([^\/\?\s]+)/);
-                                        return match ? match[1] : url.replace(/^@/, '');
-                                    })()}
+                                <span className="font-medium truncate max-w-[140px]">
+                                    {getTwitterUsername(prompt.source_x_account)}
                                 </span>
                             </a>
                         </div>
                     )}
                 </div>
 
-                {/* 2. 图片对比区 - 核心功能：点击触发预览 */}
+                {/* 2. 图片对比区 - 点击预览功能 */}
                 <div className="flex space-x-2 mb-4">
-                    {/* 原始图片 */}
                     <div 
                         className="relative w-1/2 h-32 rounded-2xl overflow-hidden bg-slate-100 cursor-zoom-in group/img"
                         onClick={() => setPreviewImage(prompt.original_image_url)}
@@ -167,7 +170,6 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                             className="object-cover transition-transform duration-500 group-hover/img:scale-110" 
                             unoptimized={isExternalUrl(prompt.original_image_url)} 
                         />
-                        {/* 悬浮放大镜图标 */}
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
                             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
@@ -176,7 +178,6 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                         <span className="absolute bottom-2 left-2 bg-black/50 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full font-bold">原始</span>
                     </div>
 
-                    {/* 优化图片 */}
                     <div 
                         className={`relative w-1/2 h-32 rounded-2xl overflow-hidden bg-slate-100 border border-[#3fc1c0]/20 ${prompt.optimized_image_url ? 'cursor-zoom-in group/img-opt' : ''}`}
                         onClick={() => prompt.optimized_image_url && setPreviewImage(prompt.optimized_image_url)}
@@ -203,7 +204,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                     </div>
                 </div>
 
-                {/* 3. 提示词内容区 */}
+                {/* 3. 内容区 */}
                 <div className="flex-grow space-y-4 overflow-hidden">
                     <div className="bg-[#f8fafb] p-3 rounded-2xl border border-slate-50">
                         <p className="text-[10px] font-black text-slate-300 uppercase mb-1">我的输入</p>
@@ -217,7 +218,7 @@ export default function PromptItem({ prompt, isAdmin = false }: { prompt: Prompt
                     </div>
                 </div>
 
-                {/* 4. 底部按钮区 */}
+                {/* 4. 底部按钮 */}
                 <div className="mt-5 pt-4 border-t border-slate-50 flex gap-2">
                     {!isAdmin ? (
                         <>
