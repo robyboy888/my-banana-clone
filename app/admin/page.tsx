@@ -26,10 +26,10 @@ export default function AdminPage() {
             setUser(session.user);
 
             // 获取初始数据传给子组件
-            const { data } = await supabase
-                .from('prompts')
-                .select('*')
-                .order('created_at', { ascending: false });
+			const { data } = await supabase
+				.from('prompts')
+				.select('*')
+				.order('updated_at', { ascending: false }); // 最近修改的排第一
             
             setPrompts(data || []);
             setIsLoading(false);
