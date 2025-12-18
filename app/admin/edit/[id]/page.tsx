@@ -2,25 +2,43 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import AdminPromptForm from '@/components/AdminPromptForm';
+import { createBrowserClient } from '@supabase/ssr';
+import AdminPromptForm from '@/src/components/AdminPromptForm';
 import { Prompt } from '@/types/prompt';
 import Link from 'next/link';
 
 export default function EditPromptPage() {
-    const params = useParams(); // 获取动态路由中的 id
+    const params = useParams();
     const router = useRouter();
+    
     const [prompt, setPrompt] = useState<Prompt | null>(null);
+    const [user, setUser] = useState<any>(null); // 新增：保存用户信息
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // 初始化客户端用于身份检查
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+
     useEffect(() => {
-        const fetchPrompt = async () => {
-            // 确保 params.id 存在，并强制转换为 string 以避免 TS 类型歧义
+        const initPage = async () => {
             const promptId = params.id as string;
-            
             if (!promptId) return;
 
             try {
+                // 1. 校验管理员身份 (确保用户信息被带出)
+                const { data: { session }, error: authError } = await supabase.auth.getSession();
+                
+                if (authError || !session) {
+                    console.log('未登录，跳转至登录页');
+                    router.push('/admin/login');
+                    return;
+                }
+                setUser(session.user);
+
+                // 2. 获取业务数据
                 const res = await fetch(`/api/prompts/${promptId}`);
                 
                 if (!res.ok) {
@@ -31,29 +49,27 @@ export default function EditPromptPage() {
                 const data = await res.json();
                 setPrompt(data);
             } catch (err: any) {
-                console.error('Fetch Error:', err);
+                console.error('Init Error:', err);
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchPrompt();
-    }, [params.id]);
+        initPage();
+    }, [params.id, router, supabase.auth]);
 
     const handleSuccess = () => {
-        // 修改成功后弹出提示并跳转
         alert('Prompt 记录更新成功！');
         router.push('/admin');
-        // 强制刷新页面数据，确保列表显示最新内容
         router.refresh(); 
     };
 
     // 1. 加载状态 UI
     if (loading) return (
-        <div className="flex flex-col justify-center items-center min-h-[400px] space-y-4">
+        <div className="flex flex-col justify-center items-center min-h-screen space-y-4 bg-gray-50">
             <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-600"></div>
-            <p className="text-gray-500 font-medium">正在调取数据库详情...</p>
+            <p className="text-gray-500 font-medium">正在验证身份并调取详情...</p>
         </div>
     );
 
@@ -71,31 +87,43 @@ export default function EditPromptPage() {
         </div>
     );
 
-    // 3. 正常渲染编辑表单
+    // 3. 正常渲染
     return (
-        <div className="container mx-auto p-8 max-w-4xl">
-            {/* 顶部导航和标题 */}
-            <div className="flex justify-between items-center mb-10 border-b pb-6">
-                <div>
-                    <h1 className="text-3xl font-extrabold text-gray-800">编辑 Prompt</h1>
-                    <p className="text-gray-400 text-sm mt-1">
-                        ID: <span className="font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-600">{params.id}</span>
-                    </p>
+        <div className="min-h-screen bg-gray-50 pb-20">
+            {/* 顶部状态栏：展示管理员信息 */}
+            <div className="bg-white border-b mb-8">
+                <div className="container mx-auto px-8 h-14 flex items-center justify-end">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-sm text-gray-600 font-medium">管理员: {user?.email}</span>
+                    </div>
                 </div>
-                <Link 
-                    href="/admin" 
-                    className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition shadow-sm text-sm font-bold"
-                >
-                    &larr; 放弃修改
-                </Link>
             </div>
 
-            {/* 表单组件：传入 initialPrompt 激活编辑模式 */}
-            <div className="bg-white rounded-2xl">
-                <AdminPromptForm 
-                    initialPrompt={prompt} 
-                    onSuccess={handleSuccess} 
-                />
+            <div className="container mx-auto px-8 max-w-4xl">
+                {/* 顶部导航和标题 */}
+                <div className="flex justify-between items-center mb-10 border-b pb-6">
+                    <div>
+                        <h1 className="text-3xl font-extrabold text-gray-800">编辑 Prompt</h1>
+                        <p className="text-gray-400 text-sm mt-1">
+                            ID: <span className="font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-600">{params.id}</span>
+                        </p>
+                    </div>
+                    <Link 
+                        href="/admin" 
+                        className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition shadow-sm text-sm font-bold"
+                    >
+                        &larr; 放弃修改
+                    </Link>
+                </div>
+
+                {/* 表单组件 */}
+                <div className="bg-white rounded-3xl shadow-sm border p-2">
+                    <AdminPromptForm 
+                        initialPrompt={prompt} 
+                        onSuccess={handleSuccess} 
+                    />
+                </div>
             </div>
         </div>
     );

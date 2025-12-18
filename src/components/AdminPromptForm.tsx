@@ -3,14 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Prompt } from '@/types/prompt';
-// 导入 Supabase 客户端，用于客户端直传
-import { createClient } from '@supabase/supabase-js';
-
-// 初始化 Supabase 客户端 (需确保环境变量已配置)
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { createBrowserClient } from '@supabase/ssr'; // 建议改用 ssr 客户端以保持会话一致
 
 interface AdminPromptFormProps {
     initialPrompt?: Prompt;
@@ -30,6 +23,12 @@ const PreviewImage: React.FC<{ url: string | File, alt: string }> = ({ url, alt 
 export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromptFormProps) {
     const isEditMode = !!initialPrompt;
     
+    // 初始化适用于浏览器的 Supabase 客户端
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -59,6 +58,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
     const [uploadProgress, setUploadProgress] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
 
+    // 回显数据
     useEffect(() => {
         if (initialPrompt) {
             setFormData({
@@ -87,18 +87,16 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         }
     };
 
-    // --- 核心：客户端直传函数 ---
     const uploadToSupabase = async (file: File, folder: string) => {
         const fileExt = file.name.split('.').pop() || 'jpg';
         const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExt}`;
         const filePath = `${folder}/${fileName}`;
 
-        // 注意：supabase.storage 会自动使用当前登录用户的会话令牌
         const { data, error } = await supabase.storage
             .from('prompt-assets')
             .upload(filePath, file, {
                 cacheControl: '3600',
-                upsert: false
+                upsert: true // 修改：upsert 设为 true 避免覆盖报错
             });
 
         if (error) throw new Error(`上传失败: ${error.message}`);
@@ -117,11 +115,10 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         setUploadProgress('正在验证管理员权限...');
 
         try {
-            // 1. 验证身份：确保当前浏览器存在登录会话
-            const { data: { session }, error: authError } = await supabase.auth.getSession();
-            
-            if (authError || !session) {
-                throw new Error("管理员身份失效，请重新登录管理后台后再操作。");
+            // 1. 获取最新会话，确保上传时 Token 是新鲜的
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                throw new Error("管理员身份失效，请重新登录");
             }
 
             const finalUrls: { [key: string]: string } = {};
@@ -132,21 +129,22 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
             ];
 
-            // 2. 带有身份信息的图片直传
+            // 2. 依次上传图片
             for (const item of fileMapping) {
                 const file = fileChanges[item.key];
                 if (file) {
-                    setUploadProgress(`正在安全上传 (20MB+): ${item.folder}...`);
+                    setUploadProgress(`正在上传: ${item.folder}...`);
                     const url = await uploadToSupabase(file, item.folder);
                     finalUrls[item.dbField] = url;
                 }
             }
 
-            // 3. 同步数据库记录
-            setUploadProgress('正在同步至数据库...');
+            // 3. 构建提交给 API 的数据
+            setUploadProgress('正在同步数据库...');
             const dataToSubmit = {
                 ...formData,
                 ...finalUrls,
+                // 确保如果不改图，保留原有的 URL 字符串
                 original_image_url: finalUrls.original_image_url || (typeof formData.original_image_url === 'string' ? formData.original_image_url : ''),
                 optimized_image_url: finalUrls.optimized_image_url || (typeof formData.optimized_image_url === 'string' ? formData.optimized_image_url : ''),
                 user_portrait_url: finalUrls.user_portrait_url || (typeof formData.user_portrait_url === 'string' ? formData.user_portrait_url : ''),
@@ -197,7 +195,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                     onClick={() => (fileRefs as any)[fieldKey].current?.click()}
                     className={`w-full py-2 px-4 rounded-lg text-xs font-bold transition ${isFile ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
-                    {isFile ? '✅ 已选择' : currentUrl ? '🔄 更改大图' : '📁 上传大图'}
+                    {isFile ? '✅ 已选新图' : currentUrl ? '🔄 更改图片' : '📁 选择图片'}
                 </button>
                 {currentUrl && <PreviewImage url={currentUrl} alt={label} />}
             </div>
@@ -205,36 +203,36 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-8 p-6">
             {error && <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm font-medium">{error}</div>}
             {uploadProgress && <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl text-xs font-bold animate-pulse text-center">{uploadProgress}</div>}
 
             <section className="space-y-4">
-                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">核心内容</h3>
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">基本信息</h3>
                 <div className="space-y-4">
-                    <input name="title" value={formData.title} onChange={handleInputChange} placeholder="Prompt 标题" required className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
-                    <textarea name="content" value={formData.content} onChange={handleInputChange} placeholder="原始提示词..." rows={4} required className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
-                    <textarea name="optimized_prompt" value={formData.optimized_prompt} onChange={handleInputChange} placeholder="优化后的提示词 (可选)..." rows={4} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
-                    <input name="source_x_account" value={formData.source_x_account} onChange={handleInputChange} placeholder="作者 X 账号 (例如: @username)" className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <input name="title" value={formData.title} onChange={handleInputChange} placeholder="标题" required className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <textarea name="content" value={formData.content} onChange={handleInputChange} placeholder="原始提示词" rows={4} required className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <textarea name="optimized_prompt" value={formData.optimized_prompt} onChange={handleInputChange} placeholder="优化后的提示词" rows={4} className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
+                    <input name="source_x_account" value={formData.source_x_account} onChange={handleInputChange} placeholder="作者 @账号" className="w-full p-4 bg-gray-100 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500" />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">图片资源 (已开启 Authenticated 校验)</h3>
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">资源上传 (支持 20MB+)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {renderFilePicker('originalImage', 'original_image_url', '原始效果图')}
                     {renderFilePicker('optimizedImage', 'optimized_image_url', '优化效果图')}
-                    {renderFilePicker('userPortrait', 'user_portrait_url', '用户参考肖像')}
-                    {renderFilePicker('userBackground', 'user_background_url', '用户参考背景')}
+                    {renderFilePicker('userPortrait', 'user_portrait_url', '参考肖像')}
+                    {renderFilePicker('userBackground', 'user_background_url', '参考背景')}
                 </div>
             </section>
 
             <button 
                 type="submit" 
                 disabled={isSubmitting} 
-                className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition disabled:opacity-50"
+                className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:bg-indigo-700 transition disabled:opacity-50"
             >
-                {isSubmitting ? '正在安全传输中...' : isEditMode ? '确认更新' : '立即发布'}
+                {isSubmitting ? '正在安全提交...' : isEditMode ? '保存修改' : '发布内容'}
             </button>
         </form>
     );
