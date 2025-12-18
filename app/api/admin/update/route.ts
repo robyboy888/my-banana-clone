@@ -1,15 +1,29 @@
 import { NextResponse } from 'next/server';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { supabaseServiceRole } from '@/lib/supabaseService';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
     try {
-        // 1. 解析前端发来的 JSON 数据
+        // 1. 创建带有会话上下文的客户端，用于身份校验
+        const cookieStore = cookies();
+        const supabaseAuth = createRouteHandlerClient({ cookies: () => cookieStore });
+
+        // 2. 身份校验：拦截非法请求
+        const { data: { session }, error: authError } = await supabaseAuth.auth.getSession();
+        
+        if (authError || !session) {
+            console.error('未授权的访问尝试');
+            return NextResponse.json({ error: "未经授权，请先登录" }, { status: 401 });
+        }
+
+        // 3. 解析前端发来的 JSON 数据
         const body = await request.json();
         const { id, data: recordData } = body;
 
-        // 2. 基础校验
+        // 4. 基础参数校验
         if (!id) {
             return NextResponse.json({ error: "缺少记录 ID" }, { status: 400 });
         }
@@ -17,14 +31,15 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "缺少更新内容" }, { status: 400 });
         }
 
-        // 3. 准备更新到数据库的数据
-        // 注意：此时 recordData 里的图片字段已经是上传好的 URL 字符串了
+        // 5. 准备更新数据
+        // 移除 recordData 中可能包含的 id 字段，防止违反主键约束
+        const { id: _, ...updateFields } = recordData;
         const finalUpdateData = {
-            ...recordData,
+            ...updateFields,
             updated_at: new Date().toISOString()
         };
 
-        // 4. 执行 Supabase 数据库更新
+        // 6. 执行更新 (使用 Service Role 确保拥有最高数据库操作权限)
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .update(finalUpdateData)

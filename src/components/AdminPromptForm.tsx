@@ -93,9 +93,13 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExt}`;
         const filePath = `${folder}/${fileName}`;
 
+        // 注意：supabase.storage 会自动使用当前登录用户的会话令牌
         const { data, error } = await supabase.storage
             .from('prompt-assets')
-            .upload(filePath, file);
+            .upload(filePath, file, {
+                cacheControl: '3600',
+                upsert: false
+            });
 
         if (error) throw new Error(`上传失败: ${error.message}`);
 
@@ -110,9 +114,16 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
         e.preventDefault();
         setError(null);
         setIsSubmitting(true);
-        setUploadProgress('正在准备上传图片...');
+        setUploadProgress('正在验证管理员权限...');
 
         try {
+            // 1. 验证身份：确保当前浏览器存在登录会话
+            const { data: { session }, error: authError } = await supabase.auth.getSession();
+            
+            if (authError || !session) {
+                throw new Error("管理员身份失效，请重新登录管理后台后再操作。");
+            }
+
             const finalUrls: { [key: string]: string } = {};
             const fileMapping = [
                 { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
@@ -121,22 +132,21 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
             ];
 
-            // 1. 先进行图片直传 (绕过 Vercel 限制)
+            // 2. 带有身份信息的图片直传
             for (const item of fileMapping) {
                 const file = fileChanges[item.key];
                 if (file) {
-                    setUploadProgress(`正在直传大图: ${item.folder}...`);
+                    setUploadProgress(`正在安全上传 (20MB+): ${item.folder}...`);
                     const url = await uploadToSupabase(file, item.folder);
                     finalUrls[item.dbField] = url;
                 }
             }
 
-            // 2. 构造最终要发送的 JSON 数据 (不含 File 对象)
-            setUploadProgress('正在同步数据库记录...');
+            // 3. 同步数据库记录
+            setUploadProgress('正在同步至数据库...');
             const dataToSubmit = {
                 ...formData,
                 ...finalUrls,
-                // 确保移除任何可能残留的 File 占位符
                 original_image_url: finalUrls.original_image_url || (typeof formData.original_image_url === 'string' ? formData.original_image_url : ''),
                 optimized_image_url: finalUrls.optimized_image_url || (typeof formData.optimized_image_url === 'string' ? formData.optimized_image_url : ''),
                 user_portrait_url: finalUrls.user_portrait_url || (typeof formData.user_portrait_url === 'string' ? formData.user_portrait_url : ''),
@@ -145,19 +155,18 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
 
             const apiPath = isEditMode ? `/api/admin/update` : '/api/admin/create';
             
-            // 3. 使用 JSON 格式发送请求，体积极小
             const response = await fetch(apiPath, {
-                method: 'POST', // 统一使用 POST 以兼容之前的后端逻辑，或根据需要改为 PUT
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     id: initialPrompt?.id,
-                    data: dataToSubmit // 后端通过 JSON.parse(data) 处理
+                    data: dataToSubmit 
                 }),
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || '数据库保存失败');
+                throw new Error(errorData.error || '保存失败');
             }
 
             onSuccess();
@@ -186,9 +195,9 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 <button 
                     type="button"
                     onClick={() => (fileRefs as any)[fieldKey].current?.click()}
-                    className={`w-full py-2 px-4 rounded-lg text-xs font-bold transition ${isFile ? 'bg-green-500 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
+                    className={`w-full py-2 px-4 rounded-lg text-xs font-bold transition ${isFile ? 'bg-green-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
-                    {isFile ? '✅ 已选择(支持20MB+)' : currentUrl ? '🔄 更换图片' : '📁 上传大图'}
+                    {isFile ? '✅ 已选择' : currentUrl ? '🔄 更改大图' : '📁 上传大图'}
                 </button>
                 {currentUrl && <PreviewImage url={currentUrl} alt={label} />}
             </div>
@@ -197,8 +206,8 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
 
     return (
         <form onSubmit={handleSubmit} className="space-y-8">
-            {error && <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm">{error}</div>}
-            {uploadProgress && <div className="p-3 bg-blue-50 text-blue-600 rounded-xl text-xs font-bold animate-pulse">{uploadProgress}</div>}
+            {error && <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-100 text-sm font-medium">{error}</div>}
+            {uploadProgress && <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl text-xs font-bold animate-pulse text-center">{uploadProgress}</div>}
 
             <section className="space-y-4">
                 <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">核心内容</h3>
@@ -211,7 +220,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">图片资源 (支持 20MB 直传)</h3>
+                <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-500 pl-3">图片资源 (已开启 Authenticated 校验)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {renderFilePicker('originalImage', 'original_image_url', '原始效果图')}
                     {renderFilePicker('optimizedImage', 'optimized_image_url', '优化效果图')}
@@ -225,7 +234,7 @@ export default function AdminPromptForm({ initialPrompt, onSuccess }: AdminPromp
                 disabled={isSubmitting} 
                 className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition disabled:opacity-50"
             >
-                {isSubmitting ? '正在处理大文件...' : isEditMode ? '确认更新' : '立即发布'}
+                {isSubmitting ? '正在安全传输中...' : isEditMode ? '确认更新' : '立即发布'}
             </button>
         </form>
     );
