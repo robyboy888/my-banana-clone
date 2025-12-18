@@ -6,18 +6,12 @@ export const dynamic = 'force-dynamic';
 const BUCKET_NAME = 'prompt-assets';
 
 /**
- * 核心辅助函数：处理文件上传
- * 修复点：强制格式化文件名，避免中文、特殊字符导致的 Invalid Key 错误
+ * 处理文件上传
  */
 async function uploadFile(file: File, folder: string): Promise<string> {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    
-    // 获取文件后缀名 (例如: .jpg)
     const fileExtension = file.name.split('.').pop() || 'jpg';
-    
-    // 生成安全的文件路径：文件夹/时间戳-随机数.后缀
-    // 不再使用 file.name，彻底杜绝中文路径报错
     const safeFileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${fileExtension}`;
     const filePath = `${folder}/${safeFileName}`;
 
@@ -42,41 +36,66 @@ async function uploadFile(file: File, folder: string): Promise<string> {
 
 export async function POST(request: Request) {
     try {
-        const formData = await request.formData();
-        
-        // 1. 解析基础 JSON 数据
-        const dataJson = formData.get('data') as string;
-        if (!dataJson) throw new Error("缺少 'data' 表单字段");
-        const recordData = JSON.parse(dataJson);
-        
-        if (!recordData.title) throw new Error("标题不能为空");
+        const contentType = request.headers.get('content-type') || '';
+        let recordData: any = {};
+        let uploadedUrls: { [key: string]: string } = {};
 
-        // 2. 映射前端 File Key 到数据库字段名
-        const uploadedUrls: { [key: string]: string } = {};
-        const fileMapping = [
-            { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
-            { key: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
-            { key: 'userPortrait', dbField: 'user_portrait_url', folder: 'portraits' },
-            { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
-        ];
-
-        for (const item of fileMapping) {
-            const file = formData.get(item.key) as File | null;
-            // 只有当文件存在且大小大于 0 时才上传
-            if (file && file instanceof File && file.size > 0) {
-                const publicUrl = await uploadFile(file, item.folder);
-                uploadedUrls[item.dbField] = publicUrl;
+        // --- 核心修复：根据 Content-Type 动态解析 ---
+        if (contentType.includes('application/json')) {
+            // 处理来自 Python 脚本或 JSON 请求的提交
+            recordData = await request.json();
+        } 
+        else if (contentType.includes('multipart/form-data')) {
+            // 处理来自后台管理页面（带图片）的提交
+            const formData = await request.formData();
+            
+            // 获取基础 JSON 数据
+            const dataJson = formData.get('data') as string;
+            if (dataJson) {
+                recordData = JSON.parse(dataJson);
             }
+
+            // 处理文件上传映射
+            const fileMapping = [
+                { key: 'originalImage', dbField: 'original_image_url', folder: 'original' },
+                { key: 'optimizedImage', dbField: 'optimized_image_url', folder: 'optimized' },
+                { key: 'userPortrait', dbField: 'user_portrait_url', folder: 'portraits' },
+                { key: 'userBackground', dbField: 'user_background_url', folder: 'backgrounds' }
+            ];
+
+            for (const item of fileMapping) {
+                const file = formData.get(item.key) as File | null;
+                if (file && file instanceof File && file.size > 0) {
+                    const publicUrl = await uploadFile(file, item.folder);
+                    uploadedUrls[item.dbField] = publicUrl;
+                }
+            }
+        } else {
+            throw new Error(`不支持的请求格式: ${contentType}`);
         }
 
-        // 3. 构造插入对象
+        // --- 字段校验与兼容性处理 ---
+        if (!recordData.title) throw new Error("标题不能为空");
+
+        // 解决脚本中 source_link 和数据库 source_x_account 的映射问题
+        const finalSourceAccount = recordData.source_x_account || recordData.source_link;
+
+        // 构造最终入库对象
         const finalData = {
-            ...recordData,      // 包含 title, content, optimized_prompt, source_x_account
-            ...uploadedUrls,    // 包含新上传的图片 URL
+            title: recordData.title,
+            content: recordData.content,
+            optimized_prompt: recordData.optimized_prompt,
+            source_x_account: finalSourceAccount,
+            tags: recordData.tags || [],
+            // 如果是 JSON 提交，url 可能已经在 recordData 里；如果是 FormData，则在 uploadedUrls 里
+            original_image_url: uploadedUrls.original_image_url || recordData.original_image_url,
+            optimized_image_url: uploadedUrls.optimized_image_url || recordData.optimized_image_url,
+            user_portrait_url: uploadedUrls.user_portrait_url || recordData.user_portrait_url,
+            user_background_url: uploadedUrls.user_background_url || recordData.user_background_url,
             created_at: new Date().toISOString()
         };
 
-        // 4. 写入数据库
+        // 写入数据库
         const { data, error: dbError } = await supabaseServiceRole
             .from('prompts')
             .insert([finalData])
