@@ -19,22 +19,17 @@ export async function middleware(request: NextRequest) {
         get(name: string) {
           return request.cookies.get(name)?.value
         },
-        set(name: string, value: string, options: CookieOptions) {
+        set(name: string, value: string, options: options: CookieOptions) {
           request.cookies.set({ name, value, ...options })
           response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
+            request: { headers: request.headers },
           })
           response.cookies.set({ name, value, ...options })
         },
-        // ✅ 修正：删除操作时，明确将 value 设为空字符串，并正确传递参数
         remove(name: string, options: CookieOptions) {
-          request.cookies.set({ name, value: '', ...options }) 
+          request.cookies.set({ name, value: '', ...options })
           response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
+            request: { headers: request.headers },
           })
           response.cookies.set({ name, value: '', ...options })
         },
@@ -42,21 +37,32 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // 3. 获取当前用户信息（会自动刷新 Session）
+  // --- 💥 关键合并部分开始 ---
+  
+  // A. 检查是否为 API 脚本请求 (GitHub Actions)
+  // 如果请求头包含有效的 Authorization Bearer Token，则直接允许，不检查 Cookie
+  const authHeader = request.headers.get('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    return response;
+  }
+
+  // B. 获取当前用户信息 (普通浏览器用户路径)
   const { data: { user } } = await supabase.auth.getUser()
+
+  // --- 💥 关键合并部分结束 ---
 
   const url = request.nextUrl.clone()
   const isLoginPage = url.pathname === '/admin/login'
   const isAdminPath = url.pathname.startsWith('/admin')
 
-  // 4. 路由拦截逻辑
+  // 3. 路由拦截逻辑
   if (isAdminPath) {
-    // 情况 A: 访问管理页但未登录 -> 重定向到登录页
+    // 如果没有 user (说明既不是合法的脚本，也没在浏览器登录)
     if (!user && !isLoginPage) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
     
-    // 情况 B: 已登录但尝试访问登录页 -> 重定向到管理主页
+    // 已登录状态下禁止去登录页
     if (user && isLoginPage) {
       return NextResponse.redirect(new URL('/admin', request.url))
     }
@@ -65,7 +71,6 @@ export async function middleware(request: NextRequest) {
   return response
 }
 
-// 5. 匹配器：确保对 /admin 及其所有子路径生效
 export const config = {
   matcher: ['/admin/:path*'],
 }

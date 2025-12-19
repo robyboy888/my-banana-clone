@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python # 或者 Node.js，取决于你的脚本语言
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
@@ -24,7 +24,11 @@ jobs:
 
       - name: Run Sync Script
         env:
-          # 左边是脚本里用的变量名，右边是你在 GitHub Settings 里存的 Secret 名
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          # 1. 提供给脚本的标准变量名
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          
+          # 2. 兼容性备用变量名（防止脚本内部写死为 NEXT_PUBLIC_）
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python cron_sync.py
