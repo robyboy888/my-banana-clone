@@ -1,10 +1,15 @@
 // src/lib/supabase.ts
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserClient } from '@supabase/ssr'
 
-// Next.js 会在运行时自动从 .env.local 中加载这些以 NEXT_PUBLIC_ 开头的环境变量
-// ! 是 TypeScript 语法，表示我们确保这些变量一定存在
+// 确保环境变量存在
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-// 创建 Supabase 客户端实例
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+/**
+ * 升级为 SSR 兼容的客户端
+ * 这样处理 Auth Session 会比基础的 createClient 在 Next.js 中更稳定
+ */
+export const supabase = createBrowserClient(
+  supabaseUrl,
+  supabaseAnonKey
+)
