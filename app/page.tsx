@@ -50,8 +50,10 @@ export default async function Page() {
                 </div>
             </header>
 
-            {/* 2. 主交互区 
-                现在标题、副标题、搜索框和 Filter 按钮全部在 HomeClient 内部以水平布局排列
+            {/* 2. 主内容区
+                核心点：这里不再写任何 <h1>标题</h1>。
+                标题已经被移到了 HomeClient 内部，
+                这样它才能和搜索框在同一行（Flex 布局）。
             */}
             <main className="relative">
                 <HomeClient 
