@@ -26,34 +26,36 @@ export default async function Page() {
     return (
         <div className="min-h-screen bg-white dark:bg-[#0f1115] transition-colors duration-500">
             
-            {/* 1. 顶部导航栏 (保持置顶) */}
-            <header className="sticky top-0 z-[60] w-full border-b border-white/5 bg-[#0f1115] backdrop-blur-md">
-                <div className="max-w-[1600px] mx-auto px-8 h-20 flex items-center justify-between">
+            {/* 1. 顶部导航栏 (采用深灰色 bg-[#1a1c20] 与下方极黑区分) */}
+            <header className="sticky top-0 z-[60] w-full border-b border-white/5 bg-[#1a1c20]/95 backdrop-blur-md">
+                <div className="max-w-[1600px] mx-auto px-8 h-16 flex items-center justify-between">
+                    {/* 左侧 Logo */}
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-[#3fc1c0] rounded-lg flex items-center justify-center shadow-lg shadow-[#3fc1c0]/20">
                             <span className="text-white font-black text-sm">B</span>
                         </div>
-                        <h1 className="text-sm font-black tracking-tighter text-white uppercase">
+                        <h1 className="text-sm font-black tracking-tighter text-white uppercase flex items-center gap-1">
                             BANANA <span className="text-[#3fc1c0]">CLONE</span>
                         </h1>
                     </div>
                     
+                    {/* 右侧 功能区 */}
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
                         <a 
                             href="/admin" 
-                            className="text-[10px] font-black tracking-widest uppercase px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white hover:text-black transition-all"
+                            className="text-[10px] font-black tracking-widest uppercase px-5 py-2 rounded-full bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all shadow-sm"
                         >
-                            Admin
+                            DASHBOARD
                         </a>
                     </div>
                 </div>
             </header>
 
-            {/* 2. 主内容区
-                核心点：这里不再写任何 <h1>标题</h1>。
-                标题已经被移到了 HomeClient 内部，
-                这样它才能和搜索框在同一行（Flex 布局）。
+            {/* 2. 主内容交互区
+                标题 "Banana Clone" 和 "搜索框" 已经合并在 HomeClient 内部。
+                HomeClient 的顶部背景色为 [#0f1115] (更深的黑色)，
+                这样就与上面的 header [#1a1c20] 形成了截图中的两层色差。
             */}
             <main className="relative">
                 <HomeClient 
