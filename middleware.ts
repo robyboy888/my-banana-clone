@@ -1,69 +1,73 @@
 // middleware.ts
-import { NextResponse, NextRequest } from 'next/server';
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
-// 固定的管理员用户名和密钥，用于验证 Basic Auth
-const ADMIN_USERNAME = 'admin'; 
-// 从环境变量中读取密码，确保您已在 .env.local 和 Vercel 中设置 ADMIN_SECRET_KEY
-const SECRET_PASSWORD = process.env.ADMIN_SECRET_KEY;
+export async function middleware(request: NextRequest) {
+  // 1. 创建一个初始响应
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
 
-export function middleware(request: NextRequest) {
-    const url = request.nextUrl.clone();
-    const adminPath = '/admin';
-    
-    // 1. 只处理管理员页面的请求
-    if (url.pathname !== adminPath) {
-        return NextResponse.next();
-    }
-    
-    // 2. 检查秘密密钥是否已配置
-    if (!SECRET_PASSWORD) {
-        // 如果密码未设置，避免锁定管理员，但应该发出警告或重定向
-        console.error('ADMIN_SECRET_KEY is not set in environment variables. Access denied.');
-        // 重定向到主页，防止未配置时意外暴露管理区域
-        return NextResponse.redirect(new URL('/', request.url));
-    }
-
-    // 3. 获取并解析 Authorization Header
-    const authHeader = request.headers.get('Authorization');
-
-    // 检查是否存在 Authorization Header 或它是否以 'Basic ' 开头
-    if (!authHeader || !authHeader.startsWith('Basic ')) {
-        // 如果没有认证信息，返回 401 响应，触发浏览器弹出登录框
-        return new NextResponse('Authorization required', {
-            status: 401,
-            headers: {
-                // 'WWW-Authenticate' 告诉浏览器使用 Basic Auth 机制，并提示用户输入凭证
-                'WWW-Authenticate': 'Basic realm="Secure Admin Area"',
-            },
-        });
-    }
-
-    // 4. 解码凭证 (Base64)
-    // 移除 'Basic ' (6个字符)
-    const encodedAuth = authHeader.substring(6); 
-    
-    // 使用 Buffer.from() 进行 Base64 解码
-    // 注意：Buffer 是 Node.js 环境的一部分，在 Next.js Middleware 中可用
-    const decodedAuth = Buffer.from(encodedAuth, 'base64').toString();
-    const [username, password] = decodedAuth.split(':');
-
-    // 5. 验证用户名和密码
-    if (username === ADMIN_USERNAME && password === SECRET_PASSWORD) {
-        // 验证成功，允许请求继续
-        return NextResponse.next();
-    }
-
-    // 6. 验证失败，返回 401 重新弹出登录框
-    return new NextResponse('Invalid credentials', {
-        status: 401,
-        headers: {
-            'WWW-Authenticate': 'Basic realm="Secure Admin Area"',
+  // 2. 初始化 Supabase 服务端客户端
+  // 它会自动处理请求中的 Cookie 并更新响应中的 Cookie
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return request.cookies.get(name)?.value
         },
-    });
+        set(name: string, value: string, options: CookieOptions) {
+          request.cookies.set({ name, value, ...options })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+          response.cookies.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          request.cookies.set({ name, value, ...options })
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+          response.cookies.set({ name, value, ...options })
+        },
+      },
+    }
+  )
+
+  // 3. 获取当前用户信息（这不仅是检查，还会刷新过期的 Session）
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const url = request.nextUrl.clone()
+  const isLoginPage = url.pathname === '/admin/login'
+  const isAdminPath = url.pathname.startsWith('/admin')
+
+  // 4. 路由拦截逻辑
+  if (isAdminPath) {
+    // 情况 A: 访问管理页但未登录 -> 重定向到登录页
+    if (!user && !isLoginPage) {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+    
+    // 情况 B: 已登录但尝试访问登录页 -> 重定向到管理主页
+    if (user && isLoginPage) {
+      return NextResponse.redirect(new URL('/admin', request.url))
+    }
+  }
+
+  return response
 }
 
-// 限制中间件只在特定路径下运行
-// 💥 关键修正：必须使用字符串字面量，以便 Next.js 静态解析
+// 5. 匹配器：确保对 /admin 及其所有子路径生效
 export const config = {
-    matcher: ['/admin'], 
-};
+  matcher: [
+    '/admin/:path*', 
+  ],
+}

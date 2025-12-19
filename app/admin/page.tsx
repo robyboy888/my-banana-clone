@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-// ⚠️ 注意这里：统一引用我们修改后的那个 lib 文件
+// 统一引用 lib 下的单例，确保 Session 在中间件和页面间同步
 import { supabase } from '@/src/lib/supabase'; 
 import AdminRecordList from '@/src/components/AdminRecordList';
-import { Loader2, Plus, LayoutDashboard } from 'lucide-react'; 
+import { Loader2, Plus, LayoutDashboard, ShieldCheck } from 'lucide-react'; 
 
 export default function AdminPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -15,18 +15,18 @@ export default function AdminPage() {
 
     useEffect(() => {
         const init = async () => {
-            // 使用统一的 supabase 实例获取 Session
-            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+            // 1. 获取用户信息
+            // 注意：middleware 已经处理了跳转逻辑，这里主要用于 UI 展示 (如显示邮箱)
+            const { data: { user } } = await supabase.auth.getUser();
             
-            if (sessionError || !session) {
-                console.log("未检测到有效会话，跳转登录...");
+            if (!user) {
+                // 如果中间件因某种原因漏掉，这里作为二次保险
                 router.push('/admin/login');
                 return;
             }
+            setUser(user);
 
-            setUser(session.user);
-
-            // 获取初始数据
+            // 2. 获取数据记录
             const { data, error } = await supabase
                 .from('prompts')
                 .select('*')
@@ -39,49 +39,57 @@ export default function AdminPage() {
             setIsLoading(false);
         };
         init();
-    }, [router]); // 移除了对 supabase 的依赖，因为它是外部引入的单例
+    }, [router]);
 
-    // 加载态 UI 升级：适配暗黑模式
+    // 加载态：采用全屏居中的精致动画
     if (isLoading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-slate-500 dark:text-slate-400">
-                <Loader2 className="w-8 h-8 animate-spin mb-4 text-indigo-600" />
-                <p className="text-sm font-black uppercase tracking-widest animate-pulse">正在同步数据...</p>
+                <div className="relative mb-4">
+                    <Loader2 className="w-10 h-10 animate-spin text-indigo-600" />
+                    <ShieldCheck className="w-4 h-4 text-indigo-400 absolute top-0 right-0 animate-pulse" />
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
+                    Authenticating Session...
+                </p>
             </div>
         );
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8 animate-in fade-in duration-700">
             {/* 顶部的标题区域 */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                    <div className="p-2 bg-indigo-600 rounded-lg">
-                        <LayoutDashboard className="w-5 h-5 text-white" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                    <div className="p-3 bg-indigo-600 rounded-2xl shadow-xl shadow-indigo-500/20">
+                        <LayoutDashboard className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight uppercase">
-                            Prompt Assets
+                        <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tighter uppercase">
+                            Admin <span className="text-indigo-600">Workspace</span>
                         </h1>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
-                            当前管理员: <span className="text-indigo-600 dark:text-indigo-400">{user?.email}</span>
-                        </p>
+                        <div className="flex items-center gap-2 mt-1">
+                            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                Signed in as: <span className="text-slate-600 dark:text-slate-200">{user?.email}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 
-                <div className="flex gap-3">
+                <div className="flex items-center gap-4">
                     <button 
                         onClick={() => router.push('/admin/new')}
-                        className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black rounded-2xl transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
+                        className="group flex items-center gap-2 px-6 py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black rounded-2xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-slate-200 dark:shadow-none"
                     >
-                        <Plus className="w-4 h-4" />
-                        NEW PROMPT
+                        <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
+                        ADD NEW PROMPT
                     </button>
                 </div>
             </div>
 
-            {/* 核心列表组件容器 */}
-            <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden transition-colors duration-300">
+            {/* 列表容器：利用阴影和边框增加层级感 */}
+            <div className="bg-white dark:bg-slate-900 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-2xl shadow-slate-200/50 dark:shadow-none overflow-hidden transition-all duration-500">
                 <AdminRecordList initialPrompts={prompts} />
             </div>
         </div>
