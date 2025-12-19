@@ -24,18 +24,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // 1. 必须添加 suppressHydrationWarning，因为 next-themes 会修改 html 标签
     <html lang="zh" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300`}
+        className={`
+          ${geistSans.variable} 
+          ${geistMono.variable} 
+          antialiased 
+          /* 核心修改：让明暗模式的背景色与 HomeClient 完美融合 */
+          bg-white dark:bg-[#0f1115] 
+          text-slate-900 dark:text-slate-50 
+          transition-colors duration-500
+        `}
       >
-        {/* 2. 使用 ThemeProvider 包裹所有内容 */}
         <ThemeProvider 
           attribute="class" 
           defaultTheme="system" 
           enableSystem
           disableTransitionOnChange
         >
+          {/* 这里的 children 包含 Page.tsx 以及里面的 HomeClient */}
           {children}
         </ThemeProvider>
       </body>

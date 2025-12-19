@@ -24,15 +24,17 @@ export default async function Page() {
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
-            {/* 1. 顶部导航栏 (保持简洁透明) */}
-            <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0f1115]/80 backdrop-blur-md">
-                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 bg-[#3fc1c0] rounded-xl flex items-center justify-center shadow-lg shadow-[#3fc1c0]/20">
-                            <span className="text-white font-black text-xl">B</span>
+        /* 这里的 bg-white dark:bg-[#0f1115] 必须与 HomeClient 保持一致，确保滚动时没有断层 */
+        <div className="min-h-screen bg-white dark:bg-[#0f1115] transition-colors duration-500">
+            
+            {/* 1. 顶部导航栏 (采用沉浸式深色) */}
+            <header className="sticky top-0 z-[60] w-full border-b border-white/5 bg-[#0f1115]/80 backdrop-blur-md">
+                <div className="max-w-[1800px] mx-auto px-8 h-20 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-[#3fc1c0] rounded-xl flex items-center justify-center shadow-lg shadow-[#3fc1c0]/20">
+                            <span className="text-white font-black text-lg">B</span>
                         </div>
-                        <h1 className="text-xl font-black tracking-tighter text-white">
+                        <h1 className="text-lg font-black tracking-tighter text-white">
                             BANANA <span className="text-[#3fc1c0]">CLONE</span>
                         </h1>
                     </div>
@@ -41,7 +43,7 @@ export default async function Page() {
                         <ThemeToggle />
                         <a 
                             href="/admin" 
-                            className="hidden sm:block text-[10px] font-black tracking-widest uppercase px-6 py-3 rounded-2xl bg-white text-slate-900 hover:scale-105 active:scale-95 transition-all"
+                            className="hidden sm:block text-[10px] font-black tracking-[0.2em] uppercase px-5 py-2.5 rounded-xl bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all"
                         >
                             Dashboard
                         </a>
@@ -49,22 +51,26 @@ export default async function Page() {
                 </div>
             </header>
 
-            {/* 2. 黑色沉浸式抬头 (Hero Section) - 保留你最满意的样式 */}
-            <section className="bg-[#0f1115] pt-32 pb-20 px-6 text-center border-b border-white/5">
+            {/* 2. 黑色沉浸式抬头 (Hero Section) 
+                高度微调：为了让 HomeClient 的搜索框向上偏移后位置居中
+            */}
+            <section className="bg-[#0f1115] pt-24 pb-28 px-6 text-center">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="text-5xl md:text-7xl font-black italic tracking-tighter mb-4 text-white">
+                    <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter mb-4 text-white">
                         Banana <span className="text-[#3fc1c0]">Clone</span>
                     </h1>
-                    <p className="text-slate-400 text-lg font-medium tracking-widest opacity-80 uppercase">
+                    <p className="text-slate-500 text-sm md:text-base font-bold tracking-[0.4em] uppercase opacity-70">
                         灵感瞬间，即刻捕捉
                     </p>
                 </div>
             </section>
 
-            {/* 3. 主内容区 (筛选器与卡片展示) */}
-            <main className="bg-white dark:bg-[#0a0a0a]">
-                {/* 将 initialPrompts 传递给客户端组件
-                    HomeClient 内部现在自理 TAG_CATEGORIES，不再需要传入 allTags
+            {/* 3. 主内容区
+                背景色适配暗色模式，去掉多余的 dark:bg-[#0a0a0a] 统一使用 [#0f1115]
+            */}
+            <main className="bg-white dark:bg-[#0f1115] relative">
+                {/* HomeClient 内部带有 -mt-10 或 -mt-12 的负边距，
+                    它会自动向上漂浮并压在上面的黑色 section 上。
                 */}
                 <HomeClient 
                     initialPrompts={initialData} 
@@ -72,9 +78,9 @@ export default async function Page() {
             </main>
 
             {/* 4. 页脚 */}
-            <footer className="py-12 border-t border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-[#0f1115]">
-                <div className="container mx-auto px-6 text-center text-slate-400 dark:text-slate-600 text-xs font-bold tracking-widest">
-                    © 2024 BANANA CLONE · CURATED AI PROMPT GALLERY
+            <footer className="py-20 border-t border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-[#0f1115]">
+                <div className="container mx-auto px-6 text-center text-slate-400 dark:text-slate-600 text-[10px] font-black tracking-[0.3em] uppercase">
+                    © 2025 BANANA CLONE · CURATED AI PROMPT GALLERY
                 </div>
             </footer>
         </div>
