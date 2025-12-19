@@ -2,7 +2,14 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import PromptItem from '../src/components/PromptItem'; 
-import { Search, X, Filter, Grid, List, Hash } from 'lucide-react';
+import { Search, X, Filter, Grid, List, Hash, ChevronDown, ChevronUp } from 'lucide-react';
+
+// --- 1. 定义你的分类标准 (参考 bananaprompts.fun) ---
+const TAG_CATEGORIES = {
+  "Genre & Subject (题材)": ["Character", "Portrait", "Landscape", "Architecture", "Sci-Fi", "Cyberpunk", "Fantasy", "Animals", "Food", "Nature"],
+  "Artistic Styles (艺术风格)": ["Realistic", "Anime", "3D Render", "Oil Painting", "Watercolor", "Sketch", "Pixel Art", "Digital Art", "Steampunk", "Pop Art"],
+  "Mood & Tone (氛围)": ["Cinematic", "Ethereal", "Dark", "Vibrant", "Minimalist", "Epic", "Mysterious"]
+};
 
 interface Prompt {
     id: number;
@@ -14,13 +21,14 @@ interface Prompt {
     optimized_prompt?: string;
 }
 
-export default function HomeClient({ initialPrompts = [], allTags = [] }: { initialPrompts: Prompt[], allTags: string[] }) {
+export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Prompt[] }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [mounted, setMounted] = useState(false);
+    const [openCategories, setOpenCategories] = useState<string[]>(["Genre & Subject (题材)"]);
 
-    // 1. 初始化视图模式（保留原代码逻辑）
+    // 初始化视图模式
     useEffect(() => {
         const savedView = localStorage.getItem('banana-view-mode') as 'grid' | 'list';
         if (savedView) setViewMode(savedView);
@@ -32,15 +40,25 @@ export default function HomeClient({ initialPrompts = [], allTags = [] }: { init
         localStorage.setItem('banana-view-mode', mode);
     };
 
-    // 2. 核心组合过滤逻辑（升级为多选组合）
+    const toggleCategory = (cat: string) => {
+        setOpenCategories(prev => 
+            prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, tag]
+        );
+    };
+
+    const toggleTag = (tag: string) => {
+        setSelectedTags(prev => 
+            prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+        );
+    };
+
+    // 组合过滤逻辑
     const filteredPrompts = useMemo(() => {
         return initialPrompts.filter(prompt => {
-            // 文本搜索
             const matchesSearch = !searchQuery.trim() || 
                 prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 prompt.content?.toLowerCase().includes(searchQuery.toLowerCase());
             
-            // 标签组合过滤逻辑：必须包含所有选中的标签
             const promptTags = Array.isArray(prompt.tags) 
                 ? prompt.tags 
                 : typeof prompt.tags === 'string' 
@@ -54,99 +72,106 @@ export default function HomeClient({ initialPrompts = [], allTags = [] }: { init
         });
     }, [searchQuery, selectedTags, initialPrompts]);
 
-    const toggleTag = (tag: string) => {
-        setSelectedTags(prev => 
-            prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
-        );
-    };
-
-    // 防止 Hydration 闪烁
     if (!mounted) return <div className="min-h-screen bg-white dark:bg-slate-950" />;
 
     return (
-        <div className="space-y-12">
-            {/* --- 顶部控制区：搜索 + 多行标签 --- */}
-            <div className="max-w-5xl mx-auto px-6 space-y-8">
-                <div className="flex flex-col md:flex-row gap-4 items-center">
-                    {/* 搜索框 */}
-                    <div className="relative flex-1 group w-full">
-                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#3fc1c0] transition-colors" size={18} />
-                        <input
-                            type="text"
-                            placeholder="搜索灵感..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full h-14 pl-14 pr-12 bg-slate-100 dark:bg-slate-900 border-none rounded-2xl outline-none focus:ring-2 focus:ring-[#3fc1c0]/20 text-slate-700 dark:text-slate-200 transition-all"
-                        />
-                        {searchQuery && (
-                            <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 bg-slate-200 dark:bg-slate-800 rounded-full">
-                                <X size={12} />
-                            </button>
-                        )}
-                    </div>
-
-                    {/* 视图切换 (保留原代码功能) */}
-                    <div className="flex bg-slate-100 dark:bg-slate-900 p-1.5 rounded-2xl">
-                        <button onClick={() => saveViewMode('grid')} className={`p-2.5 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
-                            <Grid size={20} />
+        <div className="flex flex-col lg:flex-row gap-10 max-w-[1600px] mx-auto px-6 py-12">
+            
+            {/* --- 左侧侧边栏：分类筛选 --- */}
+            <aside className="w-full lg:w-72 flex-shrink-0 space-y-6">
+                <div className="flex items-center justify-between">
+                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 flex items-center gap-2">
+                        <Filter size={14} /> Filter
+                    </h3>
+                    {selectedTags.length > 0 && (
+                        <button onClick={() => setSelectedTags([])} className="text-[10px] font-bold text-[#3fc1c0] hover:underline">
+                            CLEAR ALL ({selectedTags.length})
                         </button>
-                        <button onClick={() => saveViewMode('list')} className={`p-2.5 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
-                            <List size={20} />
-                        </button>
-                    </div>
+                    )}
                 </div>
 
-                {/* 多行标签池：解决单行过长问题 */}
-                <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                            <Filter size={12} />
-                            组合筛选
-                        </div>
-                        {selectedTags.length > 0 && (
-                            <button onClick={() => setSelectedTags([])} className="text-[10px] font-bold text-[#3fc1c0] hover:underline">
-                                重置筛选 ({selectedTags.length})
+                {/* 侧边栏搜索框 */}
+                <div className="relative group">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#3fc1c0] transition-colors" size={16} />
+                    <input
+                        type="text"
+                        placeholder="Search prompts..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full h-12 pl-12 pr-10 bg-slate-100 dark:bg-slate-900 border-none rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#3fc1c0]/20 transition-all text-slate-700 dark:text-slate-200"
+                    />
+                </div>
+
+                {/* 分类折叠列表 */}
+                <div className="space-y-1 pt-4">
+                    {Object.entries(TAG_CATEGORIES).map(([catName, tags]) => (
+                        <div key={catName} className="border-b border-slate-100 dark:border-slate-800 last:border-0 pb-2">
+                            <button 
+                                onClick={() => toggleCategory(catName)}
+                                className="w-full flex items-center justify-between py-4 text-[11px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:text-[#3fc1c0] transition-colors"
+                            >
+                                {catName}
+                                {openCategories.includes(catName) ? <ChevronUp size={14}/> : <ChevronDown size={14}/>}
                             </button>
-                        )}
+                            
+                            {openCategories.includes(catName) && (
+                                <div className="flex flex-wrap gap-2 pb-4 animate-in fade-in slide-in-from-top-1">
+                                    {tags.map(tag => (
+                                        <button
+                                            key={tag}
+                                            onClick={() => toggleTag(tag)}
+                                            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all border ${
+                                                selectedTags.includes(tag)
+                                                ? 'bg-[#3fc1c0] border-[#3fc1c0] text-white shadow-lg shadow-[#3fc1c0]/20'
+                                                : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-[#3fc1c0]'
+                                            }`}
+                                        >
+                                            {tag}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </aside>
+
+            {/* --- 右侧内容区 --- */}
+            <main className="flex-1 space-y-8">
+                {/* 顶栏信息与切换 */}
+                <div className="flex items-center justify-between">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        Showing {filteredPrompts.length} Results
                     </div>
                     
-                    <div className="flex flex-wrap gap-2">
-                        {allTags.map(tag => (
-                            <button
-                                key={tag}
-                                onClick={() => toggleTag(tag)}
-                                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
-                                    selectedTags.includes(tag)
-                                    ? 'bg-[#3fc1c0] border-[#3fc1c0] text-white shadow-lg shadow-[#3fc1c0]/20 scale-105'
-                                    : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-[#3fc1c0]'
-                                }`}
-                            >
-                                <span className="opacity-40 mr-1 italic">#</span>{tag}
-                            </button>
-                        ))}
+                    <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <button onClick={() => saveViewMode('grid')} className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
+                            <Grid size={18} />
+                        </button>
+                        <button onClick={() => saveViewMode('list')} className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
+                            <List size={18} />
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            {/* --- 内容网格：9:16 比例 --- */}
-            <div className="container mx-auto px-6 pb-24">
+                {/* 列表渲染 */}
                 {filteredPrompts.length > 0 ? (
                     <div className={
                         viewMode === 'grid' 
-                        ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6" 
-                        : "flex flex-col gap-4 max-w-4xl mx-auto"
+                        ? "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6" 
+                        : "flex flex-col gap-4 max-w-4xl"
                     }>
                         {filteredPrompts.map((prompt) => (
                             <PromptItem key={prompt.id} prompt={prompt} isAdmin={false} />
                         ))}
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-32 opacity-50">
-                        <Hash size={48} className="text-slate-300 mb-4" />
-                        <p className="font-bold text-slate-400">未找到符合条件的提示词</p>
+                    <div className="flex flex-col items-center justify-center py-40 opacity-30">
+                        <Hash size={48} className="mb-4" />
+                        <p className="font-bold">No prompts found matching your criteria</p>
                     </div>
                 )}
-            </div>
+            </main>
         </div>
     );
 }
