@@ -71,7 +71,6 @@ export default async function Page() {
                 */}
                 <HomeClient 
                     initialPrompts={initialData} 
-                    allTags={allTags} 
                 />
             </main>
 
