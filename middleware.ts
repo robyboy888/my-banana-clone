@@ -3,7 +3,7 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  // 1. 创建一个初始响应
+  // 1. 创建初始响应
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -11,7 +11,6 @@ export async function middleware(request: NextRequest) {
   })
 
   // 2. 初始化 Supabase 服务端客户端
-  // 它会自动处理请求中的 Cookie 并更新响应中的 Cookie
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -29,20 +28,21 @@ export async function middleware(request: NextRequest) {
           })
           response.cookies.set({ name, value, ...options })
         },
+        // ✅ 修正：删除操作时，明确将 value 设为空字符串，并正确传递参数
         remove(name: string, options: CookieOptions) {
-          request.cookies.set({ name, value, ...options })
+          request.cookies.set({ name, value: '', ...options }) 
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           })
-          response.cookies.set({ name, value, ...options })
+          response.cookies.set({ name, value: '', ...options })
         },
       },
     }
   )
 
-  // 3. 获取当前用户信息（这不仅是检查，还会刷新过期的 Session）
+  // 3. 获取当前用户信息（会自动刷新 Session）
   const { data: { user } } = await supabase.auth.getUser()
 
   const url = request.nextUrl.clone()
@@ -67,7 +67,5 @@ export async function middleware(request: NextRequest) {
 
 // 5. 匹配器：确保对 /admin 及其所有子路径生效
 export const config = {
-  matcher: [
-    '/admin/:path*', 
-  ],
+  matcher: ['/admin/:path*'],
 }
