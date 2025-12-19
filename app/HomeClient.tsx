@@ -2,9 +2,9 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import PromptItem from '../src/components/PromptItem'; 
-import { Search, X, Filter, Grid, List, Hash, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Filter, Grid, List, Hash, ChevronDown, ChevronUp } from 'lucide-react';
 
-// --- 1. 定义你的分类标准 (参考 bananaprompts.fun) ---
+// --- 1. Category Standards ---
 const TAG_CATEGORIES = {
   "Genre & Subject (题材)": ["Character", "Portrait", "Landscape", "Architecture", "Sci-Fi", "Cyberpunk", "Fantasy", "Animals", "Food", "Nature"],
   "Artistic Styles (艺术风格)": ["Realistic", "Anime", "3D Render", "Oil Painting", "Watercolor", "Sketch", "Pixel Art", "Digital Art", "Steampunk", "Pop Art"],
@@ -28,7 +28,7 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
     const [mounted, setMounted] = useState(false);
     const [openCategories, setOpenCategories] = useState<string[]>(["Genre & Subject (题材)"]);
 
-    // 初始化视图模式
+    // Initialize view mode from localStorage
     useEffect(() => {
         const savedView = localStorage.getItem('banana-view-mode') as 'grid' | 'list';
         if (savedView) setViewMode(savedView);
@@ -52,7 +52,7 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
         );
     };
 
-    // 组合过滤逻辑
+    // Filter Logic
     const filteredPrompts = useMemo(() => {
         return initialPrompts.filter(prompt => {
             const matchesSearch = !searchQuery.trim() || 
@@ -65,6 +65,7 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
                     ? prompt.tags.split(',').map(t => t.trim())
                     : [];
             
+            // Matches all selected tags (AND logic)
             const matchesTags = selectedTags.length === 0 || 
                 selectedTags.every(tag => promptTags.includes(tag));
 
@@ -77,20 +78,23 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
     return (
         <div className="flex flex-col lg:flex-row gap-10 max-w-[1600px] mx-auto px-6 py-12">
             
-            {/* --- 左侧侧边栏：分类筛选 --- */}
+            {/* --- Sidebar: Categories & Filters --- */}
             <aside className="w-full lg:w-72 flex-shrink-0 space-y-6">
                 <div className="flex items-center justify-between">
                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 flex items-center gap-2">
                         <Filter size={14} /> Filter
                     </h3>
                     {selectedTags.length > 0 && (
-                        <button onClick={() => setSelectedTags([])} className="text-[10px] font-bold text-[#3fc1c0] hover:underline">
+                        <button 
+                            onClick={() => setSelectedTags([])} 
+                            className="text-[10px] font-bold text-[#3fc1c0] hover:underline"
+                        >
                             CLEAR ALL ({selectedTags.length})
                         </button>
                     )}
                 </div>
 
-                {/* 侧边栏搜索框 */}
+                {/* Sidebar Search */}
                 <div className="relative group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#3fc1c0] transition-colors" size={16} />
                     <input
@@ -102,7 +106,7 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
                     />
                 </div>
 
-                {/* 分类折叠列表 */}
+                {/* Collapsible Category List */}
                 <div className="space-y-1 pt-4">
                     {Object.entries(TAG_CATEGORIES).map(([catName, tags]) => (
                         <div key={catName} className="border-b border-slate-100 dark:border-slate-800 last:border-0 pb-2">
@@ -136,25 +140,31 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
                 </div>
             </aside>
 
-            {/* --- 右侧内容区 --- */}
+            {/* --- Main Content Area --- */}
             <main className="flex-1 space-y-8">
-                {/* 顶栏信息与切换 */}
+                {/* Top Info Bar */}
                 <div className="flex items-center justify-between">
                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
                         Showing {filteredPrompts.length} Results
                     </div>
                     
                     <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-100 dark:border-slate-800">
-                        <button onClick={() => saveViewMode('grid')} className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
+                        <button 
+                            onClick={() => saveViewMode('grid')} 
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}
+                        >
                             <Grid size={18} />
                         </button>
-                        <button onClick={() => saveViewMode('list')} className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}>
+                        <button 
+                            onClick={() => saveViewMode('list')} 
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-800 text-[#3fc1c0] shadow-sm' : 'text-slate-400'}`}
+                        >
                             <List size={18} />
                         </button>
                     </div>
                 </div>
 
-                {/* 列表渲染 */}
+                {/* Grid/List Rendering */}
                 {filteredPrompts.length > 0 ? (
                     <div className={
                         viewMode === 'grid' 
@@ -166,9 +176,9 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
                         ))}
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-40 opacity-30">
+                    <div className="flex flex-col items-center justify-center py-40 opacity-30 text-slate-500 dark:text-slate-400">
                         <Hash size={48} className="mb-4" />
-                        <p className="font-bold">No prompts found matching your criteria</p>
+                        <p className="font-bold tracking-widest uppercase text-xs">No prompts found matching your criteria</p>
                     </div>
                 )}
             </main>
