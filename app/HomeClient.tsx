@@ -42,7 +42,7 @@ export default function HomeClient({ initialPrompts = [] }: { initialPrompts: Pr
 
     const toggleCategory = (cat: string) => {
         setOpenCategories(prev => 
-            prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, tag]
+            prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
         );
     };
 
