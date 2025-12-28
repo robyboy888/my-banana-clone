@@ -37,41 +37,52 @@ def sync():
             prompts = data.get('data', [])
             
             if not prompts:
+                print("没有更多数据。")
                 break
                 
-            formatted_data = []
+            formatted_dict = {} # 使用字典进行页内去重
+            
             for item in prompts:
                 raw_tags = item.get("tags", [])
                 
-                # --- 核心修复：强制数组化处理 ---
-                # 如果拿到的已经是列表就直接用，如果是字符串则尝试解析
+                # --- 标签处理逻辑 ---
                 if isinstance(raw_tags, str):
                     try:
                         final_tags = json.loads(raw_tags)
                     except:
-                        final_tags = [raw_tags] # 万一解析失败，转成单元素列表
+                        final_tags = [raw_tags]
                 else:
                     final_tags = raw_tags if raw_tags is not None else []
 
-                formatted_data.append({
-                    "title": item.get("title", ""),
+                title = item.get("title", "").strip()
+                if not title:
+                    continue # 跳过没有标题的数据
+
+                # --- 核心修复：按 title 去重 ---
+                # 如果这一页里有重复的 title，后面的会覆盖前面的，保证传给数据库时 title 唯一
+                formatted_dict[title] = {
+                    "title": title,
                     "content": item.get("content", ""), 
-                    "tags": final_tags,  # 确保这里是 Python List
+                    "tags": final_tags, 
                     "original_image_url": item.get("thumbnailUrl"),
                     "source_x_account": item.get("sourceUrl"),
                     "source": "bananaprompts"
-                })
+                }
 
-            # 执行 Upsert
-            supabase.table("prompts").upsert(formatted_data, on_conflict="title").execute()
+            # 转换为列表
+            final_batch = list(formatted_dict.values())
+
+            # 执行 Upsert (基于 title)
+            if final_batch:
+                supabase.table("prompts").upsert(final_batch, on_conflict="title").execute()
             
-            count = len(formatted_data)
+            count = len(final_batch)
             total_synced += count
             print(f"成功导入 {count} 条。")
             
             has_more = data.get('pagination', {}).get('hasMore', False)
             current_page += 1
-            time.sleep(1)
+            time.sleep(5) # 稍微停顿，避免被源站封禁
             
         except Exception as e:
             print(f"\n❌ 同步出错: {e}")
