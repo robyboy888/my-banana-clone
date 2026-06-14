@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-06-02）</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --blue:#2563eb;
+      --blue-100:#eff6ff;
+      --chip:#0b1220;
+      --good:#16a34a;
+      --warn:#b45309;
+      --card:#ffffff;
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC", Arial, sans-serif;
+      line-height:1.55;
+    }
+    a{color:var(--blue); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 22px 60px}
+    .header{
+      display:flex; gap:18px; align-items:flex-start; justify-content:space-between;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px 22px;
+      background: linear-gradient(180deg, var(--blue-100), #fff);
+      box-shadow: var(--shadow);
+    }
+    h1{margin:0; font-size:26px; letter-spacing:.2px}
+    .meta{margin-top:8px; color:var(--muted); font-size:13px}
+    .meta code{background:#fff; border:1px solid var(--line); padding:2px 6px; border-radius:8px}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      background:#0b1220;
+      color:#fff;
+      border-radius:999px;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .tag b{font-weight:700}
+    .section{margin-top:22px}
+    .stitle{
+      display:flex; align-items:center; gap:10px;
+      margin:0 0 12px;
+      font-size:16px;
+      color:var(--blue);
+    }
+    .stitle::before{
+      content:"";
+      width:10px; height:10px;
+      background:var(--blue);
+      border-radius:3px;
+      display:inline-block;
+    }
+    .note{
+      color:var(--muted);
+      font-size:13px;
+      margin:6px 0 0;
+    }
+    .cards{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    @media (max-width: 980px){ .cards{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--card);
+      padding:14px 14px;
+      box-shadow: 0 6px 18px rgba(2,6,23,.06);
+    }
+    .card h3{margin:0 0 6px; font-size:14px}
+    .card p{margin:0; color:var(--muted); font-size:13px}
+    .card .src{margin-top:10px; font-size:12px; color:var(--muted)}
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: 0 6px 18px rgba(2,6,23,.06);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      background:#f8fafc;
+      color:#0b1220;
+      font-weight:700;
+    }
+    .table tr:last-child td{border-bottom:none}
+    .pill{
+      display:inline-block;
+      padding:2px 10px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      white-space:nowrap;
+    }
+    .pill.good{border-color: rgba(22,163,74,.35); color: var(--good); background: rgba(22,163,74,.06)}
+    .pill.warn{border-color: rgba(180,83,9,.35); color: var(--warn); background: rgba(180,83,9,.06)}
+    .topic{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px 16px;
+      background:#fff;
+      box-shadow: 0 6px 18px rgba(2,6,23,.06);
+      margin-bottom:12px;
+    }
+    .topic .head{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:8px;
+    }
+    .topic h3{margin:0; font-size:15px}
+    .prio{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:5px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .prio b{color:var(--blue)}
+    .kv{display:grid; grid-template-columns: 140px 1fr; gap:8px 12px; font-size:13px}
+    @media (max-width: 680px){ .kv{grid-template-columns: 1fr} }
+    .k{color:var(--muted)}
+    .v{color:var(--fg)}
+    .footer{
+      margin-top:26px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+    }
+    @media print{
+      .wrap{max-width:none; padding:0}
+      .header, .card, .table, .topic{box-shadow:none}
+      a{color:#0b1220; text-decoration:underline}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div>
+        <h1>AI 行业热点自媒体选题库（2026-06-02）</h1>
+        <div class="meta">
+          采集日期：<code>2026-06-02（UTC+8）</code><br/>
+          采集窗口（重点）：<code>2026-06-01 00:00 — 2026-06-02 12:00（UTC+8）</code><br/>
+          定位：面向 AI 自媒体创作者（图文 / 视频 / 直播 / 知识付费），只写可验证热点；不确定内容会标注“待验证/不确定”。
+        </div>
+      </div>
+      <div class="tag"><b>今日最推荐</b>选题 01：Copilot 6/1 计费大改</div>
+    </div>
+
+    <div class="section">
+      <div class="stitle">热点摘要条</div>
+      <div class="cards">
+        <div class="card">
+          <h3>1) Copilot usage-based billing（AI Credits）生效</h3>
+          <p>“订阅 + 计量”成为默认心智，适合做成本/策略/风险内容。</p>
+          <div class="src">来源：<a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">GitHub Blog</a>、<a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans">GitHub Changelog</a></div>
+        </div>
+        <div class="card">
+          <h3>2) Copilot Code Review 开始计 Actions minutes</h3>
+          <p>自动化 code review 进入“可控成本”的工程化阶段。</p>
+          <div class="src">来源：<a href="https://docs.github.com/en/copilot/concepts/agents/code-review">GitHub Docs</a>、<a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans">GitHub Changelog</a></div>
+        </div>
+        <div class="card">
+          <h3>3) BUILD 2026（6/2 起）聚焦企业级 Agent 落地</h3>
+          <p>治理/观测/互操作（A2A/MCP）成为新关键词，适合做系列内容。</p>
+          <div class="src">来源：<a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/">Microsoft Agent Framework Blog</a></div>
+        </div>
+      </div>
+      <p class="note">提示：表格中有少量“非 48h 内”条目，会明确标注，作为近期限时/可复用主题补充。</p>
+    </div>
+
+    <div class="section">
+      <div class="stitle">今日热点摘要表格</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width:130px">时间（UTC+8）</th>
+            <th style="width:240px">热点信号</th>
+            <th>对创作者的意义</th>
+            <th style="width:260px">来源链接</th>
+            <th style="width:90px">可信度</th>
+            <th style="width:200px">内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-01</td>
+            <td>Copilot 切到 usage-based billing（AI Credits）</td>
+            <td>订阅+计量成为默认心智；适合做“算账 + 省钱策略 + 风险提示”。</td>
+            <td>
+              <a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">GitHub Blog</a><br/>
+              <a href="https://docs.github.com/en/copilot/how-tos/manage-and-track-spending/prepare-for-usage-based-billing">GitHub Docs</a>
+            </td>
+            <td><span class="pill good">高</span></td>
+            <td>模板化算账表、控预算 SOP、对比替代方案</td>
+          </tr>
+          <tr>
+            <td>2026-06-01</td>
+            <td>Copilot Code Review 开始计 Actions minutes（叠加 AI Credits）</td>
+            <td>自动 code review 从“玩具”变成“工程能力”，需要控成本与审计。</td>
+            <td>
+              <a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans">Changelog</a><br/>
+              <a href="https://docs.github.com/en/copilot/concepts/agents/code-review">Docs</a>
+            </td>
+            <td><span class="pill good">高</span></td>
+            <td>触发规则、限流、结果沉淀为团队规范</td>
+          </tr>
+          <tr>
+            <td>2026-06-02（起）</td>
+            <td>BUILD 2026 聚焦 Agent Framework/Foundry/治理与观测</td>
+            <td>企业级 Agent 叙事升温：治理、评测、观测、互操作成为内容主线。</td>
+            <td><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/">Microsoft Blog</a></td>
+            <td><span class="pill good">高</span></td>
+            <td>学习路径、session 拆解、生产化 checklist</td>
+          </tr>
+          <tr>
+            <td>2026-06-01</td>
+            <td>GitHub Copilot 账单/套餐更新（同日 Changelog 汇总）</td>
+            <td>适合做“新规则速读 + 迁移清单（个人/团队）”。</td>
+            <td><a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans">GitHub Changelog</a></td>
+            <td><span class="pill good">高</span></td>
+            <td>短视频：一分钟讲清变化</td>
+          </tr>
+          <tr>
+            <td>2026-05-31</td>
+            <td>Microsoft Agent Framework 发布 BUILD 相关 session 清单</td>
+            <td>可直接二创：逐场拆主题，做路线图/笔记模板。</td>
+            <td><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/">Microsoft Blog</a></td>
+            <td><span class="pill good">高</span></td>
+            <td>图文长帖：目录党 + 路线图</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">非 48h</span></td>
+            <td>OpenAI DevDay 2026 官宣（9/29 旧金山）</td>
+            <td>短期热度一般，但可提前储备“平台更新预期/备课清单”。</td>
+            <td><a href="https://openai.com/index/devday-2026/">OpenAI</a></td>
+            <td><span class="pill good">高</span></td>
+            <td>预测/选题库/备课清单</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">非 48h</span></td>
+            <td>Anthropic：Claude Sonnet 4 / Opus 4 将于 6/15 从 API 退役</td>
+            <td>“模型退役/迁移”母题可复用：迁移清单、回归题库、灰度策略。</td>
+            <td><a href="https://platform.claude.com/docs/en/resources/model-deprecations">Claude Docs</a></td>
+            <td><span class="pill good">高</span></td>
+            <td>迁移 checklist + 回归题库</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="stitle">选题推荐（3–5 个）</div>
+
+      <div class="topic">
+        <div class="head">
+          <h3>选题 01：Copilot 6/1 计费大改：AI Credits 是什么？怎么控成本不降效率</h3>
+          <div class="prio">优先级 <b>S</b></div>
+        </div>
+        <div class="kv">
+          <div class="k">目标受众</div><div class="v">开发者、技术管理者、独立开发者、AI 编程内容创作者</div>
+          <div class="k">切题角度</div><div class="v">把“订阅→计量”翻译成工作流变量：上下文长度/频率/自动化程度</div>
+          <div class="k">爆点</div><div class="v">同样写代码有人账单翻倍；code review 也要算 Actions</div>
+          <div class="k">结构建议</div><div class="v">变更速读 → 直觉解释 → 最烧钱行为 → 省钱 5 招 → 团队治理 → 迁移清单（可下载）</div>
+          <div class="k">可引用来源</div><div class="v">
+            <a href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/">GitHub Blog</a> ·
+            <a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans">Changelog</a> ·
+            <a href="https://docs.github.com/en/copilot/how-tos/manage-and-track-spending/prepare-for-usage-based-billing">Docs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="head">
+          <h3>选题 02：Copilot Code Review 开始计 Actions：把 AI 评审做成“可控流水线”</h3>
+          <div class="prio">优先级 <b>A</b></div>
+        </div>
+        <div class="kv">
+          <div class="k">目标受众</div><div class="v">团队开发者、DevOps、开源维护者</div>
+          <div class="k">切题角度</div><div class="v">触发条件/额度/审计/沉淀规范：把 AI review 变成工程能力</div>
+          <div class="k">爆点</div><div class="v">点一下 review = 跑 Actions；免费的时代结束了</div>
+          <div class="k">可引用来源</div><div class="v">
+            <a href="https://github.blog/changelog/2026-04-27-github-copilot-code-review-will-start-consuming-github-actions-minutes-on-june-1-2026/">Changelog（4/27）</a> ·
+            <a href="https://docs.github.com/en/copilot/concepts/agents/code-review">Docs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="head">
+          <h3>选题 03：BUILD 2026 企业级 Agent 关键词：治理/观测/互操作（A2A/MCP）怎么落地</h3>
+          <div class="prio">优先级 <b>A-</b></div>
+        </div>
+        <div class="kv">
+          <div class="k">目标受众</div><div class="v">ToB 产品/研发、企业数字化从业者、想做 Agent 训练营的创作者</div>
+          <div class="k">切题角度</div><div class="v">用 session 清单做学习路径，把关键词落到“评测集/观测面板/权限边界/协议适配”</div>
+          <div class="k">可引用来源</div><div class="v"><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/">Microsoft Agent Framework Blog</a></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="head">
+          <h3>选题 04：Claude 模型退役倒计时：模型迁移 + 回归题库，避免线上翻车</h3>
+          <div class="prio">优先级 <b>B</b></div>
+        </div>
+        <div class="kv">
+          <div class="k">目标受众</div><div class="v">做 Claude API 的开发者、AI 应用创业者、提示词/工作流课程创作者</div>
+          <div class="k">切题角度</div><div class="v">把“退役日期”变成可交付：迁移清单、回归测试、灰度发布策略</div>
+          <div class="k">可引用来源</div><div class="v"><a href="https://platform.claude.com/docs/en/resources/model-deprecations">Claude Docs</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      说明：本报告为单文件自包含 HTML，适合横屏阅读与打印；事实性条目均附来源链接。<br/>
+      建议二创方式：先做“1 分钟速读”短视频，再做“可下载模板/清单”的长内容承接。
+    </div>
+  </div>
+</body>
+</html>
+

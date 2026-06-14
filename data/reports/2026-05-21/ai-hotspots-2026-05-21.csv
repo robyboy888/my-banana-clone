@@ -1,0 +1,9 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-05-20,媒体称 OpenAI 已提交（或准备提交）保密 IPO 申请,商业化与监管叙事升温：可做“AI 公司从产品战到资本战”的解读但需强调未获官方确认,https://www.axios.com/2026/05/20/openai-confidential-ipo-filing,中（未获官方确认）,财经解读/创作者商业模式/“AI 股市化”风险提示
+2026-05-19,OpenAI 发布 Content Provenance（内容溯源）方案与标准化方向,影响 AI 图文/视频/口播的“标注与可信度”玩法：如何在平台侧提升信任与转化,https://openai.com/index/openai-content-provenance/,高,教程：如何做“可验证内容”+选题：AI 造假与反造假
+2026-05-19,Google I/O 2026：Gemini AI 更新（含 AI 搜索/Agent 化体验方向）,搜索/分发机制变化直接影响自媒体流量结构：内容结构与引用策略要适配“可执行搜索/Agent”,https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/,高,框架：从 SEO 到“AI Mode 内容工程”的迁移清单
+2026-05-19,Google 发布 Gemini 3.5 Flash Model Card（能力/限制/安全信息更透明）,可用来做“模型能力边界”科普：帮助创作者选模型、避坑（幻觉/安全策略）并做合规声明,https://deepmind.google/models/gemini/gemini-3-5-flash/,高,对比测评：Flash vs 其他模型在短视频脚本/标题党检测/配音上的差异
+2026-05-19,DeepMind 发布 AI co-scientist（多 Agent 科研协作系统）并在 Nature 论文披露,多 Agent 从“写稿工具”升级为“研究助手”：内容创作者可以用它做资料梳理/假设生成但要讲清不确定性,https://deepmind.google/discover/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/,高,选题：多 Agent 工作流如何用于“深度内容”生产（选题→检索→论证→脚本）
+2026-05-19,AI co-scientist 论文上线（arXiv）便于引用细节,为“论文拆解”视频/长文提供一手材料：可做方法、评测、局限与伦理风险拆解,https://arxiv.org/abs/2605.15535,高,论文解读：方法图+3 个你能复现的创作流程
+2026-05-18,Anthropic 收购 Stainless（开发者 SDK/工具链公司）,对“创作者工具链/Agent 应用开发”是信号：大模型公司在补齐工程化与产品化短板,https://www.anthropic.com/news/acquiring-stainless,高,选题：为什么 2026 的竞争核心变成 SDK/工具链，而不只是模型分数
+2026-05-18,Hugging Face 发布 Open Agent Leaderboard（与 IBM Research 合作）用于评测 Agent,Agent 评测体系影响“谁更好用”的叙事：创作者可用榜单做测评栏目但要解释指标与偏差,https://huggingface.co/blog/open-agent-leaderboard,高,栏目化：每周 Agent 榜单解读 + 适配不同人群的工具推荐

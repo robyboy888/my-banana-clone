@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-06-01）</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --blue:#2563eb;
+      --blue-weak:#eff6ff;
+      --chip:#0ea5e9;
+      --ok:#16a34a;
+      --warn:#f59e0b;
+      --mid:#64748b;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--sans);
+      line-height:1.55;
+    }
+    .page{
+      max-width:1100px;
+      margin:32px auto 64px;
+      padding:0 20px;
+    }
+    header{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+    h1{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#fff;
+      white-space:nowrap;
+    }
+    .pill b{ color:var(--fg); font-weight:600; }
+
+    .bar{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .bar .card{
+      flex:1 1 280px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      background:#fff;
+    }
+    .card .k{
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:6px;
+    }
+    .card .v{
+      font-size:14px;
+      color:var(--fg);
+    }
+    .card .v a{ color:var(--blue); text-decoration:none; }
+    .card .v a:hover{ text-decoration:underline; }
+
+    .section{
+      margin-top:18px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .section .title{
+      padding:12px 14px;
+      background:var(--blue-weak);
+      border-bottom:1px solid var(--border);
+      color:#0b2a7a;
+      font-weight:700;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .tag{
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:#fff;
+      white-space:nowrap;
+    }
+    .section .body{
+      padding:14px;
+    }
+    .note{
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+    }
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      font-size:13px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:12px;
+    }
+    th, td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--border);
+      vertical-align:top;
+    }
+    th{
+      text-align:left;
+      background:#f8fafc;
+      color:#0f172a;
+      font-weight:700;
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+    tr:last-child td{ border-bottom:none; }
+    td a{
+      color:var(--blue);
+      text-decoration:none;
+      word-break:break-all;
+    }
+    td a:hover{ text-decoration:underline; }
+    .cred{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      white-space:nowrap;
+    }
+    .cred.high{ border-color:#bbf7d0; color:#166534; background:#f0fdf4; }
+    .cred.mid{ border-color:#bae6fd; color:#075985; background:#f0f9ff; }
+    .cred.med{ border-color:#e2e8f0; color:#334155; background:#f8fafc; }
+
+    .topic{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:12px;
+    }
+    .topic .box{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+    }
+    .topic h3{
+      margin:0 0 8px;
+      font-size:16px;
+    }
+    .topic ul{
+      margin:8px 0 0;
+      padding-left:18px;
+      color:var(--fg);
+      font-size:13px;
+    }
+    .topic li{ margin:6px 0; }
+    .topic .mini{
+      color:var(--muted);
+      font-size:12px;
+      margin:0 0 8px;
+    }
+    .kbd{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:2px 6px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:#f8fafc;
+      color:#0f172a;
+      white-space:nowrap;
+    }
+
+    @media print{
+      body{ background:#fff; }
+      .page{ margin:0; max-width:none; }
+      header, .section{ break-inside:avoid; }
+      th{ position:static; }
+      a{ color:#000; text-decoration:none; }
+    }
+    @media (max-width: 900px){
+      .topic{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>AI 行业热点自媒体选题库（2026-06-01）</h1>
+      <div class="meta">
+        <span class="pill"><b>采集日期</b> 2026-06-01（UTC+8）</span>
+        <span class="pill"><b>采集窗口</b> 2026-05-30 00:00 — 2026-06-01 12:00（UTC+8）</span>
+        <span class="pill"><b>定位</b> AI 行业热点 → 创作者可讲述选题</span>
+      </div>
+      <div class="bar">
+        <div class="card">
+          <div class="k">热点摘要条</div>
+          <div class="v">
+            OpenAI Release Notes（模型/退役节奏）｜Claude Opus 4.8｜Firecrawl /monitor｜Hermes-Agent｜FiftyOne Agent
+          </div>
+        </div>
+        <div class="card">
+          <div class="k">今日最推荐（P0）</div>
+          <div class="v">OpenAI 变动 → 创作者 30–90 天迁移清单（附回归题库）</div>
+        </div>
+        <div class="card">
+          <div class="k">提醒</div>
+          <div class="v">所有事实性内容均附来源；不确定处需标注“待验证”。</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="title">
+        <span>今日热点摘要表格</span>
+        <span class="tag">适合横屏阅读与打印</span>
+      </div>
+      <div class="body">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:120px;">时间（UTC+8）</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th style="width:260px;">来源链接</th>
+              <th style="width:88px;">可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-29</td>
+              <td>OpenAI 更新 ChatGPT Release Notes（含模型/能力与退役节奏信息）</td>
+              <td>把“平台更新”翻译成“你今天必须做的事”：迁移、回归、替代方案对照。</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">help.openai.com…release-notes</a></td>
+              <td><span class="cred high">高</span></td>
+              <td>做一条“未来 30–90 天迁移/回归清单”，附提示词与评测用例。</td>
+            </tr>
+            <tr>
+              <td>2026-05-29</td>
+              <td>OpenAI 提示 GPT-5.2 Thinking 将于 2026-06-05 退役（以官方页为准）</td>
+              <td>解释“为什么同一提示词输出变了”，提前做回归测试与替代模型策略。</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">help.openai.com…release-notes</a></td>
+              <td><span class="cred high">高</span></td>
+              <td>迁移实操：风格对齐、质量门槛、成本/速度取舍。</td>
+            </tr>
+            <tr>
+              <td>2026-05-28<br><span class="tag">近一周补充</span></td>
+              <td>Anthropic 发布 Claude Opus 4.8</td>
+              <td>用真实工作流做“同题同资料源”对照测评（长文/研究/代码）。</td>
+              <td><a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com…opus-4-8</a></td>
+              <td><span class="cred high">高</span></td>
+              <td>输出一个可复用的测评模板：输入/约束/评分标准公开。</td>
+            </tr>
+            <tr>
+              <td>2026-05-26<br><span class="tag">近一周补充</span></td>
+              <td>Firecrawl /monitor：网页变更监控并通知 Agent</td>
+              <td>把“刷信息流”变成“监控→总结→选题”流水线，适合日更型创作者。</td>
+              <td><a href="https://firecrawl.dev/blog/monitor">firecrawl.dev…/monitor</a></td>
+              <td><span class="cred mid">中高</span></td>
+              <td>公开你的“信息源监控清单”（官方 blog/GitHub releases/论文）。</td>
+            </tr>
+            <tr>
+              <td>2026-05-29</td>
+              <td>Hermes-Agent 更新（GitHub Releases）</td>
+              <td>开源 Agent 框架怎么选：从“能跑”到“可用”差在哪。</td>
+              <td><a href="https://github.com/NousResearch/hermes-agent/releases">github.com…hermes-agent/releases</a></td>
+              <td><span class="cred med">中</span></td>
+              <td>10 分钟搭一条最小链路：监控→总结→生成稿件。</td>
+            </tr>
+            <tr>
+              <td>2026-05-28<br><span class="tag">近一周补充</span></td>
+              <td>FiftyOne Agent（Voxel51）</td>
+              <td>视觉/多模态创作者：素材库筛选、标签、相似镜头检索自动化。</td>
+              <td><a href="https://voxel51.com/blog/introducing-fiftyone-agent/">voxel51.com…fiftyone-agent</a></td>
+              <td><span class="cred mid">中高</span></td>
+              <td>用真实素材库演示：筛选镜头/聚类/找相似/自动打标签。</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:10px;">
+          说明：表内日期为公开页面发布日期或页面更新日期（以来源页为准）；若你的采集窗口需要严格限定 24–48 小时，可只取窗口内条目，其余保留为“近一周补充”。
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="title">
+        <span>选题 01（P0，最推荐）</span>
+        <span class="tag">OpenAI 变动 → 迁移清单</span>
+      </div>
+      <div class="body">
+        <div class="topic">
+          <div class="box">
+            <h3>OpenAI 模型/能力变动 → 创作者 30–90 天迁移清单（附回归题库）</h3>
+            <p class="mini">核心抓手：把“平台更新”翻译成“你今天必须做的 7 件事”。来源：<a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT Release Notes</a></p>
+            <ul>
+              <li><b>爆点</b>：公开一套可复用回归题库（10–20 条）+ 迁移对照表。</li>
+              <li><b>痛点</b>：同提示词输出不稳定、交付风格漂移、团队难对齐。</li>
+              <li><b>爽点</b>：一张清单把“不可控”变“可控”。</li>
+              <li><b>推荐形式</b>：横屏信息密度视频 / 长图文 / 直播讲表格。</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>内容结构（6 段）</h3>
+            <ul>
+              <li>1）发生了什么：只讲事实 + 给链接。</li>
+              <li>2）影响谁：脚本/配音/海报/课程交付各自怎么变。</li>
+              <li>3）三类风险：风格漂移、事实错误、成本/速度波动。</li>
+              <li>4）迁移清单：设置与提示词策略（给 <span class="kbd">Checklist</span>）。</li>
+              <li>5）回归题库：固定用例 + 评分标准。</li>
+              <li>6）结论：一周内如何复盘与迭代。</li>
+            </ul>
+            <p class="note">风险提示：退役时间与适用产品线以官方页面为准；不把推测当事实。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="title">
+        <span>选题 02（P1）</span>
+        <span class="tag">Opus 4.8 对照测评</span>
+      </div>
+      <div class="body">
+        <div class="topic">
+          <div class="box">
+            <h3>Claude Opus 4.8：拒绝跑分，直接跑你的工作流</h3>
+            <p class="mini">来源：<a href="https://www.anthropic.com/news/claude-opus-4-8">Anthropic 官方公告</a></p>
+            <ul>
+              <li><b>角度</b>：同题同资料源 + 公开测评协议。</li>
+              <li><b>爆点</b>：三模型输出对照，一眼看差距。</li>
+              <li><b>形式</b>：图文测评 + 直播复盘（观众可带任务）。</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>结构（5 段）</h3>
+            <ul>
+              <li>1）官方更新要点（附链接）。</li>
+              <li>2）测评协议：输入/约束/评分标准。</li>
+              <li>3）任务 1：长文结构化（摘要/大纲/引用）。</li>
+              <li>4）任务 2：代码/数据分析（可复现）。</li>
+              <li>5）结论：适用场景 + 不适用场景。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="title">
+        <span>选题 03（P1）</span>
+        <span class="tag">监控→总结→选题流水线</span>
+      </div>
+      <div class="body">
+        <div class="topic">
+          <div class="box">
+            <h3>把“信息差”做成可复用的创作机器：网页变更监控 + Agent 自动总结</h3>
+            <p class="mini">来源：<a href="https://firecrawl.dev/blog/monitor">Firecrawl /monitor</a></p>
+            <ul>
+              <li><b>爆点</b>：公开你的“监控清单”（官方 blog / GitHub releases / 论文）。</li>
+              <li><b>痛点</b>：刷信息流时间成本高、遗漏多、复盘难。</li>
+              <li><b>形式</b>：教程视频 + 模板仓 + 直播答疑。</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>结构（6 段）</h3>
+            <ul>
+              <li>1）为什么要监控：成本与遗漏风险。</li>
+              <li>2）信息源分类：官方/开源/媒体/社区。</li>
+              <li>3）监控策略：频率、去重、阈值。</li>
+              <li>4）Agent 输出：摘要模板、风险标注、引用链接。</li>
+              <li>5）选题生成：按受众拆解（开发者/创作者/老板）。</li>
+              <li>6）复盘：误报/漏报如何调参。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top:16px; color:var(--muted); font-size:12px; text-align:center;">
+      生成于 2026-06-01（UTC+8）｜单文件自包含 HTML｜可直接打印
+    </footer>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,6 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-05-19","OpenAI 推进内容溯源（Content Credentials/C2PA 等），强调在生成内容里加入可验证的出处信息","可做“真假难辨时代的自媒体生存指南”：如何在图文/短视频/AI 生成内容里展示可信度；也适合做品牌合作/知识付费里的“可信链路”教学","https://openai.com/index/advancing-content-provenance/","高","科普+实操：平台规则趋势、工具选择、创作者自证流程（封面/字幕/素材标注）"
+"2026-05-19","Google 发布 Gemini 3.5 系列，强调“更快的行动能力/更强的 Agentic 工作流”，3.5 Flash 成为 Gemini App 与 Search AI Mode 默认模型","内容创作可转向“用 Agent 做内容生产线”：选题→资料→脚本→分镜→发布；适合做对比测评、工作流复刻、以及“少人团队”效率升级","https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/","高","系列选题：AI 助手走向“执行者”，哪些任务可以交给 Agent，哪些必须人工把关"
+"2026-05-19","Google 继续把 Gemini App 推向更强的主动式/全天候助理形态（更 agentic），面向工作与生活场景","适合做“AI 助理从聊天到管家”的场景化内容：日程/邮件/文档/总结/提醒；并讨论隐私与授权边界","https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/","高","情景短剧+教程：把助理变成你的“内容运营搭子”（选题提醒、热点监测、评论区复盘）"
+"2026-05-20","Cohere 发布并开源 Command A+（Apache-2.0），主打企业级/agentic 能力，并同步在其文档更新可用性","“开源大模型+企业场景”的窗口：可做本地/私有化部署话题、RAG/引用/合规讨论；适合面向 B 端创作者或技术向观众","https://cohere.com/blog/command-a-plus","高","拆解+对比：开源/闭源如何选；以及“可引用/可追溯”的企业知识库内容生产"
+"2026-05-19","Hugging Face 发布 AllenAI OlmoEarth v1.1（更高效的系列模型），并给出模型集合/技术报告与代码入口；arXiv 同步论文条目","“垂直领域模型”机会：遥感/地理/行业数据的内容化；适合做“AI 进产业”系列，强调数据与任务更重要","https://huggingface.co/blog/allenai/olmoearth-v1-1","高","选题：从‘通用聊天’到‘垂直理解’，做行业内容号如何用专用模型做更深的洞察"

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-05-20）</title>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --blue:#2563eb;
+      --blue-2:#1d4ed8;
+      --chip:#eff6ff;
+      --good:#16a34a;
+      --mid:#f59e0b;
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
+      line-height:1.55;
+    }
+    a{color:var(--blue-2); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .page{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+    .header{
+      background:linear-gradient(135deg, #0b1220, #0f1f49);
+      color:#fff;
+      border-radius: 18px;
+      padding: 22px 22px 18px;
+      box-shadow: var(--shadow);
+    }
+    .title{
+      margin:0;
+      font-size: 26px;
+      letter-spacing:.2px;
+    }
+    .meta{
+      margin-top: 10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      color: rgba(255,255,255,.86);
+      font-size: 13px;
+    }
+    .pill{
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.15fr .85fr; gap: 16px; }
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, .05);
+      padding: 16px;
+    }
+    .section-title{
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--blue-2);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .section-title:before{
+      content:"";
+      width:10px;height:10px;border-radius:3px;
+      background: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+      display:inline-block;
+    }
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 10px;
+    }
+    .chip{
+      background: var(--chip);
+      border: 1px solid #dbeafe;
+      color: #1e40af;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size: 14px;
+    }
+    .klist{
+      margin:10px 0 0;
+      padding-left: 18px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .klist li{margin:6px 0}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+    }
+    th, td{
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th{
+      background: #f1f5ff;
+      color: #1e3a8a;
+      text-align:left;
+      font-weight: 800;
+      border-bottom: 1px solid #dbeafe;
+    }
+    tr:last-child td{border-bottom:none}
+    .cred{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-weight:700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      white-space: nowrap;
+    }
+    .cred.good{border-color:#bbf7d0; color:#166534; background:#f0fdf4}
+    .cred.mid{border-color:#fde68a; color:#92400e; background:#fffbeb}
+    .topic{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 12px;
+      background: linear-gradient(180deg, rgba(37,99,235,.05), rgba(37,99,235,0));
+    }
+    .topic h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height:1.35;
+    }
+    .topic .prio{
+      display:inline-block;
+      font-weight:800;
+      color:#fff;
+      background: #0ea5e9;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .topic .prio.s{background:#2563eb}
+    .topic .prio.a{background:#059669}
+    .topic .prio.b{background:#f59e0b}
+    .topic p{margin: 6px 0; color: var(--muted); font-size: 13px}
+    .topic ul{margin: 8px 0 0; padding-left: 18px; font-size: 13px}
+    .topic li{margin: 6px 0}
+    .foot{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media print{
+      body{background:#fff}
+      .header{box-shadow:none}
+      .card{box-shadow:none}
+      a{text-decoration:underline}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1 class="title">AI 行业热点自媒体选题库（2026-05-20）</h1>
+      <div class="meta">
+        <div class="pill">采集日期：2026-05-20（Asia/Shanghai）</div>
+        <div class="pill">采集窗口：过去 24–48 小时（约 2026-05-18 至 2026-05-20）</div>
+        <div class="pill">定位：给 AI 自媒体创作者的可验证选题库</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="section-title">热点摘要条</div>
+        <p class="lead">今天更适合“可落地”的内容：AI Search/Agent 内容适配、内容溯源/可信发布、开发者工具链变成护城河。</p>
+        <div class="chips">
+          <span class="chip">Google I/O 2026：agentic AI</span>
+          <span class="chip">Search AI Mode / agents</span>
+          <span class="chip">OpenAI Content Provenance</span>
+          <span class="chip">Anthropic 收购 Stainless</span>
+          <span class="chip">Claude Web Search 扩大可用</span>
+          <span class="chip">端侧/本地 agentic 叙事</span>
+        </div>
+        <div class="section-title" style="margin-top:14px;">今日热点摘要（3 条）</div>
+        <ol class="klist">
+          <li><b>Google I/O 2026</b> 强调 agentic AI 与 Search AI Mode：内容需要更“可被 AI 引用”。<br/>
+            来源：<a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">developers.googleblog.com（官方博客）</a></li>
+          <li><b>OpenAI Content Provenance</b>：内容溯源/来源标注进入创作者工具叙事主线。<br/>
+            来源：<a href="https://openai.com/index/openai-content-provenance/">openai.com（官方公告）</a></li>
+          <li><b>Anthropic 收购 Stainless</b>：开发者体验（SDK/文档/接口一致性）在 Agent 时代更关键。<br/>
+            来源：<a href="https://www.anthropic.com/news/acquiring-stainless">anthropic.com（公司公告）</a></li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="section-title">今天最推荐的选题</div>
+        <div class="topic">
+          <h3><span class="prio s">S</span>Google I/O 2026 把“搜索”做成可执行 Agent：自媒体内容怎么适配 AI Mode？</h3>
+          <p>一句话卖点：搜索从“给链接”走向“检索 + 执行”，你的内容要变成 AI 的“行动说明书”。</p>
+          <ul>
+            <li>适合人群：科技自媒体、SEO/增长型创作者、知识博主</li>
+            <li>结构：I/O 信号 → 5 条改稿清单 → 案例对比（传统写法 vs AI Mode 写法）→ 风险提示</li>
+            <li>来源：<a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">Google Developers Blog</a></li>
+          </ul>
+        </div>
+        <div class="foot">提示：若引用 I/O 相关功能上线时间/地区，请以官方页面描述为准，并在内容里写清“截至 2026-05-20”。</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="section-title">今日热点摘要表</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:140px;">时间</th>
+            <th>热点信号</th>
+            <th>对创作者的意义</th>
+            <th style="width:220px;">来源链接</th>
+            <th style="width:110px;">可信度</th>
+            <th>内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-05-20（I/O 2026）</td>
+            <td>Google I/O 2026 聚焦 agentic AI：Gemini 3.5、Gemini Spark、Search AI Mode/agents 等</td>
+            <td>搜索与分发逻辑继续向“AI 代理检索+执行”迁移；更重视结构化表达、可验证引用、可被摘要的观点框架</td>
+            <td><a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">官方博客</a></td>
+            <td><span class="cred good">高</span></td>
+            <td>AI Search 时代内容适配指南/清单；同题材前后改稿对比</td>
+          </tr>
+          <tr>
+            <td>2026-05-19</td>
+            <td>OpenAI 发布 OpenAI Content Provenance（内容溯源/来源标注能力）</td>
+            <td>为自媒体“证明原创/标注 AI 辅助”提供工具叙事；适合做教程与工作流整合</td>
+            <td><a href="https://openai.com/index/openai-content-provenance/">官方公告</a></td>
+            <td><span class="cred good">高</span></td>
+            <td>“发布前 10 分钟溯源检查清单”+ 录屏演示</td>
+          </tr>
+          <tr>
+            <td>2026-05-18</td>
+            <td>Anthropic 收购 Stainless</td>
+            <td>“API 体验”会成为 Agent 产品竞争壁垒之一；适合做技术商业化解读</td>
+            <td><a href="https://www.anthropic.com/news/acquiring-stainless">公司公告</a></td>
+            <td><span class="cred good">高</span></td>
+            <td>“模型同质化后赢家靠什么？”：工具链/生态/可用性</td>
+          </tr>
+          <tr>
+            <td>2026-05-18</td>
+            <td>Dell 发布 deskside agentic AI 方案（本地/边缘推理与企业落地叙事）</td>
+            <td>“端侧/本地”持续升温；适合做装备党与企业落地路线科普</td>
+            <td><a href="https://www.dell.com/en-us/blog/dell-technologies-launches-deskside-agentic-ai-solutions-to-power-enterprise-innovation/">公司博客</a></td>
+            <td><span class="cred good">高</span></td>
+            <td>本地 Agent 工作站配置与成本对比（图文+视频）</td>
+          </tr>
+          <tr>
+            <td>2026-05-19</td>
+            <td>Epicor 推出 Epicor Prism：agentic AI stack（制造/供应链等垂直行业）</td>
+            <td>垂直SaaS加速“Agent 化”；适合吸引B2B受众</td>
+            <td><a href="https://www.epicor.com/en-us/about/press-room/press-releases/epicor-unveils-epicor-prism/">新闻稿</a></td>
+            <td><span class="cred mid">中</span></td>
+            <td>“垂直行业 Agent 怎么卖？”：功能清单、ROI话术、落地门槛</td>
+          </tr>
+          <tr>
+            <td>2026-05-19</td>
+            <td>Anthropic 扩大 Claude Web Search 可用范围</td>
+            <td>研究型创作者直接利好：更快找资料与引用；需强调核验与引用链</td>
+            <td><a href="https://www.anthropic.com/news/widening-availability-of-web-search">公司公告</a></td>
+            <td><span class="cred good">高</span></td>
+            <td>Claude/ChatGPT/Perplexity 检索对照评测（带引用规范）</td>
+          </tr>
+          <tr>
+            <td>2026-05-19</td>
+            <td>媒体报道：AI agent 进入政治/公共沟通场景（争议与风险）</td>
+            <td>可做伦理/舆论/合规选题；提示“替人发声”的平台规则与自媒体风险</td>
+            <td><a href="https://www.nytimes.com/2026/05/19/world/europe/belgium-ai-agent-politics.html">NYT 报道</a></td>
+            <td><span class="cred mid">中</span></td>
+            <td>“AI 代理替人发声，会发生什么？”：利弊、红线、内容风控</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="foot">
+        说明：如遇到付费墙/地区限制无法完整查看媒体原文，可只引用可见事实，并在内容中标注“部分细节待验证”。
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="section-title">选题 01 / 02 / 03 / 04（可直接开写）</div>
+
+      <div class="topic">
+        <h3><span class="prio s">S</span>选题 01：AI Search 时代的内容适配指南（以 Google I/O 2026 为信号）</h3>
+        <p>目标受众：科技自媒体、增长/SEO向内容、知识博主团队。</p>
+        <ul>
+          <li>角度：AI Mode 把内容当“可引用的结论+可执行步骤”，不是“关键词堆叠”。</li>
+          <li>爆点：搜索从“给链接”走向“替你做事”，创作者必须交付“行动说明书”。</li>
+          <li>结构：信号解读 → 5 条改稿清单 → 同题材改写演示 → 风险提示。</li>
+          <li>来源：<a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">Google Developers Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="prio a">A</span>选题 02：OpenAI Content Provenance 上线：创作者的“溯源工作流”怎么做？</h3>
+        <p>目标受众：AI 重度使用的作者/剪辑师/设计师；做商单与知识付费的账号。</p>
+        <ul>
+          <li>角度：降低争议成本、提升商单可信度、保护原创资产。</li>
+          <li>结构：官方发布 → 三类争议场景 → 发布前 10 分钟检查清单 → 工作流示例 → 风险提示。</li>
+          <li>来源：<a href="https://openai.com/index/openai-content-provenance/">OpenAI 官方公告</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="prio a">A-</span>选题 03：Anthropic 收购 Stainless：为什么 Agent 创业拼的是“API 体验”？</h3>
+        <p>目标受众：独立开发者、AI 应用创业者、面向开发者的内容账号。</p>
+        <ul>
+          <li>角度：SDK/文档/接口一致性降低集成成本，决定生态扩张速度。</li>
+          <li>不确定性：收购后落地效果需后续观察，内容中标注“待验证”。</li>
+          <li>来源：<a href="https://www.anthropic.com/news/acquiring-stainless">Anthropic 公告</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="prio b">B</span>选题 04：端侧/本地 agentic AI 叙事回潮（以 Dell deskside 方案为例）</h3>
+        <p>目标受众：装机/硬件党、企业IT、想做“本地跑模型”的创作者。</p>
+        <ul>
+          <li>角度：成本、隐私、延迟、可控性；对比云端与端侧的优劣。</li>
+          <li>来源：<a href="https://www.dell.com/en-us/blog/dell-technologies-launches-deskside-agentic-ai-solutions-to-power-enterprise-innovation/">Dell 官方博客</a></li>
+        </ul>
+      </div>
+
+      <div class="foot">打印建议：横屏 A4；表格与选题区已做简洁配色与边距优化。</div>
+    </div>
+
+    <div class="foot" style="margin-top:12px;">
+      生成时间：2026-05-20（Asia/Shanghai）。本报告不编造来源、日期、价格或未证实动作；对不确定信息已提示。
+    </div>
+  </div>
+</body>
+</html>

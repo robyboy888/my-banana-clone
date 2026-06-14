@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 行业热点自媒体选题库（2026-05-14）</title>
+    <style>
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --line: #e2e8f0;
+        --blue: #2563eb;
+        --blue-weak: #eff6ff;
+        --good: #16a34a;
+        --warn: #f59e0b;
+        --bad: #dc2626;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+          Arial, sans-serif;
+      }
+
+      a { color: var(--blue); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #0b5cff, #1e40af);
+        color: #fff;
+        border-radius: 14px;
+        padding: 22px 22px 18px;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.15);
+      }
+      .title {
+        font-size: 22px;
+        line-height: 1.25;
+        margin: 0 0 10px 0;
+        letter-spacing: 0.2px;
+      }
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 12.5px;
+      }
+      .meta .k { opacity: 0.85; }
+      .meta .v { font-weight: 600; }
+      .meta .box {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .section {
+        margin-top: 18px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+      }
+      .section-h {
+        padding: 12px 16px;
+        background: var(--blue-weak);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .section-h .h {
+        margin: 0;
+        font-size: 15px;
+        color: #0b3aa6;
+      }
+      .section-b {
+        padding: 14px 16px 16px;
+      }
+
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        min-height: 120px;
+      }
+      .card .t {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+        font-weight: 800;
+        letter-spacing: 0.1px;
+      }
+      .badge {
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        background: #fff;
+        white-space: nowrap;
+      }
+      .card .p { margin: 0; color: var(--muted); font-size: 12.5px; }
+      .card .src { margin-top: 8px; font-size: 12px; }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+      th, td {
+        padding: 10px 10px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+        font-size: 12px;
+        color: #0b3aa6;
+        background: #f1f5ff;
+        letter-spacing: 0.15px;
+      }
+      tr:last-child td { border-bottom: none; }
+      .col-time { width: 130px; }
+      .col-cred { width: 80px; }
+      .col-op { width: 220px; }
+
+      .cred {
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 999px;
+        display: inline-block;
+        border: 1px solid var(--line);
+        font-size: 12px;
+      }
+      .cred.high { color: var(--good); background: #ecfdf5; border-color: #bbf7d0; }
+      .cred.mid { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+      .cred.low { color: var(--bad); background: #fef2f2; border-color: #fecaca; }
+
+      .topic {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px 14px 12px;
+        background: #fff;
+        margin-bottom: 12px;
+      }
+      .topic:last-child { margin-bottom: 0; }
+      .topic-h {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .topic-h .name {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 900;
+      }
+      .prio {
+        font-size: 12px;
+        font-weight: 900;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: #fff;
+        white-space: nowrap;
+      }
+      .prio.s { color: #0b3aa6; background: #eef2ff; border-color: #c7d2fe; }
+      .prio.a { color: #14532d; background: #ecfdf5; border-color: #bbf7d0; }
+      .prio.b { color: #7c2d12; background: #fff7ed; border-color: #fed7aa; }
+
+      .kv {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 6px 10px;
+        margin: 0;
+      }
+      .kv dt { color: var(--muted); font-weight: 700; }
+      .kv dd { margin: 0; }
+
+      .note {
+        color: var(--muted);
+        font-size: 12.5px;
+        margin: 0;
+      }
+
+      @media (max-width: 1040px) {
+        .meta { grid-template-columns: 1fr; }
+        .summary-cards { grid-template-columns: 1fr; }
+        .kv { grid-template-columns: 1fr; }
+        .col-op { width: auto; }
+      }
+
+      @media print {
+        body { background: #fff; }
+        .page { max-width: none; padding: 0; }
+        .header { border-radius: 0; box-shadow: none; }
+        .section { box-shadow: none; }
+        a { color: #0b3aa6; text-decoration: underline; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <h1 class="title">AI 行业热点自媒体选题库（2026-05-14）</h1>
+        <div class="meta">
+          <div class="box"><span class="k">采集日期：</span><span class="v">2026-05-14（Asia/Shanghai）</span></div>
+          <div class="box"><span class="k">采集窗口：</span><span class="v">近 48 小时为主（约 2026-05-12 ～ 2026-05-14）</span></div>
+          <div class="box"><span class="k">定位：</span><span class="v">可验证来源优先；不确定明确标注</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-h">
+          <h2 class="h">热点摘要条（速览）</h2>
+          <span class="badge">面向 AI 自媒体创作者</span>
+        </div>
+        <div class="section-b">
+          <div class="summary-cards">
+            <div class="card">
+              <div class="t">Meta：AI 阅后即焚 <span class="badge">隐私 & 传播强</span></div>
+              <p class="p">WhatsApp 上与 Meta AI 的 Incognito Chat，把“私密对话 + AI”推上台面。</p>
+              <div class="src"><a href="https://about.fb.com/news/2026/05/incognito-chat-whatsapp-meta-ai/" target="_blank" rel="noreferrer">官方来源</a></div>
+            </div>
+            <div class="card">
+              <div class="t">Anthropic：SMB 套餐 <span class="badge">落地 & 变现</span></div>
+              <p class="p">Claude for Small Business 释放信号：AI 商业化从“个人订阅”走向“团队席位 + 协作管理”。</p>
+              <div class="src"><a href="https://www.anthropic.com/news/claude-for-small-business" target="_blank" rel="noreferrer">官方来源</a></div>
+            </div>
+            <div class="card">
+              <div class="t">DeepMind：AI Pointer <span class="badge">趋势 & 观点</span></div>
+              <p class="p">将鼠标指针重想象为 AI 时代交互入口：更适合做“解释趋势”的内容。</p>
+              <div class="src"><a href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noreferrer">官方来源</a></div>
+            </div>
+            <div class="card">
+              <div class="t">Google：Googlebook <span class="badge">端侧 & 系统级</span></div>
+              <p class="p">Android 的智能能力系统叙事：创作者工具链更靠近系统层（字幕/配音/素材整理等）。</p>
+              <div class="src"><a href="https://blog.google/products-and-platforms/platforms/android/meet-googlebook" target="_blank" rel="noreferrer">官方来源</a></div>
+            </div>
+            <div class="card">
+              <div class="t">AutoScientist <span class="badge">科研 Agent</span></div>
+              <p class="p">公司博客宣称端到端科研自动化；建议用公开任务做复现与真伪鉴别。</p>
+              <div class="src"><a href="https://adaptionlabs.ai/blog/autoscientist" target="_blank" rel="noreferrer">公司来源（待验证）</a></div>
+            </div>
+          </div>
+          <p class="note" style="margin-top:10px">
+            注：本报告尽量只收录近 48 小时内的强信号。对概念性/愿景类内容，默认按“观点/趋势”处理，避免当作已落地产品。
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-h">
+          <h2 class="h">今日热点摘要表</h2>
+          <span class="badge">可直接转 CSV/Notion</span>
+        </div>
+        <div class="section-b">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-time">时间（发布日期）</th>
+                <th>热点信号</th>
+                <th>对创作者的意义</th>
+                <th>来源链接</th>
+                <th class="col-cred">可信度</th>
+                <th class="col-op">内容机会</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-05</td>
+                <td>WhatsApp 上与 Meta AI 的 Incognito Chat（隐私模式/阅后即焚）</td>
+                <td>“私密问答”成为新卖点：可做隐私边界解释、误区纠正与平台对比。</td>
+                <td><a href="https://about.fb.com/news/2026/05/incognito-chat-whatsapp-meta-ai/" target="_blank" rel="noreferrer">about.fb.com</a></td>
+                <td><span class="cred high">高</span></td>
+                <td>“隐私问 AI”清单/教程/风险提示系列</td>
+              </tr>
+              <tr>
+                <td>2026-05-13</td>
+                <td>Claude for Small Business（团队/席位化）</td>
+                <td>AI 从个人订阅向团队协作迁移：适合做 SMB 落地 SOP、岗位场景化。</td>
+                <td><a href="https://www.anthropic.com/news/claude-for-small-business" target="_blank" rel="noreferrer">anthropic.com</a></td>
+                <td><span class="cred high">高</span></td>
+                <td>小团队 AI SOP 模板 + 演示</td>
+              </tr>
+              <tr>
+                <td>2026-05-12</td>
+                <td>Google DeepMind：AI Pointer（交互入口新叙事）</td>
+                <td>观点型内容抓手：从 App/搜索/对话到“指针即上下文”的入口迁移。</td>
+                <td><a href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noreferrer">deepmind.google</a></td>
+                <td><span class="cred high">高</span></td>
+                <td>趋势解释 + 3 个场景化 demo</td>
+              </tr>
+              <tr>
+                <td>2026-05-12</td>
+                <td>Google：Googlebook（Android 智能能力系统）</td>
+                <td>系统级能力将重塑创作者工具链：素材整理/字幕/配音/剪辑流程更靠近系统层。</td>
+                <td><a href="https://blog.google/products-and-platforms/platforms/android/meet-googlebook" target="_blank" rel="noreferrer">blog.google</a></td>
+                <td><span class="cred high">高</span></td>
+                <td>“手机变创作助理？”对比型内容</td>
+              </tr>
+              <tr>
+                <td>2026-05-13</td>
+                <td>Adaption Labs：AutoScientist（科研 Agent）</td>
+                <td>适合做鉴别型内容：用公开任务复现/对比其端到端能力，教育用户如何验证 agent 产出。</td>
+                <td><a href="https://adaptionlabs.ai/blog/autoscientist" target="_blank" rel="noreferrer">adaptionlabs.ai</a></td>
+                <td><span class="cred mid">中</span></td>
+                <td>复现挑战系列（真伪鉴别）</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note" style="margin-top:10px">
+            可信度口径：高=官方公告/产品页/论文；中=公司博客或单一信息源；低=传闻（本报告尽量不收录）。
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-h">
+          <h2 class="h">今日推荐选题（含优先级）</h2>
+          <span class="badge">可直接开写</span>
+        </div>
+        <div class="section-b">
+          <div class="topic">
+            <div class="topic-h">
+              <h3 class="name">选题 01： “AI 阅后即焚”来了：隐私模式会成为下一轮助手大战吗？</h3>
+              <span class="prio s">优先级 S</span>
+            </div>
+            <dl class="kv">
+              <dt>目标受众</dt><dd>普通用户、职场人、对隐私敏感人群、AI 工具重度用户</dd>
+              <dt>切题角度</dt><dd>从“用户为什么需要私密 AI”讲到“平台承诺与现实边界”（避免夸大绝对匿名）</dd>
+              <dt>爆点</dt><dd>敏感问题清单 + 误区纠正：不留聊天记录 ≠ 绝对安全</dd>
+              <dt>内容结构</dt><dd>事件速读 → 三类隐私诉求 → 技术/合规边界（通俗解释）→ 安全使用清单 → 趋势与对比</dd>
+              <dt>内容形式</dt><dd>短视频（3–5 分钟）+ 长图文清单；或直播答疑</dd>
+              <dt>可引用来源</dt><dd><a href="https://about.fb.com/news/2026/05/incognito-chat-whatsapp-meta-ai/" target="_blank" rel="noreferrer">Meta 官方说明</a></dd>
+            </dl>
+          </div>
+
+          <div class="topic">
+            <div class="topic-h">
+              <h3 class="name">选题 02：Claude for Small Business：小团队 AI 落地从“个人提示词”升级为“团队 SOP”</h3>
+              <span class="prio a">优先级 A</span>
+            </div>
+            <dl class="kv">
+              <dt>目标受众</dt><dd>小微企业老板、运营团队、电商团队、内容团队</dd>
+              <dt>切题角度</dt><dd>从“席位化/协作化”看 AI 的商业化路径；用岗位场景落地</dd>
+              <dt>爆点</dt><dd>一套可直接照抄的团队 SOP：选题→脚本→审核→发布→复盘</dd>
+              <dt>内容结构</dt><dd>事件速读 → 岗位场景拆解（运营/客服/销售）→ SOP 模板 → 成本与风险提示</dd>
+              <dt>内容形式</dt><dd>长视频/直播工作流演示；附 SOP 模板（表格/Notion）</dd>
+              <dt>可引用来源</dt><dd><a href="https://www.anthropic.com/news/claude-for-small-business" target="_blank" rel="noreferrer">Anthropic 官方公告</a></dd>
+            </dl>
+          </div>
+
+          <div class="topic">
+            <div class="topic-h">
+              <h3 class="name">选题 03：AI Pointer：下一代入口不是 App，也不是 Chat，而是“指针/光标”</h3>
+              <span class="prio a">优先级 A</span>
+            </div>
+            <dl class="kv">
+              <dt>目标受众</dt><dd>产品经理、设计师、AI 工具控、效率工具人</dd>
+              <dt>切题角度</dt><dd>用写文/做 PPT/剪视频等具体工作流解释“指针即上下文”</dd>
+              <dt>爆点</dt><dd>把抽象概念变成 3 个可想象的场景 Demo（强调研究/愿景属性）</dd>
+              <dt>内容结构</dt><dd>概念速读 → 场景化演示 → 入口迁移趋势 → 对创作者工具链的影响</dd>
+              <dt>内容形式</dt><dd>观点长视频（8–12 分钟）或图文长文</dd>
+              <dt>可引用来源</dt><dd><a href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noreferrer">DeepMind 官方文章</a></dd>
+            </dl>
+          </div>
+
+          <div class="topic">
+            <div class="topic-h">
+              <h3 class="name">选题 04：Googlebook：Android 系统级智能能力，会怎么改变手机创作流程？</h3>
+              <span class="prio b">优先级 B</span>
+            </div>
+            <dl class="kv">
+              <dt>目标受众</dt><dd>手机剪辑用户、短视频创作者、安卓用户</dd>
+              <dt>切题角度</dt><dd>把“系统级能力”翻译成“创作流程少几步”（对未明确上线范围统一标注“待验证”）</dd>
+              <dt>爆点</dt><dd>“以前要装 5 个 App，现在可能系统就能做”（用“可能/如果”表述）</dd>
+              <dt>内容结构</dt><dd>事件速读 → 创作流程拆解（素材/字幕/配音/剪辑）→ 影响与准备清单</dd>
+              <dt>内容形式</dt><dd>对比型图文 + 直播答疑</dd>
+              <dt>可引用来源</dt><dd><a href="https://blog.google/products-and-platforms/platforms/android/meet-googlebook" target="_blank" rel="noreferrer">Google 官方文章</a></dd>
+            </dl>
+          </div>
+
+          <div class="topic">
+            <div class="topic-h">
+              <h3 class="name">选题 05：AutoScientist：科研会被自动化吗？如何用公开任务验证“科研 Agent”真假</h3>
+              <span class="prio b">优先级 B</span>
+            </div>
+            <dl class="kv">
+              <dt>目标受众</dt><dd>科研/工程从业者、Agent 爱好者</dd>
+              <dt>切题角度</dt><dd>方法论：如何验证“端到端科研闭环”是否真实（以可复现实验为准）</dd>
+              <dt>爆点</dt><dd>“复现挑战”系列：让观众跟着一起验真假</dd>
+              <dt>内容结构</dt><dd>宣称能力清单 → 公开任务设定 → 复现过程 → 对比基线 → 结论与局限</dd>
+              <dt>内容形式</dt><dd>系列图文/长视频（带实验记录）</dd>
+              <dt>可引用来源</dt><dd><a href="https://adaptionlabs.ai/blog/autoscientist" target="_blank" rel="noreferrer">公司博客（需关注复现实证）</a></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-h">
+          <h2 class="h">事实性约束与使用建议</h2>
+          <span class="badge">避免翻车</span>
+        </div>
+        <div class="section-b">
+          <ul style="margin:0; padding-left: 18px; color: var(--muted);">
+            <li>只陈述来源页面明确写出的信息；涉及价格、地区可用性、上线时间等若未在官方说明中明确，统一标注“待验证”。</li>
+            <li>概念/愿景类文章（例如交互范式）不当作已发布功能；建议用“研究/设想/路线”措辞。</li>
+            <li>若你要把“选题 01/02”写成可直接发布脚本（口播稿/分镜/标题变体/封面文案），建议先确定平台与时长，再做结构优化。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

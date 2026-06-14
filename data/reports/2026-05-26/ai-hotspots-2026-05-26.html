@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-05-26）</title>
+  <style>
+    :root{
+      --ink:#111827;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --panel:#f8fafc;
+      --line:#e5e7eb;
+      --blue:#2563eb;
+      --blue-weak:#eff6ff;
+      --good:#065f46;
+      --mid:#92400e;
+      --bad:#991b1b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height:1.6;
+    }
+    .page{
+      max-width: 1180px;
+      margin: 22px auto 48px;
+      padding: 0 18px;
+    }
+    header{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, var(--blue-weak), #fff);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+    }
+    h1{
+      margin: 0 0 6px;
+      font-size: 26px;
+      letter-spacing: .2px;
+    }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 18px;
+      color:var(--muted);
+      font-size: 13px;
+    }
+    .meta b{color:var(--ink); font-weight:600}
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size: 13px;
+    }
+    .section{
+      margin-top: 18px;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .section-title{
+      padding: 10px 14px;
+      background: var(--blue-weak);
+      border-bottom:1px solid var(--line);
+      font-weight:700;
+      color: #0b3aa6;
+      letter-spacing: .2px;
+    }
+    .section-body{
+      padding: 14px;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+    }
+    .bullets li{margin:6px 0}
+    .pillbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin: 10px 0 0;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: #fff;
+      font-size: 12px;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .pill b{color:var(--ink); font-weight:700}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th,td{
+      border:1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: top;
+    }
+    th{
+      background: #f9fafb;
+      text-align:left;
+      font-weight:700;
+    }
+    .cred{
+      font-weight:700;
+    }
+    .cred.high{color:var(--good)}
+    .cred.mid{color:var(--mid)}
+    .cred.low{color:var(--bad)}
+    a{color:var(--blue); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .topic{
+      padding: 12px 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      margin: 12px 0;
+    }
+    .topic h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap: 6px 14px;
+      font-size: 13px;
+    }
+    .k{color:var(--muted)}
+    .v{color:var(--ink)}
+    .foot{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media print{
+      .page{max-width:none; margin:0; padding:0}
+      header,.section{border-radius:0}
+      a{color:inherit; text-decoration:underline}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>AI 行业热点自媒体选题库（2026-05-26）</h1>
+      <div class="meta">
+        <div><b>采集日期</b>：2026-05-26（Asia/Shanghai）</div>
+        <div><b>采集窗口</b>：2026-05-24 00:00 ～ 2026-05-26 12:00（含“超窗发酵”信号）</div>
+        <div><b>定位</b>：AI 自媒体创作者 · 选题/脚本/分发工具链</div>
+      </div>
+      <div class="note">所有事实性条目尽量引用官方更新页/发布页；超出窗口的强发酵内容已明确标注。</div>
+      <div class="pillbar">
+        <span class="pill"><b>重点</b> 开源 Agent 工作流周更</span>
+        <span class="pill"><b>重点</b> 工具体验（卡顿/冻结/键盘流）</span>
+        <span class="pill"><b>重点</b> 云端 Agent × Slack/Webhook × 托管产物</span>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-title">定位说明</div>
+      <div class="section-body">
+        <ul class="bullets">
+          <li>面向“能产出内容”的信号：发布/更新/周报/项目 release/可信媒体的可核对报道。</li>
+          <li>优先选择可复刻素材：开源 repo、更新日志、明确功能点与问题修复。</li>
+          <li>若条目不满足严格 24–48 小时窗口但仍强发酵，标注为“超窗发酵”。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日热点摘要（先读版）</div>
+      <div class="section-body">
+        <ol class="bullets">
+          <li><b>AI 编程/Agent 工作流继续产品化</b>：GitHub Agentic Workflows（开源）周报与版本更新，适合做“复刻模板”系列。</li>
+          <li><b>创作者工具链更重稳定性</b>：Aiola v0.1.40 这类“修复卡顿/键盘流/任务流”的更新，信息密度高、可复现。</li>
+          <li><b>云端 Agent + 工具连接成为标配</b>（超窗发酵）：Augment Cosmos 把 artifacts/webhook/Slack 能力推向“可编排系统”。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日热点摘要表</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:120px;">时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th style="width:240px;">来源链接</th>
+              <th style="width:80px;">可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-25</td>
+              <td>GitHub Agentic Workflows 周报 + 版本迭代（含 2026-05-24 v0.75.4）</td>
+              <td>开源、可复刻、可引用；适合做“从 0 到 1 复现”系列。</td>
+              <td><a href="https://github.github.com/gh-aw/blog/2026-05-25-weekly-update/">github.github.com/gh-aw</a></td>
+              <td class="cred high">高</td>
+              <td>教程/复现：一套周更工作流模板（PRD→任务→PR）。</td>
+            </tr>
+            <tr>
+              <td>2026-05-24</td>
+              <td>Aiola v0.1.40：修复 diff 卡死、强化 tasks/plan、键盘快捷键</td>
+              <td>适合做“真实痛点”评测与选型清单（卡顿、冻结、快捷键流）。</td>
+              <td><a href="https://aiola.app/changelog">aiola.app/changelog</a></td>
+              <td class="cred high">高</td>
+              <td>对比评测：10 个细节决定工具能不能用。</td>
+            </tr>
+            <tr>
+              <td>2026-05-18（超窗发酵）</td>
+              <td>Augment Cosmos：云端 agent 托管 artifacts、webhook 订阅、Slack 能力扩展</td>
+              <td>给“团队级自动化/内容流水线”提供具体能力点与术语。</td>
+              <td><a href="https://www.augmentcode.com/changelog">augmentcode.com/changelog</a></td>
+              <td class="cred high">高</td>
+              <td>案例：Slack 触发→Agent 执行→产物回传。</td>
+            </tr>
+            <tr>
+              <td>2026-05-14（超窗发酵）</td>
+              <td>Augment IDE 插件：MCP Tool Search、会话分叉、长输出可靠性</td>
+              <td>为“IDE 内 Agent 工具链对比/选型”提供硬信息。</td>
+              <td><a href="https://www.augmentcode.com/changelog">augmentcode.com/changelog</a></td>
+              <td class="cred high">高</td>
+              <td>对比：MCP 工具搜索在不同 IDE 的体验。</td>
+            </tr>
+            <tr>
+              <td>2026-05（近 7 天内，需二次核对）</td>
+              <td>v0.app 更新（以官方 changelog 为准）</td>
+              <td>适合做“上手教程 + 可售模板包”的内容产品化。</td>
+              <td><a href="https://v0.app/changelog">v0.app/changelog</a></td>
+              <td class="cred mid">中</td>
+              <td>模板：提示词→上线 landing 的 SOP。</td>
+            </tr>
+            <tr>
+              <td>2026-04-16（超窗发酵）</td>
+              <td>LiveKit Agents 1.5.3：多 provider 插件与稳定性修复</td>
+              <td>做“语音/实时 Agent”内容的底座项目，适合做最小 demo。</td>
+              <td><a href="https://github.com/livekit/agents/releases/tag/livekit-agents%401.5.3">github.com/livekit/agents</a></td>
+              <td class="cred high">高</td>
+              <td>Demo：实时语音 agent + 工具调用（可扩展）。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="foot">备注：窗口内公开更新信号有限，因此保留少量“超窗发酵”条目并明确标注。</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日选题（推荐优先级）</div>
+      <div class="section-body">
+        <div class="topic">
+          <h3>选题 01（P0）： “开源 Agent 工作流周报”怎么变成你的内容护城河？</h3>
+          <div class="grid">
+            <div class="k">目标受众</div><div class="v">程序员创作者 / 独立开发者 / AI 编程工具重度用户</div>
+            <div class="k">切题角度</div><div class="v">从“新闻转述”升级为“可复刻”：挑 1 个更新点 → 复现 → 给模板与坑位</div>
+            <div class="k">爆点</div><div class="v">开源 + 可复刻 + 可产出（PR/脚手架/模板）= 强收藏</div>
+            <div class="k">内容结构</div><div class="v">一句话变化 → 复现准备 → 跑通小任务 → 迁移到你的项目 → 风险边界</div>
+            <div class="k">推荐形式</div><div class="v">横屏长视频 / 图文长帖（附步骤与 repo 链接）</div>
+            <div class="k">引用来源</div><div class="v"><a href="https://github.github.com/gh-aw/blog/2026-05-25-weekly-update/">GitHub Agentic Workflows Weekly Update</a></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <h3>选题 02（P1）：做“卡顿/冻结/键盘流”的工具体验评测，而不是功能清单</h3>
+          <div class="grid">
+            <div class="k">目标受众</div><div class="v">效率工具用户 / 工具测评创作者 / AI IDE 用户</div>
+            <div class="k">切题角度</div><div class="v">可复现坏体验 → 修复点 → 对比测试 → 选型清单</div>
+            <div class="k">爆点</div><div class="v">CPU 100% / diff 冻结 / 二进制文件卡死，强共鸣</div>
+            <div class="k">内容结构</div><div class="v">复现演示 → 原因解释 → 修复机制 → 10 条 checklist</div>
+            <div class="k">推荐形式</div><div class="v">对比评测短视频 + 配套图文清单</div>
+            <div class="k">引用来源</div><div class="v"><a href="https://aiola.app/changelog">Aiola Changelog（v0.1.40，2026-05-24）</a></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <h3>选题 03（P2）：云端 Agent × Slack/Webhook × 托管产物：团队内容生产流水线</h3>
+          <div class="grid">
+            <div class="k">目标受众</div><div class="v">团队内容负责人 / 运营增长 / ToB 工具关注者</div>
+            <div class="k">切题角度</div><div class="v">不讲“AI 多强”，讲“怎么接入团队工具链”</div>
+            <div class="k">爆点</div><div class="v">消息触发 → 自动执行 → 产物回传（artifact）→ 可审计（账号归因）</div>
+            <div class="k">内容结构</div><div class="v">场景 → 设计（触发器/权限/产物）→ Demo → 风险（误触发/权限/成本）</div>
+            <div class="k">推荐形式</div><div class="v">案例向长视频 + 配套流程图</div>
+            <div class="k">引用来源</div><div class="v"><a href="https://www.augmentcode.com/changelog">Augment Cosmos 26-05-18 Release Notes</a></div>
+          </div>
+        </div>
+
+        <div class="topic">
+          <h3>选题 04（P3）：把 v0 的更新落地成“上手即用的商业模板包”（需二次核对条目）</h3>
+          <div class="grid">
+            <div class="k">目标受众</div><div class="v">内容创作者 / 知识付费从业者 / 独立产品人</div>
+            <div class="k">切题角度</div><div class="v">changelog → 模板打法：给 3 套能直接改的结构</div>
+            <div class="k">爆点</div><div class="v">模板可卖、可复用、能直接带来转化</div>
+            <div class="k">推荐形式</div><div class="v">图文模板包 + 录屏教程</div>
+            <div class="k">引用来源</div><div class="v"><a href="https://v0.app/changelog">v0 Changelog（以官方条目为准）</a></div>
+          </div>
+        </div>
+
+        <div class="foot">提示：若要引用具体功能点与日期，请以对应 changelog 条目为准；超窗内容建议标注“近一周更新/近期发酵”。</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 行业热点自媒体选题库 - 2026-06-03</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --ink: #16324f;
+      --muted: #5d7288;
+      --line: #d9e4f1;
+      --blue: #2f6fed;
+      --blue-soft: #eaf2ff;
+      --green: #1f8f5f;
+      --amber: #b7791f;
+      --shadow: 0 18px 50px rgba(31, 61, 99, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(47, 111, 237, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.14), transparent 24%),
+        linear-gradient(180deg, #f6f9fd 0%, #eef4fb 100%);
+      color: var(--ink);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      line-height: 1.7;
+    }
+
+    .page {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 24px auto 40px;
+      background: var(--paper);
+      border: 1px solid rgba(47, 111, 237, 0.12);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 40px 48px 28px;
+      background: linear-gradient(135deg, #f8fbff 0%, #edf4ff 55%, #e6f0ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(47, 111, 237, 0.10);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .meta-card, .signal, .topic, .summary-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .meta-card {
+      padding: 16px 18px;
+    }
+
+    .meta-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+      font-size: 14px;
+    }
+
+    .lead {
+      padding: 28px 48px 8px;
+      font-size: 17px;
+      color: #243b53;
+    }
+
+    .section {
+      padding: 8px 48px 28px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 18px;
+      font-size: 24px;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 8px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #2f6fed 0%, #72a3ff 100%);
+    }
+
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .signal {
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+
+    .signal h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .signal p, .topic p {
+      margin: 8px 0;
+      color: #2f4358;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .tag.high { background: #e9f8ef; color: var(--green); }
+    .tag.medium { background: #fff3df; color: var(--amber); }
+
+    .summary-box {
+      padding: 18px 20px;
+      background: linear-gradient(180deg, #f7fbff 0%, #eff5ff 100%);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #edf4ff;
+      color: #1b4fbf;
+      font-weight: 800;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fbfdff;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .topic {
+      padding: 22px 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+
+    .priority {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .topic ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .topic li {
+      margin: 6px 0;
+    }
+
+    .footer {
+      padding: 10px 48px 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; box-shadow: none; border: none; border-radius: 0; }
+      a { color: #1b4fbf; }
+    }
+
+    @media (max-width: 1080px) {
+      .meta, .signals { grid-template-columns: 1fr; }
+      .hero, .lead, .section, .footer { padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 30px; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 行业热点自媒体选题库</div>
+      <h1>2026-06-03 AI 热点选题报告</h1>
+      <div class="meta">
+        <div class="meta-card">
+          <strong>采集日期</strong>
+          <div>2026-06-03（Asia/Shanghai）</div>
+        </div>
+        <div class="meta-card">
+          <strong>采集窗口</strong>
+          <div>2026-06-01 08:00 至 2026-06-03 08:00（北京时间）</div>
+        </div>
+        <div class="meta-card">
+          <strong>定位说明</strong>
+          <div>面向 AI 自媒体创作者，筛选可验证、可讲述、可转化为选题的行业热点。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lead">
+      今天最强的母题不是“谁又发了新模型”，而是 <strong>AI 工具正在从单点功能升级为完整 Agent 工作流</strong>。微软 Build 2026 与 OpenAI Codex 扩展，把平台、模型、协议、连接器、系统入口和安全能力同时推上台面，对内容创作者来说，下一阶段更值得做的内容，是“一个人如何搭 AI 内容工厂”。
+    </section>
+
+    <section class="section">
+      <div class="section-title">热点摘要条</div>
+      <div class="signals">
+        <article class="signal">
+          <span class="tag high">高可信</span>
+          <h3>微软 Build 2026：Agent 平台战全面打响</h3>
+          <p>Agent、MAI 模型、Windows AI Foundry、ACS 与安全框架同时出现，说明平台层已经开始统一出手。</p>
+          <p><a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">官方博客</a></p>
+        </article>
+        <article class="signal">
+          <span class="tag high">高可信</span>
+          <h3>OpenAI Codex 从编程走向知识工作</h3>
+          <p>连接器、Plugins、Sites 与 500 万月活，是“不会写代码也能搭工作系统”的强信号。</p>
+          <p><a href="https://openai.com/index/codex-for-knowledge-work/">官方文章</a></p>
+        </article>
+        <article class="signal">
+          <span class="tag medium">中可信</span>
+          <h3>视频 Agent 工具开始升温</h3>
+          <p>Rodeo 等产品把“生成”转向“执行”，更贴近创作者真实工作流，但成熟度仍待验证。</p>
+          <p><a href="https://www.producthunt.com/posts/rodeo-5">Product Hunt</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日热点摘要表格</div>
+      <div class="summary-box">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 11%;">时间</th>
+              <th style="width: 23%;">热点信号</th>
+              <th style="width: 20%;">对创作者的意义</th>
+              <th style="width: 20%;">来源链接</th>
+              <th style="width: 8%;">可信度</th>
+              <th style="width: 18%;">内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-02</td>
+              <td>微软 Build 2026 把 Agent、MAI 模型、Windows AI Foundry、ACS 与安全框架放进同一叙事</td>
+              <td>内容主线将从单点工具评测转向 Agent 全链路生产力体系</td>
+              <td><a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Blog</a><br /><a href="https://news.microsoft.com/source/features/ai/open-and-secure-agentic-web-with-windows-at-build-2026/">Microsoft Source</a></td>
+              <td>高</td>
+              <td>适合做 AI 工作室基础设施清单与工作流拆解</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>微软发布 MAI-Voice-2、MAI-1-TTS、MAI-1-T2VL、MAI-Image-2.5、MAI-Thinking-1-preview 等模型更新</td>
+              <td>语音、图像、视频理解、推理等能力开始形成统一内容工厂</td>
+              <td><a href="https://azure.microsoft.com/en-us/blog/advancing-ai-at-build-2026-azure-ai-foundry-unveils-new-models-custom-agents-and-enterprise-readiness/">Azure AI Foundry</a></td>
+              <td>高</td>
+              <td>适合做“自研模型潮对创作者意味着什么”</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>OpenAI 宣布 Codex 进入 knowledge work，加入连接器、Plugins、Sites，月活达 500 万</td>
+              <td>零代码工作代理叙事升温，适合做教程与机会解读</td>
+              <td><a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI</a></td>
+              <td>高</td>
+              <td>适合做“Codex 正在重新定义谁能做工具”</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>Postman 发布 AI Engineer，把 API、测试、监控与 Agent 开发绑定</td>
+              <td>AI 工程化开始普及，工作流能力比提示词能力更重要</td>
+              <td><a href="https://www.postman.com/product/ai-engineer/">Postman</a></td>
+              <td>高</td>
+              <td>适合做职业趋势与超级个体工具链内容</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>白宫发布《Unleashing American AI Innovation》行政令</td>
+              <td>给 Agent、算力、系统入口大战提供宏观背景</td>
+              <td><a href="https://www.whitehouse.gov/presidential-actions/2026/06/unleashing-american-ai-innovation/">White House</a></td>
+              <td>高</td>
+              <td>适合做“政策为什么开始影响创作者赛道”</td>
+            </tr>
+            <tr>
+              <td>2026-06-01 至 2026-06-03</td>
+              <td>Rodeo（TwelveLabs）等视频 Agent 工具获得榜单与媒体热度</td>
+              <td>视频工作流从生成转向执行，接近真实内容生产场景</td>
+              <td><a href="https://www.producthunt.com/posts/rodeo-5">Product Hunt</a><br /><a href="https://www.prweb.com/releases/twelvelabs-launches-rodeo-ai-workspace-for-video-creators-and-marketers-302465032.html">PRWeb</a></td>
+              <td>中</td>
+              <td>适合做“剪辑 Agent 会不会成为下一波红利”</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">推荐选题</div>
+      <div class="topics">
+        <article class="topic">
+          <div class="priority">选题 01 · 优先级 S</div>
+          <h3>微软 Build 2026 其实不是发几个模型，而是在教你怎么搭一个人的 AI 内容工厂</h3>
+          <p><strong>目标受众：</strong>AI 工具关注者、内容创业者、超级个体、知识博主</p>
+          <p><strong>切题角度：</strong>把 Build 2026 的平台术语翻译成创作者能理解的工作流。</p>
+          <ul>
+            <li><strong>爆点：</strong>大厂把模型、协议、系统入口、安全和端侧部署一起推，AI 员工不再只是概念。</li>
+            <li><strong>内容结构：</strong>为什么这次微软讲的不是单个模型；创作者需要哪些 Agent 能力；Windows AI Foundry / ACS / MAI 模型分别解决什么问题；未来半年内容生产怎么被重写。</li>
+            <li><strong>痛点：</strong>多数人知道 AI 很强，但不知道怎么把零散工具接成稳定流程。</li>
+            <li><strong>爽点：</strong>观众会清楚看到“一个人如何搭 AI 内容团队”。</li>
+            <li><strong>痒点：</strong>别人还在比模型，你已经开始比流程和系统。</li>
+            <li><strong>推荐形式：</strong>8-12 分钟口播视频、长图文、直播拆解。</li>
+            <li><strong>可引用来源：</strong><a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Blog</a> / <a href="https://news.microsoft.com/source/features/ai/open-and-secure-agentic-web-with-windows-at-build-2026/">Microsoft Source</a> / <a href="https://azure.microsoft.com/en-us/blog/advancing-ai-at-build-2026-azure-ai-foundry-unveils-new-models-custom-agents-and-enterprise-readiness/">Azure AI Foundry</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 02 · 优先级 A</div>
+          <h3>OpenAI 正在把 Codex 从程序员工具，变成普通人也能用的工作代理</h3>
+          <p><strong>目标受众：</strong>知识付费创作者、研究型博主、独立创始人、运营</p>
+          <p><strong>切题角度：</strong>从“不会写代码的人，能不能用 Codex 做自己的工作系统”切入。</p>
+          <ul>
+            <li><strong>爆点：</strong>连接器、Plugins、Sites、500 万月活，不是小更新，而是产品定位改变。</li>
+            <li><strong>内容结构：</strong>Codex 到底变了什么；它和传统 ChatGPT 用法的差异；对创作者最实用的三类场景；谁会最先吃到红利。</li>
+            <li><strong>痛点：</strong>大多数知识工作者知道 AI 能聊，但不会让 AI 代办复杂工作。</li>
+            <li><strong>爽点：</strong>给观众“我也能搭”的行动感。</li>
+            <li><strong>痒点：</strong>不懂代码的人担心自己错过下一波 AI 工具红利。</li>
+            <li><strong>推荐形式：</strong>教程型视频、对比评测、案例拆解。</li>
+            <li><strong>可引用来源：</strong><a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI 官方文章</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 03 · 优先级 A-</div>
+          <h3>AI Engineer 正在变成新岗位，普通创作者为什么也该学一点</h3>
+          <p><strong>目标受众：</strong>AI 从业者、职业转型人群、技术内容创作者</p>
+          <p><strong>切题角度：</strong>用 Postman AI Engineer 解释“AI 工程化”为什么开始普及。</p>
+          <ul>
+            <li><strong>爆点：</strong>Agent、API、测试、监控从黑话变成产品入口。</li>
+            <li><strong>内容结构：</strong>什么是 AI Engineer；为什么 2026 年这个岗位突然热；Postman 发布意味着什么；创作者该补哪块能力。</li>
+            <li><strong>痛点：</strong>很多人只会提示词，不会把 AI 产品真正接起来。</li>
+            <li><strong>爽点：</strong>观众会感觉自己提前看懂了职业风口。</li>
+            <li><strong>痒点：</strong>担心未来被“会搭系统的人”拉开差距。</li>
+            <li><strong>推荐形式：</strong>观点视频、职业赛道分析帖、直播答疑。</li>
+            <li><strong>可引用来源：</strong><a href="https://www.postman.com/product/ai-engineer/">Postman AI Engineer</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 04 · 优先级 B+</div>
+          <h3>视频创作者的下一波红利，不是更强模型，而是会干活的剪辑 Agent</h3>
+          <p><strong>目标受众：</strong>短视频团队、剪辑师、品牌内容团队、AI 工具评测博主</p>
+          <p><strong>切题角度：</strong>用 Rodeo 这类产品解释“AI 视频工具从生成走向执行”。</p>
+          <ul>
+            <li><strong>爆点：</strong>自然语言调素材、理解镜头、组织工作流，比单次生成更贴近真实生产。</li>
+            <li><strong>内容结构：</strong>为什么视频 AI 工具开始转向 workspace/agent；解决了哪类真实问题；和传统 AI 剪辑/生成工具的区别；哪些场景现在能用、哪些仍是营销叙事。</li>
+            <li><strong>痛点：</strong>视频生产最花时间的不是生成，而是找素材、选镜头、做版本。</li>
+            <li><strong>爽点：</strong>观众能看到 AI 真正开始帮自己省流程时间。</li>
+            <li><strong>痒点：</strong>担心自己还在追模型参数，别人已经在追工作流红利。</li>
+            <li><strong>推荐形式：</strong>趋势拆解、工具评测、案例型图文。</li>
+            <li><strong>可引用来源：</strong><a href="https://www.producthunt.com/posts/rodeo-5">Product Hunt</a> / <a href="https://www.prweb.com/releases/twelvelabs-launches-rodeo-ai-workspace-for-video-creators-and-marketers-302465032.html">PRWeb</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今天最推荐的 1 个选题</div>
+      <div class="summary-box">
+        <h3 style="margin-top: 0;">微软 Build 2026 其实不是发几个模型，而是在教你怎么搭一个人的 AI 内容工厂</h3>
+        <p>原因很简单：这是今天信号最密集、最适合延展成系列内容的一条主线。它同时覆盖模型、Agent、系统入口、安全、端侧部署和创作者工作流，既能吃当天热点，也能顺势做后续深挖，不是一次性新闻流量。</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      备注：所有事实性描述均附来源；Rodeo 等早期产品信号因主要来自榜单与新闻稿，已按“中可信/待进一步验证”处理。
+    </div>
+  </main>
+</body>
+</html>

@@ -2,6 +2,7 @@ import { supabase } from "../src/lib/supabase";
 import HomeClient from "./HomeClient";
 import React from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import Link from "next/link";
 
 // 禁用缓存，确保每次访问都抓取最新数据
 export const revalidate = 0; 
@@ -40,22 +41,51 @@ export default async function Page() {
                     </div>
                     
                     {/* 右侧 功能区 */}
-                    <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-3">
                         <ThemeToggle />
-                        <a 
+                        <Link 
                             href="/visual-os" 
-                            className="text-[10px] font-black tracking-widest uppercase px-4 sm:px-5 py-2 rounded-full bg-[#3fc1c0] text-[#0f1115] hover:bg-white transition-all shadow-sm shadow-[#3fc1c0]/20"
+                            className="text-[10px] font-black tracking-widest uppercase px-3 sm:px-5 py-2 rounded-full bg-[#3fc1c0] text-[#0f1115] hover:bg-white transition-all shadow-sm shadow-[#3fc1c0]/20"
                         >
                             视觉 OS
-                        </a>
-                        <a 
+                        </Link>
+                        <Link 
+                            href="/zodiac" 
+                            className="hidden md:inline-flex text-[10px] font-black tracking-widest uppercase px-3 sm:px-5 py-2 rounded-full bg-white/10 text-white hover:bg-[#3fc1c0] transition-all shadow-sm"
+                        >
+                            ZODIAC 3D
+                        </Link>
+                        <Link 
+                            href="/solar-system" 
+                            className="hidden md:inline-flex text-[10px] font-black tracking-widest uppercase px-3 sm:px-5 py-2 rounded-full bg-white/10 text-white hover:bg-[#3fc1c0] transition-all shadow-sm"
+                        >
+                            SOLAR 3D
+                        </Link>
+                        <Link 
+                            href="/reports" 
+                            className="text-[10px] font-black tracking-widest uppercase px-3 sm:px-5 py-2 rounded-full bg-white/10 text-white hover:bg-[#3fc1c0] transition-all shadow-sm"
+                        >
+                            REPORTS
+                        </Link>
+                        <Link 
                             href="/admin" 
-                            className="text-[10px] font-black tracking-widest uppercase px-4 sm:px-5 py-2 rounded-full bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all shadow-sm"
+                            className="text-[10px] font-black tracking-widest uppercase px-3 sm:px-5 py-2 rounded-full bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all shadow-sm"
                         >
                             DASHBOARD
-                        </a>
+                        </Link>
                     </div>
                 </div>
+                <nav className="flex md:hidden items-center gap-2 overflow-x-auto border-t border-white/5 px-4 py-2 bg-[#1a1c20]">
+                    <Link href="/zodiac" className="shrink-0 text-[10px] font-black tracking-widest uppercase px-3 py-2 rounded-full bg-white/10 text-white">
+                        ZODIAC 3D
+                    </Link>
+                    <Link href="/solar-system" className="shrink-0 text-[10px] font-black tracking-widest uppercase px-3 py-2 rounded-full bg-white/10 text-white">
+                        SOLAR 3D
+                    </Link>
+                    <Link href="/reports" className="shrink-0 text-[10px] font-black tracking-widest uppercase px-3 py-2 rounded-full bg-white/10 text-white">
+                        REPORTS
+                    </Link>
+                </nav>
             </header>
 
             {/* 2. 主内容交互区

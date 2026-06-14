@@ -1,0 +1,7 @@
+time,hotspot_signal,creator_value,source,credibility,content_opportunity
+2026-05-28,Anthropic发布Claude Opus 4.8（computer use/Agent执行能力强化）,可做网页任务实测与创作流程自动化演示,https://www.anthropic.com/news/claude-opus-4-8,high,同题对比实测+任务清单复用
+2026-05-28,GitHub Copilot上线Claude Opus 4.8,主流入口集成带来更低门槛的生产力提升,https://github.blog/changelog/2026-05-28-anthropic-claude-opus-4-8-is-now-available-in-github-copilot/,high,脚本化内容生产链路：资料→脚本→发布
+2026-05-27,Runway发布Runway MCP Server,视频生成进入可编排工作流/批量化阶段,https://runwayml.com/blog/runway-mcp-server/,high,MCP工作流模板库系列
+2026-05-28,Reactor宣布$59M融资做实时生成视频平台,互动内容/实时世界趋势信号,https://press.aboutamazon.com/aws/2026/5/reactor-emerges-from-stealth-with-59m-to-build-the-platform-for-real-time-ai-worlds,med-high,趋势解读：岗位与流程重排
+2026-05-28,X Square Robot开源Wall-OSS-0.5（4B VLA）,具身/机器人AI开源科普与验证清单,https://huggingface.co/x-square-robot/wall-oss-0.5,medium,科普+后续实测（避免夸大）
+2026-05-27,OpenClaw 2026.5.26发布（自托管Agent平台更新）,私域社群自动化教程与风控清单,https://github.com/clawdbot/clawdbot/releases,med-high,社群Agent从0到1（强调安全边界）

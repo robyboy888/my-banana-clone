@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 行业热点自媒体选题库 - 2026-06-04</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --ink: #16324f;
+      --muted: #5d7288;
+      --line: #d9e4f1;
+      --blue: #2f6fed;
+      --blue-soft: #eaf2ff;
+      --green: #1f8f5f;
+      --amber: #b7791f;
+      --shadow: 0 18px 50px rgba(31, 61, 99, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(47, 111, 237, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.14), transparent 24%),
+        linear-gradient(180deg, #f6f9fd 0%, #eef4fb 100%);
+      color: var(--ink);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      line-height: 1.7;
+    }
+
+    .page {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 24px auto 40px;
+      background: var(--paper);
+      border: 1px solid rgba(47, 111, 237, 0.12);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 40px 48px 28px;
+      background: linear-gradient(135deg, #f8fbff 0%, #edf4ff 55%, #e6f0ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(47, 111, 237, 0.10);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .meta-card, .signal, .topic, .summary-box, .observation {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .meta-card {
+      padding: 16px 18px;
+    }
+
+    .meta-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+      font-size: 14px;
+    }
+
+    .lead {
+      padding: 28px 48px 8px;
+      font-size: 17px;
+      color: #243b53;
+    }
+
+    .section {
+      padding: 8px 48px 28px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 18px;
+      font-size: 24px;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 8px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #2f6fed 0%, #72a3ff 100%);
+    }
+
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .signal, .observation {
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+
+    .signal h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .signal p, .topic p, .observation p {
+      margin: 8px 0;
+      color: #2f4358;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .tag.high { background: #e9f8ef; color: var(--green); }
+    .tag.medium { background: #fff3df; color: var(--amber); }
+
+    .summary-box {
+      padding: 18px 20px;
+      background: linear-gradient(180deg, #f7fbff 0%, #eff5ff 100%);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #edf4ff;
+      color: #1b4fbf;
+      font-weight: 800;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fbfdff;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .topic {
+      padding: 22px 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+
+    .priority {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .topic ul, .observation ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .topic li, .observation li {
+      margin: 6px 0;
+    }
+
+    .footer {
+      padding: 10px 48px 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; box-shadow: none; border: none; border-radius: 0; }
+      a { color: #1b4fbf; }
+    }
+
+    @media (max-width: 1080px) {
+      .meta, .signals { grid-template-columns: 1fr; }
+      .hero, .lead, .section, .footer { padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 30px; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 行业热点自媒体选题库</div>
+      <h1>2026-06-04 AI 热点选题报告</h1>
+      <div class="meta">
+        <div class="meta-card">
+          <strong>采集日期</strong>
+          <div>2026-06-04（Asia/Shanghai）</div>
+        </div>
+        <div class="meta-card">
+          <strong>采集窗口</strong>
+          <div>2026-06-02 08:00 至 2026-06-04 08:00（北京时间）</div>
+        </div>
+        <div class="meta-card">
+          <strong>定位说明</strong>
+          <div>面向 AI 自媒体创作者，筛选可验证、可讲述、可转化为选题的行业热点。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lead">
+      今天最值得抓的，不是单个模型的参数输赢，而是“AI 正在接管工作系统与商业入口”。微软、OpenAI、GitHub、Meta 在过去 48 小时里分别推进了 Agent 平台、知识工作代理、自动化工作流和商业承接代理。对创作者来说，这意味着内容焦点应从“哪个模型更强”切换到“一个人如何用 AI 串起选题、制作、分发和变现”。
+    </section>
+
+    <section class="section">
+      <div class="section-title">热点摘要条</div>
+      <div class="signals">
+        <article class="signal">
+          <span class="tag high">高可信</span>
+          <h3>Meta 把 AI 推进到询盘与转化环节</h3>
+          <p>Meta Business Agent 连接广告、网站、CRM 与社媒互动，信号不是“再来一个写文案助手”，而是 AI 开始接管内容后半程。</p>
+        </article>
+        <article class="signal">
+          <span class="tag high">高可信</span>
+          <h3>微软在 Build 2026 抢 Agent 基础设施入口</h3>
+          <p>Windows AI Foundry、ACS、WebIQ/Scout 与 MAI 模型形成统一平台叙事，内容生产会从“工具堆叠”转向“系统装配”。</p>
+        </article>
+        <article class="signal">
+          <span class="tag high">高可信</span>
+          <h3>OpenAI 与 GitHub 都在推动“可执行 AI”</h3>
+          <p>Codex 外扩到知识工作，Copilot 则走向定时任务、SDK 与语音入口，说明聊天框之外的 AI 入口正在迅速增多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日热点摘要</div>
+      <div class="summary-box">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 11%;">时间</th>
+              <th style="width: 21%;">热点信号</th>
+              <th style="width: 21%;">对创作者的意义</th>
+              <th style="width: 23%;">来源链接</th>
+              <th style="width: 10%;">可信度</th>
+              <th style="width: 14%;">内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-03</td>
+              <td>Meta 发布 Meta Business Agent，连接 ads、website、CRM 与 customer interactions。</td>
+              <td>AI 正从内容生成走向询盘承接与转化，私域和商业闭环会比单纯写稿更快被改写。</td>
+              <td><a href="https://about.fb.com/news/2026/06/meta-business-agent/">Meta 官方公告</a></td>
+              <td>高</td>
+              <td>AI 私域运营代理；创作者变现链路重写</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>微软 Build 2026 把 Agent、Windows AI Foundry、ACS、WebIQ/Scout 与 MAI 模型放进统一叙事。</td>
+              <td>大厂竞争焦点从模型比较切向系统入口与工作流编排。</td>
+              <td>
+                <a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Build</a><br />
+                <a href="https://azure.microsoft.com/en-us/blog/advancing-ai-at-build-2026-azure-ai-foundry-unveils-new-models-custom-agents-and-enterprise-readiness/">Azure AI Foundry</a>
+              </td>
+              <td>高</td>
+              <td>一个人的 AI 内容工厂基础设施清单</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>OpenAI 发布《Codex for knowledge work》，称周活超 500 万，其中约 20% 为知识工作者。</td>
+              <td>“不会写代码也能搭工作代理”开始成为明确产品叙事。</td>
+              <td><a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI 官方文章</a></td>
+              <td>高</td>
+              <td>Codex 从程序员工具变成普通人的工作系统</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>GitHub 发布 Copilot cloud agent 定时任务与自动化能力。</td>
+              <td>技术型创作者可把选题监控、日报、版本解读、资料整理做成定时 AI 流水线。</td>
+              <td><a href="https://github.blog/changelog/2026-06-02-schedule-and-automate-tasks-with-copilot-cloud-agent/">GitHub Changelog</a></td>
+              <td>高</td>
+              <td>AI 日报号如何搭自动化编辑部</td>
+            </tr>
+            <tr>
+              <td>2026-06-02</td>
+              <td>GitHub 同日开放 Copilot coding agent SDK GA，并在 CLI 引入实验性语音输入。</td>
+              <td>Agent 正在支持二次开发与多入口操作，适合讲“下一代 AI 工具形态”。</td>
+              <td>
+                <a href="https://github.blog/changelog/2026-06-02-github-copilot-coding-agent-sdk-is-now-generally-available/">SDK GA</a><br />
+                <a href="https://github.blog/changelog/2026-06-02-voice-input-for-github-cli-is-now-in-public-preview/">CLI 语音输入</a>
+              </td>
+              <td>高（事实）/ 中（传播）</td>
+              <td>语音 + Agent + CLI 的创作者工作台</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">推荐选题</div>
+      <div class="topics">
+        <article class="topic">
+          <div class="priority">选题 01｜优先级 S</div>
+          <h3>微软 Build 2026 不是发几个模型，而是在教你怎么搭一个人的 AI 内容工厂</h3>
+          <p><strong>目标受众：</strong>AI 工具博主、知识型创作者、超级个体、独立创业者</p>
+          <p><strong>切题角度：</strong>把 Agent 平台、系统入口、模型能力翻译成创作者的实际流程。</p>
+          <p><strong>爆点：</strong>大厂已经不满足于做聊天机器人，而是在抢“你每天怎么工作”的入口。</p>
+          <ul>
+            <li><strong>内容结构：</strong>为什么这次微软不只是发模型；创作者真正需要哪些 AI 环节；Windows AI Foundry / ACS / MAI 模型分别对应什么动作；未来半年谁会从“会用模型”进化成“会搭系统”。</li>
+            <li><strong>痛点：</strong>工具很多，但绝大多数人不会把它们接成稳定产线。</li>
+            <li><strong>爽点：</strong>看完就能理解“一个人怎么搭 AI 编辑部”。</li>
+            <li><strong>痒点：</strong>别人还在比模型，你已经开始比流程和系统。</li>
+            <li><strong>推荐形式：</strong>8-12 分钟口播视频、长图文、直播拆解。</li>
+            <li><strong>可引用来源：</strong><a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Build</a>，<a href="https://azure.microsoft.com/en-us/blog/advancing-ai-at-build-2026-azure-ai-foundry-unveils-new-models-custom-agents-and-enterprise-readiness/">Azure AI Foundry</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 02｜优先级 A</div>
+          <h3>Meta 开始让 AI 直接接询盘了，创作者变现链路可能比内容生产更快被改写</h3>
+          <p><strong>目标受众：</strong>做私域、知识付费、直播带货、品牌内容和咨询服务的创作者</p>
+          <p><strong>切题角度：</strong>从“AI 写内容”切到“AI 承接转化”。</p>
+          <p><strong>爆点：</strong>Meta Business Agent 连接 ads、网站、CRM 和社媒私信，AI 开始进入成交环节。</p>
+          <ul>
+            <li><strong>内容结构：</strong>Meta 这次发的不是普通客服机器人；内容创作者真正该关注的是哪一段链路；私域和转化团队会先被怎么改变；哪些人该现在跟，哪些人先观望。</li>
+            <li><strong>痛点：</strong>很多创作者会做流量，但承接和转化效率很低。</li>
+            <li><strong>爽点：</strong>观众会看到“AI 不只是写稿，而是直接帮赚钱”。</li>
+            <li><strong>痒点：</strong>担心别人先把 AI 用在私域和成交，自己还停留在写标题。</li>
+            <li><strong>推荐形式：</strong>趋势解读视频、商业分析长帖、直播案例拆解。</li>
+            <li><strong>可引用来源：</strong><a href="https://about.fb.com/news/2026/06/meta-business-agent/">Meta 官方公告</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 03｜优先级 A-</div>
+          <h3>OpenAI 正在把 Codex 从程序员工具，变成普通人的工作代理</h3>
+          <p><strong>目标受众：</strong>知识博主、研究型创作者、运营、独立顾问、知识付费从业者</p>
+          <p><strong>切题角度：</strong>从“不会写代码的人能不能用 Codex 搭工作系统”切入。</p>
+          <p><strong>爆点：</strong>周活超 500 万、连接器、Plugins、Sites，说明它的定位已经变化。</p>
+          <ul>
+            <li><strong>内容结构：</strong>Codex 这次到底新增了什么；它和传统聊天式 AI 的差异；对创作者最实用的三类场景；什么时候值得入场，什么时候该继续观望。</li>
+            <li><strong>痛点：</strong>知道 AI 能聊，但不会让 AI 去串联复杂任务。</li>
+            <li><strong>爽点：</strong>给观众一种“我也能搭起来”的确定感。</li>
+            <li><strong>痒点：</strong>怕错过下一波“不会写代码也能组系统”的红利。</li>
+            <li><strong>推荐形式：</strong>教程型视频、案例评测、图文拆解。</li>
+            <li><strong>可引用来源：</strong><a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI 官方文章</a></li>
+          </ul>
+        </article>
+
+        <article class="topic">
+          <div class="priority">选题 04｜优先级 B+</div>
+          <h3>AI 日报号怎么做成半自动编辑部？GitHub Copilot 已经给出雏形</h3>
+          <p><strong>目标受众：</strong>技术内容创作者、AI 开发教程博主、自动化工作流爱好者</p>
+          <p><strong>切题角度：</strong>用 Copilot 自动化任务演示“热点监控、日报整理、版本解读”的流水线思路。</p>
+          <p><strong>爆点：</strong>定时 prompts、自动处理 issue / PR、SDK GA、CLI 语音入口，显示 Agent 正在多入口化。</p>
+          <ul>
+            <li><strong>内容结构：</strong>Copilot 新能力到底能做什么；哪些内容生产动作适合自动化；为什么这比“一个更强聊天框”更重要；技术型创作者应该如何布局自己的 Agent 工作流。</li>
+            <li><strong>痛点：</strong>每天重复搜集、整理、归档、生成初稿，耗时但价值密度不高。</li>
+            <li><strong>爽点：</strong>观众会觉得“原来日报号真的能做成自动化系统”。</li>
+            <li><strong>痒点：</strong>看到别人把 AI 接进工作流，自己还停留在手动复制粘贴。</li>
+            <li><strong>推荐形式：</strong>工作流演示视频、直播搭建、线程式图文。</li>
+            <li><strong>可引用来源：</strong><a href="https://github.blog/changelog/2026-06-02-schedule-and-automate-tasks-with-copilot-cloud-agent/">自动化任务</a>，<a href="https://github.blog/changelog/2026-06-02-github-copilot-coding-agent-sdk-is-now-generally-available/">SDK GA</a>，<a href="https://github.blog/changelog/2026-06-02-voice-input-for-github-cli-is-now-in-public-preview/">CLI 语音输入</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">补充观察</div>
+      <article class="observation">
+        <p>以下信号与创作者工具链高度相关，但发布时间超出本报告 48 小时主窗口，因此不列入今日主表，仅作为后续跟踪：</p>
+        <ul>
+          <li>ElevenLabs 于 2026-05-28 发布 <a href="https://elevenlabs.io/blog/dubbing-studio-v2">Dubbing Studio v2</a>，说明语音本地化与多语种内容分发仍在持续升温。</li>
+          <li>如果接下来出现平台联动或大案例，适合把“翻译配音”和“全球分发”拉成独立专题。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-title">今日最推荐</div>
+      <div class="summary-box">
+        <strong>微软 Build 2026 不是发几个模型，而是在教你怎么搭一个人的 AI 内容工厂</strong>
+        <p>原因：这条线同时覆盖模型、Agent、系统入口、工作流和创作者生产方式，延展性最强；既能接当天热点，也能拆成后续系列内容，不是一次性新闻流量。</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      来源均为可验证链接；涉及开放范围、使用门槛、效果数据的判断，已在正文中区分“事实”与“推断”。
+    </footer>
+  </main>
+</body>
+</html>

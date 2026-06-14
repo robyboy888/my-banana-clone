@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-05-30）</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#101a33;
+      --card2:#0f1730;
+      --text:#e8eefc;
+      --muted:#a9b8de;
+      --line:rgba(255,255,255,.10);
+      --blue:#2f6fff;
+      --blue2:#1f4fcc;
+      --green:#3ddc97;
+      --amber:#ffcc66;
+      --red:#ff6b6b;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: "PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 520px at 20% -10%, rgba(47,111,255,.35), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(61,220,151,.18), transparent 55%),
+        radial-gradient(900px 520px at 50% 120%, rgba(255,204,102,.14), transparent 60%),
+        var(--bg);
+    }
+    a{color:#bcd0ff;text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .wrap{max-width:1200px;margin:0 auto;padding:28px 18px 60px;}
+    .top{
+      display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+    .meta{
+      display:flex;gap:10px;flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill{
+      padding:6px 10px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;
+      backdrop-filter: blur(10px);
+    }
+    .desc{
+      margin:12px 0 18px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      padding:14px 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .bar{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:12px;
+      margin:18px 0 22px;
+    }
+    .kpi{
+      padding:14px 14px 12px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(47,111,255,.10), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      min-height:84px;
+    }
+    .kpi:nth-child(2){
+      background: linear-gradient(180deg, rgba(61,220,151,.10), rgba(255,255,255,.02));
+    }
+    .kpi:nth-child(3){
+      background: linear-gradient(180deg, rgba(255,204,102,.10), rgba(255,255,255,.02));
+    }
+    .kpi:nth-child(4){
+      background: linear-gradient(180deg, rgba(47,111,255,.08), rgba(255,255,255,.02));
+    }
+    .kpi .t{font-size:12px;color:var(--muted);margin-bottom:6px;}
+    .kpi .v{font-size:15px;line-height:1.45;margin:0;}
+    .section{
+      margin-top:22px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.02);
+    }
+    .sec-hd{
+      padding:14px 16px;
+      background: linear-gradient(90deg, rgba(47,111,255,.55), rgba(31,79,204,.18));
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .sec-hd h2{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .sec-bd{padding:14px 16px 18px;}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      font-size:13px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(0,0,0,.16);
+    }
+    th,td{
+      text-align:left;
+      vertical-align:top;
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    th{
+      position:sticky; top:0;
+      background: rgba(15,23,48,.92);
+      color:#dbe6ff;
+      font-weight:600;
+      z-index:1;
+    }
+    tr:last-child td{border-bottom:none;}
+    .cred{
+      display:inline-flex;gap:6px;align-items:center;
+      padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color:#dbe6ff;
+      white-space:nowrap;
+      font-size:12px;
+    }
+    .dot{width:7px;height:7px;border-radius:50%;}
+    .dot.h{background:var(--green);}
+    .dot.m{background:var(--amber);}
+    .dot.l{background:var(--red);}
+    .topic-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .topic{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.08));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:14px 14px 12px;
+    }
+    .topic .rank{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;color:var(--muted);
+      margin-bottom:8px;
+    }
+    .badge{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:.3px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(47,111,255,.18);
+      color:#dbe6ff;
+    }
+    .badge.p0{background: rgba(61,220,151,.16); border-color: rgba(61,220,151,.35);}
+    .badge.p1{background: rgba(255,204,102,.14); border-color: rgba(255,204,102,.35);}
+    .badge.p2{background: rgba(47,111,255,.14); border-color: rgba(47,111,255,.35);}
+    .topic h3{margin:0 0 10px;font-size:15px;line-height:1.4;}
+    .kv{
+      margin:0;
+      padding-left:16px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:13px;
+    }
+    .kv li{margin:5px 0;}
+    .note{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+      margin:12px 0 0;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.16);
+    }
+    .footer{
+      margin-top:20px;
+      color:rgba(255,255,255,.60);
+      font-size:12px;
+      line-height:1.7;
+    }
+    @media (max-width: 980px){
+      .bar{grid-template-columns:1fr 1fr;}
+      .topic-grid{grid-template-columns:1fr;}
+      th{position:static;}
+    }
+    @media print{
+      body{background:#fff;color:#111;}
+      a{color:#0b57d0;}
+      .wrap{max-width:none;padding:0;}
+      .desc,.kpi,.section,.topic{box-shadow:none;}
+      .desc,.kpi,.section,.topic{border-color:#ddd;}
+      .sec-hd{background:#e9f0ff;color:#111;}
+      table{background:#fff;border-color:#ddd;}
+      th{background:#f5f7fb;color:#111;position:static;}
+      th,td{border-bottom:1px solid #e6e6e6;}
+      .pill{border-color:#ddd;background:#fff;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>AI 行业热点自媒体选题库</h1>
+        <div class="meta" style="margin-top:10px">
+          <span class="pill">采集日期：2026-05-30（UTC+8）</span>
+          <span class="pill">采集窗口：2026-05-28 00:00 — 2026-05-30 11:30</span>
+          <span class="pill">面向：AI 自媒体创作者</span>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">输出：摘要表 + 选题拆解</span>
+        <span class="pill">原则：事实均给链接；不确定标注</span>
+      </div>
+    </div>
+
+    <div class="desc">
+      <b>定位说明：</b> 从官方博客、产品更新页、公司公告、GitHub Release、权威平台等可验证来源筛选近 24–48 小时 AI 热点，并转译为可讲述的内容机会（图文/视频/直播/课程）。若信息未经充分确认，将标注“待验证/不确定”。
+    </div>
+
+    <div class="bar">
+      <div class="kpi">
+        <div class="t">最推荐选题（P0）</div>
+        <p class="v">OpenAI 模型线变动：o3 / GPT‑4.5 退役后的创作者迁移清单</p>
+      </div>
+      <div class="kpi">
+        <div class="t">模型热点</div>
+        <p class="v">Claude Opus 4.8 发布并在 AWS Bedrock 上线</p>
+      </div>
+      <div class="kpi">
+        <div class="t">行业信号</div>
+        <p class="v">Anthropic 官方披露新融资（Series H）</p>
+      </div>
+      <div class="kpi">
+        <div class="t">开源工具链</div>
+        <p class="v">Hermes Agent GitHub Release：Agent 工作流上新</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-hd"><h2>今日热点摘要（表格）</h2></div>
+      <div class="sec-bd">
+        <table aria-label="今日热点摘要表">
+          <thead>
+            <tr>
+              <th style="width:120px">时间（UTC+8）</th>
+              <th style="width:220px">热点信号</th>
+              <th>对创作者的意义</th>
+              <th style="width:220px">来源链接</th>
+              <th style="width:110px">可信度</th>
+              <th style="width:220px">内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-28</td>
+              <td><b>Claude Opus 4.8</b> 发布</td>
+              <td>适合做“同题对打 + 失败案例 + 提示词模板”的创作者测评；把模型宣称转成可复现任务集。</td>
+              <td><a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（官方）</span></td>
+              <td>模型对比、提示词卡片、场景测评（写作/脚本/选题）</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>Opus 4.8 上线 <b>AWS Bedrock</b></td>
+              <td>“企业可用性”背书：更适合做 ToB 落地、采购/合规、权限与成本管理内容。</td>
+              <td><a href="https://aws.amazon.com/blogs/aws/anthropics-claude-opus-4-8-is-now-available-in-amazon-bedrock/">aws.amazon.com/blogs/aws/...</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（官方）</span></td>
+              <td>B 端落地、企业上云、成本/合规/权限选题</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>Anthropic <b>Series H</b> 融资披露</td>
+              <td>把融资新闻转成“赛道选择 + 内容栏目 + 产品化路径”；估值/条款建议加“待第三方核对”。</td>
+              <td><a href="https://www.anthropic.com/news/anthropic-has-raised-4-5b-in-series-h-funding">anthropic.com/news/...</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（官方）</span></td>
+              <td>行业解读、赛道选择、系列专栏（资本→产品→内容）</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>OpenAI release notes：<b>o3 / GPT‑4.5</b> 退役/过渡</td>
+              <td>创作者工具链会受影响：提示词效果、成本、稳定性；最适合做“迁移清单 + 回归题库”。</td>
+              <td><a href="https://help.openai.com/en/articles/9624314-model-release-notes/">help.openai.com/.../model-release-notes</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（官方）</span></td>
+              <td>迁移清单、对比翻车、替代方案、降级策略</td>
+            </tr>
+            <tr>
+              <td>2026-05-28（~）</td>
+              <td>开源 <b>Hermes Agent</b> 新版本</td>
+              <td>开源 Agent 工具链上新：适合做“真实任务演示（热点→选题→脚本）”连载。</td>
+              <td><a href="https://github.com/NousResearch/hermes-agent/releases">github.com/.../releases</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（GitHub）</span></td>
+              <td>开源对比、工作流教程、失败案例与防坑</td>
+            </tr>
+            <tr>
+              <td>2026-05-29</td>
+              <td>Hermes Agent 补丁版本（tag）</td>
+              <td>可做“升级注意事项 + 版本锁定 + 复现指南”，把不稳定性转成方法论。</td>
+              <td><a href="https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.29">github.com/.../tag/v2026.5.29</a></td>
+              <td><span class="cred"><span class="dot h"></span>高（GitHub）</span></td>
+              <td>变更解读、升级踩坑、对比演示（新旧差异）</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="footer">
+          注：模型效果结论强依赖版本/提示词/样本；建议在内容中写清“任务集 + 复现方式”。融资/估值解读属于推断，应与官方事实分开表述。
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-hd"><h2>今日选题（3–5 个，含优先级与拆解）</h2></div>
+      <div class="sec-bd">
+        <div class="topic-grid">
+          <div class="topic">
+            <div class="rank"><span class="badge p0">P0</span> 最推荐（强时效 + 强实用）</div>
+            <h3>OpenAI 模型线变动：o3 / GPT‑4.5 退役后的创作者迁移清单</h3>
+            <ul class="kv">
+              <li><b>受众：</b>创作者、课程/训练营、ToB 顾问型账号</li>
+              <li><b>角度：</b>迁移清单 + 回归题库 + 替代路线（避免泛聊）</li>
+              <li><b>爆点：</b>同提示词换模型翻车；“不确定性 → 可执行清单”</li>
+              <li><b>结构：</b>官方要点 → 影响清单 → 替代策略 → 回归题库 → 提示词迁移 → 模板下载</li>
+              <li><b>形式：</b>图文长帖 + 8–12 分钟视频 + 直播 Q&amp;A</li>
+              <li><b>引用：</b><a href="https://help.openai.com/en/articles/9624314-model-release-notes/">OpenAI Model release notes</a></li>
+            </ul>
+            <div class="note">提示：只引用官方文字；“原因/影响范围/替代优劣”属于推断时要标注。</div>
+          </div>
+
+          <div class="topic">
+            <div class="rank"><span class="badge p1">P1</span> 高讨论度（适合对比测评）</div>
+            <h3>Claude Opus 4.8：更强推理与“少走捷径”到底是什么？用创作者任务测一遍</h3>
+            <ul class="kv">
+              <li><b>受众：</b>写作/脚本/研究型创作者</li>
+              <li><b>角度：</b>用创作者任务定义测评（长文提纲、口播脚本、改稿、资料整合）</li>
+              <li><b>爆点：</b>失败案例更好传播；模型“性格差异”适合短视频</li>
+              <li><b>结构：</b>官方宣称 → 任务集 → 对比结果 → 提示词模板 → 最佳使用场景</li>
+              <li><b>引用：</b><a href="https://www.anthropic.com/news/claude-opus-4-8">Anthropic</a>；<a href="https://aws.amazon.com/blogs/aws/anthropics-claude-opus-4-8-is-now-available-in-amazon-bedrock/">AWS Bedrock</a></li>
+            </ul>
+            <div class="note">提示：测评结论需写清样本、提示词、日期与版本。</div>
+          </div>
+
+          <div class="topic">
+            <div class="rank"><span class="badge p1">P1</span> 行业栏目（适合系列化）</div>
+            <h3>Anthropic 融资解读：资本信号如何影响产品节奏？创作者怎么借势选赛道</h3>
+            <ul class="kv">
+              <li><b>受众：</b>想做 AI 垂类账号/课程/社群的人</li>
+              <li><b>角度：</b>把融资新闻翻译成“栏目方向 + 变现路径”</li>
+              <li><b>爆点：</b>大额融资自带传播；“资本→产品→内容机会”更接地气</li>
+              <li><b>结构：</b>官方事实 → 为什么买单 → 对创作者意义 → 赛道映射 → 10 个系列栏目 → 风险</li>
+              <li><b>引用：</b><a href="https://www.anthropic.com/news/anthropic-has-raised-4-5b-in-series-h-funding">Anthropic 公告</a></li>
+            </ul>
+            <div class="note">提示：估值/条款解读属于推断；可加“待第三方核对”。</div>
+          </div>
+
+          <div class="topic">
+            <div class="rank"><span class="badge p2">P2</span> 工具控向（可做连载）</div>
+            <h3>开源 Hermes Agent 上新：用它跑通 3 个创作者工作流（热点→选题→脚本）</h3>
+            <ul class="kv">
+              <li><b>受众：</b>工程向创作者、工具控、自动化爱好者</li>
+              <li><b>角度：</b>用 3 个可复现任务演示（不要只讲概念）</li>
+              <li><b>爆点：</b>开源 + 可复现 + 真实案例；适合做系列教程</li>
+              <li><b>结构：</b>变更速读 → 工作流 A/B/C → 失败处理 → 版本锁定与复现</li>
+              <li><b>引用：</b><a href="https://github.com/NousResearch/hermes-agent/releases">Releases</a>；<a href="https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.29">tag v2026.5.29</a></li>
+            </ul>
+            <div class="note">提示：演示中建议固定依赖版本与输入样本，保证复现。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      生成原则：所有事实性热点都附来源链接；信息不足时标注不确定/待验证。建议优先做 P0 选题（强时效+强实用），再用 P1 补“测评/行业栏目”形成连载。
+    </div>
+  </div>
+</body>
+</html>
+

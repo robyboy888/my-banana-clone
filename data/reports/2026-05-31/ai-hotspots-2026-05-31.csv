@@ -1,0 +1,8 @@
+time_utc8,signal,creator_meaning,source,credibility,content_opportunity
+"2026-05-29","OpenAI 发布 GPT‑Rosalind 生物防御合作项目（与 USNORTHCOM 合作）","安全议题强叙事；适合做事实梳理+边界澄清，避免恐慌","https://openai.com/index/introducing-gpt-rosalind/","High","8–12 分钟视频：项目做什么/不做什么/为什么现在做"
+"2026-05-29","OpenAI ChatGPT 模型发布说明：公布退役/下架时间表（含 o3、GPT‑4.5 等）","提示词题库与工作流需回归测试；可做迁移清单与替代组合","https://help.openai.com/en/articles/9624314-model-release-notes","High","迁移 checklist + 回归题库模板（图文/长视频）"
+"2026-05-28","Anthropic 发布 Claude Opus 4.8","模型迭代影响写作/脚本/课程大纲默认效果；适合做对比测评","https://www.anthropic.com/news/claude-opus-4-8","High","同题盲测+评分表，提升可复现与转发"
+"2026-05-28","AWS：Claude Opus 4.8 上线 Amazon Bedrock","平台采购与合规路径更清晰；适合面向 B 端的落地指南","https://aws.amazon.com/blogs/aws/claude-opus-4-8-in-amazon-bedrock/","High","企业落地路线图：选型/成本/权限/审计"
+"2026-04-27 (effective 2026-06-01)","GitHub Copilot：部分年度套餐自 6/1 起转为用量计费并引入模型倍率","明天生效，影响账单；适合做成本预算与避坑清单","https://github.blog/changelog/2026-04-27-request-based-billing-for-copilot-legacy-annual-plans/ ; https://docs.github.com/en/billing/concepts/billing-for-github-copilot#model-multipliers","High","一张表讲清倍率×场景；3 套省钱策略"
+"2026-05-28","ElevenLabs 发布 Dubbing v2","跨语种分发更顺滑；适合做一稿多语 SOP 与案例复盘","https://elevenlabs.io/blog/dubbing-v2","Medium","出海创作者 SOP：脚本→配音→校对→分发"
+

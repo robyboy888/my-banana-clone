@@ -1,0 +1,8 @@
+time_utc8,hot_signal,creator_significance,source_url,credibility,content_opportunity
+2026-05-21,"（超窗）OpenAI：ChatGPT Release Notes（含 Codex / ChatGPT 更新条目）","AI 编程/自动化内容长期流量；适合做工作流教程、对比评测与最佳实践","https://help.openai.com/en/articles/6825453-chatgpt-release-notes","High","用 AI 把 1 小时脚本变成 10 分钟；Codex/IDE 工作流"
+2026-05-12,"（超窗）OpenAI：ChatGPT for Excel / Google Sheets","选题库/脚本库/素材库模板化；数据清洗与结构化写作更容易","https://help.openai.com/en/articles/6825453-chatgpt-release-notes","High","自媒体选题库自动化（Sheets 模板）；从数据到标题/脚本"
+2026-05,"DeepMind：Gemini 3.5 Flash 模型卡","用可核对信息讲能力边界；适合输出适配任务清单与避坑指南","https://deepmind.google/models/gemini/gemini-3.5-flash/","High","一张表：哪些任务用 Flash 更划算；多模态评测与避坑"
+2026-05-19,"（超窗/媒体）TechCrunch：Google 押注 agent（Gemini 3.5 Flash 与 agent 叙事）","把趋势叙事转成可执行 SOP：Daily Brief→选题→脚本→分发","https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/","Medium","Agent 不是功能，是流程；常驻助理=内容工厂"
+2026-05-21,"（超窗）Anthropic：Claude Release Notes（合规能力/集成等）","ToB 内容/课程友好：合规与审计决定 agent 落地与采购","https://support.claude.com/en/articles/12138966-release-notes","High","AI 合规产品地图；企业上 AI 的真实门槛"
+2026-05-22,"（超窗）HF：Copy Repo Contents to Buckets Instantly（Copy to Bucket）","复现/备份/分发可模板化；适合交付“复现资源包”提高收藏与转化","https://huggingface.co/changelog/copy-repo-contents-to-buckets-instantly","High","3 分钟把任意 HF Repo 搬到对象存储；复现资源包结构模板"
+

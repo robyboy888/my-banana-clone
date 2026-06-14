@@ -1,0 +1,7 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-05-22,"Hugging Face：支持将仓库内容一键复制到 Bucket","模型/数据/素材分发链路更工程化，适合做工具链教程与成本对比","https://huggingface.co/changelog/copy-repo-contents-to-buckets-instantly","高（官方变更日志）","讲清楚为什么创作者也该懂存储/分发；给出复制/回滚/权限实操清单"
+2026-05-21,"OpenAI：ChatGPT Enterprise/Edu 发布说明（含 Codex 更新）","把功能翻译成内容团队 SOP：选题→素材→脚本→审校→复盘","https://help.openai.com/en/articles/10469692-chatgpt-enterprise-edu-release-notes","高（官方发布说明）","用目标驱动工作流做系列：模板化、可复用、易转化"
+2026-05-22（更新时间）,"Google DeepMind：Gemini 3 Pro 模型卡更新","模型卡口径影响评测与选型，适合做“读模型卡避免翻车”栏目","https://deepmind.google/models/model-cards/","中-高（官方页面；需进一步核对具体变更点）","用模型卡拆解营销/二手解读；建立长期信任栏目"
+2026-05-21,"Runway：发布 Aleph 2.0 与 Edit Studio","AI 视频从生成走向可控编辑，适合做横评与剪辑工作流","https://runwayml.com/news/introducing-aleph-2-0-and-edit-studio","高（官方公告）","用“可用镜头率/返工成本/剪辑时间”量化对比，做可复现评测"
+2026-05-21,"美国拟议政策：据报道拟要求发布前提供模型访问（最长 90 天）","政策不确定但影响节奏，适合做“如何验证政策消息”与情景推演","https://www.washingtonpost.com/technology/2026/05/21/ai-models-white-house-executive-order/","中（权威媒体；政策文本与落地仍可能变化）","做信息差解释：证据链+影响路径；明确“待验证/可能性”"
+

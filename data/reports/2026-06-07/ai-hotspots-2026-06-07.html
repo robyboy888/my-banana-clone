@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-07</title>
+  <style>
+    :root {
+      --bg: #eef4fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #5f6f86;
+      --line: #d7e2f0;
+      --blue: #1f66d1;
+      --blue-soft: #eaf2ff;
+      --good: #0b7a4b;
+      --mid: #8a5a00;
+      --shadow: 0 18px 48px rgba(30, 64, 120, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+    }
+    .page {
+      width: min(1440px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 34px 42px 28px;
+      background:
+        radial-gradient(circle at top right, rgba(31, 102, 209, 0.16), transparent 34%),
+        linear-gradient(135deg, #f9fcff 0%, #eff5ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 38px;
+      line-height: 1.15;
+      color: #123d84;
+      letter-spacing: 0.02em;
+    }
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .meta-card, .signal, .topic, .note {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .meta-card {
+      padding: 14px 16px;
+    }
+    .meta-card .label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .meta-card .value {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .content {
+      padding: 26px 34px 38px;
+    }
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      font-size: 26px;
+      color: #164ea8;
+      line-height: 1.2;
+    }
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .signal {
+      padding: 16px 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .signal h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #143f88;
+    }
+    .signal p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 12px;
+      vertical-align: top;
+      text-align: left;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+    th {
+      background: var(--blue-soft);
+      color: #154999;
+      font-size: 13px;
+    }
+    td small {
+      color: var(--muted);
+    }
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .cred-high { color: var(--good); font-weight: 700; }
+    .cred-mid { color: var(--mid); font-weight: 700; }
+    .note {
+      margin-top: 8px;
+      padding: 16px 18px;
+      background: #f9fbff;
+      line-height: 1.8;
+    }
+    .topics {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .topic {
+      padding: 20px 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+    .topic-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .topic-no {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      font-weight: 800;
+    }
+    .topic-priority {
+      font-size: 13px;
+      color: #0b7a4b;
+      font-weight: 700;
+      background: #e8f8f0;
+      border: 1px solid #c9ecd8;
+      border-radius: 999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+    .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #163f83;
+      line-height: 1.35;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .chip {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #295caa;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+    .topic p, .topic li, .sources li {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+    .topic ul, .sources ol {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    .sources {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    @media (max-width: 1100px) {
+      .meta, .signals, .topic-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      .page { width: min(100vw - 18px, 1440px); margin: 10px auto 18px; border-radius: 14px; }
+      .hero, .content { padding: 20px 16px; }
+      h1 { font-size: 28px; }
+      .meta, .signals, .topic-grid { grid-template-columns: 1fr; }
+      .topic-head { flex-direction: column; align-items: flex-start; }
+      table { font-size: 13px; }
+      th, td { padding: 10px 8px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; box-shadow: none; border: none; }
+      a { color: #0f4daa; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">主窗口聚焦 2026-06-04 至 2026-06-07 的官方与高可信更新，补充窗口延伸到 2026-06-02 至 2026-06-03。重点筛选会影响内容生产、分发、转化、协作和个人 Agent 工作流的信号。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <span class="label">采集日期</span>
+          <span class="value">2026-06-07</span>
+        </div>
+        <div class="meta-card">
+          <span class="label">主要采集窗口</span>
+          <span class="value">2026-06-04 至 2026-06-07</span>
+        </div>
+        <div class="meta-card">
+          <span class="label">补充信号窗口</span>
+          <span class="value">2026-06-02 至 2026-06-03</span>
+        </div>
+        <div class="meta-card">
+          <span class="label">今日最推荐选题</span>
+          <span class="value">Meta 把“创作者参谋”做进后台了</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <h2 class="section-title">热点摘要条</h2>
+      <div class="signals">
+        <article class="signal">
+          <h3>平台开始接管创作者判断层</h3>
+          <p>Meta 已经不只给创作者数据面板，而是在后台直接给出复盘解释、灵感建议和增长方向。</p>
+        </article>
+        <article class="signal">
+          <h3>长期记忆型 AI 进入实用阶段</h3>
+          <p>OpenAI 的 Dreaming 把“会记住”推进到“会自动更新”，更接近长期陪跑的主编和助理。</p>
+        </article>
+        <article class="signal">
+          <h3>AI 工具开始职业化和企业化</h3>
+          <p>GitHub 与 Synthesia 都在强化成本、权限、治理、审计和标准化分发，而不只是拼模型效果。</p>
+        </article>
+      </div>
+
+      <h2 class="section-title">今日热点摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 11%;">时间</th>
+            <th style="width: 20%;">热点信号</th>
+            <th style="width: 24%;">对创作者的意义</th>
+            <th style="width: 21%;">来源链接</th>
+            <th style="width: 8%;">可信度</th>
+            <th style="width: 16%;">内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-04</td>
+            <td>Meta 发布 Creator Assistant，并扩展 Facebook Reels AI 翻译语言</td>
+            <td>平台开始直接给创作者做复盘、选题和增长建议，并继续降低跨语种分发门槛。</td>
+            <td><a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Meta 官方公告</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>平台红利解读，创作者工作流重构，跨语种增长打法</td>
+          </tr>
+          <tr>
+            <td>2026-06-04</td>
+            <td>OpenAI 发布 Dreaming 记忆升级</td>
+            <td>长期记忆型 AI 更适合选题、写作、课程、咨询和个人知识工作流。</td>
+            <td><a href="https://openai.com/index/chatgpt-memory-dreaming/">OpenAI</a><br><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">Release Notes</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>AI 主编/助理，长期协作工作流，个人品牌内容系统</td>
+          </tr>
+          <tr>
+            <td>2026-06-05</td>
+            <td>GitHub Copilot 进入成本与治理新阶段：旧模型下线、企业插件分发、AI Credits 定价公开</td>
+            <td>AI 工具开始从“能不能用”转向“怎么控成本、怎么控权限、怎么标准化团队工作流”。</td>
+            <td><a href="https://github.blog/changelog/2026-06-05-gpt-5-2-and-gpt-5-2-codex-deprecated/">模型退役</a><br><a href="https://github.blog/changelog/2026-06-05-enterprise-managed-plugins-in-vs-code-in-public-preview/">企业插件分发</a><br><a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing">定价文档</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>Agent 成本账，团队工具链治理，企业级 AI 工作流</td>
+          </tr>
+          <tr>
+            <td>2026-06-05 / 06-04</td>
+            <td>Synthesia 连续发布 3Rs 责任框架、AI Governance Portal，并宣布接入 Cinder 审核基础设施</td>
+            <td>AI 视频赛道开始把“可信、可审计、可规模化上线”做成核心卖点。</td>
+            <td><a href="https://www.synthesia.io/blog/category/synthesia">Synthesia Blog 类目页</a></td>
+            <td><span class="cred-mid">中高</span></td>
+            <td>AI 视频平台竞争逻辑，品牌可用性，治理即卖点</td>
+          </tr>
+          <tr>
+            <td>2026-06-03<br><small>补充窗口</small></td>
+            <td>Meta Business Agent 扩展到全球更多商家，并拓展到 Instagram</td>
+            <td>内容、咨询、客服、线索转化和成交开始被统一到 Agent 闭环。</td>
+            <td><a href="https://about.fb.com/news/2026/06/meta-business-agent/">Meta 官方公告</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>私域转化，AI 销售闭环，内容到成交一体化</td>
+          </tr>
+          <tr>
+            <td>2026-06-02<br><small>补充窗口</small></td>
+            <td>OpenAI 为 Codex 推出 role-specific plugins、Sites、annotations</td>
+            <td>AI 正按角色打包工作流，并开始直接交付可分享页面与协作载体。</td>
+            <td><a href="https://openai.com/index/codex-for-every-role-tool-workflow/">Codex workflows</a><br><a href="https://openai.com/index/codex-for-knowledge-work/">Knowledge work report</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>一人公司工具链，AI 生产系统，内容团队协作</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>定位说明：</strong>今天最适合做传播的，不是“又有哪个模型更强”，而是“平台和工具链开始接管判断、协作与成交流程”。这类话题更容易从功能上升到结构变化，传播性更强。
+      </div>
+
+      <h2 class="section-title" style="margin-top: 30px;">推荐选题</h2>
+      <div class="topics">
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 01</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>Meta 把“创作者参谋”做进后台了，平台正在接管你的复盘和选题判断</h3>
+          <div class="chips">
+            <span class="chip">目标受众：短视频创作者</span>
+            <span class="chip">目标受众：内容运营</span>
+            <span class="chip">目标受众：MCN / 海外账号</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>从“看数据面板”升级到“平台直接告诉你为什么爆、下一条怎么做”。</p>
+              <p><strong>爆点：</strong>AI 第一次不是外围工具，而是进入平台内部的创作者后台。</p>
+              <p><strong>内容结构：</strong>先讲 Creator Assistant 与 AI 翻译扩语言，再讲平台开始掌握复盘解释权和灵感分发权，最后给出创作者应对策略。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>不会分析数据，不会复盘，不会找下一条选题，做多语种扩张太重。</p>
+              <p><strong>爽点：</strong>后台直接给建议，灵感和复盘成本下降。</p>
+              <p><strong>痒点：</strong>平台推荐是不是在悄悄塑造创作者生产方向。</p>
+              <p><strong>推荐形式：</strong>快评视频，长图拆解，公众号深度文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Meta 官方公告</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 02</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>ChatGPT 记忆升级之后，AI 不再像搜索框，更像一个长期陪跑的主编</h3>
+          <div class="chips">
+            <span class="chip">目标受众：知识型博主</span>
+            <span class="chip">目标受众：咨询顾问</span>
+            <span class="chip">目标受众：个人品牌操盘手</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>重点不是“会记住”，而是“会自动更新、会纠正过期上下文”。</p>
+              <p><strong>爆点：</strong>AI 真正开始跨周、跨月、跨项目协作。</p>
+              <p><strong>内容结构：</strong>讲清 Dreaming 升级，再用选题库、播客策划、课程迭代、客户咨询等场景让读者感受到差别。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>每次都要重新喂背景，AI 容易忘，人和 AI 很难长期协作。</p>
+              <p><strong>爽点：</strong>终于有了“懂你上下文”的 AI 助手。</p>
+              <p><strong>痒点：</strong>越懂你越有价值，但控制权和隐私问题也更大。</p>
+              <p><strong>推荐形式：</strong>观点视频，播客话题，公众号深度分析。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://openai.com/index/chatgpt-memory-dreaming/">OpenAI Dreaming</a>，<a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT Release Notes</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 03</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>私域成交要被 AI 改写了，Meta 正把内容、咨询、客服、成交接成一个 Agent 闭环</h3>
+          <div class="chips">
+            <span class="chip">目标受众：知识付费</span>
+            <span class="chip">目标受众：私域操盘手</span>
+            <span class="chip">目标受众：电商与咨询团队</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>这不是简单的客服机器人升级，而是从线索承接到成交的完整流程改造。</p>
+              <p><strong>爆点：</strong>Agent 可以接住夜间消息、推荐商品、预约、筛线索、转人工、推动成交。</p>
+              <p><strong>内容结构：</strong>先区分新旧客服机器人，再讲对内容变现团队的影响，最后落到平台依赖和收费模式。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>私信承接不过来，商机响应慢，人工客服贵，跨语言难。</p>
+              <p><strong>爽点：</strong>内容带来的咨询终于能被系统化接住。</p>
+              <p><strong>痒点：</strong>平台是否会进一步拿走成交入口和用户关系。</p>
+              <p><strong>推荐形式：</strong>商业向解读视频，案例长文，直播拆盘。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://about.fb.com/news/2026/06/meta-business-agent/">Meta Business Agent</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 04</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>AI 工具开始职业化了：价格、权限、审计，正在比“更会生成”更重要</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 工具评测博主</span>
+            <span class="chip">目标受众：内容团队负责人</span>
+            <span class="chip">目标受众：品牌市场负责人</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>把 GitHub Copilot 的模型替换、插件分发、AI Credits 定价，与 Synthesia 的责任框架和治理 Portal 放在一起看。</p>
+              <p><strong>爆点：</strong>AI 工具竞争已经从“功能炫技”进入“能不能规模化、团队化、品牌化落地”。</p>
+              <p><strong>内容结构：</strong>先讲为什么这两天大量信号都在谈治理，再讲这和创作者的品牌合作、团队流程、预算控制有什么关系。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>团队难统一工具，内容风险难控，客户不敢大规模采用，AI 成本不可见。</p>
+              <p><strong>爽点：</strong>终于能把 AI 当正式生产力，而不是临时玩具。</p>
+              <p><strong>痒点：</strong>未来小团队会不会被“治理成本”重新拉开差距。</p>
+              <p><strong>推荐形式：</strong>趋势评论视频，行业观察长文，直播圆桌。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://github.blog/changelog/2026-06-05-gpt-5-2-and-gpt-5-2-codex-deprecated/">GitHub 模型退役</a>，<a href="https://github.blog/changelog/2026-06-05-enterprise-managed-plugins-in-vs-code-in-public-preview/">GitHub 企业插件分发</a>，<a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing">GitHub Copilot 定价</a>，<a href="https://www.synthesia.io/blog/category/synthesia">Synthesia Blog 类目页</a></p>
+        </article>
+      </div>
+
+      <section class="sources">
+        <h2 class="section-title">参考来源</h2>
+        <ol>
+          <li>Meta, <a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Introducing Creator Assistant, Plus More Languages For AI Translations on Facebook</a>, 2026-06-04。</li>
+          <li>OpenAI, <a href="https://openai.com/index/chatgpt-memory-dreaming/">Dreaming: Better memory for a more helpful ChatGPT</a>, 2026-06-04。</li>
+          <li>OpenAI Help Center, <a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT Release Notes</a>, 页面最近更新于 2026-06-07。</li>
+          <li>GitHub, <a href="https://github.blog/changelog/2026-06-05-gpt-5-2-and-gpt-5-2-codex-deprecated/">GPT-5.2 and GPT-5.2-Codex deprecated</a>, 2026-06-05。</li>
+          <li>GitHub, <a href="https://github.blog/changelog/2026-06-05-enterprise-managed-plugins-in-vs-code-in-public-preview/">Enterprise-managed plugins in VS Code in public preview</a>, 2026-06-05。</li>
+          <li>GitHub Docs, <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing">Models and pricing for GitHub Copilot</a>, 抓取于 2026-06-07。</li>
+          <li>Synthesia Blog 类目页，<a href="https://www.synthesia.io/blog/category/synthesia">Synthesia</a>，抓取于 2026-06-07，显示 2026-06-05 与 2026-06-04 的连续治理更新。</li>
+          <li>Meta, <a href="https://about.fb.com/news/2026/06/meta-business-agent/">Be There for Every Customer With Meta Business Agent</a>, 2026-06-03。</li>
+          <li>OpenAI, <a href="https://openai.com/index/codex-for-every-role-tool-workflow/">Codex for every role, tool, and workflow</a>, 2026-06-02。</li>
+          <li>OpenAI, <a href="https://openai.com/index/codex-for-knowledge-work/">Codex is becoming a productivity tool for everyone</a>, 2026-06-02。</li>
+        </ol>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

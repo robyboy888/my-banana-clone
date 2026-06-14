@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-08</title>
+  <style>
+    :root {
+      --bg: #eef4fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #5f6f86;
+      --line: #d7e2f0;
+      --blue: #1f66d1;
+      --blue-soft: #eaf2ff;
+      --good: #0b7a4b;
+      --mid: #8a5a00;
+      --low: #8b1e3f;
+      --shadow: 0 18px 48px rgba(30, 64, 120, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+    }
+    .page {
+      width: min(1440px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 34px 42px 28px;
+      background:
+        radial-gradient(circle at top right, rgba(31, 102, 209, 0.16), transparent 34%),
+        linear-gradient(135deg, #f9fcff 0%, #eff5ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 38px;
+      line-height: 1.15;
+      color: #123d84;
+      letter-spacing: 0.02em;
+    }
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .meta-card, .signal, .topic, .note {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .meta-card { padding: 14px 16px; }
+    .meta-card .label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .meta-card .value {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .content { padding: 26px 34px 38px; }
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      font-size: 26px;
+      color: #164ea8;
+      line-height: 1.2;
+    }
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .signal {
+      padding: 16px 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .signal h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #143f88;
+    }
+    .signal p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 12px;
+      vertical-align: top;
+      text-align: left;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+    th {
+      background: var(--blue-soft);
+      color: #154999;
+      font-size: 13px;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    .cred-high { color: var(--good); font-weight: 700; }
+    .cred-mid { color: var(--mid); font-weight: 700; }
+    .cred-low { color: var(--low); font-weight: 700; }
+    .note {
+      margin-top: 8px;
+      padding: 16px 18px;
+      background: #f9fbff;
+      line-height: 1.8;
+    }
+    .topics {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .topic {
+      padding: 20px 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+    .topic-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .topic-no {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      font-weight: 800;
+    }
+    .topic-priority {
+      font-size: 13px;
+      color: #0b7a4b;
+      font-weight: 700;
+      background: #e8f8f0;
+      border: 1px solid #c9ecd8;
+      border-radius: 999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+    .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #163f83;
+      line-height: 1.35;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .chip {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #295caa;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+    .topic p, .topic li, .sources li {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+    .topic ul, .sources ol {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    .sources {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    @media (max-width: 1100px) {
+      .meta, .signals, .topic-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page {
+        width: auto;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">面向 AI 自媒体创作者的日报版选题库。优先筛选最近 48 小时内的可验证热点，并补充近 7-10 天仍处于讨论窗口、且直接影响内容生产、分发、协作和变现的信号。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <span class="label">采集日期</span>
+          <div class="value">2026-06-08</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">主要采集窗口</span>
+          <div class="value">2026-06-06 至 2026-06-08</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">补充信号窗口</span>
+          <div class="value">2026-05-28 至 2026-06-05</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">定位说明</span>
+          <div class="value">看会改变创作者工作流的 AI 热点</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <h2 class="section-title">今日判断</h2>
+      <div class="signals">
+        <article class="signal">
+          <h3>平台接管判断层</h3>
+          <p>Meta 已经不满足只给数据后台，而是开始直接给创作者复盘解释、增长建议和跨语种扩散能力。</p>
+        </article>
+        <article class="signal">
+          <h3>设计层正在收口</h3>
+          <p>Canva 正把自己嵌进 ChatGPT、Gemini、Claude 与 Perplexity，争夺从 AI 生成到最终发布之间的最后一公里。</p>
+        </article>
+        <article class="signal">
+          <h3>Agent 工作台成熟</h3>
+          <p>GitHub 与 OpenAI 的信号都说明，下一阶段比拼的不是单个回答，而是持续上下文、排程、回传和交付能力。</p>
+        </article>
+      </div>
+
+      <h2 class="section-title">今日热点摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">时间</th>
+            <th style="width: 19%;">热点信号</th>
+            <th style="width: 23%;">对创作者的意义</th>
+            <th style="width: 24%;">来源链接</th>
+            <th style="width: 8%;">可信度</th>
+            <th style="width: 14%;">内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-07</td>
+            <td>OpenAI “super app” 再被媒体确认推进中：ChatGPT、Codex、Agent 可能进一步一体化</td>
+            <td>如果入口、工作流、交付都收敛到一个产品，创作者的内容生产与工具选择会被重新组织；但目前仍属媒体转述。</td>
+            <td><a href="https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/">TechCrunch</a><br><a href="https://www.theinformation.com/articles/inside-openais-decision-combine-codex-and-chatgpt">The Information</a></td>
+            <td><span class="cred-mid">中</span></td>
+            <td>平台入口战争；AI 工作台；工具整合趋势</td>
+          </tr>
+          <tr>
+            <td>2026-06-04</td>
+            <td>Meta 发布 Creator Assistant，并扩展 Facebook AI 翻译语言</td>
+            <td>平台开始把复盘、灵感、增长建议和跨语种分发直接做进创作者后台。</td>
+            <td><a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Meta 官方公告</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>平台红利拆解；多语种增长；创作者工作流变化</td>
+          </tr>
+          <tr>
+            <td>2026-06-02 至 2026-06-03</td>
+            <td>GitHub 在 Build 2026 集中推 Copilot app、Canvas、CLI 定时任务与语音输入</td>
+            <td>Agent 工具正在从单次问答走向长期任务编排，这套逻辑会外溢到内容创作和小团队协作。</td>
+            <td><a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub Blog</a><br><a href="https://github.blog/changelog/2026-06-02-copilot-cli-improved-ui-rubber-duck-prompt-scheduling-and-voice-input/">GitHub Changelog</a><br><a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Build</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>Agent 工作台；一人公司；自动化内容流水线</td>
+          </tr>
+          <tr>
+            <td>2026-06-08 抓取</td>
+            <td>Canva 正把设计层嵌进 ChatGPT、Gemini、Claude、Perplexity，并强调可编辑 HTML / 分层设计</td>
+            <td>生成内容不再停在 flat file，创作者可以在 AI 对话里直接拿到可编辑、可发布、可复用的资产。</td>
+            <td><a href="https://www.canva.com/newsroom/news/canva-create-2026-ai/">Canva AI 2.0</a><br><a href="https://www.canva.com/newsroom/news/google-gemini/">Gemini</a><br><a href="https://www.canva.com/newsroom/news/canva-claude-design/">Claude Design</a><br><a href="https://www.canva.com/newsroom/news/perplexity/">Perplexity</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>设计层战争；AI 到成品闭环；图文与网页资产生产</td>
+          </tr>
+          <tr>
+            <td>2026-05-28</td>
+            <td>ElevenLabs 发布 Dubbing v2</td>
+            <td>多语种视频本地化门槛继续下降，适合讲海外分发、AI 配音与多语种内容复制。</td>
+            <td><a href="https://elevenlabs.io/blog/introducing-dubbing-v2">ElevenLabs 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>视频出海；AI 配音；多语言矩阵</td>
+          </tr>
+          <tr>
+            <td>2026-06-03 至 2026-06-08</td>
+            <td>Meta、Canva、GitHub 三条线索都在证明：AI 正从“辅助生成”走向“内嵌工作流”</td>
+            <td>真正的热点不是单个模型分数，而是平台开始接管创作者的判断、执行和交付链路。</td>
+            <td><a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Meta</a><br><a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub</a><br><a href="https://www.canva.com/newsroom/news/canva-create-2026-ai/">Canva</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>行业趋势总结；工作流重构；平台权力迁移</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>风险说明：</strong>OpenAI “super app” 相关信息目前以媒体报道为主，属于高热度但未完全官宣的信号；Canva 多篇页面在抓取时可公开访问，但页面顶部未统一显示发布日期，因此报告中以“2026-06-08 抓取到的最新公开信号”标记，不额外推断发布时间。
+      </div>
+
+      <h2 class="section-title">推荐选题</h2>
+      <div class="topics">
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 01</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>Meta 把“创作者参谋”做进后台了，平台正在接管你的复盘、灵感和增长判断</h3>
+          <div class="chips">
+            <span class="chip">目标受众：短视频创作者</span>
+            <span class="chip">目标受众：内容运营</span>
+            <span class="chip">目标受众：MCN / 海外账号</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>从“看数据面板”升级到“平台直接给你解释为什么这条爆、下一条做什么”。</p>
+              <p><strong>爆点：</strong>AI 不是外挂工具，而是进入平台后台，开始影响创作者判断层。</p>
+              <p><strong>内容结构：</strong>先讲 Creator Assistant 和 AI 翻译扩语言，再讲平台开始掌握复盘解释权和灵感分发权，最后给出创作者该如何保留自己的方法论。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>不会复盘，不会找下一条内容，跨语种分发成本高。</p>
+              <p><strong>爽点：</strong>后台直接给建议，灵感和分析门槛大幅下降。</p>
+              <p><strong>痒点：</strong>平台是不是会越来越影响创作者内容方向。</p>
+              <p><strong>推荐形式：</strong>快评视频，长图拆解，公众号深度文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Meta 官方公告</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 02</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>OpenAI 想把 ChatGPT、Codex、Agent 合成一个超级入口，创作者以后可能只剩一个 AI 工作台</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 工具重度用户</span>
+            <span class="chip">目标受众：知识型博主</span>
+            <span class="chip">目标受众：工具评测号</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>重点不是“又一个新功能”，而是入口、上下文和交付链路正在被统一。</p>
+              <p><strong>爆点：</strong>AI 产品竞争从“谁更强”转到“谁先成为默认工作台”。</p>
+              <p><strong>内容结构：</strong>先说明这仍是媒体转述，再讲一体化入口对创作者意味着什么，最后落到为什么现在更该搭自己的工作流。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>工具切换多、上下文断裂、产物分散。</p>
+              <p><strong>爽点：</strong>一个入口可能解决大多数创作动作。</p>
+              <p><strong>痒点：</strong>平台一体化后，创作者会不会被更深地锁进生态。</p>
+              <p><strong>推荐形式：</strong>观点视频，播客话题，趋势评论长文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/">TechCrunch</a>，<a href="https://www.theinformation.com/articles/inside-openais-decision-combine-codex-and-chatgpt">The Information</a>。<strong>请标注：</strong>待验证。</p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 03</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>Canva 正在吃掉 AI 最后一公里：ChatGPT 负责生成，Canva 负责把它变成能发出去的成品</h3>
+          <div class="chips">
+            <span class="chip">目标受众：设计师</span>
+            <span class="chip">目标受众：品牌营销</span>
+            <span class="chip">目标受众：图文 / 网页创作者</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>生成早就不稀缺，稀缺的是可编辑、可复用、可发布的资产。</p>
+              <p><strong>爆点：</strong>Magic Layers、HTML importing、Gemini / Claude / Perplexity / ChatGPT 集成把“生成到成品”串起来了。</p>
+              <p><strong>内容结构：</strong>先讲 Canva 在争夺 AI 时代的设计层，再讲 flat file 为什么是创作者的痛点，最后判断谁会吃掉最后一公里。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>AI 图难改、素材难复用、图文网页资产经常要重做。</p>
+              <p><strong>爽点：</strong>从对话到成品的链路明显缩短。</p>
+              <p><strong>痒点：</strong>生成能力会不会越来越不值钱，最后只剩编辑层和分发层有价值。</p>
+              <p><strong>推荐形式：</strong>屏录演示视频，深度长文，案例拆解贴。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://www.canva.com/newsroom/news/canva-create-2026-ai/">Canva AI 2.0</a>，<a href="https://www.canva.com/newsroom/news/google-gemini/">Gemini</a>，<a href="https://www.canva.com/newsroom/news/canva-claude-design/">Claude Design</a>，<a href="https://www.canva.com/newsroom/news/perplexity/">Perplexity</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 04</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>Agent 工具开始像操作系统了：GitHub Copilot app 给内容创作者的 3 个前瞻信号</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 效率号</span>
+            <span class="chip">目标受众：独立创作者</span>
+            <span class="chip">目标受众：小团队主理人</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>虽然更新发生在开发者工具里，但任务排程、背景自动化、可视化工作面板会快速外溢到内容赛道。</p>
+              <p><strong>爆点：</strong>Canvas、定时任务、语音输入、隔离环境，这些组合起来就是“可持续接活的 AI”。</p>
+              <p><strong>内容结构：</strong>先解释 Copilot app 和普通聊天式 AI 的区别，再讲为什么内容创作下一阶段也会需要类似能力。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>多个 AI 会话难管、内容流水线不稳定、自动化程度低。</p>
+              <p><strong>爽点：</strong>AI 终于能持续处理任务，不用每次从头开聊。</p>
+              <p><strong>痒点：</strong>小团队未来拼的可能是“谁的 AI 流水线更像系统”。</p>
+              <p><strong>推荐形式：</strong>趋势短视频，直播话题，公众号分析文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub Copilot app</a>，<a href="https://github.blog/changelog/2026-06-02-copilot-cli-improved-ui-rubber-duck-prompt-scheduling-and-voice-input/">Copilot CLI 更新</a>，<a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Build 2026</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 05</span>
+            <span class="topic-priority">优先级 B</span>
+          </div>
+          <h3>多语种视频门槛又低了一层：ElevenLabs Dubbing v2 会不会让“一条视频做全球分发”变成常态</h3>
+          <div class="chips">
+            <span class="chip">目标受众：视频创作者</span>
+            <span class="chip">目标受众：播客主</span>
+            <span class="chip">目标受众：YouTube 出海团队</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>不是能不能配音，而是能不能保留原说话人的情绪和表达。</p>
+              <p><strong>爆点：</strong>AI 本地化越来越接近“复制原表达”，而不是简单翻译。</p>
+              <p><strong>内容结构：</strong>先讲 Dubbing v2 的能力点，再讲对视频出海和多语种矩阵的实际价值，最后补充授权和版权风险。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>多语种重录成本高、翻译质量不稳定、原表达丢失。</p>
+              <p><strong>爽点：</strong>一条内容可以更低成本地变成多语言版本。</p>
+              <p><strong>痒点：</strong>当配音成本几乎归零，内容竞争会不会更卷。</p>
+              <p><strong>推荐形式：</strong>工具测评视频，出海策略贴，案例复盘。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://elevenlabs.io/blog/introducing-dubbing-v2">ElevenLabs 官方</a></p>
+        </article>
+      </div>
+
+      <section class="sources">
+        <h2 class="section-title">参考来源</h2>
+        <ol>
+          <li>TechCrunch, <a href="https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/">OpenAI is still working on that ‘super app’</a>, 2026-06-07。</li>
+          <li>The Information, <a href="https://www.theinformation.com/articles/inside-openais-decision-combine-codex-and-chatgpt">Inside OpenAI’s Decision to Combine Codex and ChatGPT</a>, 页面抓取于 2026-06-08。</li>
+          <li>Meta, <a href="https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/">Introducing Creator Assistant, Plus More Languages For AI Translations on Facebook</a>, 2026-06-04。</li>
+          <li>GitHub, <a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub Copilot app: The agent-native desktop experience</a>, 2026-06-02。</li>
+          <li>GitHub, <a href="https://github.blog/changelog/2026-06-02-copilot-cli-improved-ui-rubber-duck-prompt-scheduling-and-voice-input/">Copilot CLI: Improved UI, rubber duck, prompt scheduling, and voice input</a>, 2026-06-02。</li>
+          <li>Microsoft, <a href="https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/">Microsoft Build 2026: Be yourself at work</a>, 2026-06-02。</li>
+          <li>Canva Newsroom, <a href="https://www.canva.com/newsroom/news/canva-create-2026-ai/">Introducing Canva AI 2.0: Reimagining how the world creates</a>, 页面抓取于 2026-06-08。</li>
+          <li>Canva Newsroom, <a href="https://www.canva.com/newsroom/news/google-gemini/">Canva expands design creation inside Google Gemini</a>, 页面抓取于 2026-06-08。</li>
+          <li>Canva Newsroom, <a href="https://www.canva.com/newsroom/news/canva-claude-design/">Introducing Canva in Claude Design by Anthropic Labs</a>, 页面抓取于 2026-06-08。</li>
+          <li>Canva Newsroom, <a href="https://www.canva.com/newsroom/news/perplexity/">From AI research to ready-to-use creative: Canva comes to Perplexity Computer</a>, 页面抓取于 2026-06-08。</li>
+          <li>Canva Newsroom, <a href="https://www.canva.com/newsroom/news/magic-layers-ai-assistants/">Make AI images your own: Magic Layers is now inside the world's biggest AI assistants</a>, 页面抓取于 2026-06-08。</li>
+          <li>ElevenLabs, <a href="https://elevenlabs.io/blog/introducing-dubbing-v2">Introducing Dubbing v2</a>, 2026-05-28。</li>
+        </ol>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

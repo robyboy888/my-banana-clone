@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-05-31）</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a2f;
+      --panel2:#0b162a;
+      --text:#eaf0ff;
+      --muted:#b7c4e4;
+      --line:rgba(255,255,255,.10);
+      --blue:#4ea1ff;
+      --blue2:#2c6cff;
+      --green:#34d399;
+      --yellow:#fbbf24;
+      --red:#fb7185;
+      --chip:#132445;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 18% 10%, rgba(44,108,255,.28), transparent 60%),
+                  radial-gradient(900px 500px at 85% 15%, rgba(78,161,255,.18), transparent 55%),
+                  linear-gradient(180deg, #070c16, var(--bg));
+      color:var(--text);
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      padding:28px 18px 54px;
+    }
+    .wrap{max-width:1180px;margin:0 auto}
+    .header{
+      background: linear-gradient(135deg, rgba(78,161,255,.18), rgba(44,108,255,.10));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px 22px 18px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .header:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 260px at 20% 0%, rgba(78,161,255,.25), transparent 55%),
+                  radial-gradient(700px 260px at 90% 0%, rgba(44,108,255,.18), transparent 58%);
+      pointer-events:none;
+    }
+    h1{margin:0 0 10px;font-size:22px;letter-spacing:.2px;position:relative}
+    .meta{
+      display:flex; flex-wrap:wrap; gap:10px 12px;
+      color:var(--muted);
+      font-size:13px;
+      position:relative;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(19,36,69,.72);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:50%}
+    .dot.blue{background:var(--blue)}
+    .dot.green{background:var(--green)}
+    .dot.yellow{background:var(--yellow)}
+    .section{
+      margin-top:16px;
+      background: linear-gradient(180deg, rgba(15,26,47,.92), rgba(11,22,42,.92));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .titlebar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    h2{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.3px;
+      color:#dce8ff;
+      padding-left:12px;
+      position:relative;
+    }
+    h2:before{
+      content:"";
+      position:absolute; left:0; top:2px; bottom:2px;
+      width:4px; border-radius:999px;
+      background: linear-gradient(180deg, var(--blue), var(--blue2));
+    }
+    .hint{color:var(--muted);font-size:12px}
+    .bullets{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:8px;
+      margin:8px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .bullets li{
+      background: rgba(19,36,69,.35);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      color:#d9e5ff;
+    }
+    .bullets b{color:#ffffff}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(7,12,22,.45);
+    }
+    thead th{
+      text-align:left;
+      font-size:12px;
+      color:#cfe0ff;
+      background: rgba(19,36,69,.70);
+      border-bottom:1px solid var(--line);
+      padding:10px 10px;
+      vertical-align:bottom;
+    }
+    tbody td{
+      font-size:13px;
+      color:#eaf0ff;
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+    }
+    tbody tr:last-child td{border-bottom:0}
+    a{color:#9cc7ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .cred{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(19,36,69,.55);
+      white-space:nowrap;
+    }
+    .cred.high .dot{background:var(--green)}
+    .cred.med .dot{background:var(--yellow)}
+    .cred.low .dot{background:var(--red)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(19,36,69,.30);
+      padding:14px 14px 12px;
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:#ffffff;
+    }
+    .tag{
+      display:inline-flex; align-items:center;
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(78,161,255,.12);
+      color:#dbeaff;
+      margin-left:8px;
+    }
+    .card p{margin:6px 0;color:#d9e5ff;font-size:13px}
+    .mini{
+      display:flex; flex-wrap:wrap; gap:8px 10px;
+      margin-top:8px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .mini span{background:rgba(11,22,42,.55);border:1px solid var(--line);border-radius:999px;padding:4px 9px}
+    .foot{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+      opacity:.95;
+    }
+    @media print{
+      body{background:#fff;color:#000;padding:0}
+      .header,.section{box-shadow:none;border:1px solid #ddd}
+      a{color:#0b57d0}
+      .chip,.bullets li,.card,.mini span{background:#fff}
+      table{background:#fff;border:1px solid #ddd}
+      thead th{background:#f3f6ff;color:#000}
+      tbody td{color:#000}
+      .cred{background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h1>AI 行业热点自媒体选题库（2026-05-31）</h1>
+      <div class="meta">
+        <span class="chip"><span class="dot blue"></span><span>采集日期：2026-05-31（UTC+8）</span></span>
+        <span class="chip"><span class="dot green"></span><span>采集窗口：2026-05-29 00:00 — 2026-05-31 12:00（UTC+8）</span></span>
+        <span class="chip"><span class="dot yellow"></span><span>定位：AI 自媒体创作者选题库（图文 / 视频 / 直播 / 知识付费）</span></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="titlebar">
+        <h2>热点摘要条</h2>
+        <div class="hint">只收录可验证来源；推断会在正文标注</div>
+      </div>
+      <ul class="bullets">
+        <li><b>OpenAI：GPT‑Rosalind 生物防御合作项目</b>（安全叙事强、适合事实梳理与边界澄清）</li>
+        <li><b>OpenAI：模型线退役节奏公开</b>（o3、GPT‑4.5 等，迁移清单与回归题库最易传播）</li>
+        <li><b>Anthropic：Claude Opus 4.8 发布 + AWS 上架</b>（测评对比、工作流配方可复现）</li>
+        <li><b>GitHub：Copilot 6/1 用量计费变化</b>（明天生效，适合做成本预算与避坑）</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="titlebar">
+        <h2>今日热点摘要表</h2>
+        <div class="hint">字段：时间 / 信号 / 意义 / 来源 / 可信度 / 内容机会</div>
+      </div>
+      <div style="overflow:auto;border-radius:14px">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:110px">时间（UTC+8）</th>
+              <th style="min-width:220px">热点信号</th>
+              <th style="min-width:240px">对创作者的意义</th>
+              <th style="min-width:240px">来源链接</th>
+              <th style="min-width:90px">可信度</th>
+              <th style="min-width:220px">内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-29</td>
+              <td>OpenAI：发布 GPT‑Rosalind 生物防御合作项目（与 USNORTHCOM 合作）</td>
+              <td>“AI 安全 + 政府合作”回到主流叙事；适合做事实梳理、误区澄清</td>
+              <td><a href="https://openai.com/index/introducing-gpt-rosalind/" target="_blank" rel="noreferrer">openai.com/index/introducing-gpt-rosalind</a></td>
+              <td><span class="cred high"><span class="dot"></span>高</span></td>
+              <td>8–12 分钟视频：做了什么/没做什么/为什么现在做</td>
+            </tr>
+            <tr>
+              <td>2026-05-29</td>
+              <td>OpenAI：ChatGPT 模型发布说明公布退役/下架时间表（含 o3、GPT‑4.5 等）</td>
+              <td>提示词题库与工作流需要回归；可做迁移清单与替代组合</td>
+              <td><a href="https://help.openai.com/en/articles/9624314-model-release-notes" target="_blank" rel="noreferrer">help.openai.com/.../model-release-notes</a></td>
+              <td><span class="cred high"><span class="dot"></span>高</span></td>
+              <td>迁移 checklist + 回归题库模板（图文/长视频）</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>Anthropic：发布 Claude Opus 4.8</td>
+              <td>模型迭代影响写作/脚本/课程大纲；适合做对比测评与任务配方</td>
+              <td><a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noreferrer">anthropic.com/news/claude-opus-4-8</a></td>
+              <td><span class="cred high"><span class="dot"></span>高</span></td>
+              <td>同题盲测 + 评分表，提高可复现与转发</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>AWS：Claude Opus 4.8 上线 Amazon Bedrock</td>
+              <td>平台采购与合规路径更清晰；适合做 B 端落地指南</td>
+              <td><a href="https://aws.amazon.com/blogs/aws/claude-opus-4-8-in-amazon-bedrock/" target="_blank" rel="noreferrer">aws.amazon.com/blogs/aws/...</a></td>
+              <td><span class="cred high"><span class="dot"></span>高</span></td>
+              <td>企业落地路线图：选型/成本/权限/审计</td>
+            </tr>
+            <tr>
+              <td>2026-04-27（生效：2026-06-01）</td>
+              <td>GitHub Copilot：部分年度套餐自 6/1 起转为用量计费并引入模型倍率</td>
+              <td>明天生效，影响账单；适合做成本预算与避坑清单</td>
+              <td>
+                <a href="https://github.blog/changelog/2026-04-27-request-based-billing-for-copilot-legacy-annual-plans/" target="_blank" rel="noreferrer">github.blog/.../request-based-billing</a><br/>
+                <a href="https://docs.github.com/en/billing/concepts/billing-for-github-copilot#model-multipliers" target="_blank" rel="noreferrer">docs.github.com/...#model-multipliers</a>
+              </td>
+              <td><span class="cred high"><span class="dot"></span>高</span></td>
+              <td>一张表讲清“倍率 × 场景”；给 3 套省钱策略</td>
+            </tr>
+            <tr>
+              <td>2026-05-28</td>
+              <td>ElevenLabs：发布 Dubbing v2</td>
+              <td>跨语种分发更顺滑；适合做一稿多语 SOP 与案例复盘</td>
+              <td><a href="https://elevenlabs.io/blog/dubbing-v2" target="_blank" rel="noreferrer">elevenlabs.io/blog/dubbing-v2</a></td>
+              <td><span class="cred med"><span class="dot"></span>中</span></td>
+              <td>出海创作者 SOP：脚本 → 配音 → 校对 → 分发</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="foot">提示：计费/适用范围可能因套餐/地区而异；建议观众对照官方文档确认。</div>
+    </div>
+
+    <div class="section">
+      <div class="titlebar">
+        <h2>选题 01/02/03/04（含优先级）</h2>
+        <div class="hint">每个选题：角度、爆点、结构、形式、可引用来源</div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>选题 01：OpenAI 又一轮模型退役：30–90 天迁移清单（附回归题库）<span class="tag">P0</span></h3>
+          <p><b>目标受众</b>：AI 工具深度用户、自媒体创作者、独立开发者、提示词作者</p>
+          <p><b>切题角度</b>：退役时间表 → 受影响人群 → 迁移步骤 → 回归题库 → 替代组合（省钱/质量/速度三档）</p>
+          <p><b>爆点</b>：节点明确、焦虑强、转发动力强（“照抄就能迁移”）</p>
+          <p><b>推荐形式</b>：8–12 分钟长视频 + 置顶评论放 checklist；或图文长帖</p>
+          <div class="mini">
+            <span>痛点：工作流断档</span><span>爽点：可执行清单</span><span>痒点：模型手感差异</span>
+            <span>来源：<a href="https://help.openai.com/en/articles/9624314-model-release-notes" target="_blank" rel="noreferrer">OpenAI Model Release Notes</a></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>选题 02：Claude Opus 4.8 强在哪？用 5 个创作者任务做盲测对比<span class="tag">P1</span></h3>
+          <p><b>目标受众</b>：写作/脚本/课程大纲/直播提纲等内容生产者</p>
+          <p><b>切题角度</b>：同一套任务集 + 评分表（信息密度/可读性/可用性/幻觉风险），输出可复现结论</p>
+          <p><b>爆点</b>：同题对打最直观；容易做成系列内容</p>
+          <p><b>推荐形式</b>：视频 + 可下载评测表（引流社群/课程）</p>
+          <div class="mini">
+            <span>痛点：不知道怎么选模型</span><span>爽点：一眼看懂差异</span>
+            <span>来源：<a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noreferrer">Anthropic Announcement</a></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>选题 03：6/1 Copilot 计费大改：独立开发者的 AI Coding 成本怎么控？<span class="tag">P1</span></h3>
+          <p><b>目标受众</b>：独立开发者、做工具产品/插件的创作者、AI 编程博主</p>
+          <p><b>切题角度</b>：变化是什么 → 谁受影响 → “倍率 × 场景”预算模型 → 3 套省钱策略</p>
+          <p><b>爆点</b>：明天生效（2026-06-01），时效极强</p>
+          <p><b>推荐形式</b>：图文（传播强）+ 一张成本表；或录屏演示设置</p>
+          <div class="mini">
+            <span>痛点：账单不可控</span><span>爽点：预算模型可照抄</span>
+            <span>来源：<a href="https://github.blog/changelog/2026-04-27-request-based-billing-for-copilot-legacy-annual-plans/" target="_blank" rel="noreferrer">GitHub Changelog</a> / <a href="https://docs.github.com/en/billing/concepts/billing-for-github-copilot#model-multipliers" target="_blank" rel="noreferrer">Docs</a></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>选题 04：GPT‑Rosalind 是什么？AI 生物防御合作怎么读才不被带节奏<span class="tag">P2</span></h3>
+          <p><b>目标受众</b>：泛科技观众、对 AI 安全好奇的人</p>
+          <p><b>切题角度</b>：事实梳理 → 边界与不确定性 → 常见误读 → 信息素养自检清单</p>
+          <p><b>风险提示</b>：容易引发阴谋论式解读；建议明确分区“事实 vs 推断”，避免恐慌叙事</p>
+          <p><b>推荐形式</b>：图文长帖或播客（更适合严谨表达）</p>
+          <div class="mini">
+            <span>来源：<a href="https://openai.com/index/introducing-gpt-rosalind/" target="_blank" rel="noreferrer">OpenAI Post</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">可用性建议：若要做“可下载表格”，优先发布 CSV/表格截图，方便二次传播与收藏。</div>
+    </div>
+  </div>
+</body>
+</html>
+

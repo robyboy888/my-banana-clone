@@ -1,0 +1,9 @@
+time_utc8,hot_signal,creator_significance,source_url,credibility,content_opportunity
+2026-05-22,"HF：Copy Repo Contents to Buckets Instantly（Hub 上“Copy to Bucket”）","教程型内容：把复现/备份/分发工作流模板化；适合做避坑与成本/速度对比","https://huggingface.co/changelog/copy-repo-contents-to-buckets-instantly","High","3 分钟把任意 HF Repo 搬到对象存储；复现实验素材管理模板"
+2026-05-19,"（超窗）Google I/O：Gemini App 更新 + Gemini Spark（媒体汇总）","把 agent 叙事转译成 SOP：Daily Brief→选题→脚本→分发","https://techcrunch.com/2026/05/19/google-updates-its-gemini-app-to-take-on-chatgpt-and-claude-at-io-2026/","Medium","把 Gemini Spark 当内容助理：工作流拆解 + 权限边界清单"
+2026-05-19,"（超窗）TechCrunch：Gemini Spark（与 Gmail/Docs 等整合的 agent）","适合做对比评测与隐私/权限专题","https://techcrunch.com/2026/05/19/google-introduces-gemini-spark-a-24-7-agentic-assistant-with-gmail-integration/","Medium","Agent 不是功能，是权限边界；可控性清单"
+2026-05-21,"arXiv：Video as Natural Augmentation（统一检测 AI 生成图片/视频）","做鉴伪/风控/自证方法论；输出可执行 checklist","https://arxiv.org/abs/2605.21977","High","AI 时代创作者如何自证原创：SOP + 模板"
+2026-05-21,"Kore.ai：发布 Artemis（企业 Agent 平台，强调治理/优化）","ToB 解读与知识付费友好：Agent Ops/治理赛道","https://www.kore.ai/news/kore-ai-launches-artemis-the-new-generation-of-the-kore-ai-agent-platform-for-building-governing-and-optimizing-enterprise-ai","Med-High","企业要的不是 agent，而是可审计系统；治理=卖点"
+2026-05-21,"VentureBeat：Kore.ai Artemis 解读（架构/竞品叙事）","第三方视角补齐架构/竞品对比（细节需二次核对）","https://venturebeat.com/technology/kore-ai-launches-artemis-ai-agent-platform-expands-challenge-to-microsoft-and-salesforce","Medium","企业 agent 战国图；双脑架构专题"
+2026-05-23,"RCTV：AI video 主题刊物主页强调 Issue 21（行业内容信号）","行业观察/案例拆解：生成式视频从炫技到交付","https://rctv.com/","Medium","生成式视频：制作人视角工具链；商业与交付"
+

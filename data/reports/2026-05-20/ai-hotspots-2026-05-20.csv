@@ -1,0 +1,8 @@
+time,hot_signal,creator_impact,source_url,credibility,content_opportunity
+"2026-05-20 (I/O 2026)","Google I/O 2026 聚焦 agentic AI：Gemini 3.5、Gemini Spark、Search AI Mode/agents 等","搜索与分发逻辑继续向“AI 代理检索+执行”迁移；创作者需更重视结构化表达、可验证引用与可被摘要的观点框架","https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/","高（官方博客）","做“AI Search 时代内容适配指南/清单”，用同一案例对比传统SEO vs AI Mode"
+"2026-05-19","OpenAI 发布 OpenAI Content Provenance（内容溯源/来源标注能力）","为自媒体“证明原创/标注 AI 辅助”提供可讲工具；可做教学与工作流整合（视频封面/图文/短视频）","https://openai.com/index/openai-content-provenance/","高（官方公告）","做“自媒体内容溯源全流程”教程：从生成到发布到平台识别"
+"2026-05-18","Anthropic 收购 Stainless","开发者工具链变重要：SDK/文档/接口一致性会成为 Agent 产品竞争壁垒；对创作者可作为“幕后工程”选题","https://www.anthropic.com/news/acquiring-stainless","高（公司公告）","做“为什么 AI 创业拼的不只是模型，而是 API 体验”拆解"
+"2026-05-18","Dell 发布企业级 deskside agentic AI 方案（本地/边缘推理与企业落地叙事）","“端侧/本地”内容持续升温；适合做“本地跑模型/工作站”装备党与企业落地路线","https://www.dell.com/en-us/blog/dell-technologies-launches-deskside-agentic-ai-solutions-to-power-enterprise-innovation/","高（公司博客）","做“本地/桌面 Agent 工作站”配置与成本对比（适合图文+视频）"
+"2026-05-19","Epicor 推出 Epicor Prism：agentic AI stack（面向制造/供应链等垂直行业）","垂直SaaS加速“Agent 化”；可做行业案例内容，吸引B2B受众与企业老板","https://www.epicor.com/en-us/about/press-room/press-releases/epicor-unveils-epicor-prism/","中（公司新闻稿）","做“垂直行业 Agent 正在怎么卖？”：功能清单、ROI话术、落地门槛"
+"2026-05-19","Anthropic 扩大 Claude Web Search 可用范围（产品能力下沉）","对内容创作者/研究型博主直接利好：更快找资料与引用，但需强调引用与事实核验","https://www.anthropic.com/news/widening-availability-of-web-search","高（公司公告）","做“Claude/ChatGPT/Perplexity 资料检索对照评测”"
+"2026-05-19","媒体报道：AI agent 进入政治/公共沟通场景（争议与风险）","可做“AI 代理上台面”的伦理/舆论/合规选题；提示‘生成内容’与‘替人发声’边界","https://www.nytimes.com/2026/05/19/world/europe/belgium-ai-agent-politics.html","中（权威媒体；细节需结合原文）","做“AI 代理替人发声，会发生什么？”：利弊、红线、平台规则与自媒体风险"

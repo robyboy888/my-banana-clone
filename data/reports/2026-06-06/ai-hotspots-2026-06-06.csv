@@ -1,0 +1,7 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-06-04","Meta 发布 Creator Assistant，并扩展 Facebook Reels 的 AI 翻译语言","平台开始把复盘、灵感、多语种分发整合进创作者后台，直接影响增长判断","https://about.fb.com/news/2026/06/creator-assistant-more-languages-for-ai-translations-on-facebook/","高","平台开始替创作者提供复盘与选题参谋"
+"2026-06-04","OpenAI 发布 Dreaming 记忆升级","ChatGPT 更像长期项目搭档，适合持续写作、长期栏目和固定表达风格","https://openai.com/index/chatgpt-memory-dreaming/","高","长期记忆正在成为 AI 创作主战场"
+"2026-06-04","GitHub Copilot 支持 100 万 token 上下文窗口，并可配置推理强度","长文档、复杂教程、多文件项目和研究型内容制作更适合交给 Agent","https://github.blog/changelog/2026-06-04-larger-context-windows-and-configurable-reasoning-levels-for-github-copilot/","高","长上下文开始抬高内容工厂上限"
+"2026-06-04","GitHub 将 Agent tasks REST API 开放给 Copilot Pro、Pro+、Max","个人和小团队也能把周报、发布说明、资料整理等动作接进自动化","https://github.blog/changelog/2026-06-04-agent-tasks-rest-api-now-available-for-copilot-pro-pro-and-max/","高","AI 编辑部能力从企业下放到个人订阅"
+"2026-06-04","Fix with Copilot 可在 Actions 失败后由云端 Agent 一键调查并推修复","技术型创作者更容易做 AI 自动修 demo、修 CI、修案例工程的可视化内容","https://github.blog/changelog/2026-06-04-fix-with-copilot-for-failing-actions-now-in-pro-pro-and-max/","高（事实）/ 中（泛受众相关性）","Agent 正在接管开发内容里的碎活"
+"2026-06-03（补充）","GitHub Copilot for VS Code 发布 5 月更新，补强 Agents window、remote agents、session sync、Chronicle","个人创作者的 Agent 工位更完整，适合串联选题、写稿、改 demo、发版一条链","https://github.blog/changelog/2026-06-03-github-copilot-in-visual-studio-code-may-releases/","高","个人 AI 工作台正在成型"

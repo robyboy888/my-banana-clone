@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 行业热点自媒体选题库（2026-05-21）</title>
+    <style>
+      :root{
+        --bg:#f7f9fc;
+        --card:#ffffff;
+        --text:#0b1220;
+        --muted:#5b6577;
+        --line:#e6ebf3;
+        --blue:#1f6feb;
+        --blue-2:#0b4fbf;
+        --good:#0b7a3b;
+        --warn:#b54708;
+        --bad:#b42318;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC", Arial, sans-serif;
+        color:var(--text);
+        background:linear-gradient(180deg, #eef4ff 0%, var(--bg) 35%, var(--bg) 100%);
+      }
+      a{color:var(--blue); text-decoration:none}
+      a:hover{text-decoration:underline}
+      .wrap{max-width:1200px; margin:28px auto; padding:0 18px 48px}
+      .header{
+        background:var(--card);
+        border:1px solid var(--line);
+        border-radius:16px;
+        padding:20px 22px;
+        box-shadow:0 10px 30px rgba(16,24,40,.06);
+      }
+      .title{
+        display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;
+      }
+      .title h1{margin:0; font-size:26px; letter-spacing:.2px}
+      .pill{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px; border-radius:999px;
+        background:#e8f0ff; color:var(--blue-2);
+        border:1px solid #d6e4ff;
+        font-size:12px; font-weight:600;
+      }
+      .meta{
+        margin-top:10px;
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap:10px;
+      }
+      .meta .item{
+        background:#fbfdff;
+        border:1px solid var(--line);
+        border-radius:12px;
+        padding:10px 12px;
+        min-height:44px;
+      }
+      .k{font-size:12px; color:var(--muted)}
+      .v{margin-top:4px; font-size:14px; font-weight:600}
+
+      .section{
+        margin-top:18px;
+        background:var(--card);
+        border:1px solid var(--line);
+        border-radius:16px;
+        overflow:hidden;
+        box-shadow:0 10px 30px rgba(16,24,40,.04);
+      }
+      .section .hd{
+        padding:12px 16px;
+        background:linear-gradient(90deg, rgba(31,111,235,.12), rgba(31,111,235,.04));
+        border-bottom:1px solid var(--line);
+        display:flex; align-items:center; justify-content:space-between; gap:12px;
+      }
+      .section .hd h2{
+        margin:0; font-size:16px; color:var(--blue-2);
+        letter-spacing:.2px;
+      }
+      .section .bd{padding:14px 16px}
+
+      .summary-bar{
+        display:grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap:10px;
+      }
+      .stat{
+        border:1px solid var(--line);
+        border-radius:14px;
+        padding:12px 12px;
+        background:#ffffff;
+      }
+      .stat .n{font-size:20px; font-weight:800}
+      .stat .t{margin-top:4px; font-size:12px; color:var(--muted)}
+
+      table{
+        width:100%;
+        border-collapse:separate;
+        border-spacing:0;
+        font-size:13px;
+      }
+      th, td{
+        padding:10px 10px;
+        border-bottom:1px solid var(--line);
+        vertical-align:top;
+      }
+      th{
+        text-align:left;
+        font-size:12px;
+        color:var(--muted);
+        background:#fbfdff;
+        position:sticky;
+        top:0;
+        z-index:1;
+      }
+      tr:last-child td{border-bottom:none}
+      .badge{
+        display:inline-flex;
+        padding:3px 8px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:700;
+        border:1px solid transparent;
+        white-space:nowrap;
+      }
+      .b-high{background:#e7f7ee; color:var(--good); border-color:#c7edd7}
+      .b-mid{background:#fff4e6; color:var(--warn); border-color:#ffe0b2}
+      .b-low{background:#ffecec; color:var(--bad); border-color:#ffd1d1}
+
+      .topic{
+        border:1px solid var(--line);
+        border-radius:14px;
+        padding:12px 12px;
+        background:#ffffff;
+        margin-bottom:10px;
+      }
+      .topic h3{
+        margin:0;
+        font-size:15px;
+        letter-spacing:.2px;
+      }
+      .topic .sub{
+        margin-top:6px;
+        color:var(--muted);
+        font-size:12px;
+      }
+      .grid-2{
+        display:grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap:12px;
+      }
+      ul{margin:8px 0 0 18px; padding:0}
+      li{margin:4px 0}
+      .note{
+        margin-top:10px;
+        padding:10px 12px;
+        border-radius:12px;
+        background:#fbfdff;
+        border:1px dashed #d7e0ef;
+        color:var(--muted);
+        font-size:12px;
+      }
+      @media print{
+        body{background:#fff}
+        .wrap{margin:0; max-width:none}
+        .header,.section{box-shadow:none}
+        a{text-decoration:none; color:#000}
+        th{position:static}
+      }
+      @media (max-width: 920px){
+        .meta{grid-template-columns:1fr}
+        .summary-bar{grid-template-columns:1fr 1fr}
+        .grid-2{grid-template-columns:1fr}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="title">
+          <h1>AI 行业热点自媒体选题库</h1>
+          <span class="pill">2026-05-21 · 中文报告 · 自包含 HTML</span>
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">采集日期</div>
+            <div class="v">2026-05-21（Asia/Shanghai）</div>
+          </div>
+          <div class="item">
+            <div class="k">采集窗口</div>
+            <div class="v">重点覆盖 2026-05-19 至 2026-05-21 的可验证更新</div>
+          </div>
+          <div class="item">
+            <div class="k">定位说明</div>
+            <div class="v">面向 AI 自媒体创作者，事实均附来源；未确认标注“待验证”</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="margin-top:14px">
+        <div class="hd">
+          <h2>热点摘要条</h2>
+          <div class="pill">今日最推荐：选题 01（内容溯源 / 可验证内容）</div>
+        </div>
+        <div class="bd">
+          <div class="summary-bar">
+            <div class="stat"><div class="n">8</div><div class="t">热点条目（含 1 条待验证）</div></div>
+            <div class="stat"><div class="n">3</div><div class="t">官方一手来源（OpenAI / Google / DeepMind）</div></div>
+            <div class="stat"><div class="n">2</div><div class="t">生态与评测信号（HF / Anthropic）</div></div>
+            <div class="stat"><div class="n">1</div><div class="t">商业媒体信号（需标注不确定）</div></div>
+          </div>
+          <div class="note">
+            提醒：本报告以“可验证来源”为优先；媒体报道类信息若无官方确认，会在选题中提示风险与写法。
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="hd">
+          <h2>今日热点摘要表格</h2>
+          <div class="k">字段：时间 / 热点信号 / 对创作者的意义 / 来源 / 可信度 / 内容机会</div>
+        </div>
+        <div class="bd" style="padding:0">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:110px">时间</th>
+                <th style="width:260px">热点信号</th>
+                <th>对创作者的意义</th>
+                <th style="width:210px">来源链接</th>
+                <th style="width:110px">可信度</th>
+                <th style="width:220px">内容机会</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-05-20</td>
+                <td>媒体称 OpenAI 已提交（或准备提交）保密 IPO 申请</td>
+                <td>商业化与监管叙事升温：可做行业解读，但需明确“未获官方确认/待验证”。</td>
+                <td><a href="https://www.axios.com/2026/05/20/openai-confidential-ipo-filing">Axios 报道</a></td>
+                <td><span class="badge b-mid">中（待验证）</span></td>
+                <td>财经解读 / 创作者商业模式 / 风险提示</td>
+              </tr>
+              <tr>
+                <td>2026-05-19</td>
+                <td>OpenAI 发布 Content Provenance（内容溯源）方案</td>
+                <td>“可信度”会成为分发与变现变量：适合输出可复制的“可验证内容工作流”。</td>
+                <td><a href="https://openai.com/index/openai-content-provenance/">OpenAI 官方</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>反造假 / 可验证内容教程 / 声明模板</td>
+              </tr>
+              <tr>
+                <td>2026-05-19</td>
+                <td>Google I/O 2026：Gemini 更新与 AI 搜索/Agent 化体验</td>
+                <td>搜索更像“可执行 Agent”后，内容要更结构化、可引用、可核验。</td>
+                <td><a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">Google 官方</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>SEO → AI Mode 内容工程迁移清单</td>
+              </tr>
+              <tr>
+                <td>2026-05-19</td>
+                <td>Gemini 3.5 Flash Model Card 上线</td>
+                <td>用“模型说明书”做选型/避坑科普：比跑分更能建立信任。</td>
+                <td><a href="https://deepmind.google/models/gemini/gemini-3-5-flash/">DeepMind 模型卡</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>对比测评 / 合规声明 / 场景化选型</td>
+              </tr>
+              <tr>
+                <td>2026-05-19</td>
+                <td>DeepMind：AI co-scientist（多 Agent 科研协作）披露</td>
+                <td>多 Agent 可迁移到“研究型创作”：选题→检索→论证→反驳→结构化输出。</td>
+                <td>
+                  <a href="https://deepmind.google/discover/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/">博客</a>
+                  · <a href="https://arxiv.org/abs/2605.15535">论文</a>
+                </td>
+                <td><span class="badge b-high">高</span></td>
+                <td>多 Agent 工作流教学 / 深度内容规模化</td>
+              </tr>
+              <tr>
+                <td>2026-05-18</td>
+                <td>Anthropic 收购 Stainless（开发者 SDK/工具链）</td>
+                <td>竞争转向工程化与工具链：适合面向“做工具/做课程”的账号讲格局。</td>
+                <td><a href="https://www.anthropic.com/news/acquiring-stainless">Anthropic 官方</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>工具链战争 / SDK 为什么变成主战场</td>
+              </tr>
+              <tr>
+                <td>2026-05-18</td>
+                <td>Open Agent Leaderboard（HF × IBM Research）发布</td>
+                <td>Agent 评测影响“谁更好用”的叙事：做榜单栏目要解释指标与偏差。</td>
+                <td><a href="https://huggingface.co/blog/open-agent-leaderboard">Hugging Face</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>每周榜单解读 / 场景化工具推荐</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="hd">
+          <h2>今日推荐选题</h2>
+          <div class="k">3–5 个方向，含优先级与结构</div>
+        </div>
+        <div class="bd">
+          <div class="topic">
+            <div class="grid-2">
+              <div>
+                <h3>选题 01（S）内容溯源时代来了：AI 自媒体如何做“可验证内容”，提升信任与变现？</h3>
+                <div class="sub">面向：科普/资讯/商业解读创作者 · 品牌合作型账号 · 知识付费从业者</div>
+                <ul>
+                  <li><b>切题角度：</b>把“可信度”作为新的流量与转化杠杆。</li>
+                  <li><b>爆点：</b>AI 时代的“内容身份证”。</li>
+                  <li><b>结构：</b>场景痛点 → 溯源解决什么/不解决什么 → 5 步工作流 → 声明模板 → 未来变量。</li>
+                  <li><b>形式：</b>图文长帖 + 口播短视频（清单卡片）+ 直播答疑。</li>
+                </ul>
+              </div>
+              <div>
+                <div class="stat" style="height:100%">
+                  <div class="k">可引用来源</div>
+                  <div class="v" style="font-weight:700; margin-top:6px">
+                    <a href="https://openai.com/index/openai-content-provenance/">OpenAI：Content Provenance</a>
+                  </div>
+                  <div class="note" style="margin-top:10px">
+                    讲清“仍在演进”：标准落地/平台接入/对抗升级都会影响效果。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic">
+            <h3>选题 02（A）SEO 之后是“AI Mode 内容工程”：搜索变成可执行 Agent，创作者怎么改内容结构？</h3>
+            <div class="sub">面向：教程/知识类/测评类账号 · 想要自然流量的人</div>
+            <ul>
+              <li><b>核心：</b>内容要“可被引用、可被执行、可被复用”。</li>
+              <li><b>结构：</b>变化是什么 → 5 种可引用模块 → 10 条写作规则 → 案例对比。</li>
+              <li><b>来源：</b><a href="https://developers.googleblog.com/en/google-io-2026-recap-gemini-ai-updates-and-more/">Google I/O 2026 官方回顾</a></li>
+            </ul>
+          </div>
+
+          <div class="topic">
+            <h3>选题 03（A）多 Agent “研究型创作”工作流：用 co-scientist 思路做一期深度内容</h3>
+            <div class="sub">面向：深度分析/行业研究/课程型创作者</div>
+            <ul>
+              <li><b>核心：</b>把多 Agent 变成“研究协作流水线”（选题→检索→论证→反驳→结构化输出）。</li>
+              <li><b>风险：</b>重点讲流程与方法，避免夸大科研结论。</li>
+              <li><b>来源：</b><a href="https://deepmind.google/discover/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/">DeepMind 博客</a> · <a href="https://arxiv.org/abs/2605.15535">arXiv 论文</a></li>
+            </ul>
+          </div>
+
+          <div class="topic">
+            <h3>选题 04（B）Open Agent Leaderboard：Agent 评测榜单靠谱吗？怎么用来选工具不踩坑？</h3>
+            <div class="sub">面向：工具测评类账号 · 想做“每周榜单栏目”的创作者</div>
+            <ul>
+              <li><b>核心：</b>解释指标与偏差，给出“按你的场景选工具”的方法论。</li>
+              <li><b>来源：</b><a href="https://huggingface.co/blog/open-agent-leaderboard">Hugging Face：Open Agent Leaderboard</a></li>
+            </ul>
+          </div>
+
+          <div class="topic">
+            <h3>选题 05（B，待验证）OpenAI IPO 传闻：AI 巨头资本化会如何影响创作者生态？</h3>
+            <div class="sub">面向：商业/财经向创作者 · AI 行业观察者</div>
+            <ul>
+              <li><b>写法：</b>开头必须写“截至 2026-05-21 未见官方确认”，避免断言式标题。</li>
+              <li><b>来源：</b><a href="https://www.axios.com/2026/05/20/openai-confidential-ipo-filing">Axios 报道</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="hd">
+          <h2>今日最推荐 1 个选题</h2>
+          <div class="k">优先级：S</div>
+        </div>
+        <div class="bd">
+          <div class="topic" style="margin:0">
+            <h3>内容溯源时代来了：AI 自媒体如何做“可验证内容”，提升信任与变现？</h3>
+            <div class="sub">一句话卖点：把“可信度”当作新的流量与转化杠杆，并给出可复制流程。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

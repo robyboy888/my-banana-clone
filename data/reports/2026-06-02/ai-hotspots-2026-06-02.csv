@@ -1,0 +1,9 @@
+时间（UTC+8）,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-06-01,"GitHub Copilot 切到 usage-based billing（AI Credits）","订阅+计量成为默认心智；适合做成本与策略内容","https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/ | https://docs.github.com/en/copilot/how-tos/manage-and-track-spending/prepare-for-usage-based-billing",高,"算账模板 + 省钱策略 + 风险提示"
+2026-06-01,"Copilot Code Review 开始消耗 GitHub Actions minutes（叠加 AI Credits）","可做“自动 code review 的控成本/工作流最佳实践”","https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans | https://docs.github.com/en/copilot/concepts/agents/code-review",高,"启用/关闭/限流/审计/沉淀规范"
+2026-06-02（起）,"BUILD 2026 聚焦 Agent Framework/Foundry/治理与观测","企业级 Agent 叙事升温；适合做系列课/路线图","https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/",高,"学习路径 + session 拆解 + 生产化 checklist"
+2026-06-01,"GitHub Copilot 账单/套餐更新（同日 Changelog 汇总）","适合做“新规则速读 + 迁移清单（个人/团队）”","https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans",高,"短视频：一分钟讲清变化"
+2026-05-31,"Microsoft Agent Framework 发布 BUILD 相关 session 清单","可直接二创：逐场拆主题，做学习路线图","https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026/",高,"图文长帖：目录党 + 路线图"
+（非 48h，新近但短期热度一般）,"OpenAI DevDay 2026 官宣（9/29 旧金山）","提前布局平台更新预期与选题储备","https://openai.com/index/devday-2026/",高,"DevDay 备课清单/预测"
+（非 48h，近期限时）,"Anthropic：Claude Sonnet 4 / Opus 4 将于 2026-06-15 从 API 退役","迁移/回归测试母题，可复用成模板与课程","https://platform.claude.com/docs/en/resources/model-deprecations",高,"迁移 checklist + 回归题库"
+

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 行业热点自媒体选题库（2026-05-29）</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --panel2:#0c172d;
+      --text:#e9eefc;
+      --muted:#a9b7d6;
+      --blue:#3b82f6;
+      --blue2:#1d4ed8;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
+    }
+    @media print{
+      :root{ --bg:#ffffff; --panel:#ffffff; --panel2:#ffffff; --text:#111827; --muted:#4b5563; --border:#e5e7eb; --shadow:none; }
+      a{ color:#111827; text-decoration:none; }
+      .topbar{ border:1px solid var(--border); }
+      .pill{ border:1px solid var(--border); }
+    }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 500px at 15% 0%, rgba(59,130,246,.35), rgba(59,130,246,0)) ,
+                  radial-gradient(900px 420px at 85% 10%, rgba(29,78,216,.22), rgba(29,78,216,0)),
+                  var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
+    }
+    .wrap{ max-width:1100px; margin:28px auto 60px; padding:0 18px; }
+    .topbar{
+      background: linear-gradient(180deg, rgba(15,27,51,.92), rgba(12,23,45,.92));
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      padding:22px 22px 18px;
+    }
+    .title{
+      display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap;
+    }
+    h1{ margin:0; font-size:26px; letter-spacing:.2px; }
+    .meta{ margin-top:10px; color:var(--muted); font-size:13px; display:flex; gap:14px; flex-wrap:wrap; }
+    .meta code{ font-family:var(--mono); font-size:12px; color:var(--text); background:rgba(255,255,255,.06); padding:2px 7px; border-radius:999px; border:1px solid var(--border); }
+    .note{
+      margin-top:14px;
+      padding:12px 14px;
+      background:rgba(59,130,246,.10);
+      border:1px solid rgba(59,130,246,.35);
+      border-radius:14px;
+      color:var(--text);
+      font-size:14px;
+    }
+    .grid{ margin-top:18px; display:grid; grid-template-columns: 1fr; gap:14px; }
+    .section{
+      background: linear-gradient(180deg, rgba(15,27,51,.88), rgba(12,23,45,.88));
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .sec-hd{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(90deg, rgba(59,130,246,.20), rgba(29,78,216,.06));
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .sec-hd .label{
+      font-weight:700;
+      letter-spacing:.2px;
+      color:#dbeafe;
+    }
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      padding:4px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .sec-bd{ padding:14px 16px 16px; }
+    ul{ margin:8px 0 0; padding-left:18px; }
+    li{ margin:6px 0; }
+    a{ color:#bfdbfe; }
+    a:hover{ color:#dbeafe; }
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    thead th{
+      text-align:left;
+      font-size:13px;
+      color:#e5edff;
+      background: linear-gradient(90deg, rgba(59,130,246,.25), rgba(29,78,216,.12));
+      border-bottom:1px solid var(--border);
+      padding:10px 10px;
+    }
+    tbody td{
+      vertical-align:top;
+      padding:10px 10px;
+      border-bottom:1px solid var(--border);
+      color:var(--text);
+      font-size:13px;
+    }
+    tbody tr:last-child td{ border-bottom:none; }
+    .muted{ color:var(--muted); }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      white-space:nowrap;
+    }
+    .b-high{ border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10); }
+    .b-med{ border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.10); }
+    .topic{
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      padding:14px 14px 12px;
+      margin-top:12px;
+    }
+    .topic h3{ margin:0 0 8px; font-size:16px; }
+    .topic .k{ color:#dbeafe; font-weight:700; }
+    .topic .p0{ color:#e0f2fe; }
+    .topic .p1{ color:#fef3c7; }
+    .topic .p2{ color:#f3e8ff; }
+    .footer{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="title">
+        <h1>AI 行业热点自媒体选题库（2026-05-29）</h1>
+      </div>
+      <div class="meta">
+        <div>采集日期：<code>2026-05-29</code></div>
+        <div>采集窗口：<code>2026-05-27 00:00 → 2026-05-29 00:00</code></div>
+        <div>时区：<code>Asia/Shanghai</code></div>
+      </div>
+      <div class="note">
+        <b>定位说明：</b>面向 AI 自媒体创作者，优先使用可验证来源（官方博客/公告、GitHub Releases、权威媒体）。不确定信息会在正文中明确标注。
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="section">
+        <div class="sec-hd">
+          <div class="label">热点摘要条</div>
+          <div class="pill">先读这段，快速定方向</div>
+        </div>
+        <div class="sec-bd">
+          <ul>
+            <li><b>模型/能力</b>：Anthropic 发布 <b>Claude Opus 4.8</b>，重点强化 “computer use / 浏览器执行类 Agent”。</li>
+            <li><b>分发渠道</b>：GitHub Copilot 上线 <b>Claude Opus 4.8</b>（主流入口集成信号）。</li>
+            <li><b>创作者工具链</b>：Runway 发布 <b>Runway MCP Server</b>（视频生成进入可编排工作流）。</li>
+            <li><b>行业趋势</b>：Reactor 宣布以 <b>$59M</b> 融资启动“实时生成视频”方向（互动内容机会）。</li>
+            <li><b>开源落地</b>：X Square Robot 开源 <b>Wall-OSS-0.5（4B VLA）</b>（具身/机器人 AI 关注点）。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="sec-hd">
+          <div class="label">今日热点摘要表</div>
+          <div class="pill">字段：时间 / 信号 / 意义 / 来源 / 可信度 / 机会</div>
+        </div>
+        <div class="sec-bd">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:115px;">时间</th>
+                <th style="width:220px;">热点信号</th>
+                <th>对创作者的意义</th>
+                <th style="width:220px;">来源链接</th>
+                <th style="width:90px;">可信度</th>
+                <th style="width:200px;">内容机会</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-05-28</td>
+                <td>Anthropic 发布 Claude Opus 4.8</td>
+                <td>网页任务实测 + 创作流程自动化（搜集→对比→表格→脚本）。</td>
+                <td><a href="https://www.anthropic.com/news/claude-opus-4-8">anthropic.com/news/claude-opus-4-8</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>同题对比实测 + 任务清单复用。</td>
+              </tr>
+              <tr>
+                <td>2026-05-28</td>
+                <td>GitHub Copilot 上线 Opus 4.8</td>
+                <td>主流入口集成，降低开发/自动化门槛，适合“工具链”内容。</td>
+                <td><a href="https://github.blog/changelog/2026-05-28-anthropic-claude-opus-4-8-is-now-available-in-github-copilot/">github.blog/changelog</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>资料→脚本→发布的可复用链路。</td>
+              </tr>
+              <tr>
+                <td>2026-05-27</td>
+                <td>Runway 发布 Runway MCP Server</td>
+                <td>把视频生成能力接入 Agent/MCP 工作流，利于批量化出片与版本管理。</td>
+                <td><a href="https://runwayml.com/blog/runway-mcp-server/">runwayml.com/blog/runway-mcp-server</a></td>
+                <td><span class="badge b-high">高</span></td>
+                <td>MCP 工作流模板库系列。</td>
+              </tr>
+              <tr>
+                <td>2026-05-28</td>
+                <td>Reactor：$59M 押注实时生成视频</td>
+                <td>互动短剧/直播/可玩视频等新形态趋势信号，适合做机会与风险判断。</td>
+                <td><a href="https://press.aboutamazon.com/aws/2026/5/reactor-emerges-from-stealth-with-59m-to-build-the-platform-for-real-time-ai-worlds">press.aboutamazon.com/aws/.../reactor</a></td>
+                <td><span class="badge b-med">中-高</span></td>
+                <td>趋势解读：岗位与流程重排。</td>
+              </tr>
+              <tr>
+                <td>2026-05-28</td>
+                <td>Wall-OSS-0.5（4B VLA）开源</td>
+                <td>具身/机器人 AI 科普与“怎么验证不夸大”的清单型内容。</td>
+                <td><a href="https://huggingface.co/x-square-robot/wall-oss-0.5">huggingface.co/x-square-robot/wall-oss-0.5</a></td>
+                <td><span class="badge b-med">中</span></td>
+                <td>科普 + 后续实测（跑通 demo 再下结论）。</td>
+              </tr>
+              <tr>
+                <td>2026-05-27</td>
+                <td>OpenClaw 2026.5.26 发布</td>
+                <td>自托管社群/私域 Agent 的落地参考（摘要、答疑、发布），需强调安全边界。</td>
+                <td><a href="https://github.com/clawdbot/clawdbot/releases">github.com/clawdbot/clawdbot/releases</a></td>
+                <td><span class="badge b-med">中-高</span></td>
+                <td>社群 Agent 从 0 到 1 教程 + 风控清单。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="footer">提示：可信度评级针对“来源可验证性”；涉及性能/成本/价格等建议二次核对并截图留档。</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="sec-hd">
+          <div class="label">选题 01/02/03</div>
+          <div class="pill">含：角度 / 爆点 / 结构 / 形式</div>
+        </div>
+        <div class="sec-bd">
+          <div class="topic">
+            <h3><span class="k p0">选题 01（P0）</span>｜Claude Opus 4.8：浏览器 Agent 终于能“像人一样做网页任务”了吗？</h3>
+            <ul>
+              <li><b>目标受众：</b>资讯型 AI 受众、效率工具党、做资料/脚本的创作者。</li>
+              <li><b>爆点：</b>一镜到底网页任务实测（成功/失败都展示），输出可复用任务清单。</li>
+              <li><b>结构：</b>问题背景 → 官方信号 → 3 个任务设计 → 实测 → 复盘 → 风险边界。</li>
+              <li><b>形式：</b>屏录视频 + 图文复盘表。</li>
+              <li><b>引用：</b><a href="https://www.anthropic.com/news/claude-opus-4-8">Anthropic Opus 4.8</a>，<a href="https://github.blog/changelog/2026-05-28-anthropic-claude-opus-4-8-is-now-available-in-github-copilot/">GitHub Copilot changelog</a>。</li>
+            </ul>
+          </div>
+
+          <div class="topic">
+            <h3><span class="k p0">选题 02（P0）</span>｜Runway MCP Server：视频生成进入“可编排工作流时代”</h3>
+            <ul>
+              <li><b>目标受众：</b>短视频/广告/教程类创作者、AI 工具控。</li>
+              <li><b>爆点：</b>用 3–5 个 MCP 模板演示批量出片、版本管理、自动命名归档。</li>
+              <li><b>结构：</b>MCP 30 秒解释 → Runway 能力范围 → 模板演示 → 案例 → 风险兜底。</li>
+              <li><b>形式：</b>教程视频 + 模板下载（目录结构与命名规范）。</li>
+              <li><b>引用：</b><a href="https://runwayml.com/blog/runway-mcp-server/">Runway 官方博客</a>。</li>
+            </ul>
+          </div>
+
+          <div class="topic">
+            <h3><span class="k p1">选题 03（P1）</span>｜$59M 押注“实时生成视频”：互动短剧/直播会怎么变？</h3>
+            <ul>
+              <li><b>目标受众：</b>行业观察受众、短剧/直播从业者、机构团队。</li>
+              <li><b>爆点：</b>把“实时生成视频”翻译成可理解的产品形态（互动、个性化、可玩）。</li>
+              <li><b>结构：</b>信号是什么 → 为什么现在 → 3 个应用场景 → 风险清单 → 创作者策略。</li>
+              <li><b>形式：</b>图文长帖/视频解读。</li>
+              <li><b>引用：</b><a href="https://press.aboutamazon.com/">Amazon/AWS 相关新闻</a>（建议截图留档）。</li>
+            </ul>
+          </div>
+
+          <div class="note" style="margin-top:14px;">
+            <b>今日最推荐：</b>选题 02（P0）——更“马上能用”，且容易做成模板系列。
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

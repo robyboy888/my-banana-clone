@@ -1,0 +1,8 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-05-26,Vercel：Firecrawl 加入 Vercel Marketplace（可一键集成爬取/抽取）,把“资料搜集/竞品研究/选题资料卡”从手工变成可复用 Agent 流水线；适合做教程+模板+避坑（合规/robots/版权）,https://vercel.com/changelog/firecrawl-joins-the-vercel-marketplace,高,用 1 个例子演示“输入网址列表→抽取→总结→生成脚本/配图提示词”的端到端工作流
+2026-05-26,GitHub Copilot：Memory 增加删除/范围/CLI 控制,可做“AI 记忆≠黑盒”的科普：如何让工具更可控、更可复现；适合做隐私与团队规范模板,https://github.blog/changelog/2026-05-26-copilot-memory-has-more-controls-for-deletion-scope-and-the-copilot-cli,高,用“可复制的 Copilot 使用规范”做强收藏图文（删记忆/范围/审计）
+2026-05-26,GitHub Copilot：Model Rules（组织级指定模型）,企业/团队开始进入“模型治理时代”；创作者可做“同一任务不同模型差异”对比与选型,https://github.blog/changelog/2026-05-26-target-copilot-models-to-organizations-with-model-rules,高,横评：同一 PR/同一需求用不同模型跑一遍（质量/成本/延迟/可控性）
+2026-05-26,GitHub Agentic Workflows：Agent of the Day（PR 分析与监控）,给“内容生产自动化”提供现成叙事：从一次 PR 复盘到持续指标/告警；适合做连载,https://github.github.com/gh-aw/blog/2026-05-26-agent-of-the-day/,高,做“Agent 复刻”系列：每期复刻 1 个 agent（输入/工具/输出/边界）
+2026-05-25,GitHub Agentic Workflows：Weekly Update（v0.75.4 等）,持续周更=稳定内容源；适合“每周 1 个开源工作流”栏目化,https://github.github.com/gh-aw/blog/2026-05-25-weekly-update/,高,把 weekly update 变成“可运行 demo + 模板 repo + checklist”
+2026-05-26,Augment：Cosmos 更新（自定义环境镜像更轻/跨平台更顺）,AI 编程/Agent 工具正往“可移植的执行环境”演进；对创作者是“复现成本”话题,https://www.augmentcode.com/changelog,中,做“同一任务在不同环境复现”对比：本地/容器/云端 agent 环境
+2026-05-24（超窗发酵）,Aiola v0.1.40：修复 diff 卡死/强化 tasks+plan,工具体验类内容强共鸣；“卡顿/冻结/键盘流”比功能清单更好传播,https://aiola.app/changelog,高,用 3 个可复现 case 做测评：大文件 diff/二进制/重命名与回滚

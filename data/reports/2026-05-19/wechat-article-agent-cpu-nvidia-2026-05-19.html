@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>从“会聊天”到“会做事”：为什么 NVIDIA 要做 Agent CPU？</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1733;
+      --text:#e9edf7;
+      --muted:#b7c0da;
+      --line:rgba(255,255,255,.10);
+      --blue:#3b82f6;
+      --blue2:#60a5fa;
+      --code:#0a122b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(59,130,246,.35), transparent 60%),
+                  radial-gradient(1000px 500px at 90% 0%, rgba(96,165,250,.25), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.75;
+    }
+    a{color:var(--blue2); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px; margin:0 auto; padding:26px 18px 44px}
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .hero .inner{padding:16px 16px 14px}
+    h1{margin:0 0 10px; font-size:26px; letter-spacing:.2px; line-height:1.35}
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      display:flex; flex-wrap:wrap; gap:8px 14px;
+    }
+    .sub b{color:rgba(255,255,255,.85)}
+    .cover{
+      display:block;
+      width:100%;
+      height:auto;
+      border-bottom:1px solid var(--line);
+      background:#0a0f22;
+    }
+    .content{
+      margin-top:16px;
+      background: rgba(15,23,51,.85);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px 16px;
+    }
+    .lead{
+      padding:12px 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius:14px;
+      color:rgba(255,255,255,.90);
+    }
+    h2{
+      margin:18px 0 10px;
+      font-size:18px;
+      padding:10px 12px;
+      border-radius:12px;
+      background: linear-gradient(90deg, rgba(59,130,246,.24), rgba(96,165,250,.08));
+      border:1px solid var(--line);
+    }
+    p{margin:10px 0}
+    ul,ol{margin:10px 0; padding-left:20px}
+    li{margin:6px 0}
+    .img{
+      margin:12px 0;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background: rgba(9,14,32,.35);
+    }
+    .img img{display:block; width:100%; height:auto}
+    .caption{
+      padding:8px 10px;
+      font-size:12px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+    }
+    .hr{height:1px; background:var(--line); margin:16px 0}
+    .footer{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    @media print{
+      :root{--bg:#ffffff; --card:#ffffff; --text:#111827; --muted:#4b5563; --line:#e5e7eb; --blue:#2563eb; --blue2:#2563eb;}
+      body{background:#fff; color:#111}
+      .hero,.content{background:#fff; border-color:#e5e7eb}
+      a{color:#2563eb}
+      h2{background:#eff6ff; border-color:#e5e7eb}
+      .lead,.img{background:#fff; border-color:#e5e7eb}
+      .caption{border-top-color:#e5e7eb}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <img class="cover" src="./assets/cover-agent-cpu.png" alt="封面图：为什么 NVIDIA 要做 Agent CPU" />
+      <div class="inner">
+        <h1>从“会聊天”到“会做事”：为什么 NVIDIA 要做 Agent CPU？</h1>
+        <div class="sub">
+          <div><b>日期：</b>2026-05-19</div>
+          <div><b>主题：</b>Agent 时代的系统瓶颈与 CPU 回归</div>
+          <div><b>核心来源：</b><a href="https://blogs.nvidia.com/blog/vera-cpu-agentic-ai/">NVIDIA 官方博客</a></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="lead">
+        过去两年，我们习惯把 AI 进步等同于“更强的大模型”。但 2026 年开始，一个更关键的变化正在发生：<b>Agent（能调用工具、执行任务的 AI）让整套计算栈被迫重做</b>。当 AI 从“输出文字”走向“完成任务”，GPU 不再是唯一主角——<b>CPU 反而变成系统瓶颈与体验天花板</b>。
+      </div>
+
+      <h2>01 什么是 Agent？它和 Chatbot 的差别在哪</h2>
+      <p>把 Chatbot 想成“会写作的发动机”，把 Agent 想成“能接单的运营团队”。</p>
+      <ul>
+        <li><b>Chatbot</b>：一次输入 → 一次输出，主要成本在模型推理。</li>
+        <li><b>Agent</b>：目标输入 → 多轮规划 → 调用工具（搜索/代码/表格/数据库/邮件/工单/浏览器）→ 结果交付。关键变化是：推理只是其中一段，更多时间花在“找数据、跑流程、等 I/O、做校验、做回退”。</li>
+      </ul>
+      <div class="img">
+        <img src="./assets/infographic-chatbot-vs-agent.png" alt="信息图：Chatbot vs Agent" />
+        <div class="caption">图：Chatbot（一次回答） vs Agent（任务生产线）</div>
+      </div>
+      <p><b>一句话</b>：Agent 是一个长链路的“系统”，不是一个单点模型。</p>
+
+      <div class="hr"></div>
+
+      <h2>02 Agent 链路里，CPU 到底在忙什么？</h2>
+      <p>很多人以为“AI=GPU”，但在 Agent 场景里，CPU 的工作量会陡增，常见包括：</p>
+      <ol>
+        <li><b>任务编排与状态机</b>：维护进度/上下文/下一步动作/失败重试/回退策略（多在 CPU 侧调度）。</li>
+        <li><b>I/O 与数据搬运</b>：网络请求、读写文件、访问数据库、解析文档；GPU 等数据很贵，CPU 是把 I/O 管顺的核心。</li>
+        <li><b>推理前后处理</b>：RAG 切分与触发、结构化校验、内容安全、缓存、日志与可观测性。</li>
+        <li><b>多模型/多工具协作</b>：路由/调用/执行/回传的串联与治理。</li>
+      </ol>
+      <div class="img">
+        <img src="./assets/infographic-agent-runtime-cpu-gpu.png" alt="信息图：Agent runtime CPU/GPU 分工" />
+        <div class="caption">图：Agent runtime 中 CPU（编排/I-O/治理）与 GPU（推理）分工</div>
+      </div>
+      <p><b>结论</b>：Agent 让“系统效率”决定最终体验，而系统效率往往由 CPU/I/O/调度决定。</p>
+
+      <div class="hr"></div>
+
+      <h2>03 为什么现在需要“为 Agent 重新设计 CPU”？</h2>
+      <p>因为 Agent 时代的用户体验指标变了：</p>
+      <ul>
+        <li>Chatbot 时代：回答好不好、token 成本高不高。</li>
+        <li>Agent 时代：<b>能不能按时完成、会不会翻车、失败能不能自救、并发上来会不会崩、整体成本能不能控</b>。</li>
+      </ul>
+      <p>因此压力会集中在三件事：</p>
+      <ul>
+        <li><b>更低延迟的编排与更稳定吞吐</b>（否则工具调用等待会把体验拖成 PPT）。</li>
+        <li><b>更高可靠性与可观测性</b>（企业客户要能追责、能复盘、能治理）。</li>
+        <li><b>更好的端到端成本</b>（把不该占 GPU 的活挪走，成本会明显下降）。</li>
+      </ul>
+      <p>你会看到：硬件叙事从“算得更快”转向“跑得更稳、更省、更可控”。这就是“Agent 栈重做”的本质。</p>
+
+      <div class="hr"></div>
+
+      <h2>04 对普通人/创作者意味着什么？不是买 CPU，而是内容机会来了</h2>
+      <p>你不需要关心 Vera 的每个参数，但可以抓住一个更能传播的讲法：</p>
+      <ul>
+        <li><b>反直觉科普</b>：为什么卷 GPU 之外，还要卷 CPU？</li>
+        <li><b>体验拆解</b>：Agent 为什么慢？慢在哪里？怎么变快？</li>
+        <li><b>产业趋势</b>：Agent 让哪些岗位/产品先吃到红利？</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h2>05 一张图讲清：Agent 时代你应该盯哪些指标</h2>
+      <div class="img">
+        <img src="./assets/card-agent-metrics-6.png" alt="清单卡片：Agent 体验 6 指标" />
+        <div class="caption">图：端到端完成时间 / 成功率 / 回退策略 / 并发与队列 / 成本结构 / 可观测性</div>
+      </div>
+      <p>建议你在内容里反复强调这 6 个“可衡量”的指标，它们决定“能不能交付”。</p>
+
+      <div class="hr"></div>
+
+      <h2>结尾</h2>
+      <p><b>Agent 时代不是“模型更强”，而是“系统更像生产线”。</b>当 AI 从内容生成走向任务交付，硬件与系统架构会决定大多数人的真实体验——这就是为什么 NVIDIA 会谈“面向 Agentic AI 的 CPU（Vera）”。</p>
+
+      <p class="footer">
+        注：本文硬事实引用来自 NVIDIA 官方博客（不包含无来源的价格/跑分/交付时间断言）。趋势影响为基于行业常识的归纳。
+      </p>
+    </main>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,8 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-05-25,GitHub Agentic Workflows 周报 + 版本迭代（含 2026-05-24 v0.75.4）,开源可复刻素材适合做教程与连载,https://github.github.com/gh-aw/blog/2026-05-25-weekly-update/,高,复现一套 AI 编程 Agent 工作流模板
+2026-05-24,Aiola v0.1.40 修复 diff 卡死/强化 tasks+plan,适合做“真实痛点”体验评测与选型清单,https://aiola.app/changelog,高,对比评测：卡顿/冻结/键盘流
+2026-05-18（超窗发酵）,Augment Cosmos 26-05-18 云端 agent 托管 artifacts/webhook/Slack,适合讲团队级 agent 自动化与内容流水线,https://www.augmentcode.com/changelog,高,案例：Slack 触发→Agent 执行→产物回传
+2026-05-14（超窗发酵）,Augment IDE 插件 MCP Tool Search/会话分叉/长输出可靠性,适合做 IDE 内 agent 工具链对比与选型,https://www.augmentcode.com/changelog,高,对比：MCP 工具搜索体验
+2026-05（近 7 天内，需二次核对）,v0.app 更新（以官方 changelog 为准）,适合做快速上手与可售模板,SOP,https://v0.app/changelog,中,模板：提示词→上线 landing
+2026-04-16（超窗发酵）,LiveKit Agents 1.5.3 语音/实时 agent 生态更新,适合做语音实时 agent 最小 demo 与扩展,https://github.com/livekit/agents/releases/tag/livekit-agents%401.5.3,高,Demo：实时语音 agent + 工具调用
+
