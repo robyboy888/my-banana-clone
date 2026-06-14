@@ -40,11 +40,17 @@ export default async function Page() {
                     </div>
                     
                     {/* 右侧 功能区 */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                         <ThemeToggle />
                         <a 
+                            href="/visual-os" 
+                            className="text-[10px] font-black tracking-widest uppercase px-4 sm:px-5 py-2 rounded-full bg-[#3fc1c0] text-[#0f1115] hover:bg-white transition-all shadow-sm shadow-[#3fc1c0]/20"
+                        >
+                            视觉 OS
+                        </a>
+                        <a 
                             href="/admin" 
-                            className="text-[10px] font-black tracking-widest uppercase px-5 py-2 rounded-full bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all shadow-sm"
+                            className="text-[10px] font-black tracking-widest uppercase px-4 sm:px-5 py-2 rounded-full bg-white text-[#0f1115] hover:bg-[#3fc1c0] hover:text-white transition-all shadow-sm"
                         >
                             DASHBOARD
                         </a>
