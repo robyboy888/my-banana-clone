@@ -2,638 +2,777 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import {
   ArrowLeft,
   BadgeDollarSign,
+  BrainCircuit,
+  Building2,
   CheckCircle2,
-  ChevronRight,
   Copy,
-  Crown,
-  FileText,
-  Heading1,
-  ImageIcon,
-  LayoutTemplate,
-  RefreshCw,
-  Sparkles,
-  Target,
+  Gem,
+  Layers3,
+  Library,
+  Mountain,
+  Network,
+  Orbit,
+  Palette,
+  TreePine,
   Wand2,
-  Zap,
+  Waves,
+  Workflow,
 } from "lucide-react";
 
-type Template = {
-  id: string;
+type ModelId = "iceberg" | "mountain" | "tree" | "ocean" | "city" | "cosmos";
+type StyleId = "apple" | "luxury" | "oriental" | "tech";
+type TabId = "system" | "models" | "prompt" | "templates";
+
+type VisualModel = {
+  id: ModelId;
   name: string;
   category: string;
-  market: string;
-  price: string;
-  conversion: string;
-  prompt: string;
-  layout: string;
-  color: string;
+  visualObject: string;
+  structureType: string;
+  bestFor: string[];
+  layerMapping: {
+    top: string;
+    middle: string;
+    bottom: string;
+  };
+  visualFeatures: string[];
+  lightingStyle: string;
+  colorStrategy: string;
+  promptModifier: string;
+  icon: ReactNode;
   accent: string;
-  ingredients: string[];
-  channels: string[];
-  score: number;
+  glow: string;
 };
 
-type EngineMode = "template" | "title" | "copy" | "launch";
+type StylePreset = {
+  id: StyleId;
+  name: string;
+  tone: string;
+  lighting: string;
+  color: string;
+  atmosphere: string;
+  usage: string;
+};
 
-const templates: Template[] = [
+type TemplateCard = {
+  name: string;
+  scenario: string;
+  input: string;
+  logic: string;
+  prompt: string;
+  model: ModelId;
+};
+
+const visualModels: VisualModel[] = [
   {
-    id: "cover",
-    name: "爆款封面模板",
-    category: "社媒首图",
-    market: "小红书 / 即梦 / 可灵教程",
-    price: "￥19 单件, ￥99 套装",
-    conversion: "强标题 + 强主体 + 强对比",
-    prompt:
-      "主体清晰居中, 高对比背景, 明确光源, 商品级质感, 适合 9:16 封面, 保留顶部标题安全区",
-    layout: "上标题区, 中主体区, 下利益点区",
-    color: "from-rose-500 via-orange-400 to-yellow-300",
-    accent: "bg-rose-500",
-    ingredients: ["9:16", "大主体", "标题安全区", "三段式卖点"],
-    channels: ["小红书", "抖音图文", "朋友圈海报"],
-    score: 94,
+    id: "iceberg",
+    name: "冰山模型",
+    category: "hidden structure",
+    visualObject: "iceberg",
+    structureType: "上下分层",
+    bestFor: ["心理学", "品牌", "用户决策", "内容传播"],
+    layerMapping: {
+      top: "显性现象",
+      middle: "过渡认知",
+      bottom: "隐性驱动",
+    },
+    visualFeatures: ["水面分割", "巨大底部体积", "透明深海层次", "90% 隐性结构"],
+    lightingStyle: "top bright, bottom dark, underwater depth",
+    colorStrategy: "white ice, deep blue ocean, subtle cyan glow",
+    promptModifier: "underwater 90% massive hidden structure, clean annotations",
+    icon: <Waves className="h-5 w-5" />,
+    accent: "border-cyan-300/35 bg-cyan-300/10 text-cyan-100",
+    glow: "from-cyan-300/30 via-blue-500/10 to-transparent",
   },
   {
-    id: "product",
-    name: "商品种草模板",
-    category: "电商转化",
-    market: "独立站 / 私域 / 店铺详情",
-    price: "￥29 单件, ￥199 行业包",
-    conversion: "场景利益 + 质感对比 + 购买理由",
-    prompt:
-      "真实产品摄影, 环境光, 使用场景明确, 前景有层次, 背景简洁, 输出可商用广告视觉",
-    layout: "场景图, 局部特写, 对比证据, CTA",
-    color: "from-cyan-400 via-blue-500 to-slate-900",
-    accent: "bg-cyan-400",
-    ingredients: ["产品主图", "场景图", "对比图", "信任标签"],
-    channels: ["Shopify", "淘宝详情", "社群转化"],
-    score: 91,
+    id: "mountain",
+    name: "山体模型",
+    category: "growth hierarchy",
+    visualObject: "mountain",
+    structureType: "向上递进",
+    bestFor: ["成长路径", "用户旅程", "人生路径", "目标管理"],
+    layerMapping: {
+      top: "目标顶峰",
+      middle: "攀登过程",
+      bottom: "基础起点",
+    },
+    visualFeatures: ["清晰坡面", "上升路径", "顶峰光源", "底部厚重"],
+    lightingStyle: "golden summit light, cool mountain shadows",
+    colorStrategy: "slate gray, muted blue, warm gold highlight",
+    promptModifier: "grand mountain hierarchy, upward path, summit glow",
+    icon: <Mountain className="h-5 w-5" />,
+    accent: "border-amber-300/35 bg-amber-300/10 text-amber-100",
+    glow: "from-amber-300/25 via-stone-400/10 to-transparent",
   },
   {
-    id: "course",
-    name: "知识付费模板",
-    category: "课程海报",
-    market: "AI 课程 / 训练营 / 资料包",
-    price: "￥39 单件, ￥299 课程包",
-    conversion: "身份承诺 + 结果截图 + 课程资产",
-    prompt:
-      "高级课程海报, 信息层级清晰, 教程截图质感, 专家感, 内容资产陈列, 适合付费转化页",
-    layout: "承诺标题, 资产陈列, 讲师背书, 行动按钮",
-    color: "from-emerald-300 via-teal-500 to-slate-950",
-    accent: "bg-emerald-400",
-    ingredients: ["课程封面", "模块清单", "收益结果", "交付物"],
-    channels: ["知识星球", "微信群", "公众号"],
-    score: 96,
+    id: "tree",
+    name: "树模型",
+    category: "root-driven",
+    visualObject: "tree",
+    structureType: "上下镜像",
+    bestFor: ["女性 IP", "情绪表达", "有机品牌", "组织文化"],
+    layerMapping: {
+      top: "外在表现",
+      middle: "结构连接",
+      bottom: "根系驱动",
+    },
+    visualFeatures: ["树冠柔和", "根系发光", "上下对照", "自然生长感"],
+    lightingStyle: "soft diffused light, roots glowing gently",
+    colorStrategy: "ivory, soft pink, moss green, deep brown",
+    promptModifier: "delicate tree with luminous roots, poetic organic metaphor",
+    icon: <TreePine className="h-5 w-5" />,
+    accent: "border-emerald-300/35 bg-emerald-300/10 text-emerald-100",
+    glow: "from-emerald-300/25 via-rose-200/10 to-transparent",
   },
   {
-    id: "trend",
-    name: "热点跟拍模板",
-    category: "内容增长",
-    market: "热点图文 / AI 案例复刻",
-    price: "￥9 单件, ￥59 周更包",
-    conversion: "趋势关键词 + 一键复刻 + 快速发布",
-    prompt:
-      "热点趋势视觉, 强记忆点, 可替换主体, 视觉冲击力高, 输出统一系列封面",
-    layout: "热点锚点, 复刻步骤, 效果预览, 模板入口",
-    color: "from-fuchsia-500 via-violet-500 to-indigo-900",
-    accent: "bg-fuchsia-500",
-    ingredients: ["热点标签", "复刻步骤", "同款提示词", "发布标题"],
-    channels: ["小红书", "即刻", "抖音"],
-    score: 88,
+    id: "ocean",
+    name: "深海模型",
+    category: "depth and unknown",
+    visualObject: "ocean depth",
+    structureType: "纵深渐变",
+    bestFor: ["潜意识", "情绪", "风险", "未知系统"],
+    layerMapping: {
+      top: "表层认知",
+      middle: "模糊区域",
+      bottom: "未知深渊",
+    },
+    visualFeatures: ["垂直深度", "雾化分层", "微弱光束", "未知黑域"],
+    lightingStyle: "thin surface light fading into abyss",
+    colorStrategy: "blue gradient to black, low saturation",
+    promptModifier: "deep ocean vertical gradient, unknown abyss, minimal labels",
+    icon: <Waves className="h-5 w-5" />,
+    accent: "border-blue-300/35 bg-blue-300/10 text-blue-100",
+    glow: "from-blue-300/25 via-indigo-500/10 to-transparent",
   },
   {
-    id: "brand",
-    name: "品牌大片模板",
-    category: "高客单设计",
-    market: "品牌咨询 / 视觉服务 / 案例包装",
-    price: "￥199 单件, ￥999 品牌包",
-    conversion: "审美溢价 + 案例前后对比 + 品牌统一",
-    prompt:
-      "品牌广告大片, 高级商业摄影, 统一视觉系统, 明确材质和灯光, 适合提案与作品集",
-    layout: "品牌主视觉, 材质特写, 应用场景, 提案封面",
-    color: "from-zinc-200 via-neutral-500 to-black",
-    accent: "bg-zinc-200",
-    ingredients: ["主视觉", "品牌色板", "材质系统", "提案页"],
-    channels: ["作品集", "客户提案", "官网案例"],
-    score: 93,
+    id: "city",
+    name: "城市系统模型",
+    category: "complex systems",
+    visualObject: "city system",
+    structureType: "表面 + 底层系统",
+    bestFor: ["商业系统", "平台产品", "AI 架构", "运营模型"],
+    layerMapping: {
+      top: "表层界面",
+      middle: "运行结构",
+      bottom: "底层系统",
+    },
+    visualFeatures: ["城市截面", "地下网络", "发光线路", "系统节点"],
+    lightingStyle: "cinematic city light with glowing underground network",
+    colorStrategy: "black, graphite, electric blue, white UI highlights",
+    promptModifier: "futuristic city cutaway, glowing infrastructure network",
+    icon: <Building2 className="h-5 w-5" />,
+    accent: "border-sky-300/35 bg-sky-300/10 text-sky-100",
+    glow: "from-sky-300/25 via-cyan-500/10 to-transparent",
   },
   {
-    id: "avatar",
-    name: "人物 IP 模板",
-    category: "个人品牌",
-    market: "IP 头像 / 讲师形象 / 社交资料",
-    price: "￥49 单件, ￥399 IP 包",
-    conversion: "可信人格 + 视觉统一 + 多场景复用",
-    prompt:
-      "专业人物肖像, 统一背景系统, 清晰脸部光线, 保留真实五官, 适合个人品牌矩阵",
-    layout: "头像, 横幅, 内容封面, 直播间背景",
-    color: "from-amber-300 via-lime-400 to-emerald-900",
-    accent: "bg-lime-400",
-    ingredients: ["头像", "横幅", "口播封面", "账号主页"],
-    channels: ["小红书主页", "视频号", "LinkedIn"],
-    score: 89,
+    id: "cosmos",
+    name: "宇宙模型",
+    category: "cognitive dimensions",
+    visualObject: "cosmos",
+    structureType: "无限层级",
+    bestFor: ["哲学", "认知升级", "高维表达", "愿景叙事"],
+    layerMapping: {
+      top: "已知世界",
+      middle: "可探索边界",
+      bottom: "未知维度",
+    },
+    visualFeatures: ["星云层次", "轨道结构", "尺度对比", "高维深空"],
+    lightingStyle: "cosmic rim light, star field depth",
+    colorStrategy: "black, silver, violet, sparse gold",
+    promptModifier: "cosmic layered dimensions, infinite depth, elegant star field",
+    icon: <Orbit className="h-5 w-5" />,
+    accent: "border-violet-300/35 bg-violet-300/10 text-violet-100",
+    glow: "from-violet-300/25 via-fuchsia-500/10 to-transparent",
   },
 ];
 
-const titleAngles = [
+const stylePresets: StylePreset[] = [
   {
-    id: "gap",
-    label: "差距刺激",
-    formula: "别人已经在用 {topic} 批量出图了, 你还在手写提示词",
+    id: "apple",
+    name: "Apple 极简",
+    tone: "清冷、留白、克制",
+    lighting: "soft studio light, clean white highlights, subtle shadow",
+    color: "white, silver, deep blue, low saturation",
+    atmosphere: "ultra clean, premium, minimal infographic, no clutter",
+    usage: "知识海报、课程封面、品牌解释页",
   },
   {
-    id: "asset",
-    label: "资产承诺",
-    formula: "把 {topic} 做成可复用资产, 一套模板反复卖",
+    id: "luxury",
+    name: "奢侈品风",
+    tone: "高级、稀缺、广告大片",
+    lighting: "dramatic luxury campaign lighting, glossy highlights",
+    color: "black, champagne gold, ivory, deep shadow",
+    atmosphere: "editorial luxury poster, refined material texture",
+    usage: "品牌大片、高客单服务、审美溢价产品",
   },
   {
-    id: "proof",
-    label: "结果证明",
-    formula: "我用 {topic} 跑出 6 个可上架视觉模板, 直接复制结构",
+    id: "oriental",
+    name: "东方美学",
+    tone: "诗性、留白、自然",
+    lighting: "soft mist light, calm dawn atmosphere, gentle diffusion",
+    color: "ink black, warm ivory, jade green, muted rose",
+    atmosphere: "quiet eastern aesthetic, poetic composition, breathing space",
+    usage: "情绪表达、女性 IP、文化类内容",
   },
   {
-    id: "shortcut",
-    label: "捷径方案",
-    formula: "{topic} 不缺工具, 缺的是这套爆款模板系统",
+    id: "tech",
+    name: "科技未来",
+    tone: "系统、精密、未来感",
+    lighting: "cinematic neon rim light, luminous data lines",
+    color: "graphite black, electric blue, cyan, clean white",
+    atmosphere: "futuristic system diagram, high precision, commercial UI",
+    usage: "AI 产品、平台架构、商业系统说明",
   },
 ];
 
-const copyFormats = [
-  "小红书种草",
-  "抖音口播",
-  "课程销售页",
-  "模板商品页",
-  "私域成交话术",
+const categoryRules = [
+  { label: "心理学 / 人性", model: "iceberg" as ModelId },
+  { label: "品牌 / 商业", model: "city" as ModelId },
+  { label: "成长 / 路径", model: "mountain" as ModelId },
+  { label: "情绪 / 女性", model: "tree" as ModelId },
+  { label: "风险 / 未知", model: "ocean" as ModelId },
+  { label: "哲学 / 高维", model: "cosmos" as ModelId },
 ];
 
-const launchChecklist = [
-  "每个模板固定 1 个主场景, 3 个替换变量, 5 条标题钩子",
-  "预览图统一 9:16, 1:1, 16:9 三种比例",
-  "商品页展示成品图, 结构图, 提示词, 适用行业, 售后边界",
-  "套装按行业命名, 不按工具命名, 方便用户理解购买结果",
-  "每周更新热点模板, 旧模板沉淀为长期素材库",
-  "把标题系统和文案引擎作为加价模块, 不免费赠送给单件模板",
+const systemModules = [
+  {
+    name: "Theory Engine",
+    label: "把一句理论变成结构数据",
+    detail: "识别主题、类别、核心总结和隐含层级。",
+  },
+  {
+    name: "Structure Engine",
+    label: "统一为 top / middle / bottom",
+    detail: "默认强化 bottom 90% 的深层驱动，让画面有解释力。",
+  },
+  {
+    name: "Metaphor Engine",
+    label: "抽象概念映射到视觉物",
+    detail: "从冰山、山体、树、深海、城市、宇宙中选择最合适模型。",
+  },
+  {
+    name: "Style Engine",
+    label: "把同一理论换成商业风格",
+    detail: "Apple、奢侈品、东方美学、科技未来四套基础风格。",
+  },
+  {
+    name: "Prompt Engine",
+    label: "输出可直接生成的海报 Prompt",
+    detail: "固定 9:16、标题、副标题、层级、标注、光色和底部总结。",
+  },
 ];
 
-const stats = [
-  { label: "模板资产", value: "36", note: "首批可上架单元" },
-  { label: "标题钩子", value: "144", note: "4 类爆款角度" },
-  { label: "交付规格", value: "3", note: "封面 / 商品 / 课程" },
-  { label: "变现层级", value: "4", note: "单件到订阅" },
+const templates: TemplateCard[] = [
+  {
+    name: "冰山认知海报",
+    scenario: "心理学、品牌、人性洞察、知识 IP",
+    input: "主题 + 三层结构 + 核心本质句",
+    logic: "显性现象只占 10%, 深层动因占 90%。",
+    prompt:
+      "Apple minimal iceberg poster, top layer is visible behavior, middle layer is transition cognition, bottom layer is hidden motivation, add subtle 90% underwater indicator.",
+    model: "iceberg",
+  },
+  {
+    name: "柔性树模型",
+    scenario: "女性 IP、情绪内容、美学品牌、关系议题",
+    input: "外在表现 + 气质流动 + 情绪根系",
+    logic: "外在美不是根本吸引力, 根系才是持续生长的来源。",
+    prompt:
+      "Poetic soft poster, delicate tree above ground, luminous roots below, dreamy feminine soft light, ivory and muted rose palette.",
+    model: "tree",
+  },
+  {
+    name: "城市系统剖面",
+    scenario: "AI 产品、商业平台、运营模型、组织系统",
+    input: "用户界面 + 运行流程 + 底层基础设施",
+    logic: "用户看到的是界面, 真正的壁垒在地下系统。",
+    prompt:
+      "Futuristic city cutaway poster, surface interface layer, operating structure layer, underground glowing infrastructure network, high precision labels.",
+    model: "city",
+  },
+  {
+    name: "山体成长路径",
+    scenario: "成长方法、职业路线、课程训练营、目标管理",
+    input: "起点 + 攀登过程 + 顶峰目标",
+    logic: "把成长从抽象口号变成可攀登的路径。",
+    prompt:
+      "Grand mountain hierarchy poster, foundation at base, climbing route in middle, glowing summit target, minimal milestones and premium editorial composition.",
+    model: "mountain",
+  },
+  {
+    name: "深海风险洞察",
+    scenario: "风险判断、潜意识、情绪深层、未知问题",
+    input: "表层信号 + 模糊区 + 未知深渊",
+    logic: "越往下越不可见, 也越决定结果。",
+    prompt:
+      "Deep ocean conceptual poster, vertical gradient from surface light to black abyss, sparse annotations, unknown depth and subtle pressure atmosphere.",
+    model: "ocean",
+  },
+  {
+    name: "宇宙高维认知",
+    scenario: "哲学表达、愿景叙事、认知升级、高端封面",
+    input: "已知 + 可探索边界 + 未知维度",
+    logic: "用尺度感表达认知边界, 让抽象观点变得高级。",
+    prompt:
+      "Cosmic layered dimensions poster, known orbit, exploration boundary, unknown deep space, elegant star field, clean premium typography.",
+    model: "cosmos",
+  },
 ];
 
-function fillFormula(formula: string, topic: string) {
-  return formula.replaceAll("{topic}", topic || "AI 视觉内容");
+const tabs: { id: TabId; label: string; icon: ReactNode }[] = [
+  { id: "system", label: "操作系统", icon: <Workflow className="h-4 w-4" /> },
+  { id: "models", label: "隐喻模型库", icon: <Library className="h-4 w-4" /> },
+  { id: "prompt", label: "Prompt 引擎", icon: <Wand2 className="h-4 w-4" /> },
+  { id: "templates", label: "可售卖模板", icon: <BadgeDollarSign className="h-4 w-4" /> },
+];
+
+function getModel(id: ModelId) {
+  return visualModels.find((model) => model.id === id) ?? visualModels[0];
 }
 
-function buildCopy(format: string, topic: string, audience: string, template: Template) {
-  const subject = topic || "AI 视觉内容";
-  const target = audience || "想做内容变现的人";
-
-  if (format === "抖音口播") {
-    return `如果你正在做 ${subject}, 不要只收藏提示词。真正能卖钱的是模板系统: 先固定画面结构, 再替换行业变量, 最后用标题钩子测试点击率。这套「${template.name}」适合 ${target}, 可以直接拆成封面、提示词和成品预览三件套。`;
-  }
-
-  if (format === "课程销售页") {
-    return `这不是一堆灵感图, 而是一套可以交付的 ${subject} 操作系统。你会拿到「${template.name}」的画面结构、提示词框架、标题公式和上架清单, 用它把零散审美变成可复用、可售卖、可持续更新的模板资产。`;
-  }
-
-  if (format === "模板商品页") {
-    return `适合 ${target} 的 ${template.name}。内含 ${template.ingredients.join("、")}。你可以直接替换行业、产品、人物或场景, 快速生成一组风格统一的视觉内容, 适合投放到 ${template.channels.join("、")}。`;
-  }
-
-  if (format === "私域成交话术") {
-    return `你现在缺的不是更多工具, 而是一套稳定产出的 ${subject} 模板。我建议先从「${template.name}」开始, 因为它能同时解决选题、画面和转化文案, 做完就能上架成一个可卖的视觉资产包。`;
-  }
-
-  return `我把 ${subject} 拆成了一套能反复复用的模板系统。以「${template.name}」为例, 先锁定 ${template.layout}, 再套入标题钩子和成交文案, 就能把一张灵感图升级成可上架的视觉资产。适合 ${target}。`;
+function getStyle(id: StyleId) {
+  return stylePresets.find((style) => style.id === id) ?? stylePresets[0];
 }
 
-function VisualPreview({ template }: { template: Template }) {
-  return (
-    <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-2xl shadow-black/40">
-      <div className={`absolute inset-0 bg-gradient-to-br ${template.color}`} />
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.22),transparent_32%,rgba(0,0,0,0.42)_72%)]" />
-      <div className="absolute left-5 right-5 top-5 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.22em] text-white/70">
-        <span>{template.category}</span>
-        <span>V1.0</span>
-      </div>
-      <div className="absolute left-5 top-16 w-24 rounded-full bg-white/90 px-3 py-1 text-[10px] font-black text-black">
-        {template.market.split("/")[0].trim()}
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 bg-black/55 p-6 backdrop-blur-xl">
-        <div className="mb-4 flex items-center gap-2">
-          <span className={`h-3 w-3 rounded-full ${template.accent}`} />
-          <span className="text-[10px] font-black uppercase tracking-[0.24em] text-white/60">
-            Monetizable
-          </span>
-        </div>
-        <h3 className="text-3xl font-black leading-[0.95] tracking-tight text-white">
-          {template.name}
-        </h3>
-        <p className="mt-4 text-xs font-semibold leading-relaxed text-white/65">
-          {template.conversion}
-        </p>
-      </div>
-    </div>
-  );
+function buildTheoryStructure(theory: string, model: VisualModel) {
+  const normalized = theory.trim();
+
+  if (/弗洛伊德|意识|潜意识/.test(normalized)) {
+    return {
+      title: "弗洛伊德意识理论",
+      subtitle: "Consciousness / Preconsciousness / Unconsciousness",
+      top: "意识 Consciousness",
+      middle: "前意识 Preconsciousness",
+      bottom: "潜意识 Unconsciousness",
+      summary: "人类行为由潜意识驱动",
+      category: "心理学",
+    };
+  }
+
+  if (/品牌|商业|增长|平台/.test(normalized)) {
+    return {
+      title: normalized || "品牌增长系统",
+      subtitle: "Surface Interface / Operating System / Hidden Infrastructure",
+      top: "表层感知 Surface Perception",
+      middle: "运行机制 Operating Structure",
+      bottom: "底层壁垒 Hidden Infrastructure",
+      summary: `${normalized || "品牌"}的本质是看不见的系统能力`,
+      category: "商业",
+    };
+  }
+
+  if (/成长|路径|职业|人生|目标/.test(normalized)) {
+    return {
+      title: normalized || "成长路径模型",
+      subtitle: "Goal / Process / Foundation",
+      top: "目标顶峰 Goal",
+      middle: "攀登过程 Process",
+      bottom: "基础起点 Foundation",
+      summary: `${normalized || "成长"}不是跳跃, 而是持续攀登`,
+      category: "成长",
+    };
+  }
+
+  return {
+    title: normalized || "深层认知模型",
+    subtitle: `${model.layerMapping.top} / ${model.layerMapping.middle} / ${model.layerMapping.bottom}`,
+    top: model.layerMapping.top,
+    middle: model.layerMapping.middle,
+    bottom: model.layerMapping.bottom,
+    summary: `${normalized || "主题"}的本质藏在深层结构里`,
+    category: model.bestFor[0],
+  };
 }
 
-function CopyPanel({
-  title,
-  value,
-  onCopy,
-  icon,
-}: {
-  title: string;
-  value: string;
-  onCopy: () => void;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5 shadow-xl shadow-black/10">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 text-sm font-black text-white">
-          {icon}
-          {title}
-        </div>
-        <button
-          onClick={onCopy}
-          className="flex h-9 shrink-0 items-center gap-2 rounded-full bg-white px-4 text-[11px] font-black uppercase tracking-[0.14em] text-black transition hover:bg-[#3fc1c0] hover:text-white active:translate-y-px"
-        >
-          <Copy size={14} />
-          复制
-        </button>
-      </div>
-      <p className="whitespace-pre-line text-sm leading-7 text-slate-300 [word-break:break-word]">
-        {value}
-      </p>
-    </div>
-  );
+function buildPrompt(theory: ReturnType<typeof buildTheoryStructure>, model: VisualModel, style: StylePreset) {
+  return `9:16 vertical high-end conceptual poster
+Title: ${theory.title} · ${model.name}
+Subtitle: ${theory.subtitle}
+
+Main visual: A large ${model.visualObject} centered in the scene
+
+Structure:
+Top layer: ${theory.top}
+Middle layer: ${theory.middle}
+Bottom layer: ${theory.bottom}
+
+Bottom layer occupies 90% of the total volume
+Add "90%" indicator subtly
+
+Annotations: thin lines, minimal labels, infographic style
+Lighting: ${style.lighting}; ${model.lightingStyle}
+Color: ${style.color}; ${model.colorStrategy}
+Atmosphere: ${style.atmosphere}
+Prompt modifier: ${model.promptModifier}
+
+Bottom statement: 这就是${theory.summary}
+Ultra clean, high detail, no clutter`;
 }
 
 export default function VisualOSClient() {
-  const [mode, setMode] = useState<EngineMode>("template");
-  const [selectedId, setSelectedId] = useState("course");
-  const [topic, setTopic] = useState("AI 视觉内容生成");
-  const [audience, setAudience] = useState("内容创作者和 AI 副业玩家");
-  const [platform, setPlatform] = useState("小红书");
-  const [format, setFormat] = useState(copyFormats[0]);
-  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<TabId>("system");
+  const [theoryInput, setTheoryInput] = useState("弗洛伊德意识理论");
+  const [selectedModelId, setSelectedModelId] = useState<ModelId>("iceberg");
+  const [selectedStyleId, setSelectedStyleId] = useState<StyleId>("apple");
+  const [copied, setCopied] = useState(false);
 
-  const selectedTemplate = templates.find((item) => item.id === selectedId) ?? templates[0];
+  const selectedModel = useMemo(() => getModel(selectedModelId), [selectedModelId]);
+  const selectedStyle = useMemo(() => getStyle(selectedStyleId), [selectedStyleId]);
+  const theory = useMemo(() => buildTheoryStructure(theoryInput, selectedModel), [theoryInput, selectedModel]);
+  const prompt = useMemo(() => buildPrompt(theory, selectedModel, selectedStyle), [theory, selectedModel, selectedStyle]);
+  const selectedTemplate = templates.find((template) => template.model === selectedModelId) ?? templates[0];
 
-  const titles = useMemo(
-    () => titleAngles.map((item) => ({ ...item, result: fillFormula(item.formula, topic) })),
-    [topic],
-  );
-
-  const promptPack = useMemo(() => {
-    return [
-      `模板定位: ${selectedTemplate.name}`,
-      `目标用户: ${audience}`,
-      `发布平台: ${platform}`,
-      `画面结构: ${selectedTemplate.layout}`,
-      `生成提示词: ${selectedTemplate.prompt}`,
-      `商业包装: ${selectedTemplate.price}, ${selectedTemplate.conversion}`,
-    ].join("\n");
-  }, [audience, platform, selectedTemplate]);
-
-  const salesCopy = useMemo(
-    () => buildCopy(format, topic, audience, selectedTemplate),
-    [audience, format, selectedTemplate, topic],
-  );
-
-  const handleCopy = async (key: string, value: string) => {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopiedKey(key);
-      window.setTimeout(() => setCopiedKey(null), 1600);
-    } catch (error) {
-      console.error("复制失败:", error);
-    }
-  };
+  async function copyPrompt() {
+    await navigator.clipboard.writeText(prompt);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1400);
+  }
 
   return (
-    <main className="min-h-screen bg-[#080a0f] text-white">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#10131a]/92 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 sm:px-8">
+    <main className="min-h-screen bg-[#08090d] text-white">
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-[-20rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute bottom-[-18rem] right-[-8rem] h-[36rem] w-[36rem] rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-5 sm:px-6 lg:px-8">
+        <header className="flex flex-wrap items-center justify-between gap-4">
           <Link
             href="/"
-            className="flex items-center gap-3 text-sm font-black tracking-tight text-white transition hover:text-[#3fc1c0]"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/75 transition hover:border-white/25 hover:text-white"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white text-black">
-              <ArrowLeft size={18} />
-            </span>
-            Banana Clone
+            <ArrowLeft className="h-4 w-4" />
+            返回主入口
           </Link>
-          <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-slate-400 sm:flex">
-            <Sparkles size={14} className="text-[#3fc1c0]" />
-            Visual OS V1.0
+          <div className="flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-100">
+            <CheckCircle2 className="h-4 w-4" />
+            Visual Metaphor Engine V1.0
           </div>
-        </div>
-      </header>
+        </header>
 
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(63,193,192,0.22),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.08),transparent_30%)]" />
-        <div className="relative mx-auto grid max-w-[1600px] gap-10 px-4 py-10 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:py-16">
-          <div className="flex flex-col justify-between gap-10">
-            <div>
-              <p className="mb-5 inline-flex rounded-full border border-[#3fc1c0]/30 bg-[#3fc1c0]/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-[#9ff4f2]">
-                Monetizable Template System
-              </p>
-              <h1 className="max-w-5xl text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-7xl lg:text-8xl">
-                视觉内容生成操作系统
-              </h1>
-              <p className="mt-7 max-w-2xl text-base font-semibold leading-8 text-slate-300 sm:text-lg">
-                把零散提示词升级成可售卖模板库, 再挂上爆款标题系统和文案引擎。目标不是多生成几张图, 而是建立可以上架、复用、迭代、加价的视觉资产流水线。
-              </p>
+        <section className="grid gap-8 py-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white/55">
+              <BrainCircuit className="h-4 w-4 text-cyan-200" />
+              Theory to premium poster prompt
             </div>
+            <h1 className="max-w-4xl text-4xl font-black leading-[0.95] tracking-normal text-white sm:text-6xl lg:text-7xl">
+              视觉内容生成操作系统
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
+              输入一个理论或主题，系统自动拆成结构层级，匹配视觉隐喻模型，再套入商业风格，输出可直接用于 AI 出图的高端海报 Prompt。
+            </p>
+          </div>
 
-            <div className="grid gap-3 sm:grid-cols-4">
-              {stats.map((item) => (
-                <div key={item.label} className="border-t border-white/12 pt-4">
-                  <div className="text-3xl font-black text-white">{item.value}</div>
-                  <div className="mt-1 text-xs font-black text-slate-400">{item.label}</div>
-                  <div className="mt-2 text-[11px] font-semibold text-slate-500">{item.note}</div>
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-4 shadow-2xl shadow-black/30 backdrop-blur">
+            <div className="grid grid-cols-5 gap-2">
+              {[
+                { label: "Theory", short: "Theory" },
+                { label: "Structure", short: "Struct" },
+                { label: "Metaphor", short: "Meta" },
+                { label: "Style", short: "Style" },
+                { label: "Prompt", short: "Prompt" },
+              ].map((item, index) => (
+                <div key={item.label} className="min-w-0 rounded-2xl border border-white/10 bg-black/25 p-2 sm:p-3">
+                  <div className="mb-5 flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-black text-black sm:mb-8 sm:h-8 sm:w-8">
+                    {index + 1}
+                  </div>
+                  <div className="truncate text-[8px] font-bold uppercase tracking-normal text-white/62 sm:text-[10px] sm:tracking-[0.14em]">
+                    <span className="sm:hidden">{item.short}</span>
+                    <span className="hidden sm:inline">{item.label}</span>
+                  </div>
                 </div>
               ))}
             </div>
+            <div className="mt-4 rounded-2xl border border-cyan-300/15 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50/82">
+              核心壁垒不是提示词，而是自动结构能力、隐喻映射能力和风格控制能力。
+            </div>
           </div>
+        </section>
 
-          <div className="grid gap-5 sm:grid-cols-[0.92fr_1.08fr]">
-            <div className="space-y-4">
-              {templates.slice(0, 4).map((template) => (
+        <section className="grid flex-1 gap-5 lg:grid-cols-[320px_1fr]">
+          <aside className="h-fit rounded-[1.75rem] border border-white/10 bg-white/[0.055] p-4 backdrop-blur">
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
+              {tabs.map((tab) => (
                 <button
-                  key={template.id}
-                  onClick={() => setSelectedId(template.id)}
-                  className={`w-full rounded-[24px] border p-4 text-left transition active:translate-y-px ${
-                    selectedId === template.id
-                      ? "border-[#3fc1c0] bg-[#3fc1c0]/12"
-                      : "border-white/10 bg-white/[0.04] hover:border-white/25"
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition ${
+                    activeTab === tab.id
+                      ? "border-white/30 bg-white text-black"
+                      : "border-white/10 bg-black/20 text-white/66 hover:border-white/25 hover:text-white"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-black text-white">{template.name}</p>
-                      <p className="mt-1 text-xs font-semibold text-slate-400">{template.category}</p>
-                    </div>
-                    <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black text-black">
-                      {template.score}
-                    </span>
-                  </div>
+                  <span className="flex items-center gap-2">
+                    {tab.icon}
+                    {tab.label}
+                  </span>
                 </button>
               ))}
             </div>
-            <VisualPreview template={selectedTemplate} />
-          </div>
-        </div>
-      </section>
 
-      <section className="mx-auto grid max-w-[1600px] gap-8 px-4 py-10 sm:px-8 lg:grid-cols-[320px_1fr]">
-        <aside className="lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-4">
-            {[
-              { id: "template", label: "爆款模板库", icon: <LayoutTemplate size={18} /> },
-              { id: "title", label: "爆款标题系统", icon: <Heading1 size={18} /> },
-              { id: "copy", label: "文案引擎", icon: <FileText size={18} /> },
-              { id: "launch", label: "上架变现清单", icon: <BadgeDollarSign size={18} /> },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setMode(item.id as EngineMode)}
-                className={`mb-2 flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left text-sm font-black transition last:mb-0 active:translate-y-px ${
-                  mode === item.id
-                    ? "bg-white text-black"
-                    : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
-                }`}
-              >
-                <span className="flex items-center gap-3">
-                  {item.icon}
-                  {item.label}
-                </span>
-                <ChevronRight size={16} />
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-5 rounded-[30px] border border-white/10 bg-[#10131a] p-5">
-            <div className="mb-4 flex items-center gap-2 text-sm font-black">
-              <Target size={18} className="text-[#3fc1c0]" />
-              生成参数
-            </div>
-            <label className="mb-4 block">
-              <span className="mb-2 block text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                主题
-              </span>
-              <input
-                value={topic}
-                onChange={(event) => setTopic(event.target.value)}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-sm font-semibold text-white outline-none transition placeholder:text-slate-600 focus:border-[#3fc1c0]"
+            <div className="mt-5 space-y-4 rounded-2xl border border-white/10 bg-black/25 p-4">
+              <label className="block text-xs font-bold uppercase tracking-[0.18em] text-white/45">理论 / 主题输入</label>
+              <textarea
+                value={theoryInput}
+                onChange={(event) => setTheoryInput(event.target.value)}
+                className="min-h-24 w-full resize-none rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-white/30 focus:border-cyan-300/45"
+                placeholder="例如: 弗洛伊德意识理论、品牌增长系统、女性吸引力、AI 平台壁垒"
               />
-            </label>
-            <label className="mb-4 block">
-              <span className="mb-2 block text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                用户
-              </span>
-              <input
-                value={audience}
-                onChange={(event) => setAudience(event.target.value)}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-sm font-semibold text-white outline-none transition placeholder:text-slate-600 focus:border-[#3fc1c0]"
-              />
-            </label>
-            <label className="mb-4 block">
-              <span className="mb-2 block text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                平台
-              </span>
-              <select
-                value={platform}
-                onChange={(event) => setPlatform(event.target.value)}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-sm font-semibold text-white outline-none transition focus:border-[#3fc1c0]"
-              >
-                {["小红书", "抖音", "公众号", "Shopify", "知识星球"].map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </label>
-            <label className="block">
-              <span className="mb-2 block text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                文案格式
-              </span>
-              <select
-                value={format}
-                onChange={(event) => setFormat(event.target.value)}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-sm font-semibold text-white outline-none transition focus:border-[#3fc1c0]"
-              >
-                {copyFormats.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </aside>
 
-        <div className="min-w-0">
-          {mode === "template" && (
-            <div className="space-y-6">
-              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                <div>
-                  <p className="text-sm font-black text-[#3fc1c0]">Template Library</p>
-                  <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-5xl">
-                    爆款视觉模板库
-                  </h2>
+              <div>
+                <div className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-white/45">自动模型选择</div>
+                <div className="flex flex-wrap gap-2">
+                  {categoryRules.map((rule) => (
+                    <button
+                      key={rule.label}
+                      onClick={() => setSelectedModelId(rule.model)}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                        selectedModelId === rule.model
+                          ? "border-cyan-200 bg-cyan-200 text-black"
+                          : "border-white/10 bg-white/[0.04] text-white/58 hover:border-white/25 hover:text-white"
+                      }`}
+                    >
+                      {rule.label}
+                    </button>
+                  ))}
                 </div>
-                <button
-                  onClick={() => setSelectedId(templates[(templates.findIndex((item) => item.id === selectedId) + 1) % templates.length].id)}
-                  className="flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 px-5 text-sm font-black text-white transition hover:bg-white hover:text-black active:translate-y-px"
-                >
-                  <RefreshCw size={16} />
-                  换一个模板
-                </button>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {templates.map((template) => (
-                  <button
-                    key={template.id}
-                    onClick={() => setSelectedId(template.id)}
-                    className={`rounded-[30px] border p-5 text-left transition hover:-translate-y-1 ${
-                      selectedId === template.id
-                        ? "border-[#3fc1c0] bg-[#3fc1c0]/10"
-                        : "border-white/10 bg-white/[0.04]"
-                    }`}
-                  >
-                    <div className={`mb-5 h-28 rounded-[24px] bg-gradient-to-br ${template.color}`} />
-                    <div className="mb-3 flex items-center justify-between gap-3">
-                      <h3 className="text-xl font-black text-white">{template.name}</h3>
-                      <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-black">
-                        {template.score}
-                      </span>
+              <div>
+                <div className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-white/45">风格引擎</div>
+                <div className="grid gap-2">
+                  {stylePresets.map((style) => (
+                    <button
+                      key={style.id}
+                      onClick={() => setSelectedStyleId(style.id)}
+                      className={`rounded-2xl border p-3 text-left transition ${
+                        selectedStyleId === style.id
+                          ? "border-amber-200 bg-amber-200 text-black"
+                          : "border-white/10 bg-white/[0.04] text-white/66 hover:border-white/25 hover:text-white"
+                      }`}
+                    >
+                      <div className="text-sm font-bold">{style.name}</div>
+                      <div className={`mt-1 text-xs ${selectedStyleId === style.id ? "text-black/60" : "text-white/42"}`}>{style.tone}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div className="min-w-0 rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-4 backdrop-blur sm:p-5">
+            {activeTab === "system" && (
+              <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
+                <div className="grid gap-3">
+                  {systemModules.map((module, index) => (
+                    <div key={module.name} className="rounded-3xl border border-white/10 bg-black/22 p-5">
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-black text-black">
+                          {index + 1}
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-100/72">{module.name}</div>
+                          <h2 className="mt-1 text-xl font-black tracking-normal text-white">{module.label}</h2>
+                          <p className="mt-2 text-sm leading-6 text-white/56">{module.detail}</p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-sm font-semibold leading-6 text-slate-400">
-                      {template.conversion}
-                    </p>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {template.ingredients.map((item) => (
-                        <span key={item} className="rounded-full bg-white/[0.07] px-3 py-1 text-[11px] font-bold text-slate-300">
-                          {item}
+                  ))}
+                </div>
+
+                <div className="rounded-3xl border border-white/10 bg-black/26 p-5">
+                  <div className="mb-5 flex items-center gap-2 text-sm font-bold text-white">
+                    <Network className="h-4 w-4 text-cyan-200" />
+                    当前自动解析
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      ["理论", theory.title],
+                      ["类别", theory.category],
+                      ["模型", selectedModel.name],
+                      ["风格", selectedStyle.name],
+                      ["核心总结", theory.summary],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/38">{label}</div>
+                        <div className="mt-1 text-sm font-semibold leading-6 text-white/82">{value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "models" && (
+              <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
+                <div className="grid gap-3 md:grid-cols-2">
+                  {visualModels.map((model) => (
+                    <button
+                      key={model.id}
+                      onClick={() => setSelectedModelId(model.id)}
+                      className={`group rounded-3xl border p-5 text-left transition ${
+                        selectedModelId === model.id
+                          ? `${model.accent} shadow-xl shadow-black/25`
+                          : "border-white/10 bg-black/22 text-white/70 hover:border-white/25 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06]">
+                          {model.icon}
+                        </div>
+                        <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white/58">
+                          {model.structureType}
                         </span>
-                      ))}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {mode === "title" && (
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-black text-[#3fc1c0]">Viral Title System</p>
-                <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-5xl">
-                  爆款标题系统
-                </h2>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {titles.map((item) => (
-                  <CopyPanel
-                    key={item.id}
-                    title={item.label}
-                    value={item.result}
-                    icon={<Zap size={18} className="text-[#3fc1c0]" />}
-                    onCopy={() => handleCopy(`title-${item.id}`, item.result)}
-                  />
-                ))}
-              </div>
-              {copiedKey?.startsWith("title") && (
-                <p className="text-sm font-bold text-[#3fc1c0]">标题已复制。</p>
-              )}
-            </div>
-          )}
-
-          {mode === "copy" && (
-            <div className="grid gap-6 xl:grid-cols-[1fr_0.88fr]">
-              <div className="space-y-6">
-                <div>
-                  <p className="text-sm font-black text-[#3fc1c0]">Copy Engine</p>
-                  <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-5xl">
-                    文案引擎
-                  </h2>
+                      </div>
+                      <h2 className="mt-5 text-xl font-black tracking-normal text-white">{model.name}</h2>
+                      <p className="mt-2 text-sm leading-6 text-white/52">{model.category}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {model.bestFor.slice(0, 3).map((item) => (
+                          <span key={item} className="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-1 text-xs text-white/58">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </button>
+                  ))}
                 </div>
-                <CopyPanel
-                  title={`${format} 文案`}
-                  value={salesCopy}
-                  icon={<Wand2 size={18} className="text-[#3fc1c0]" />}
-                  onCopy={() => handleCopy("sales-copy", salesCopy)}
-                />
-                <CopyPanel
-                  title="提示词交付包"
-                  value={promptPack}
-                  icon={<ImageIcon size={18} className="text-[#3fc1c0]" />}
-                  onCopy={() => handleCopy("prompt-pack", promptPack)}
-                />
-              </div>
-              <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-5">
-                <VisualPreview template={selectedTemplate} />
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl bg-black/25 p-4">
-                    <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">Price</p>
-                    <p className="mt-2 text-sm font-black text-white">{selectedTemplate.price}</p>
-                  </div>
-                  <div className="rounded-2xl bg-black/25 p-4">
-                    <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">Market</p>
-                    <p className="mt-2 text-sm font-black text-white">{selectedTemplate.market}</p>
+
+                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/28 p-5">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${selectedModel.glow}`} />
+                  <div className="relative">
+                    <div className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
+                      <Layers3 className="h-4 w-4 text-cyan-200" />
+                      {selectedModel.name} JSON Schema
+                    </div>
+                    <div className="space-y-3 text-sm">
+                      <SchemaRow label="visual_object" value={selectedModel.visualObject} />
+                      <SchemaRow label="structure_type" value={selectedModel.structureType} />
+                      <SchemaRow label="top" value={selectedModel.layerMapping.top} />
+                      <SchemaRow label="middle" value={selectedModel.layerMapping.middle} />
+                      <SchemaRow label="bottom" value={selectedModel.layerMapping.bottom} />
+                      <SchemaRow label="lighting_style" value={selectedModel.lightingStyle} />
+                      <SchemaRow label="color_strategy" value={selectedModel.colorStrategy} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {mode === "launch" && (
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-black text-[#3fc1c0]">Launch Checklist</p>
-                <h2 className="mt-2 text-3xl font-black tracking-tight sm:text-5xl">
-                  上架变现清单
-                </h2>
-              </div>
-              <div className="grid gap-4">
-                {launchChecklist.map((item, index) => (
-                  <div key={item} className="flex gap-4 rounded-[26px] border border-white/10 bg-white/[0.04] p-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#3fc1c0] text-black">
-                      <CheckCircle2 size={20} />
+            {activeTab === "prompt" && (
+              <div className="grid gap-5 xl:grid-cols-[360px_1fr]">
+                <div className="rounded-3xl border border-white/10 bg-black/24 p-5">
+                  <div className="mb-5 flex items-center gap-2 text-sm font-bold text-white">
+                    <Palette className="h-4 w-4 text-amber-200" />
+                    结构预览
+                  </div>
+                  <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#05070a] p-5">
+                    <div className={`absolute inset-0 bg-gradient-to-b ${selectedModel.glow}`} />
+                    <div className="relative space-y-3">
+                      <LayerBlock label="Top 10%" value={theory.top} tone="bg-white text-black" />
+                      <LayerBlock label="Middle" value={theory.middle} tone="bg-cyan-200/18 text-cyan-50" />
+                      <LayerBlock label="Bottom 90%" value={theory.bottom} tone="min-h-36 bg-blue-500/14 text-blue-50" />
                     </div>
+                  </div>
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm leading-6 text-white/60">
+                    当前模板建议: <span className="font-bold text-white">{selectedTemplate.name}</span>
+                  </div>
+                </div>
+
+                <div className="min-w-0 rounded-3xl border border-white/10 bg-black/28 p-5">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                        Step {index + 1}
-                      </p>
-                      <p className="mt-1 text-base font-bold leading-7 text-white">{item}</p>
+                      <div className="text-xs font-bold uppercase tracking-[0.18em] text-white/42">Prompt Engine Output</div>
+                      <h2 className="mt-1 text-2xl font-black tracking-normal text-white">可直接用于出图的统一 Prompt</h2>
                     </div>
+                    <button
+                      onClick={copyPrompt}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-cyan-100"
+                    >
+                      <Copy className="h-4 w-4" />
+                      {copied ? "已复制" : "复制"}
+                    </button>
                   </div>
-                ))}
-              </div>
-              <div className="rounded-[32px] border border-[#3fc1c0]/30 bg-[#3fc1c0]/10 p-6">
-                <div className="mb-3 flex items-center gap-2 text-lg font-black text-white">
-                  <Crown size={20} className="text-[#3fc1c0]" />
-                  推荐升级方向
+                  <pre className="max-h-[34rem] overflow-auto whitespace-pre-wrap rounded-2xl border border-white/10 bg-[#05070a] p-5 text-sm leading-7 text-white/76">
+                    {prompt}
+                  </pre>
                 </div>
-                <p className="max-w-3xl text-sm font-semibold leading-7 text-slate-300">
-                  V1.0 先卖模板资产包。V1.1 增加标题系统订阅。V1.2 增加文案引擎批量生成。V2.0 再接入用户素材上传、行业变量库和一键导出商品页。
-                </p>
               </div>
-            </div>
-          )}
-        </div>
-      </section>
+            )}
 
-      <footer className="border-t border-white/10 px-4 py-10 sm:px-8">
-        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-4 text-xs font-black uppercase tracking-[0.18em] text-slate-600 sm:flex-row">
-          <span>Banana Clone Visual OS</span>
-          <span>Template Library + Title System + Copy Engine</span>
-        </div>
-      </footer>
+            {activeTab === "templates" && (
+              <div className="space-y-5">
+                <div className="grid gap-3 md:grid-cols-4">
+                  {stylePresets.map((style) => (
+                    <div key={style.id} className="rounded-3xl border border-white/10 bg-black/22 p-5">
+                      <Gem className="h-5 w-5 text-amber-200" />
+                      <h2 className="mt-4 text-lg font-black tracking-normal text-white">{style.name}</h2>
+                      <p className="mt-2 text-sm leading-6 text-white/50">{style.usage}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid gap-3 lg:grid-cols-2">
+                  {templates.map((template) => {
+                    const model = getModel(template.model);
+                    return (
+                      <div key={template.name} className="rounded-3xl border border-white/10 bg-black/24 p-5">
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <div className="text-xs font-bold uppercase tracking-[0.18em] text-white/38">{model.name}</div>
+                            <h2 className="mt-1 text-xl font-black tracking-normal text-white">{template.name}</h2>
+                          </div>
+                          <BadgeDollarSign className="h-5 w-5 text-emerald-200" />
+                        </div>
+                        <div className="mt-4 grid gap-3 text-sm leading-6 text-white/58">
+                          <TemplateRow label="适用场景" value={template.scenario} />
+                          <TemplateRow label="输入要求" value={template.input} />
+                          <TemplateRow label="自动逻辑" value={template.logic} />
+                        </div>
+                        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm leading-6 text-white/64">
+                          {template.prompt}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
     </main>
+  );
+}
+
+function SchemaRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-3">
+      <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/36">{label}</div>
+      <div className="mt-1 leading-6 text-white/72">{value}</div>
+    </div>
+  );
+}
+
+function LayerBlock({ label, value, tone }: { label: string; value: string; tone: string }) {
+  return (
+    <div className={`rounded-2xl border border-white/10 p-4 ${tone}`}>
+      <div className="text-[10px] font-black uppercase tracking-[0.18em] opacity-65">{label}</div>
+      <div className="mt-2 text-sm font-bold leading-6">{value}</div>
+    </div>
+  );
+}
+
+function TemplateRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <span className="font-bold text-white/86">{label}: </span>
+      <span>{value}</span>
+    </div>
   );
 }
