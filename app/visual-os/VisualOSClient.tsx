@@ -9,6 +9,7 @@ import {
   BrainCircuit,
   Building2,
   CheckCircle2,
+  ClipboardCheck,
   Copy,
   Gem,
   Layers3,
@@ -17,6 +18,7 @@ import {
   Network,
   Orbit,
   Palette,
+  SlidersHorizontal,
   TreePine,
   Wand2,
   Waves,
@@ -26,6 +28,7 @@ import {
 type ModelId = "iceberg" | "mountain" | "tree" | "ocean" | "city" | "cosmos";
 type StyleId = "apple" | "luxury" | "oriental" | "tech";
 type TabId = "system" | "models" | "prompt" | "templates";
+type TargetModelId = "gpt-image" | "midjourney" | "stable-diffusion" | "leonardo";
 
 type VisualModel = {
   id: ModelId;
@@ -65,6 +68,14 @@ type TemplateCard = {
   logic: string;
   prompt: string;
   model: ModelId;
+};
+
+type TargetModel = {
+  id: TargetModelId;
+  name: string;
+  platform: string;
+  copyMode: string;
+  notes: string[];
 };
 
 const visualModels: VisualModel[] = [
@@ -229,6 +240,37 @@ const stylePresets: StylePreset[] = [
   },
 ];
 
+const targetModels: TargetModel[] = [
+  {
+    id: "gpt-image",
+    name: "GPT Image",
+    platform: "OpenAI / API / ChatGPT 图像生成",
+    copyMode: "Prompt + JSON 参数",
+    notes: ["适合文字清晰、信息图、海报结构", "尺寸和质量作为参数组复制", "保留自然语言 Prompt 的完整结构"],
+  },
+  {
+    id: "midjourney",
+    name: "Midjourney",
+    platform: "Discord / Web prompt bar",
+    copyMode: "Prompt + 参数尾巴",
+    notes: ["参数放在提示词最后", "用 --ar 固定竖版比例", "用 --no 做负面约束"],
+  },
+  {
+    id: "stable-diffusion",
+    name: "SDXL / Flux",
+    platform: "Stable Diffusion WebUI / ComfyUI",
+    copyMode: "Prompt + Negative + txt2img 参数",
+    notes: ["适合需要 seed 复现和批量调参", "Flux 使用低 CFG", "SDXL 可提高 steps 和 CFG"],
+  },
+  {
+    id: "leonardo",
+    name: "Leonardo / Ideogram",
+    platform: "Leonardo AI / Ideogram class models",
+    copyMode: "Prompt + Advanced Settings",
+    notes: ["适合商业海报和带字图", "Negative prompt 要具体", "保持固定 seed 方便 A/B 对比"],
+  },
+];
+
 const categoryRules = [
   { label: "心理学 / 人性", model: "iceberg" as ModelId },
   { label: "品牌 / 商业", model: "city" as ModelId },
@@ -338,6 +380,15 @@ function getStyle(id: StyleId) {
   return stylePresets.find((style) => style.id === id) ?? stylePresets[0];
 }
 
+function getTargetModel(id: TargetModelId) {
+  return targetModels.find((model) => model.id === id) ?? targetModels[0];
+}
+
+function getSeed(theoryTitle: string, modelId: ModelId, styleId: StyleId) {
+  const source = `${theoryTitle}-${modelId}-${styleId}`;
+  return Array.from(source).reduce((sum, char) => sum + char.charCodeAt(0), 2174) % 900000000;
+}
+
 function buildTheoryStructure(theory: string, model: VisualModel) {
   const normalized = theory.trim();
 
@@ -413,23 +464,141 @@ Bottom statement: 这就是${theory.summary}
 Ultra clean, high detail, no clutter`;
 }
 
+function buildNegativePrompt(model: VisualModel) {
+  const shared = [
+    "low resolution",
+    "jpeg artifacts",
+    "watermark",
+    "signature",
+    "messy typography",
+    "misspelled labels",
+    "cluttered composition",
+    "random extra text",
+    "cropped poster",
+    "low contrast annotations",
+  ];
+
+  const modelSpecific: Record<ModelId, string[]> = {
+    iceberg: ["flat iceberg", "tiny underwater part", "unclear waterline", "cartoon ice"],
+    mountain: ["flat landscape", "unclear path", "weak summit", "busy background"],
+    tree: ["dead tree", "tangled roots", "harsh neon", "chaotic branches"],
+    ocean: ["shallow water", "bright bottom", "unclear depth", "busy marine life"],
+    city: ["random skyscrapers", "no underground system", "messy circuitry", "cyberpunk clutter"],
+    cosmos: ["random planets", "crowded stars", "cheap sci-fi poster", "low depth"],
+  };
+
+  return [...shared, ...modelSpecific[model.id]].join(", ");
+}
+
+function buildParameterGroup(
+  targetId: TargetModelId,
+  theory: ReturnType<typeof buildTheoryStructure>,
+  model: VisualModel,
+  style: StylePreset,
+) {
+  const seed = getSeed(theory.title, model.id, style.id);
+  const negativePrompt = buildNegativePrompt(model);
+
+  if (targetId === "midjourney") {
+    return [
+      "--ar 2:3",
+      "--v 7",
+      "--style raw",
+      "--s 180",
+      "--c 8",
+      "--q 1",
+      `--seed ${seed}`,
+      `--no ${negativePrompt}`,
+    ].join(" ");
+  }
+
+  if (targetId === "stable-diffusion") {
+    return `model: SDXL or FLUX.1
+size: 1024x1536
+sampler: euler
+scheduler: normal
+steps: ${model.id === "city" || model.id === "cosmos" ? 32 : 28}
+cfg_scale: ${model.id === "city" || model.id === "cosmos" ? 5.5 : 4.5}
+seed: ${seed}
+batch_size: 4
+negative_prompt: ${negativePrompt}`;
+  }
+
+  if (targetId === "leonardo") {
+    return `model: Ideogram 3.0 or Leonardo Kino XL
+aspect_ratio: 2:3
+resolution: 1024x1536
+style: ${style.name}
+contrast: medium-high
+alchemy: on
+prompt_magic: on
+seed: ${seed}
+negative_prompt: ${negativePrompt}`;
+  }
+
+  return JSON.stringify(
+    {
+      model: "gpt-image-2",
+      size: "1024x1536",
+      outputQuality: "high",
+      background: "opaque",
+      format: "png",
+      seed,
+      intent: "vertical high-end conceptual poster",
+      avoid: negativePrompt,
+    },
+    null,
+    2,
+  );
+}
+
+function buildModelReadyPrompt(prompt: string, parameterGroup: string, targetId: TargetModelId) {
+  if (targetId === "midjourney") {
+    return `${prompt.replaceAll("\n", " ")} ${parameterGroup}`;
+  }
+
+  if (targetId === "gpt-image") {
+    return `PROMPT
+${prompt}
+
+PARAMETERS
+${parameterGroup}`;
+  }
+
+  return `POSITIVE PROMPT
+${prompt}
+
+PARAMETER GROUP
+${parameterGroup}`;
+}
+
 export default function VisualOSClient() {
   const [activeTab, setActiveTab] = useState<TabId>("system");
   const [theoryInput, setTheoryInput] = useState("弗洛伊德意识理论");
   const [selectedModelId, setSelectedModelId] = useState<ModelId>("iceberg");
   const [selectedStyleId, setSelectedStyleId] = useState<StyleId>("apple");
-  const [copied, setCopied] = useState(false);
+  const [selectedTargetId, setSelectedTargetId] = useState<TargetModelId>("gpt-image");
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const selectedModel = useMemo(() => getModel(selectedModelId), [selectedModelId]);
   const selectedStyle = useMemo(() => getStyle(selectedStyleId), [selectedStyleId]);
+  const selectedTarget = useMemo(() => getTargetModel(selectedTargetId), [selectedTargetId]);
   const theory = useMemo(() => buildTheoryStructure(theoryInput, selectedModel), [theoryInput, selectedModel]);
   const prompt = useMemo(() => buildPrompt(theory, selectedModel, selectedStyle), [theory, selectedModel, selectedStyle]);
+  const parameterGroup = useMemo(
+    () => buildParameterGroup(selectedTargetId, theory, selectedModel, selectedStyle),
+    [selectedTargetId, theory, selectedModel, selectedStyle],
+  );
+  const modelReadyPrompt = useMemo(
+    () => buildModelReadyPrompt(prompt, parameterGroup, selectedTargetId),
+    [prompt, parameterGroup, selectedTargetId],
+  );
   const selectedTemplate = templates.find((template) => template.model === selectedModelId) ?? templates[0];
 
-  async function copyPrompt() {
-    await navigator.clipboard.writeText(prompt);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1400);
+  async function copyText(key: string, value: string) {
+    await navigator.clipboard.writeText(value);
+    setCopiedKey(key);
+    window.setTimeout(() => setCopiedKey(null), 1400);
   }
 
   return (
@@ -682,25 +851,102 @@ export default function VisualOSClient() {
                   <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm leading-6 text-white/60">
                     当前模板建议: <span className="font-bold text-white">{selectedTemplate.name}</span>
                   </div>
+
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                    <div className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
+                      <SlidersHorizontal className="h-4 w-4 text-cyan-200" />
+                      目标模型
+                    </div>
+                    <div className="grid gap-2">
+                      {targetModels.map((target) => (
+                        <button
+                          key={target.id}
+                          onClick={() => setSelectedTargetId(target.id)}
+                          className={`rounded-2xl border p-3 text-left transition ${
+                            selectedTargetId === target.id
+                              ? "border-cyan-200 bg-cyan-200 text-black"
+                              : "border-white/10 bg-black/25 text-white/66 hover:border-white/25 hover:text-white"
+                          }`}
+                        >
+                          <div className="text-sm font-black">{target.name}</div>
+                          <div className={`mt-1 text-xs ${selectedTargetId === target.id ? "text-black/62" : "text-white/42"}`}>
+                            {target.copyMode}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="min-w-0 rounded-3xl border border-white/10 bg-black/28 p-5">
-                  <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <div className="text-xs font-bold uppercase tracking-[0.18em] text-white/42">Prompt Engine Output</div>
-                      <h2 className="mt-1 text-2xl font-black tracking-normal text-white">可直接用于出图的统一 Prompt</h2>
+                <div className="min-w-0 space-y-4">
+                  <div className="rounded-3xl border border-cyan-300/18 bg-cyan-300/10 p-5">
+                    <div className="mb-3 flex items-center gap-2 text-sm font-bold text-cyan-50">
+                      <ClipboardCheck className="h-4 w-4" />
+                      复制工作流
                     </div>
-                    <button
-                      onClick={copyPrompt}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-cyan-100"
-                    >
-                      <Copy className="h-4 w-4" />
-                      {copied ? "已复制" : "复制"}
-                    </button>
+                    <div className="grid gap-3 text-sm leading-6 text-cyan-50/74 md:grid-cols-3">
+                      <div className="rounded-2xl border border-cyan-200/15 bg-black/20 p-4">
+                        <div className="font-black text-white">1. 复制提示词模板</div>
+                        <div className="mt-1">粘到主 Prompt 输入框。</div>
+                      </div>
+                      <div className="rounded-2xl border border-cyan-200/15 bg-black/20 p-4">
+                        <div className="font-black text-white">2. 复制参数组</div>
+                        <div className="mt-1">粘到高级设置或参数尾部。</div>
+                      </div>
+                      <div className="rounded-2xl border border-cyan-200/15 bg-black/20 p-4">
+                        <div className="font-black text-white">3. 直接生成</div>
+                        <div className="mt-1">当前目标: {selectedTarget.name}。</div>
+                      </div>
+                    </div>
+                    <div className="mt-4 text-xs leading-5 text-cyan-50/55">
+                      {selectedTarget.platform}: {selectedTarget.notes.join(" / ")}
+                    </div>
                   </div>
-                  <pre className="max-h-[34rem] overflow-auto whitespace-pre-wrap rounded-2xl border border-white/10 bg-[#05070a] p-5 text-sm leading-7 text-white/76">
-                    {prompt}
-                  </pre>
+
+                  <CopyOutputPanel
+                    label="Prompt Template"
+                    title="提示词模板"
+                    description="复制后粘到模型的主提示词输入框。"
+                    value={prompt}
+                    copied={copiedKey === "prompt"}
+                    onCopy={() => copyText("prompt", prompt)}
+                  />
+
+                  <CopyOutputPanel
+                    label="Parameter Group"
+                    title="参数组"
+                    description={`按 ${selectedTarget.name} 的输入方式生成。`}
+                    value={parameterGroup}
+                    copied={copiedKey === "params"}
+                    onCopy={() => copyText("params", parameterGroup)}
+                  />
+
+                  <CopyOutputPanel
+                    label="Ready-to-Paste Pack"
+                    title="整合版一键粘贴包"
+                    description="适合先保存到素材库，或发给别人复用。"
+                    value={modelReadyPrompt}
+                    copied={copiedKey === "ready"}
+                    onCopy={() => copyText("ready", modelReadyPrompt)}
+                  />
+
+                  <div className="rounded-3xl border border-white/10 bg-black/24 p-5">
+                    <div className="text-xs font-bold uppercase tracking-[0.18em] text-white/42">Reference Rules</div>
+                    <div className="mt-4 grid gap-3 text-sm leading-6 text-white/58 md:grid-cols-2">
+                      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                        Midjourney: 参数放在提示词末尾，用 `--ar`、`--s`、`--c`、`--q`、`--seed` 和 `--no` 控制比例、风格、变化、质量和负面约束。
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                        GPT Image: 把海报结构写进提示词，把尺寸、质量、背景、格式作为参数组管理。
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                        SDXL / Flux: 参数组保留 seed、size、sampler、steps、CFG 和 negative prompt，方便复现和批量调参。
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                        Leonardo / Ideogram: negative prompt 使用具体缺陷词，避免和正向提示词冲突。
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -764,6 +1010,44 @@ function LayerBlock({ label, value, tone }: { label: string; value: string; tone
     <div className={`rounded-2xl border border-white/10 p-4 ${tone}`}>
       <div className="text-[10px] font-black uppercase tracking-[0.18em] opacity-65">{label}</div>
       <div className="mt-2 text-sm font-bold leading-6">{value}</div>
+    </div>
+  );
+}
+
+function CopyOutputPanel({
+  label,
+  title,
+  description,
+  value,
+  copied,
+  onCopy,
+}: {
+  label: string;
+  title: string;
+  description: string;
+  value: string;
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  return (
+    <div className="min-w-0 rounded-3xl border border-white/10 bg-black/28 p-5">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-white/42">{label}</div>
+          <h2 className="mt-1 text-2xl font-black tracking-normal text-white">{title}</h2>
+          <p className="mt-2 text-sm leading-6 text-white/50">{description}</p>
+        </div>
+        <button
+          onClick={onCopy}
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-cyan-100"
+        >
+          <Copy className="h-4 w-4" />
+          {copied ? "已复制" : "复制"}
+        </button>
+      </div>
+      <pre className="max-h-[26rem] overflow-auto whitespace-pre-wrap break-words rounded-2xl border border-white/10 bg-[#05070a] p-5 text-sm leading-7 text-white/76">
+        {value}
+      </pre>
     </div>
   );
 }
