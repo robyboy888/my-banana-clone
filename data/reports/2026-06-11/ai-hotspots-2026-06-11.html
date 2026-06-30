@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-11</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d9e3f0;
+      --text: #17324d;
+      --muted: #5c7288;
+      --blue: #2e6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --gold: #b7791f;
+      --green: #1f7a58;
+      --shadow: 0 18px 40px rgba(32, 76, 144, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(46, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1500px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1080px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .cred-high {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .topic h3 {
+      margin: 0;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .priority {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin-top: 14px;
+    }
+
+    .cell {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fbff;
+      border: 1px solid #e2ebf7;
+    }
+
+    .cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: #204271;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .cell p, .cell ul {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .cell ul {
+      padding-left: 18px;
+    }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid #ffe1a6;
+      background: linear-gradient(180deg, #fff9eb 0%, #fffef8 100%);
+      color: #6a4a11;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .footnote {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; margin: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      a { color: #18427b; }
+    }
+
+    @media (max-width: 980px) {
+      .meta, .signal-bar, .grid { grid-template-columns: 1fr; }
+      .topic-header { flex-direction: column; }
+      h1 { font-size: 30px; }
+      .page { width: min(100vw - 20px, 1500px); margin: 10px auto 24px; }
+      .hero, .section { padding: 20px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 自媒体日报选题库</div>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">今天的主线不是单一模型升级，而是模型能力、工作流入口、企业预算入口三条线同时加速。对内容创作者来说，最值得讲的是“谁在控制分发与权限”，而不是重复堆砌跑分。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-11</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">2026-06-09 至 2026-06-11</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者的可做选题库</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点摘要条</h2>
+      <p class="lead">一句话看今天：Anthropic 在同时抢“最强模型”和“监管话语权”，GitHub 在把 Agent 变成可复用工作流，Google 与 OpenAI 则分别在商家场景和企业采购场景争分发入口。</p>
+      <div class="summary-strip">
+        <div class="pill">模型分层开放</div>
+        <div class="pill">Agent 工作流资产化</div>
+        <div class="pill">上下文型商家助手</div>
+        <div class="pill">企业采购链路打通</div>
+        <div class="pill">科研可验证协作</div>
+      </div>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>最强模型不再等于全民同权访问</strong>
+          <span>Anthropic 用 Fable 5 / Mythos 5 把能力和权限一起分层，后续头部模型发布很可能复制这种双轨模式。</span>
+        </div>
+        <div class="signal">
+          <strong>Agent 竞争焦点转向工作流</strong>
+          <span>GitHub 连发两篇 Copilot CLI 官方文章，重点不是“会不会答”，而是“能不能沉淀成团队资产”。</span>
+        </div>
+        <div class="signal">
+          <strong>AI 开始嵌入真实业务与预算系统</strong>
+          <span>Google 往业务上下文走，OpenAI 往 Oracle 采购入口走，分发战已不只发生在消费者产品层。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-11</td>
+              <td>OpenAI 发布 Codex 科研案例，展示其参与黑洞模拟算法探索与验证</td>
+              <td>可把“AI 编程助手”升级为“可验证科研协作者”叙事</td>
+              <td><a href="https://openai.com/index/using-codex-to-simulate-black-holes/">OpenAI 案例</a></td>
+              <td class="cred-high">高</td>
+              <td>科研、教育、知识工作类内容</td>
+            </tr>
+            <tr>
+              <td>2026-06-10</td>
+              <td>OpenAI 宣布 Oracle 客户可用既有云承诺采购 OpenAI 模型与 Codex</td>
+              <td>说明 AI 能力正在进入传统企业采购与云分发链路</td>
+              <td><a href="https://openai.com/index/openai-on-oracle-cloud/">OpenAI × Oracle</a></td>
+              <td class="cred-high">高</td>
+              <td>企业 AI 预算入口、云生态竞争</td>
+            </tr>
+            <tr>
+              <td>2026-06-10</td>
+              <td>Anthropic 发布《Policy on the AI Exponential》并提出两套政策框架</td>
+              <td>适合讲头部模型公司如何同时争产品能力与规则定义权</td>
+              <td><a href="https://www.anthropic.com/news">Anthropic Newsroom</a><br><a href="https://www.anthropic.com/policy-on-the-ai-exponential">政策正文</a></td>
+              <td class="cred-high">高</td>
+              <td>政策观察、商业评论、产业分析</td>
+            </tr>
+            <tr>
+              <td>2026-06-09</td>
+              <td>Anthropic 发布 Claude Fable 5 / Mythos 5，采用公开版与受限版双轨</td>
+              <td>适合讲安全分层、权限分层与模型商业化同步发生</td>
+              <td><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Anthropic 模型发布</a></td>
+              <td class="cred-high">高</td>
+              <td>模型发布深解、Agent 与安全</td>
+            </tr>
+            <tr>
+              <td>2026-06-09 / 2026-06-10</td>
+              <td>GitHub 连发 Copilot CLI custom agents 与 LSP 两篇文章</td>
+              <td>说明 Agent 正从一次性对话转向可复用工作流资产</td>
+              <td><a href="https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/">Custom agents</a><br><a href="https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/">LSP Setup</a></td>
+              <td class="cred-high">高</td>
+              <td>开发者内容、课程、训练营</td>
+            </tr>
+            <tr>
+              <td>2026-06-10</td>
+              <td>Google 发布 Gemini 面向小商家的新功能：Business Profile 连接与 Business notebooks</td>
+              <td>适合讲 AI 正在变成懂品牌上下文的商家助手</td>
+              <td><a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-features-for-businesses/">Google Gemini 商家功能</a></td>
+              <td class="cred-high">高</td>
+              <td>本地商家运营、内容自动化</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <article class="topic">
+        <div class="topic-header">
+          <h3>选题 01｜Anthropic 刚把最强模型分成“大众版 + 受限版”，这可能是 2026 年 AI 行业最重要的信号</h3>
+          <div class="priority">优先级 S</div>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 行业观察者、模型评测读者、Agent 创业者、科技媒体受众。</p></div>
+          <div class="cell"><b>切题角度</b><p>不是测跑分，而是解释为什么同一底层能力要分层开放，以及这会怎样改变未来模型发布方式。</p></div>
+          <div class="cell"><b>爆点</b><ul><li>Fable 5 面向一般用户</li><li>Mythos 5 面向受限 trusted access 群体</li><li>价格、安全、权限同时被重新设计</li></ul></div>
+          <div class="cell"><b>内容结构</b><ul><li>讲清 Fable 5 / Mythos 5 的关系</li><li>解释双轨开放的商业与安全逻辑</li><li>分析它会如何影响 Agent 与企业部署</li><li>落到普通用户还能否第一时间摸到最强能力</li></ul></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是多数人只看到新模型，看不到访问控制；爽点是一次看懂能力、权限、价格、安全四件事；痒点是读者会追问“以后最强模型会不会越来越只给特定人群”。</p></div>
+          <div class="cell"><b>推荐形式与来源</b><p>适合长图文、B 站 6-10 分钟解读、公众号深度稿。<br><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Anthropic 官方发布</a></p></div>
+        </div>
+      </article>
+
+      <article class="topic">
+        <div class="topic-header">
+          <h3>选题 02｜AI 公司为什么一边发最强模型，一边自己开始写监管框架？</h3>
+          <div class="priority">优先级 A+</div>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>商业观察、自媒体评论、政策与产业交叉受众。</p></div>
+          <div class="cell"><b>切题角度</b><p>把 Anthropic 的政策稿和模型发布放在同一叙事里，讲“谁在争 AI 规则制定权”。</p></div>
+          <div class="cell"><b>爆点</b><ul><li>前脚发新模型，后脚发治理框架</li><li>产品公司主动给政府递规则草案</li><li>能力扩张与话语权扩张同步发生</li></ul></div>
+          <div class="cell"><b>内容结构</b><ul><li>为什么模型公司主动谈监管</li><li>两套框架分别想解决什么</li><li>它对行业竞争有什么战略意义</li><li>为什么创作者也该关注规则入口</li></ul></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是政策新闻常被讲得太空；爽点是把监管解释成产业控制权；痒点是读者会继续追问未来行业门槛由谁定义。</p></div>
+          <div class="cell"><b>推荐形式与来源</b><p>适合评论视频、播客提纲、观点稿。<br><a href="https://www.anthropic.com/news">Anthropic Newsroom</a><br><a href="https://www.anthropic.com/policy-on-the-ai-exponential">政策正文</a></p></div>
+        </div>
+      </article>
+
+      <article class="topic">
+        <div class="topic-header">
+          <h3>选题 03｜Agent 真正的下一站，不是更会聊天，而是变成可复用工作流</h3>
+          <div class="priority">优先级 A</div>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>开发者、独立开发者、AI 工具付费用户、知识付费课程受众。</p></div>
+          <div class="cell"><b>切题角度</b><p>把 GitHub Copilot CLI 的 custom agents 与 LSP 能力合并解读成一个趋势，而不是两篇孤立教程。</p></div>
+          <div class="cell"><b>爆点</b><ul><li>一次性 prompt 变成团队可复用流程</li><li>LSP 让 CLI agent 获得结构化代码智能</li><li>Agent 价值重心从对话转向工作流资产</li></ul></div>
+          <div class="cell"><b>内容结构</b><ul><li>为什么很多人还停留在一次性提问</li><li>GitHub 想推动的范式是什么</li><li>普通团队如何沉淀自己的 agent SOP</li><li>给出 3 个可直接演示的场景</li></ul></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是 AI 工具常常不稳定、难复用、难交接；爽点是看完就知道怎么把 agent 变基础设施；痒点是用户会想把审稿、剪辑、客服 SOP 都 agent 化。</p></div>
+          <div class="cell"><b>推荐形式与来源</b><p>适合教程视频、直播演示、训练营课件。<br><a href="https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/">Custom agents</a><br><a href="https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/">LSP Setup</a></p></div>
+        </div>
+      </article>
+
+      <article class="topic">
+        <div class="topic-header">
+          <h3>选题 04｜Google 正在把 Gemini 变成“懂你生意”的 AI 助手，中小商家会先受益</h3>
+          <div class="priority">优先级 A-</div>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>本地商家、自媒体运营、品牌顾问、知识博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>从聊天助手切换到上下文型商家助手，强调业务资料接入的重要性。</p></div>
+          <div class="cell"><b>爆点</b><ul><li>Gemini 连接 Google Business Profile</li><li>Business notebooks 指向业务操作台</li><li>AI 直接基于品牌语境生成内容与回复</li></ul></div>
+          <div class="cell"><b>内容结构</b><ul><li>为什么商家觉得 AI 不够懂自己</li><li>Google 这次具体打通了什么</li><li>它对评论回复和门店营销意味着什么</li><li>最后提醒地区限制与落地节奏</li></ul></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是商家反复给 AI 解释背景；爽点是 AI 开始记住品牌和经营语境；痒点是读者会想像小团队是否能少配一个运营助理。</p></div>
+          <div class="cell"><b>推荐形式与来源</b><p>适合案例拆解图文、短视频口播。<br><a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-features-for-businesses/">Google 官方文章</a></p></div>
+        </div>
+      </article>
+
+      <article class="topic">
+        <div class="topic-header">
+          <h3>选题 05｜OpenAI 把 Codex 放进 Oracle 采购链路，AI 平台竞争开始进入“预算入口战”</h3>
+          <div class="priority">优先级 B+</div>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>B2B 创作者、SaaS 从业者、企业数字化受众。</p></div>
+          <div class="cell"><b>切题角度</b><p>不要讲成普通合作稿，要讲采购链、预算归属和平台绑定。</p></div>
+          <div class="cell"><b>爆点</b><ul><li>使用现有 Oracle 云承诺就能采购 OpenAI 模型与 Codex</li><li>不需要重建新的采购路径</li><li>AI 分发开始深度嵌入传统云生态</li></ul></div>
+          <div class="cell"><b>内容结构</b><ul><li>企业采用 AI 的最大阻力常常不是模型能力</li><li>OpenAI 与 Oracle 解决了什么制度摩擦</li><li>这对云生态竞争意味着什么</li><li>提醒官方仍写明 coming weeks</li></ul></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人看不懂 B2B AI 为何总绕不开云厂商；爽点是把枯燥合作新闻讲成预算入口争夺战；痒点是用户会继续问谁会成为企业买 AI 的总入口。</p></div>
+          <div class="cell"><b>推荐形式与来源</b><p>适合行业点评、播客提纲、商业分析稿。<br><a href="https://openai.com/index/openai-on-oracle-cloud/">OpenAI 官方公告</a></p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今天最推荐的 1 个选题</h2>
+      <div class="callout">
+        <strong>Anthropic 刚把最强模型分成“大众版 + 受限版”，这可能是 2026 年 AI 行业最重要的信号。</strong><br>
+        这个题同时具备模型升级、访问限制、安全争议、商业化定价四重传播点。它既适合做快评，也适合做深度稿，还能顺手引出后续关于监管、Agent 安全、企业部署的连续内容。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">不确定与待验证</h2>
+      <p class="footnote">
+        1. OpenAI 与 Oracle 的可用时间，官方表述为 “in the coming weeks”，不是当天立即全面可用。<br>
+        2. Anthropic 政策稿的发布日期，本报告以 Anthropic Newsroom 中 2026-06-10 条目为准；政策正文页本身未在已抓取文本中直接显示日期。<br>
+        3. Google 商家功能官方写明本月全球推出，但有 “Excluding the EEA and UK” 注记，落地范围需按地区核实。<br>
+        4. GitHub 两篇文章属于官方博客与方法论发布，本报告按“工作流方向信号”处理，不额外推断为全部能力已全面 GA。
+      </p>
+    </section>
+  </main>
+</body>
+</html>

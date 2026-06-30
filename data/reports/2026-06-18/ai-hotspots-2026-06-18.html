@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-18</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d7e0ec;
+      --text: #16324a;
+      --muted: #60758a;
+      --blue: #2f6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --green: #1d7b57;
+      --amber: #946200;
+      --shadow: 0 18px 40px rgba(30, 77, 150, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1540px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1320px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .topic .priority {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #136f49;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+      line-height: 1.85;
+    }
+
+    li + li { margin-top: 4px; }
+    p { margin: 0; line-height: 1.85; }
+    p + p { margin-top: 10px; }
+
+    .best-pick {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+      color: #fff;
+    }
+
+    .best-pick .label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    .best-pick .title {
+      margin-top: 8px;
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .best-pick p {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; margin: 0; }
+      .hero, .section { box-shadow: none; }
+      a { color: #0f3ca5; }
+    }
+
+    @media (max-width: 980px) {
+      .meta, .signal-bar, .best-pick {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 32px; }
+      .page { width: min(100vw, calc(100vw - 20px)); margin: 10px auto 20px; }
+      .hero, .section { padding: 20px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <span class="eyebrow">AI 自媒体日报</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-18</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">重点覆盖 2026-06-16 至 2026-06-18 上午；补充纳入 2026-06-15 持续发酵官方信号</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先筛选 AI 行业、Agent、创作者工具链、视频/图文/平台分发相关热点</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天真正值得讲的，是 AI 创作与 Agent 生态正在一起从“单点能力”走向“完整工作流”。Adobe 用创作者报告和 Creative Cloud 更新同时证明，创作者最关心的不是再多一个炫酷模型，而是能不能把 AI 用成稳定产能；Hugging Face 与 GitHub 则让 Agent 工具发现进入标准化和产品化阶段；Google 与 Meta 分别从“模型下线”与“平台内创作”两端提醒大家，AI 工作流的边界和成本都在快速变化。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>主线 01</strong>
+          <span>AI 工具开始从单点功能走向完整工作流，创作者更愿意为“少做碎工”买单。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 02</strong>
+          <span>Agent 生态开始从“会调用工具”转向“会发现工具”，发现层正在变成新战场。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 03</strong>
+          <span>平台和基础设施厂商一起吞工作流，创作者要重新评估平台依赖、预算和迁移风险。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 04</strong>
+          <span>适合今天写的内容，不是新闻汇总，而是方法论、工作流和折旧成本判断。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">AI 创作基础设施化</span>
+        <span class="pill">ARD / MCP / Agent 发现层</span>
+        <span class="pill">平台内创作</span>
+        <span class="pill">工作流折旧</span>
+        <span class="pill">治理与成本控制</span>
+      </div>
+      <div class="note">说明：本报告优先采用官方博客、开发者文档、产品更新页与权威公告。厂商自报规模、调研比例和路线判断已在分析区单独标注适用边界。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-17</td>
+              <td>Hugging Face 发布 Agentic Resource Discovery（ARD）实现，让 agent 运行时搜索 Skills、MCP Server 和其他 agent</td>
+              <td>Agent 生态从“手工预装工具”转向“按任务动态发现能力”，适合讲 Agent 工具市场和标准化机会</td>
+              <td><a href="https://huggingface.co/blog/agentic-resource-discovery-launch">Hugging Face Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 标准、MCP 生态、工具平台选题</td>
+            </tr>
+            <tr>
+              <td>2026-06-17</td>
+              <td>GitHub 同日发布 Copilot app GA、agent finder 和 auto mode 全量可用</td>
+              <td>AI 开发者工作台正在成型，说明创作者卖的不只是模型比较，而是完整 agent 工作方式</td>
+              <td><a href="https://github.blog/changelog/2026-06-17-github-copilot-app-generally-available/">Copilot app GA</a>；<a href="https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/">Agent finder</a>；<a href="https://github.blog/changelog/2026-06-17-auto-mode-in-copilot-chat-available-for-all-users/">Auto mode</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 工作台、开发者创作、工具链升级</td>
+            </tr>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Adobe 2026 Creators’ Toolkit Report：87% 的创作者认为创意 AI 在加速业务或受众增长，75% 认为其已融入或成为必需</td>
+              <td>AI 对创作者已经从尝鲜功能变成基础设施，下一阶段更值钱的是声音、审美、判断和可控流程</td>
+              <td><a href="https://news.adobe.com/news/2026/06/creators-toolkit-report-2026">Adobe News</a></td>
+              <td class="cred-high">高（厂商调研）</td>
+              <td>方法论、赛道判断、课程升级</td>
+            </tr>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Databricks 扩展 Agent Bricks，称已构建 100k+ agents、年处理 1+ quadrillion tokens，并同步强化治理与上下文层</td>
+              <td>Agent 竞争重点继续从 demo 转向 choice、context、control，适合讲生产化 Agent 真正难点</td>
+              <td><a href="https://www.databricks.com/blog/agent-bricks-dais-2026">Agent Bricks</a>；<a href="https://www.databricks.com/blog/ai-governance-data-ai-summit-2026-whats-new-unity-ai-gateway">Unity AI Gateway</a>；<a href="https://www.databricks.com/blog/introducing-genie-one-genie-ontology-and-genie-agents">Genie One</a></td>
+              <td class="cred-high">高（厂商口径）</td>
+              <td>Agent 商业化、企业 AI、开发者媒体</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Adobe 在 Lightroom、Premiere、After Effects、Photoshop、Illustrator 集中发布 AI 工作流更新</td>
+              <td>真正能打动创作者的不是再多一个生成按钮，而是持续消灭筛片、补镜头、遮罩、清反光等脏活</td>
+              <td><a href="https://blog.adobe.com/en/publish/2026/06/15/from-culling-to-compositing-new-creative-cloud-innovations-across-every-stage-of-your-workflow">Adobe Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>剪辑提效、摄影后期、设计流程拆解</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Gemini API changelog 宣布多组图像和视频模型下线时间表</td>
+              <td>AI 图文和视频工作流的折旧速度仍然很高，卖模板、卖 SOP、卖自动化的人必须把迁移成本讲明白</td>
+              <td><a href="https://ai.google.dev/gemini-api/docs/changelog">Google AI for Developers</a></td>
+              <td class="cred-high">高</td>
+              <td>模型折旧、迁移指南、工作流维护</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Meta 为 Facebook 上线 AI Mode、拼贴模板、视频转场和 AI 编辑能力</td>
+              <td>平台开始同时掌握“分发入口”和“创作入口”，创作者需要重新理解平台依赖和平台红利</td>
+              <td><a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta/Facebook</a></td>
+              <td class="cred-high">高</td>
+              <td>平台内创作、社媒增长、分发结构变化</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. ARD 落地，Agent 生态开始从“会调用工具”转向“会找到工具”</h3>
+        <p>Hugging Face 在 2026-06-17 发布 ARD 相关实现，明确把 discovery layer 放在 MCP、Skills、A2A 之前；GitHub 同日上线 agent finder，把 registry 搜索接入 Copilot。对做 Agent 内容的人来说，这说明下一阶段的叙事要从“接了多少工具”升级成“能力如何被发现、排序、治理和启用”。</p>
+        <ul>
+          <li>Hugging Face 将 ARD 描述为可对工具、技能和 agent 做编目、索引和搜索的开放发现层。</li>
+          <li>GitHub agent finder 支持从指定 registry 搜索 MCP servers、skills、agents 和 tools，并强调不会自动安装。</li>
+          <li>风险：ARD 仍在生态 adoption 早期，更适合讲方向和基础设施机会，不宜夸大为行业标准已完全收敛。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. GitHub 正在把 Agent 工作台做成完整产品，而不是聊天插件</h3>
+        <p>GitHub 这次不是丢一个单点新功能，而是同时把 Copilot app、agent finder 和 auto mode 推到更可用的位置。对 AI 编程创作者来说，这是一条很适合写“agent-driven development 正在产品化”的信号。</p>
+        <ul>
+          <li>Copilot app 已对 macOS、Windows、Linux 一般可用，可从 issue、PR 或 prompt 发起 session，并支持并行 session、diff review、终端和浏览器验证。</li>
+          <li>Auto mode 会按任务复杂度与实时可用性动态选模型，并对付费用户按 10% 折扣计费。</li>
+          <li>风险：更偏开发者创作者受众，对泛娱乐型创作者的直接相关性较弱。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. Adobe 创作者报告给 2026 年的创作竞争下了一个很清楚的定义</h3>
+        <p>Adobe 报告把“AI 已变成创作基础设施”这件事直接量化了。对创作者来说，最关键的不是再论证 AI 要不要用，而是回答：当所有人都在用时，什么还会成为你的差异化。</p>
+        <ul>
+          <li>87% 认为创意 AI 在加速业务或受众增长，75% 认为其已集成或成为必需。</li>
+          <li>85% 认为最终创意决策权应保留给创作者。</li>
+          <li>风险：属于厂商调研，适合作为行业信号，不宜当成全行业无条件定论。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. Databricks 这波信号说明，Agent 真正进入了平台、治理和成本阶段</h3>
+        <p>Databricks 用 Agent Bricks、Unity AI Gateway 和 Genie One 三条线同时强调，企业真正需要的是模型选择、业务上下文和治理控制。对内容创作者来说，这条线比“某个 agent 演示很惊艳”更有后劲。</p>
+        <ul>
+          <li>官方称自推出以来已构建 100k+ agents，每年处理 1+ quadrillion tokens。</li>
+          <li>其总结 Agent 平台的三大挑战为 choice、context、control。</li>
+          <li>风险：规模和客户案例为厂商口径，引用时应说明来源。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. Adobe 产品更新证明，AI 最能卖钱的地方是继续掐掉碎工</h3>
+        <p>从 Lightroom 的 Assisted Culling 与 Photo to Video，到 Photoshop 的 Reflection Removal，再到 Illustrator 的 Concept to Vector，这一轮更新更像是在系统性消灭流程摩擦。对创作者受众来说，这类内容比单纯模型参数更容易转化为“今天就能改流程”的价值。</p>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. Gemini 下线公告继续提醒：AI 工作流也是高折旧资产</h3>
+        <p>Google 在 changelog 里明确写出多个 Imagen 和 Veo 模型的 shut down 日期，并给出迁移方向。这类开发者公告对卖模板、卖自动化方案和做工作流教程的人尤其重要，因为它直接影响交付保质期。</p>
+      </div>
+
+      <div class="analysis-card">
+        <h3>7. Facebook 把 AI 做进搜索和创作，平台开始改写分发入口与创作入口</h3>
+        <p>Meta 把 AI Mode、拼贴模板、视频转场和 AI 编辑一起塞进 Facebook，说明平台不满足于只做内容分发。对做平台趋势内容的人，这很适合拿来讨论“平台内创作”会不会成为主流。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <span class="priority">优先级 S</span>
+        <h3>选题 01｜Adobe 报告说透了：AI 已经不是创作者加分项，而是基础设施</h3>
+        <ul>
+          <li>标题方向：`87% 的创作者都说 AI 在帮他们涨业务，这意味着什么？`</li>
+          <li>目标受众：AI 自媒体创作者、设计师、短视频团队、知识付费从业者。</li>
+          <li>切题角度：用 Adobe 最新创作者调研解释为什么 2026 年创作者最该升级的是创作系统，而不是工具数量。</li>
+          <li>爆点：87%、75%、85% 三组数字同时具备传播性和讨论空间。</li>
+          <li>内容结构：旧问题过时 → 拆四个关键结论 → 解释人的护城河 → 给出升级方向。</li>
+          <li>痛点：已经在用 AI，但内容还是同质化。</li>
+          <li>爽点：把“AI 创作竞争逻辑”说透。</li>
+          <li>痒点：大家会继续追问真正不可替代的能力是什么。</li>
+          <li>推荐内容形式：公众号深度稿、B 站口播、直播拆解。</li>
+          <li>可引用来源：<a href="https://news.adobe.com/news/2026/06/creators-toolkit-report-2026">Adobe 2026 Creators’ Toolkit Report</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A+</span>
+        <h3>选题 02｜Agent 工具发现开始标准化了：下一波机会不只是做工具，而是让工具被找到</h3>
+        <ul>
+          <li>标题方向：`MCP 之后，Agent 生态开始卷“发现层”了`</li>
+          <li>目标受众：Agent 创业者、AI 开发者创作者、MCP 工具作者。</li>
+          <li>切题角度：结合 Hugging Face ARD 与 GitHub agent finder，解释 Agent 生态为什么从“接工具”升级为“找工具”。</li>
+          <li>爆点：开放规范、registry、搜索、排序、治理一起出现。</li>
+          <li>内容结构：当前痛点 → ARD 解决什么 → GitHub 为什么接 → 对工具作者意味着什么。</li>
+          <li>痛点：大家都在讲 agent，但很少讲工具如何被选中。</li>
+          <li>爽点：给受众“我看到更前一层机会”的感觉。</li>
+          <li>痒点：以后做 AI 工具是否也要做 registry 分发与标准兼容。</li>
+          <li>推荐内容形式：开发者长文、直播拆解、X 线程。</li>
+          <li>可引用来源：<a href="https://huggingface.co/blog/agentic-resource-discovery-launch">Hugging Face ARD</a>；<a href="https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/">GitHub Agent finder</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A</span>
+        <h3>选题 03｜GitHub 正在把 Agent 做成工作台，AI 编程内容该升级了</h3>
+        <ul>
+          <li>标题方向：`Agent 不只在聊天框里了，GitHub 把它做成了完整工作台`</li>
+          <li>目标受众：AI 编程博主、独立开发者、开发者教育作者。</li>
+          <li>切题角度：把 Copilot app、agent finder、auto mode 作为一套工作方式来讲，而不是三个零碎功能。</li>
+          <li>爆点：三端 GA、并行 session、cloud automations、MCP 接入、自动选模。</li>
+          <li>内容结构：这次更新为什么不是小修小补 → 三项能力分别解决什么 → 对 AI 编程内容意味着什么。</li>
+          <li>痛点：很多 AI 编程内容还停留在问答助手叙事。</li>
+          <li>爽点：让受众看到“agent-driven development”正在成型。</li>
+          <li>痒点：不同平台的 agent 工作台谁更强、谁更开放。</li>
+          <li>推荐内容形式：直播评测、深度稿、开发 vlog。</li>
+          <li>可引用来源：<a href="https://github.blog/changelog/2026-06-17-github-copilot-app-generally-available/">Copilot app GA</a>；<a href="https://github.blog/changelog/2026-06-17-auto-mode-in-copilot-chat-available-for-all-users/">Auto mode</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A-</span>
+        <h3>选题 04｜AI 工作流最贵的地方，其实不是搭建，而是折旧和迁移</h3>
+        <ul>
+          <li>标题方向：`Gemini 又在下线旧模型，AI 自动化为什么越来越像运维？`</li>
+          <li>目标受众：AI 工作流作者、卖模板和 SOP 的创作者、独立开发者。</li>
+          <li>切题角度：从 Google 的下线公告切入，讲 AI 工作流维护成本与产品半衰期。</li>
+          <li>爆点：多个 Imagen 与 Veo 模型被明确给出 shut down 日期。</li>
+          <li>内容结构：列下线清单 → 讲 API 生命周期 → 解释教程和模板为什么会过期 → 给出避坑原则。</li>
+          <li>痛点：很多人只会搭第一版，不会维护第二版。</li>
+          <li>爽点：让受众对 AI 自动化成本有更现实的判断。</li>
+          <li>痒点：哪些平台同样高折旧、怎么选更稳。</li>
+          <li>推荐内容形式：公众号分析、开发者长帖、直播复盘。</li>
+          <li>可引用来源：<a href="https://ai.google.dev/gemini-api/docs/changelog">Gemini API changelog</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 B+</span>
+        <h3>选题 05｜平台正在吞创作链路：Facebook 为什么开始同时做搜索、改图和发帖</h3>
+        <ul>
+          <li>标题方向：`平台只分发内容的时代，可能快结束了`</li>
+          <li>目标受众：社媒运营者、海外平台创作者、矩阵号操盘手。</li>
+          <li>切题角度：从 Facebook 的 AI Mode 与 AI 编辑功能切入，讨论平台内创作的结构性变化。</li>
+          <li>爆点：AI Mode 不只是给链接，而是直接基于公开内容给答案。</li>
+          <li>内容结构：平台为什么要吞创作入口 → 这次到底新增什么 → 独立工具和平台边界怎么变。</li>
+          <li>痛点：流程割裂、工具切换重。</li>
+          <li>爽点：一次看懂平台为什么越来越像创作操作系统。</li>
+          <li>痒点：Instagram、TikTok、YouTube 会不会跟进。</li>
+          <li>推荐内容形式：趋势长文、短视频口播、直播点评。</li>
+          <li>可引用来源：<a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta/Facebook 官方公告</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div>
+          <div class="label">Top Pick</div>
+          <div class="title">Adobe 报告说透了：AI 已经不是创作者加分项，而是基础设施</div>
+        </div>
+        <div>
+          <p>这条选题覆盖面最广，几乎所有 AI 自媒体创作者都能接得住；同时兼具数据锚点、方法论空间和情绪价值，最容易写出“既有结论又能启发行动”的内容。比单一产品新闻更容易形成可传播标题，也更适合作为课程、咨询、社群和训练营内容入口。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

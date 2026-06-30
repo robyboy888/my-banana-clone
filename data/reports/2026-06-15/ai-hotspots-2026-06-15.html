@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-15</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d9e3f0;
+      --text: #17324d;
+      --muted: #5c7288;
+      --blue: #2e6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --green: #1f7a58;
+      --amber: #9a6700;
+      --shadow: 0 18px 40px rgba(32, 76, 144, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(46, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1520px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1280px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .analysis-card ul, .topic ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .priority {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin-top: 14px;
+    }
+
+    .cell {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fbff;
+      border: 1px solid #e2ebf7;
+    }
+
+    .cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: #204271;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .cell p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .recommend {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #edf5ff 0%, #f9fbff 100%);
+      border: 1px solid #d7e7ff;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .page { width: min(100vw - 20px, 1520px); margin: 12px auto 24px; }
+      .hero, .section { padding: 20px; }
+      h1 { font-size: 32px; }
+      .meta, .signal-bar, .grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      a { color: #123b75; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 自媒体选题库</div>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">今天更值得讲的，不是哪个模型又加了几个 benchmark，而是 5 条更接近创作者生意和内容生产方式变化的主线：OpenAI 在定义 AI 工作流教育入口，Anthropic 把“政策如何改写产品可用性”摆上台面，GitHub 在把 Agent 做成可治理的工作流单元，AI 视频平台则继续向批量生产流水线演化。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-15</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">重点覆盖 2026-06-12 至 2026-06-15</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天的高价值叙事可以压缩成三句：第一，AI 教育正在从“提示词技巧”升级为“工作流与 Agent 管理”；第二，前沿模型的访问权限已经开始和政策变量强耦合；第三，真正成熟的 Agent 与 AI 视频平台，竞争点都在向系统层、治理层和可复用工作流层转移。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>AI 教育入口升级</strong>
+          <span>OpenAI Academy 把基础、流程与 Agent 管理串成一条路径，会直接影响知识付费和企业培训内容结构。</span>
+        </div>
+        <div class="signal">
+          <strong>Agent 进入系统层</strong>
+          <span>GitHub 把 Agentic Workflows 做进 Actions，又让 Chat 直接查历史 session，说明 Agent 开始拼持续执行与可追溯性。</span>
+        </div>
+        <div class="signal">
+          <strong>AI 视频进入治理期</strong>
+          <span>ElevenLabs 打通数字人视频流水线，HeyGen 报告则显示下一阶段更关键的是审批、治理、ROI 与组织级部署。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">OpenAI Academy</span>
+        <span class="pill">Anthropic Fable 5</span>
+        <span class="pill">GitHub Agentic Workflows</span>
+        <span class="pill">Copilot Agent Sessions</span>
+        <span class="pill">ElevenLabs Avatars</span>
+        <span class="pill">HeyGen Report</span>
+        <span class="pill">GPT-5.2 Retired</span>
+      </div>
+      <div class="note">说明：过去 24-48 小时新增官方可验证发布偏少，因此本报告保留了 2026-06-10 至 2026-06-11 仍在持续发酵、且与创作者工作流强相关的窗口边缘信号，并在表格中如实标注时间。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程。</td>
+              <td>知识付费、训练营、企业培训赛道，开始从教提示词转向教工作流与 Agent 管理。</td>
+              <td><a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></td>
+              <td class="cred-high">高</td>
+              <td>课程拆解、训练营、AI 内训、个人 IP</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>Anthropic 因美国政府出口管制指令暂停 Fable 5 和 Mythos 5 访问。</td>
+              <td>模型能力之外，政策与合规开始直接决定工具可用性。</td>
+              <td><a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic</a></td>
+              <td class="cred-high">高</td>
+              <td>合规解读、工具选型、平台风险</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>GitHub Agentic Workflows 进入 public preview，可在 GitHub Actions 中自动化推理型任务。</td>
+              <td>Agent 从聊天框走向企业工作流与可治理执行。</td>
+              <td><a href="https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/">GitHub Agentic Workflows</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 工作流拆解、开发者评测</td>
+            </tr>
+            <tr>
+              <td>2026-06-10</td>
+              <td>Copilot Chat 现在可以搜索和追问过去的 agent sessions。</td>
+              <td>Agent 产品开始补齐上下文连续性、日志和可追溯性。</td>
+              <td><a href="https://github.blog/changelog/2026-06-10-copilot-chat-now-sees-your-agent-sessions/">Copilot sessions</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 方法论、产品对比测评</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>ElevenLabs 在 ElevenCreative 中上线 Avatars，并接入 Flows。</td>
+              <td>AI 数字人视频开始从功能点走向批量生产流水线。</td>
+              <td><a href="https://elevenlabs.io/blog/introducing-avatars">ElevenLabs Avatars</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 视频、虚拟人、批量内容生产</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>HeyGen 发布《The State of Enterprise Video 2026》。</td>
+              <td>AI 视频行业讨论开始从生成效果转向治理、审批、可见性和 ROI。</td>
+              <td><a href="https://www.heygen.com/blog/the-state-of-enterprise-video-2026">HeyGen report</a></td>
+              <td class="cred-watch">中高</td>
+              <td>行业趋势、企业视频、系统化生产</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI release notes 确认 GPT-5.2 已从 ChatGPT 退场。</td>
+              <td>模型教程寿命缩短，方法论内容比固定模型技巧更保值。</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT release notes</a></td>
+              <td class="cred-high">高</td>
+              <td>教程更新、模型选型、方法论内容</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. OpenAI Academy：平台方开始亲自定义“AI 工作流教育”</h3>
+        <ul>
+          <li>OpenAI 于 2026-06-12 推出三门新课，路径从 AI 基础到可复用工作流，再到 Agent 管理。</li>
+          <li>这说明下一阶段 AI 教育赛道卖点会更偏工作流设计、边界定义、结果审阅，而不是单点提示词技巧。</li>
+          <li>对做训练营、知识付费、企业培训、社群服务的人尤其重要。</li>
+          <li>不确定项：课程明显偏企业 adoption，不代表普通消费级课程市场会立刻同步变化。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. Anthropic：模型能力和政策可用性开始强耦合</h3>
+        <ul>
+          <li>Anthropic 表示，美国政府发出出口管制指令，要求暂停 Fable 5 与 Mythos 5 对外国国民的访问。</li>
+          <li>官方称收到指令时间为美国东部时间 2026-06-12 17:21，且未获完整国家安全细节。</li>
+          <li>这很适合做“AI 产品的胜负手不只在模型能力，还在合规与访问权”的内容。</li>
+          <li>不确定项：具体技术细节未披露，因此不宜过度推断原因链。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. GitHub Agentic Workflows：Agent 正从聊天框走向企业流水线</h3>
+        <ul>
+          <li>GitHub 把推理型任务自动化能力直接做进 GitHub Actions，定义方式是自然语言 Markdown，执行落到标准 YAML。</li>
+          <li>同时补上 sandbox、只读权限、safe outputs、threat detection 等治理层。</li>
+          <li>这给创作者一个很强的行业判断：成熟 Agent 产品正在向“系统内执行单元”靠拢，而不是停留在演示型聊天机器人。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. Copilot agent sessions：上下文连续性正在成为 Agent 标配</h3>
+        <ul>
+          <li>Copilot Chat 现在能拉取 agent logs，也能按主题、标题、时间搜索过去的 session。</li>
+          <li>这意味着用户判断 Agent 好不好用，会越来越看重它能否接住历史任务、解释过程、方便复盘。</li>
+          <li>非常适合做“2026 年评估 Agent 产品应该看什么”的方法论内容。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. ElevenLabs Avatars：AI 数字人视频开始从功能点走向流水线</h3>
+        <ul>
+          <li>ElevenLabs 把语音、口型同步和 talking-head 视频生成收敛到一个入口，并把 Avatar 节点接入 Flows。</li>
+          <li>官方强调无须单独导出音频，也不需要在多个平台之间 handoff，可直接从 brief 到多语言批量执行。</li>
+          <li>这条信号的关键不是“又一个数字人”，而是“数字人视频开始被做成稳定的生产链路”。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. HeyGen 报告：AI 视频行业的下一步不是更炫，而是更可治理</h3>
+        <ul>
+          <li>报告核心结论是企业视频最大的瓶颈不再只是生成，而是 deployment、brand consistency、governance、visibility 和 ROI。</li>
+          <li>这很适合做“AI 视频过了炫技期，进入系统能力竞争期”的趋势内容。</li>
+          <li>不确定项：这是厂商自发布报告，适合作趋势信号，不宜当唯一证据链。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>7. GPT-5.2 退场：AI 教程寿命继续缩短</h3>
+        <ul>
+          <li>OpenAI 在 release notes 中确认 GPT-5.2 系列已从 ChatGPT 退场，旧对话自动续到 GPT-5.5。</li>
+          <li>对做 AI 教程、模型对比、提示词包的人，这是个很现实的信号：靠模型名卖内容会越来越快失效。</li>
+          <li>更耐用的内容形态会转向跨模型的方法论、工作流和判断框架。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 01｜OpenAI 开始把 Agent 工作流做成课程了，提示词课是不是要过时了？</h3>
+          <span class="priority">优先级 S</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 知识付费创作者、AI 培训顾问、企业内训负责人、AI 工具博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 OpenAI Academy 的课程结构反推，下一轮 AI 教育赛道到底卖什么。</p></div>
+          <div class="cell"><b>爆点</b><p>平台方亲自定义“从理解 AI 到跑工作流”的学习路径，课程直接覆盖提示词、流程设计、Agent 审阅。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲提示词课为什么开始不够用，再拆三门课程解决什么问题，最后推演知识付费与企业培训如何升级。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是零散技巧学完难落地；爽点是一次看懂下一阶段该卖什么；痒点是创作者会立刻联想到自己的课程是否要重构。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号深度稿、直播拆解、长视频。来源：<a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 02｜Anthropic 新模型上线没几天就被停用，AI 产品会越来越像“合规产品”吗？</h3>
+          <span class="priority">优先级 A+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 工具创业者、出海团队、行业观察者、模型评测博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Anthropic 事件讲清“模型能力之外，什么决定产品能不能被用”。</p></div>
+          <div class="cell"><b>爆点</b><p>新模型上线不久即被暂停访问，且官方承认未获得完整国家安全细节。</p></div>
+          <div class="cell"><b>内容结构</b><p>先还原事件，再解释其行业意义，最后推演出海、部署、工具选型会受哪些环节影响。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人仍只看价格和能力；爽点是看懂更高层的行业变量；痒点是会继续追问哪些赛道最脆弱。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐行业评论视频、播客、公众号长文。来源：<a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 03｜AI 数字人开始进入流水线时代：ElevenLabs 这次做的不是“又一个头像”</h3>
+          <span class="priority">优先级 A</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>视频创作者、课程主理人、社媒矩阵团队、营销团队、AI 视频博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>不讲炫技效果，重点讲“生产链路被打通”意味着什么。</p></div>
+          <div class="cell"><b>爆点</b><p>脚本、声音、形象、lip-sync、Flows 一体化，角色身份可复用，可批量生成跨语言、跨产品视频。</p></div>
+          <div class="cell"><b>内容结构</b><p>先解释过去 AI 数字人视频为什么流程割裂，再拆 ElevenLabs 收敛了哪些环节，最后推演对课程、营销、社媒矩阵的影响。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是过去要在多个平台来回倒文件；爽点是看见真正能提速的工作流闭环；痒点是会自然联想到自己是否也该搭一条批量内容流水线。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐产品拆解视频、口播评论、图文分析。来源：<a href="https://elevenlabs.io/blog/introducing-avatars">ElevenLabs Avatars</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 04｜GitHub 把 Agent 做进工作流了，2026 年判断 Agent 好不好用的标准要变了</h3>
+          <span class="priority">优先级 A-</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>开发者、独立开发者、Agent 产品经理、技术内容创作者。</p></div>
+          <div class="cell"><b>切题角度</b><p>把 GitHub Agentic Workflows 与 session search 连起来，讲 Agent 产品成熟度标准。</p></div>
+          <div class="cell"><b>爆点</b><p>自然语言写自动化，编译成 Actions YAML；还能搜索历史 agent session 并追问它改了什么、验证了什么。</p></div>
+          <div class="cell"><b>内容结构</b><p>解释普通聊天式 Agent 为什么难进生产流程，再拆 GitHub 的 workflow 化和 session 可追溯能力，最后提炼评测框架。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是大量 Agent 产品会演示，但不会持续工作；爽点是拿到一套看产品成熟度的方法；痒点是自然延伸到对其他 Agent 工具的比较。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐教程视频、长线程、开发者图文。来源：<a href="https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/">GitHub Agentic Workflows</a> / <a href="https://github.blog/changelog/2026-06-10-copilot-chat-now-sees-your-agent-sessions/">Copilot sessions</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 05｜AI 视频已经过了炫技期，下一步拼的是治理、审批和 ROI</h3>
+          <span class="priority">优先级 B+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>B2B 内容团队、企业市场团队、AI 视频从业者、行业观察型创作者。</p></div>
+          <div class="cell"><b>切题角度</b><p>用 HeyGen 报告做切口，讲 AI 视频行业从“生成能力竞争”转向“系统能力竞争”。</p></div>
+          <div class="cell"><b>爆点</b><p>84% 认为审核重要，但 37% 至少有时未经正式审核就发布；53% 的领导者说不清过去 90 天到底发了什么；47% 无法确认视频投入价值。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲为什么 AI 视频讨论一直过度聚焦生成效果，再拆报告里的五个系统缺口，最后推演普通创作者和企业团队会怎么被影响。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多团队已经“能生成”但无法规模化交付；爽点是一次看懂真正的商业机会在往哪里移动；痒点是会继续追问哪些团队最先受益。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐趋势稿、行业评论视频、播客。来源：<a href="https://www.heygen.com/blog/the-state-of-enterprise-video-2026">HeyGen report</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="recommend">
+        <h3 style="margin:0 0 10px;">OpenAI 开始把 Agent 工作流做成课程了，提示词课是不是要过时了？</h3>
+        <p class="lead">这是今天最适合优先做的题。它位于本次观察窗口核心时间段内，对 AI 自媒体创作者最直接，会立刻影响课程、训练营、社群和企业培训的内容结构，也最容易同时覆盖认知升级、商业机会和传播性。</p>
+      </div>
+      <p class="footer">说明：本报告优先使用官方博客、产品更新页、官方帮助中心与公司公告作为事实锚点。HeyGen 报告属于厂商自发布行业报告，可信度标记为“中高”。Anthropic 事件的具体技术细节官方未完整披露，相关延伸判断应视为待验证。</p>
+    </section>
+  </div>
+</body>
+</html>

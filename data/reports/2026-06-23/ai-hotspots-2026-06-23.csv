@@ -1,0 +1,9 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-06-22","OpenAI 发布 Daybreak 与 Patch the Planet，把重点从漏洞发现推进到补丁自动化和开源修复","对开发者/Agent 赛道创作者，这是 AI 从 demo 走向生产修复闭环的硬信号","https://openai.com/index/daybreak-securing-the-world/ | https://openai.com/index/patch-the-planet/","高","Agent、网络安全、AI 自动化基础设施"
+"2026-06-22","OpenAI 发布 Codex-Maxxing for Long-Running Work，强调持久上下文、可验证步骤、长任务协同","适合切“AI 工作流为什么开始像项目管理系统”","https://openai.com/index/codex-maxxing-long-running-work/","高","Codex、长任务工作流、团队协作"
+"2026-06-22","ChatGPT Release Notes 更新：长文本粘贴自动转附件；ChatGPT 内的 OpenAI o3 将于 2026-08-26 退役，GPT-4.5 将于 2026-06-27 退役","教程博主、训练营、提示词内容需要及时更新模型口径；长稿处理更适合内容生产","https://help.openai.com/en/articles/6825453-chatgpt-release-notes","高","ChatGPT 使用习惯、模型迁移、内容生产工作流"
+"2026-06-22","GitHub 在 JetBrains IDE 中预览 Claude 作为 agent provider，并加入组织级 agents、每轮 credits 指示，cloud agent 同日 GA","多代理工作流正在从实验功能变成可教学、可演示、可管理的生产功能","https://github.blog/changelog/2026-06-22-new-features-and-claude-as-agent-provider-preview-in-jetbrains-ides/","高","Copilot、Claude、Agent IDE、开发者教育"
+"2026-06-21","OpenAI 宣布 Samsung Electronics brings ChatGPT and Codex to employees","企业 AI 已从试点走向大规模部署，适合讲 AI 工具采购和工作流改造","https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/","高","企业 AI 落地、Codex adoption、AI 组织变革"
+"2026-06-19","GitHub Copilot usage metrics API 新增 ai_credits_used 用户级字段","AI 工具开始进入谁在用、花了多少、值不值的管理口径","https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/","高","AI 成本治理、Copilot 商业化、团队管理"
+"2026-06-18（补充）","Adobe 发布 Firefly AI Assistant 与升级版 creative AI studio","这是今天最直接面向内容创作者的信号之一：Firefly 正在抢全流程工作台位置","https://blog.adobe.com/en/publish/2026/06/18/adobe-firefly-introduces-new-agentic-capabilities-and-an-upgraded-creative-ai-studio-built-for-the-way-you-work","高","AI 创作工作流、视频生产、品牌内容"
+

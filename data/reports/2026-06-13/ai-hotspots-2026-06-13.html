@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-13</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d9e3f0;
+      --text: #17324d;
+      --muted: #5c7288;
+      --blue: #2e6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --green: #1f7a58;
+      --shadow: 0 18px 40px rgba(32, 76, 144, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(46, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1500px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1120px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .analysis-card ul, .topic ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .priority {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin-top: 14px;
+    }
+
+    .cell {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fbff;
+      border: 1px solid #e2ebf7;
+    }
+
+    .cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: #204271;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .cell p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .recommend {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #edf5ff 0%, #f9fbff 100%);
+      border: 1px solid #d7e7ff;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .page { width: min(100vw - 20px, 1500px); margin: 12px auto 24px; }
+      .hero, .section { padding: 20px; }
+      h1 { font-size: 32px; }
+      .meta, .signal-bar, .grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      a { color: #123b75; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 自媒体选题库</div>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">今天更值得讲的是“入口争夺”而不是“功能堆砌”：OpenAI 在争 AI 教育入口，Runway 在争内容工业入口，Anthropic 和 GitHub 则分别在争企业分发入口与 Agent 编排入口。对创作者来说，这些比泛泛的模型更新更容易做出有判断、有传播性的内容。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-13</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">重点覆盖 2026-06-11 至 2026-06-13</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天的高价值叙事可以压缩成三句：第一，AI 教学正在从“教提示词”转向“教工作流与 Agent”；第二，生成式视频正在从实验工具迈向正式 IP 开发链；第三，Agent 产品真正开始卷的不是会不会写，而是怎么交付、怎么分工、怎么稳定落地。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>AI 教育入口正在升级</strong>
+          <span>OpenAI Academy 直接把工作流与 Agent 管理做成课程，这对知识付费和企业培训赛道都是强信号。</span>
+        </div>
+        <div class="signal">
+          <strong>创作工业链开始吸收 AI</strong>
+          <span>Runway 与 Lionsgate 联合开发新 IP，说明 AI 视频正在进入正式内容生产而不是只做演示。</span>
+        </div>
+        <div class="signal">
+          <strong>Agent 竞争转向编排与分发</strong>
+          <span>TCS 成为 Claude 的行业落地通道，GitHub 则证明 orchestration 才是体验差距的关键来源。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">OpenAI Academy</span>
+        <span class="pill">OpenAI × Preply</span>
+        <span class="pill">Anthropic × TCS</span>
+        <span class="pill">Anthropic Public Record</span>
+        <span class="pill">GitHub Copilot CLI</span>
+        <span class="pill">Runway × Lionsgate</span>
+        <span class="pill">OpenAI 内容透明度</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程。</td>
+              <td>知识付费和企业培训赛道正在从讲提示词，转向讲可复用工作流与 Agent 管理。</td>
+              <td><a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy courses</a></td>
+              <td class="cred-high">高</td>
+              <td>课程拆解、训练营、企业内训、个人 IP</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI 发布 Preply 案例：AI 自动生成课后总结、个性化反馈与练习。</td>
+              <td>适合讲 AI 不一定替代老师，而是把高频重复工作产品化，增强留存与复购。</td>
+              <td><a href="https://openai.com/index/preply/">Preply customer story</a></td>
+              <td class="cred-high">高</td>
+              <td>教育产品、创作者服务、知识付费升级</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>Anthropic 与 TCS 合作，把 Claude 推给 50,000 名员工，并面向受监管行业打包方案。</td>
+              <td>Agent 进入企业市场后，真正的扩张器是咨询与实施网络，而不是模型公告本身。</td>
+              <td><a href="https://www.anthropic.com/news/tcs-anthropic-partnership">Anthropic x TCS</a></td>
+              <td class="cred-high">高</td>
+              <td>产业评论、企业服务、B2B AI</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>Anthropic 公布首份 Public Record 调查：64% 的美国人担心 AI 导致失业，超 70% 支持政府介入监管。</td>
+              <td>适合做情绪面与舆论面内容，帮助判断大众真正关心的不是参数，而是工作与控制权。</td>
+              <td><a href="https://www.anthropic.com/news/anthropic-public-record">Anthropic Public Record</a></td>
+              <td class="cred-high">高</td>
+              <td>舆情解读、就业焦虑、监管叙事</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>GitHub Copilot CLI 推出更克制的 subagent delegation 策略，并称已全量上线到生产流量。</td>
+              <td>Agent 竞争会从“会不会做事”转向“怎么编排、何时分工、如何降低失败率”。</td>
+              <td><a href="https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/">GitHub Copilot CLI</a></td>
+              <td class="cred-high">高</td>
+              <td>开发者方法论、Agent 评测、产品拆解</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>Runway 与 Lionsgate 扩大合作：Lionsgate 入股 Runway，并联合开发新 IP，首批包含短剧形态项目。</td>
+              <td>说明生成式视频开始进入正式内容开发链，而不只是试验工具。</td>
+              <td><a href="https://runwayml.com/news/runway-and-lionsgate-expand-partnership">Runway x Lionsgate</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 影视、短剧、内容工业化</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>OpenAI 支持欧盟 AI 生成内容透明度实践准则，继续推进 C2PA、SynthID 与公开验证工具。</td>
+              <td>对图文视频创作者意味着“标注来源、验证真假、平台信任”会逐渐成为内容分发的一部分。</td>
+              <td><a href="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem/">OpenAI provenance</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 内容可信度、平台规则、合规创作</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. OpenAI Academy：工作流教育开始被平台方直接产品化</h3>
+        <ul>
+          <li>OpenAI 于 6 月 12 日推出三门新课程，路径从 AI 基础到可复用工作流，再到 Agent 管理。</li>
+          <li>这说明 AI 培训正在从“提示词技巧”升级到“流程设计、边界定义、结果审阅”。</li>
+          <li>对知识付费创作者来说，这意味着下一阶段卖点会更偏工作流而不是单点技巧。</li>
+          <li>不确定项：官方强调企业 adoption 场景，普通消费者市场是否同步变化仍需观察。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. Preply：AI 最值钱的地方，是把老师背后的重复劳动产品化</h3>
+        <ul>
+          <li>OpenAI 案例显示，Preply 用 AI 做课后总结、反馈和个性化练习，而不是替代真人教学。</li>
+          <li>这条内容很适合做“AI + 人”的务实升级路线，尤其面向教育、咨询、教练型业务。</li>
+          <li>传播上可以避开空泛替代论，直接落到留存、复购、服务体验升级。</li>
+          <li>不确定项：这是单一案例，转译到其他教育业务时要注意产品和数据条件差异。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. Anthropic × TCS：企业 Agent 扩张更像渠道战，而不是模型战</h3>
+        <ul>
+          <li>TCS 将向 50,000 名员工提供 Claude，并面向金融、医疗、公共部门等行业交付方案。</li>
+          <li>真正值得讲的是，服务商开始成为模型公司进入复杂行业的分发与落地网络。</li>
+          <li>这让“谁能卖进企业”比“谁又发布了一个新能力”更值得内容创作者追踪。</li>
+          <li>不确定项：合作公告不等于大规模客户已验证 ROI，后续案例密度仍需观察。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. Anthropic Public Record：公众情绪给内容创作提供了真实议题地图</h3>
+        <ul>
+          <li>调查显示，64% 的美国人担心 AI 导致失业，超过 70% 支持政府介入监管。</li>
+          <li>这说明大众向内容如果只讲模型能力，容易错过真正的传播触发点。</li>
+          <li>对自媒体来说，工作、控制权、责任边界，比单纯性能更容易激发讨论。</li>
+          <li>不确定项：样本来自美国公众，跨地区外推时要明确边界。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. GitHub Copilot CLI：更成熟的 Agent，先学会少派活</h3>
+        <ul>
+          <li>GitHub 6 月 12 日文章称 smarter subagent delegation 已覆盖 100% 生产流量。</li>
+          <li>官方给出失败率下降 23%、P95 等待时间下降 5% 的 A/B 数据。</li>
+          <li>这为内容创作者提供了一个很好的方法论框架：Agent 上限在 orchestration，不只在模型本身。</li>
+          <li>不确定项：数据来自 GitHub 自测，外推到非开发 Agent 时需要保留边界。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. Runway × Lionsgate：AI 视频正在从演示工具转成正式内容开发链能力</h3>
+        <ul>
+          <li>Runway 于 6 月 11 日披露，Lionsgate 已入股，并将联合开发新 IP。</li>
+          <li>官方直接提到首批会从既有 IP 出发，推出短剧形态的共创项目。</li>
+          <li>这条新闻对视频创作者的启发非常直接：AI 内容生产开始进入片厂级项目制流程。</li>
+          <li>不确定项：具体项目上线时间、成片质量和商业回报仍待后续披露。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>7. OpenAI 内容透明度：未来平台会越来越关心“这是不是 AI 做的”</h3>
+        <ul>
+          <li>OpenAI 6 月 11 日宣布支持欧盟透明度实践准则，并强调 C2PA、SynthID 与验证工具。</li>
+          <li>这对图文和视频创作者意味着，“可验证来源”会逐渐变成平台信任体系的一部分。</li>
+          <li>很适合切入“AI 创作合规”和“内容透明度会不会影响分发”的话题。</li>
+          <li>不确定项：不同地区和平台的执行力度仍不一致，短期内不会完全统一。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 01｜Runway 和 Lionsgate 把 AI 视频推进到正式内容开发链，这会不会催生第一波 AI 短剧工业化？</h3>
+          <span class="priority">优先级 S</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>视频创作者、AIGC 影视玩家、短剧从业者、内容创业者。</p></div>
+          <div class="cell"><b>切题角度</b><p>把这条新闻讲成“生成式视频从玩具阶段走向片厂生产链”，而不是简单资本合作。</p></div>
+          <div class="cell"><b>爆点</b><p>Lionsgate 入股 Runway；双方联合开发新 IP；首批包含短剧形态项目。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲为何不是普通合作稿，再拆 AI 在内容生产链中的位置，最后落到普通创作者的机会窗口。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人还把 AI 视频当炫技；爽点是看到正式工业化信号；痒点是会继续追问哪些岗位和流程先变。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐 B 站深度解读、公众号产业稿、直播圆桌。来源：<a href="https://runwayml.com/news/runway-and-lionsgate-expand-partnership">Runway</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 02｜OpenAI 开始卖“Agent 工作流教育”了，提示词课程是不是快过时了？</h3>
+          <span class="priority">优先级 A+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>知识付费创作者、培训顾问、企业内训负责人、AI 工具博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 OpenAI Academy 课程设计反推下一阶段 AI 教育卖什么。</p></div>
+          <div class="cell"><b>爆点</b><p>OpenAI 亲自下场定义从基础到工作流再到 Agent 的学习路径。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲提示词课的局限，再拆课程能力地图，最后推演知识付费和企业培训如何重构。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多课程仍停留在零散技巧；爽点是看到更清晰的产品化方向；痒点是会想重构自己的课程体系。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号分析、训练营招生活动、视频评论。来源：<a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 03｜真正能把 Agent 卖进大企业的，不只是模型公司，而是服务商网络</h3>
+          <span class="priority">优先级 A</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>B2B AI 从业者、企业服务观察者、咨询与数字化行业人群。</p></div>
+          <div class="cell"><b>切题角度</b><p>用 Anthropic × TCS 讲企业 Agent 的渠道战和交付战。</p></div>
+          <div class="cell"><b>爆点</b><p>50,000 名员工内部使用；面向受监管行业打包方案；技能和插件一起进入。</p></div>
+          <div class="cell"><b>内容结构</b><p>解释企业 AI 落地为何卡在交付，再拆 TCS 的角色，最后推演渠道格局变化。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是大家知道模型强却不懂落地慢；爽点是能看懂企业市场的真瓶颈；痒点是会继续追问谁会成为下一批实施商。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐产业评论视频、公众号长文、播客。来源：<a href="https://www.anthropic.com/news/tcs-anthropic-partnership">Anthropic × TCS</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 04｜GitHub 证明了一件事：多智能体不一定更强，好的 Agent 先学会少折腾</h3>
+          <span class="priority">优先级 A-</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>开发者、独立开发者、Agent 产品经理、技术内容创作者。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 smarter subagent delegation 讲 Agent orchestration 的真实竞争点。</p></div>
+          <div class="cell"><b>爆点</b><p>100% 生产流量上线；失败率和等待时间都下降；更少 delegation 反而更有效。</p></div>
+          <div class="cell"><b>内容结构</b><p>讲多代理为什么常常变慢，拆 GitHub 方案，再沉淀成评测 Agent 产品的框架。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是用户分不清“代理多”和“系统成熟”；爽点是拿到一套判断框架；痒点是会想看更多产品对比。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐教程视频、线程、开发者图文。来源：<a href="https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/">GitHub Blog</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 05｜AI 不一定先替代老师，但一定会先替代老师身后的重复劳动</h3>
+          <span class="priority">优先级 B+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>教育博主、课程主理人、陪练/教练/咨询业务从业者。</p></div>
+          <div class="cell"><b>切题角度</b><p>以 Preply 为案例，讲“AI + 人”的教育产品路线。</p></div>
+          <div class="cell"><b>爆点</b><p>课后总结、纠错、作业自动化；70%+ 导师使用；个性化学习路径开始沉淀。</p></div>
+          <div class="cell"><b>内容结构</b><p>先破除替代论，再拆 AI 放在哪些环节，最后提炼成其他服务型业务可复用的方法。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多从业者只剩焦虑或拒绝；爽点是看到务实升级路径；痒点是会想把自己的业务也做成 AI 助手。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐案例拆解图文、短视频口播、直播答疑。来源：<a href="https://openai.com/index/preply/">Preply</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="recommend">
+        <h3 style="margin:0 0 10px;">Runway 和 Lionsgate 把 AI 视频推进到正式内容开发链，这会不会催生第一波 AI 短剧工业化？</h3>
+        <p class="lead">这是今天最适合优先做的题。它同时覆盖创作者工具、内容工业、影视行业和短剧风口，既足够新，也足够具体，还天然适合延展成系列内容。</p>
+      </div>
+      <p class="footer">说明：本报告优先使用官方博客、公司公告和权威产品更新页作为事实锚点。对合作落地节奏、课程 adoption 效果、行业扩散速度等仍未完全验证之处，已在文中明确标注边界或待观察项。</p>
+    </section>
+  </div>
+</body>
+</html>

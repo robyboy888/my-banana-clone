@@ -1,0 +1,8 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-06-12,"OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程","知识付费和企业培训赛道正在从讲提示词，转向讲可复用工作流与 Agent 管理","https://openai.com/index/academy-courses-applying-ai-at-work/","高","课程拆解、训练营、企业内训、个人 IP"
+2026-06-12,"OpenAI 发布 Preply 案例：AI 自动生成课后总结、个性化反馈与练习","适合讲 AI 不一定替代老师，而是把高频重复工作产品化，增强留存与复购","https://openai.com/index/preply/","高","教育产品、创作者服务、知识付费升级"
+2026-06-12,"Anthropic 与 TCS 合作，把 Claude 推给 50,000 名员工，并面向金融、医疗、公共部门等受监管行业打包方案","说明 Agent 进入企业市场后，真正的扩张器是咨询与实施网络，而不是模型公告本身","https://www.anthropic.com/news/tcs-anthropic-partnership","高","产业评论、企业服务、B2B AI"
+2026-06-12,"Anthropic 公布首份 Public Record 调查：64% 的美国人担心 AI 导致失业，超 70% 支持政府介入监管","适合做情绪面与舆论面内容，帮助创作者判断大众真正关心的不是参数，而是工作与控制权","https://www.anthropic.com/news/anthropic-public-record","高","舆情解读、就业焦虑、监管叙事"
+2026-06-12,"GitHub Copilot CLI 推出更克制的 subagent delegation 策略，并称已全量上线到生产流量","这是一条强方法论信号：下一阶段 Agent 竞争会从会不会做事，转向怎么编排、何时分工、如何降低失败率","https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/","高","开发者方法论、Agent 评测、产品拆解"
+2026-06-11,"Runway 与 Lionsgate 扩大合作：Lionsgate 入股 Runway，并联合开发新 IP，首批包含短剧形态项目","对视频创作者和影视解说类账号非常关键，说明生成式视频开始进入正式内容开发链，而不只是试验工具","https://runwayml.com/news/runway-and-lionsgate-expand-partnership","高","AI 影视、短剧、内容工业化"
+2026-06-11,"OpenAI 支持欧盟 AI 生成内容透明度实践准则，继续推进 C2PA、SynthID 与公开验证工具","对图文视频创作者意味着“标注来源、验证真假、平台信任”会逐渐成为内容分发的一部分","https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem/","高","AI 内容可信度、平台规则、合规创作"

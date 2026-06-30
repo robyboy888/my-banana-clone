@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 · 2026-06-30</title>
+  <style>
+    :root {
+      --blue: #1e5ed7;
+      --blue-soft: #eef4ff;
+      --ink: #162033;
+      --muted: #5d6a84;
+      --line: #d7e0f1;
+      --bg: #edf3fb;
+      --panel: #ffffff;
+      --high: #147a43;
+      --mid: #9a6700;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(30, 94, 215, 0.10), transparent 22%),
+        linear-gradient(180deg, #eef5ff 0%, #f7f9fc 38%, #edf2f8 100%);
+      font: 15px/1.68 "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    .page {
+      width: min(1460px, calc(100vw - 36px));
+      margin: 22px auto 40px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(31, 58, 108, 0.10);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 34px 40px 26px;
+      background:
+        radial-gradient(circle at top right, rgba(39, 102, 225, 0.18), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #f3f7ff 55%, #e8f0ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      color: #174695;
+      font-size: 34px;
+      letter-spacing: 0.4px;
+    }
+    .hero p {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .badge {
+      padding: 8px 12px;
+      border: 1px solid #cadeff;
+      border-radius: 999px;
+      color: var(--blue);
+      background: var(--blue-soft);
+      font-size: 13px;
+    }
+    .section {
+      padding: 26px 40px;
+      border-top: 1px solid #edf2f7;
+    }
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 12px;
+      border-left: 5px solid var(--blue);
+      color: var(--blue);
+      font-size: 22px;
+    }
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .summary-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #f9fbff;
+    }
+    .summary-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #1d417b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f5ff;
+      color: #234d93;
+      font-weight: 700;
+    }
+    td a {
+      color: var(--blue);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .cred {
+      font-weight: 700;
+    }
+    .cred-high { color: var(--high); }
+    .cred-mid { color: var(--mid); }
+    .topic-card {
+      margin-bottom: 18px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+    .topic-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .topic-card h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      color: #173f7d;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+    }
+    .meta-grid div {
+      padding: 12px 14px;
+      border: 1px solid #e2ebf8;
+      border-radius: 12px;
+      background: #f8fbff;
+    }
+    .meta-grid strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #214f96;
+    }
+    .subblock {
+      margin-top: 14px;
+    }
+    .subblock h4 {
+      margin: 0 0 8px;
+      color: #214f96;
+      font-size: 16px;
+    }
+    ul, ol {
+      margin: 8px 0 0 22px;
+      padding: 0;
+    }
+    .recommend {
+      padding: 20px 22px;
+      border: 1px solid #cde0ff;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eaf3ff, #f8fbff);
+    }
+    .recommend strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #123f86;
+      font-size: 20px;
+    }
+    @media print {
+      body { background: #fff; }
+      .page {
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      a { color: inherit; text-decoration: none; }
+    }
+    @media (max-width: 980px) {
+      .page { width: min(100vw - 16px, 1460px); }
+      .hero, .section { padding: 20px; }
+      .summary-strip, .meta-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p>采集日期：2026-06-30</p>
+      <p>采集窗口：2026-06-28 09:07 - 2026-06-30 09:07（UTC+8）</p>
+      <p>定位说明：面向 AI 自媒体创作者，优先关注能转化为视频、图文、直播、课程与社群讨论的热点。</p>
+      <div class="badge-row">
+        <span class="badge">热点摘要表格</span>
+        <span class="badge">5 个可直接开写的选题</span>
+        <span class="badge">所有事实均附来源链接</span>
+        <span class="badge">不确定项已单独标注</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点摘要条</h2>
+      <div class="summary-strip">
+        <div class="summary-card">
+          <strong>今日最大共性</strong>
+          AI 热点正从模型能力展示，转向部署控制面、移动入口和系统层工作流。
+        </div>
+        <div class="summary-card">
+          <strong>最适合起号传播</strong>
+          Cursor for iOS 公测，话题直观，容易带出“Agent 随身化”叙事。
+        </div>
+        <div class="summary-card">
+          <strong>最适合深度解析</strong>
+          Claude apps gateway，把企业级 Agent 的权限、SSO、预算问题讲清楚。
+        </div>
+        <div class="summary-card">
+          <strong>需谨慎表述</strong>
+          VibeThinker-3B 的亮点集中在可验证推理任务，不能泛化成全面替代大模型。
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 11%;">时间</th>
+            <th style="width: 22%;">热点信号</th>
+            <th style="width: 22%;">对创作者的意义</th>
+            <th style="width: 18%;">来源链接</th>
+            <th style="width: 7%;">可信度</th>
+            <th style="width: 20%;">内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-30 05:22</td>
+            <td>Anthropic 发布 Claude apps gateway，支持把 Claude Code 接到 Amazon Bedrock 和 Google Cloud，并加入企业 SSO、集中策略、角色权限、成本归因与限额。</td>
+            <td>Agent 进入企业后，接入、权限、预算和治理开始压过单纯模型能力；适合讲“企业为什么现在才敢真正上 Agent”。</td>
+            <td><a href="https://claude.com/blog/introducing-the-claude-apps-gateway">Anthropic 官方博客</a></td>
+            <td><span class="cred cred-high">高</span></td>
+            <td>企业级 Agent 落地、AI 控制平面、B 端治理。</td>
+          </tr>
+          <tr>
+            <td>2026-06-30 02:22</td>
+            <td>Anthropic 宣布 Claude in Microsoft Foundry 正式 GA，可在 Azure 环境中调用 Claude 模型。</td>
+            <td>云平台开始重新掌握前沿模型分发权，适合讲模型平台竞争如何转成云生态竞争。</td>
+            <td><a href="https://claude.com/blog/claude-in-microsoft-foundry">Anthropic 官方博客</a></td>
+            <td><span class="cred cred-high">高</span></td>
+            <td>Claude + Azure、模型平台大战、企业采购路径。</td>
+          </tr>
+          <tr>
+            <td>2026-06-29 20:00</td>
+            <td>Cursor 发布 Cursor for iOS 公测版，官方信息显示支持原生 iOS、语音、云端 agent、Live Activities 和推送通知。</td>
+            <td>AI 编程与 Agent 工作流开始从桌面延伸到手机入口，适合讲移动端如何接管远程任务与长流程。</td>
+            <td><a href="https://cursor.com/blog/ios-mobile-app">Cursor Blog</a></td>
+            <td><span class="cred cred-high">高</span></td>
+            <td>手机里的 AI agent、移动工作流、开发者效率。</td>
+          </tr>
+          <tr>
+            <td>2026-06-29 08:22</td>
+            <td>Adrafinil 1.2.0 发布，把 Keep awake 做进 macOS 菜单栏，可在 AI agent 运行时保持电脑唤醒。</td>
+            <td>说明 AI 工作流开始改写系统层行为，不再只是聊天框增强，适合讲 Agent 周边基础设施。</td>
+            <td><a href="https://github.com/kageroumado/adrafinil/releases/tag/v1.2.0">GitHub Release</a><br><a href="https://github.com/kageroumado/adrafinil">GitHub Repo</a></td>
+            <td><span class="cred cred-high">高</span></td>
+            <td>AI coding 外挂、系统层工具、长任务工作流。</td>
+          </tr>
+          <tr>
+            <td>2026-06-28 15:44</td>
+            <td>WeiboAI 开源 VibeThinker-3B，聚焦数学、代码、STEM 等可验证推理任务，并明确不建议用于 tool calling 或 autonomous coding agents。</td>
+            <td>小模型开始从便宜替代，转向特定任务高性价比，适合讲哪些预算会被小模型拿走。</td>
+            <td><a href="https://huggingface.co/WeiboAI/VibeThinker-3B">Hugging Face 模型卡</a><br><a href="https://huggingface.co/papers/2606.16140">技术报告</a><br><a href="https://the-decoder.com/sinas-open-model-vibethinker-3b-aims-to-show-reasoning-compresses-well-but-factual-knowledge-doesnt">The Decoder</a></td>
+            <td><span class="cred cred-high">高</span></td>
+            <td>小模型 ROI、推理可压缩、模型成本对比。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日选题</h2>
+
+      <section class="topic-card">
+        <div class="topic-head">
+          <div>选题 01</div>
+          <div>优先级 S</div>
+        </div>
+        <h3>Cursor 把 AI 编程 Agent 装进 iPhone，移动端会不会变成新的工作流控制台</h3>
+        <div class="meta-grid">
+          <div><strong>目标受众</strong><span>AI 工具博主、开发者创作者、效率内容账号、科技媒体</span></div>
+          <div><strong>切题角度</strong><span>重点不是手机写代码，而是手机开始管理 agent 与云端任务。</span></div>
+          <div><strong>爆点</strong><span>官方同时提到 native iOS、voice、cloud agents、Live Activities、push notifications。</span></div>
+          <div><strong>推荐形式</strong><span>热点快评视频 / 趋势图文 / 直播拆解</span></div>
+          <div><strong>痛点</strong><span>AI 工作流一离开电脑就断，很多长任务只能桌面端盯着跑。</span></div>
+          <div><strong>爽点</strong><span>观众会直观感受到“agent 终于能被随身带走”。</span></div>
+          <div><strong>痒点</strong><span>会引发“手机是不是会变成 AI 工作台入口”的讨论。</span></div>
+        </div>
+        <div class="subblock">
+          <h4>内容结构</h4>
+          <ol>
+            <li>先解释这不是把 IDE 缩到手机里，而是把 agent 控制权带到手机里。</li>
+            <li>再拆语音、云端 agent、锁屏状态和推送各自代表什么工作流变化。</li>
+            <li>最后落到创作者与开发者：远程盯 PR、盯任务、盯长流程会不会成为新常态。</li>
+          </ol>
+        </div>
+        <div class="subblock">
+          <h4>可引用来源</h4>
+          <ul>
+            <li><a href="https://cursor.com/blog/ios-mobile-app">Cursor Blog</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="topic-card">
+        <div class="topic-head">
+          <div>选题 02</div>
+          <div>优先级 A</div>
+        </div>
+        <h3>AI Agent 真要进企业，第一关不是模型能力，而是 SSO、权限和预算</h3>
+        <div class="meta-grid">
+          <div><strong>目标受众</strong><span>B 端 AI 从业者、SaaS 创业者、技术博主、企业服务观察者</span></div>
+          <div><strong>切题角度</strong><span>借 Claude apps gateway 讲清企业落地 Agent 时真正担心的治理问题。</span></div>
+          <div><strong>爆点</strong><span>官方一次性给出 corporate SSO、centrally enforced policy、role-based access、per-user cost attribution、spend caps。</span></div>
+          <div><strong>推荐形式</strong><span>深度图文 / 播客式口播 / B 端趋势长视频</span></div>
+          <div><strong>痛点</strong><span>企业想上 Agent，但权限、合规和成本都难控。</span></div>
+          <div><strong>爽点</strong><span>观众能迅速明白“企业级 AI”到底比消费级 AI 多了哪些门槛。</span></div>
+          <div><strong>痒点</strong><span>会带出“下一波 AI 创业是不是做控制层”的讨论。</span></div>
+        </div>
+        <div class="subblock">
+          <h4>内容结构</h4>
+          <ol>
+            <li>先讲企业上 Agent 为什么总卡在身份、权限和账单。</li>
+            <li>再拆这次 gateway 解决了哪几类真实管理问题。</li>
+            <li>最后落到自媒体内容价值：B 端 AI 叙事为什么会从模型榜单转向组织治理。</li>
+          </ol>
+        </div>
+        <div class="subblock">
+          <h4>可引用来源</h4>
+          <ul>
+            <li><a href="https://claude.com/blog/introducing-the-claude-apps-gateway">Anthropic 官方博客</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="topic-card">
+        <div class="topic-head">
+          <div>选题 03</div>
+          <div>优先级 A</div>
+        </div>
+        <h3>3B 小模型也敢打前沿推理牌，VibeThinker-3B 在抢谁的预算</h3>
+        <div class="meta-grid">
+          <div><strong>目标受众</strong><span>模型观察者、AI 产品经理、知识付费博主、技术媒体</span></div>
+          <div><strong>切题角度</strong><span>重点讲小模型在哪些任务里开始具备危险的性价比，而不是空讲替代一切。</span></div>
+          <div><strong>爆点</strong><span>模型卡同时强调前沿推理表现和明确能力边界，这种反差非常适合拆解。</span></div>
+          <div><strong>推荐形式</strong><span>数据对比图文 / 理性分析视频</span></div>
+          <div><strong>痛点</strong><span>很多团队都想降本，但不知道小模型到底能替掉什么。</span></div>
+          <div><strong>爽点</strong><span>给观众一套判断小模型是否可用的框架。</span></div>
+          <div><strong>痒点</strong><span>会引发“大模型是否只保留在高价值环节”的追问。</span></div>
+        </div>
+        <div class="subblock">
+          <h4>内容结构</h4>
+          <ol>
+            <li>讲清 VibeThinker-3B 擅长的任务边界。</li>
+            <li>解释“推理可压缩、知识不可压缩”为什么会成为新传播叙事。</li>
+            <li>落到产品与商业：哪些预算会优先转向小模型。</li>
+          </ol>
+        </div>
+        <div class="subblock">
+          <h4>可引用来源</h4>
+          <ul>
+            <li><a href="https://huggingface.co/WeiboAI/VibeThinker-3B">Hugging Face 模型卡</a></li>
+            <li><a href="https://huggingface.co/papers/2606.16140">技术报告</a></li>
+            <li><a href="https://the-decoder.com/sinas-open-model-vibethinker-3b-aims-to-show-reasoning-compresses-well-but-factual-knowledge-doesnt">The Decoder</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="topic-card">
+        <div class="topic-head">
+          <div>选题 04</div>
+          <div>优先级 B+</div>
+        </div>
+        <h3>AI agent 连电脑休眠都要接管了，系统层工作流会不会成为下个热点</h3>
+        <div class="meta-grid">
+          <div><strong>目标受众</strong><span>效率工具创作者、AI coding 圈、自媒体工具测评账号</span></div>
+          <div><strong>切题角度</strong><span>把 Adrafinil 讲成 Agent 周边基础设施，而不是单一冷门小工具。</span></div>
+          <div><strong>爆点</strong><span>更新把 Keep awake 直接做进菜单栏，说明“让电脑等 agent 跑完”开始产品化。</span></div>
+          <div><strong>推荐形式</strong><span>清单型图文 / 工具点评短视频</span></div>
+          <div><strong>痛点</strong><span>长流程任务经常被休眠、断开或后台策略打断。</span></div>
+          <div><strong>爽点</strong><span>观众会意识到 AI 工作流已经从“对话”变成“系统调度”。</span></div>
+          <div><strong>痒点</strong><span>会引发“以后电脑会不会为 Agent 专门优化”的联想。</span></div>
+        </div>
+        <div class="subblock">
+          <h4>内容结构</h4>
+          <ol>
+            <li>先讲为什么长时间跑 agent 会遇到休眠、温度和后台任务问题。</li>
+            <li>再讲这类工具为什么会随着 AI coding 普及而出现。</li>
+            <li>总结成趋势：Agent 不只改写软件，也在改写设备使用习惯。</li>
+          </ol>
+        </div>
+        <div class="subblock">
+          <h4>可引用来源</h4>
+          <ul>
+            <li><a href="https://github.com/kageroumado/adrafinil/releases/tag/v1.2.0">GitHub Release</a></li>
+            <li><a href="https://github.com/kageroumado/adrafinil">GitHub Repo</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="topic-card">
+        <div class="topic-head">
+          <div>选题 05</div>
+          <div>优先级 B</div>
+        </div>
+        <h3>Claude 上 Azure 变成正式服务，模型平台大战已经进入云分发阶段</h3>
+        <div class="meta-grid">
+          <div><strong>目标受众</strong><span>云计算从业者、企业 AI 观察者、科技媒体</span></div>
+          <div><strong>切题角度</strong><span>把 Microsoft Foundry GA 放进更大的平台分发格局里讲。</span></div>
+          <div><strong>爆点</strong><span>官方强调 generally available 和 hosted on Azure，说明 Claude 正在成为平台能力的一部分。</span></div>
+          <div><strong>推荐形式</strong><span>趋势评论视频 / 长图文</span></div>
+          <div><strong>痛点</strong><span>企业选模型时越来越不是“哪个好”，而是“哪个能接进现有平台”。</span></div>
+          <div><strong>爽点</strong><span>观众能看清模型竞争背后的渠道与平台逻辑。</span></div>
+          <div><strong>痒点</strong><span>会带出“模型公司会不会越来越像平台内容供应商”的讨论。</span></div>
+        </div>
+        <div class="subblock">
+          <h4>内容结构</h4>
+          <ol>
+            <li>先解释为什么 GA 比预览版更值得关注。</li>
+            <li>再讲 Azure 承载 Claude 对企业采购和部署意味着什么。</li>
+            <li>最后落到内容角度：云平台为什么会成为大模型竞争的新战场。</li>
+          </ol>
+        </div>
+        <div class="subblock">
+          <h4>可引用来源</h4>
+          <ul>
+            <li><a href="https://claude.com/blog/claude-in-microsoft-foundry">Anthropic 官方博客</a></li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">风险与不确定性</h2>
+      <ul>
+        <li><strong>Claude apps gateway</strong>：官方信息完整，但企业真实采用速度仍待客户案例进一步验证。</li>
+        <li><strong>Claude in Microsoft Foundry</strong>：事实明确，但偏 B 端基础设施，传播时不宜讲成普通用户直接功能升级。</li>
+        <li><strong>Cursor for iOS</strong>：官方已确认公测与能力方向，具体体验和配额仍需更多一线反馈。</li>
+        <li><strong>Adrafinil 1.2.0</strong>：来源可信，但受众偏 macOS 与 AI coding 圈，传播面相对窄。</li>
+        <li><strong>VibeThinker-3B</strong>：模型卡已明确能力边界，不应泛化为“3B 小模型全面替代大模型”。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐 1 个选题</h2>
+      <div class="recommend">
+        <strong>Cursor 把 AI 编程 Agent 装进 iPhone，移动端会不会变成新的工作流控制台</strong>
+        它兼具新鲜度、直观性和传播性，比纯模型分数新闻更容易让观众立刻联想到自己的真实工作流。
+      </div>
+    </section>
+  </main>
+</body>
+</html>

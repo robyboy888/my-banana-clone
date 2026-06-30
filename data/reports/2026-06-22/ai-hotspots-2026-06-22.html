@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-22</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --line: #d9e3ef;
+      --text: #17324a;
+      --muted: #5e7288;
+      --blue: #2a68ff;
+      --blue-soft: #edf4ff;
+      --blue-deep: #153b73;
+      --green: #16724f;
+      --orange: #b96b18;
+      --shadow: 0 18px 40px rgba(27, 76, 148, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(42, 104, 255, 0.11), transparent 26%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1560px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero { padding: 28px 32px 26px; }
+    .section { margin-top: 22px; padding: 24px 28px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .summary {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card, .signal {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label, .signal-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value, .signal-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal-value.small { font-size: 15px; font-weight: 600; }
+
+    .note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff7ea;
+      border: 1px solid #f3d8ae;
+      color: #77501a;
+      line-height: 1.8;
+    }
+
+    ul {
+      margin: 10px 0 0 22px;
+      line-height: 1.9;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1080px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    th {
+      background: #eff5ff;
+      color: #143860;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .hotspot {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+      margin-top: 14px;
+    }
+
+    .hotspot h3, .topic h3 {
+      margin: 0 0 8px;
+      color: #103860;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .hotspot p, .topic p {
+      margin: 8px 0;
+      line-height: 1.88;
+      font-size: 15px;
+    }
+
+    .topic {
+      margin-top: 16px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(20, 56, 96, 0.06);
+    }
+
+    .topic .priority {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .best-pick {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #edf4ff 0%, #ffffff 100%);
+      border: 1px solid #cfe0ff;
+    }
+
+    .best-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-deep);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .best-title {
+      margin: 4px 0 10px;
+      font-size: 26px;
+      color: #103860;
+      line-height: 1.4;
+      font-weight: 800;
+    }
+
+    .muted { color: var(--muted); }
+    .warn { color: var(--orange); font-weight: 700; }
+
+    @media (max-width: 980px) {
+      .page { width: min(100%, calc(100vw - 24px)); margin: 12px auto 24px; }
+      .hero, .section { border-radius: 20px; }
+      h1 { font-size: 30px; }
+      .meta, .signal-bar, .best-pick { grid-template-columns: 1fr; }
+      .best-title { font-size: 22px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section, .topic, .hotspot {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      a { color: #113c77; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">AI 自媒体创作者日报</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="summary">今天适合讲的主线，不是“哪个模型又更强”，而是 AI 工具链正在补齐 production 五件套：能部署、能治理、能评测、能研究、能留存。对内容创作者来说，这意味着选题重心要从参数竞赛，转向真实工作流如何被重写。</p>
+
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-22</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">北京时间 2026-06-20 00:00 至 2026-06-22 10:45</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先官方可验证信号</div>
+        </div>
+      </div>
+
+      <div class="signal-bar">
+        <div class="signal">
+          <div class="signal-label">今日主线</div>
+          <div class="signal-value small">Agent 从 demo 走向 production</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">高可信热点</div>
+          <div class="signal-value">6 条</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">推荐选题</div>
+          <div class="signal-value">5 个</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">最推荐方向</div>
+          <div class="signal-value small">部署 + 治理 + 评测</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>窗口说明：</strong>过去 24-48 小时内的新增官方大更新偏少，因此本文补充纳入 72 小时内仍在持续发酵、且与创作者工作流强相关的窗口边缘信号；所有超窗项目均在正文中单独标注原因。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="summary">本轮信号拼在一起，最值得传播的判断是：AI 工具正在从“可演示”跨到“可运行”。Cloudflare 解决的是部署摩擦，GitHub 解决的是预算可见性，ElevenLabs 解决的是语音 Agent 的验收语言，Firecrawl 解决的是研究 Agent 的资料层，OpenAI 和 ElevenLabs 则开始把一次性使用场景做成长期工作流和长期关系。</p>
+      <ul>
+        <li>如果做技术型内容，重点讲 Agent 为什么终于开始有 production 叙事。</li>
+        <li>如果做工具型内容，重点讲创作者为什么要从“新模型”转向“新工作流”。</li>
+        <li>如果做咨询或知识付费内容，重点讲部署、治理、评测、研究、留存这 5 条结构化主线。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table aria-label="今日热点摘要表">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-19</td>
+              <td>Cloudflare 推出 Temporary Accounts for AI agents，允许 Agent 用 <code>wrangler deploy --temporary</code> 直接部署，60 分钟内可认领。</td>
+              <td>Agent 更接近自己写、自己发、自己验证的闭环，适合讲 AI 编程和 Agent 基础设施拐点。</td>
+              <td><a href="https://blog.cloudflare.com/temporary-accounts/">Cloudflare Blog</a></td>
+              <td>高</td>
+              <td>Agent 部署、AI 编程、基础设施工作流</td>
+            </tr>
+            <tr>
+              <td>2026-06-19</td>
+              <td>GitHub Copilot usage metrics API 新增 <code>ai_credits_used</code>，可按用户查看每日和 28 日 AI credits 消耗。</td>
+              <td>AI 工具进入谁在用、花了多少、值不值的精细化管理阶段，适合讲团队 ROI 和 AI 治理。</td>
+              <td><a href="https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/">GitHub Changelog</a></td>
+              <td>高</td>
+              <td>AI 成本管理、团队治理、Copilot 商业化</td>
+            </tr>
+            <tr>
+              <td>2026-06-19</td>
+              <td>ElevenLabs 发布 voice agent evaluation framework，明确 MOS、任务成功率、延迟等生产级评测目标。</td>
+              <td>Voice Agent 从会说话转向可评测、可上线、可对比，适合讲语音 Agent 的下半场。</td>
+              <td><a href="https://elevenlabs.io/blog/voice-agent-evaluation-framework-6-pillars-explained">ElevenLabs Blog</a></td>
+              <td>高</td>
+              <td>Voice Agent、评测方法、B2B AI 服务</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>OpenAI 更新 ChatGPT app experience，并在同页更新 Codex <code>Record &amp; Replay</code> 与 ChatGPT <code>Scheduled tasks</code>。</td>
+              <td>通用助手继续向内容工作台靠拢，适合讲内容工作流为什么会被技能化、自动化、周期化。</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI Help</a></td>
+              <td>高</td>
+              <td>ChatGPT 工作流、内容自动化、技能复用</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>ElevenLabs 发布 ElevenMusic Mixes：每周 33 首个性化曲目，其中部分直接为单个用户生成。</td>
+              <td>AI 音乐开始从一次性生成走向长期关系和平台留存，适合讲 AI 音乐产品逻辑变化。</td>
+              <td><a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Blog</a></td>
+              <td>高</td>
+              <td>AI 音乐、个性化内容供给、创作者音频产品</td>
+            </tr>
+            <tr>
+              <td>2026-06-17<br><span class="warn">窗口边缘</span></td>
+              <td>Firecrawl 发布 Research Index，覆盖 300 万+ arXiv 论文与 GitHub 研究资产，支持 API、CLI、MCP、SDK。</td>
+              <td>深度研究型 Agent 正在成为独立产品层，适合讲研究 Agent 工具栈与知识服务升级。</td>
+              <td><a href="https://www.firecrawl.dev/blog/research-index-launch">Firecrawl Blog</a></td>
+              <td>中高（官方可信，性能表述待独立验证）</td>
+              <td>Deep Research、研究 Agent、知识付费工具链</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <article class="hotspot">
+        <h3>1. Cloudflare 这次给 Agent 补的是最缺的“最后一公里”</h3>
+        <p><strong>时效性：</strong>高。官方博客发布于 2026-06-19，截至 2026-06-22 仍处于强讨论窗口。</p>
+        <p><strong>关键事实：</strong>Agent 现在可运行 <code>wrangler deploy --temporary</code> 直接部署；临时部署保留 60 分钟，期间用户可认领为正式账户；官方目标是让 Agent 可以 “code and ship”。</p>
+        <p><strong>对创作者的意义：</strong>这是一条特别适合做“AI Agent 终于不再卡在最后一步”的可视化叙事。它比单纯模型性能提升更容易被理解成真实工作流变化。</p>
+        <p><strong>风险与不确定性：</strong>官方明确提到临时账户存在限制，能力边界未来可能调整，引用时应提醒读者查看文档。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>2. GitHub 把 AI 使用量做成了管理对象，而不只是体验对象</h3>
+        <p><strong>时效性：</strong>高。官方 changelog 发布于 2026-06-19。</p>
+        <p><strong>关键事实：</strong><code>ai_credits_used</code> 字段进入用户级报告，可看单日和 28 日消耗；GitHub 明确说明这是分析指标，不是最终账单口径。</p>
+        <p><strong>对创作者的意义：</strong>企业顾问、团队效率博主、AI 采购分析内容都能从这里切入“AI 成本透明化”和“团队治理进入细账时代”。</p>
+        <p><strong>风险与不确定性：</strong>目前仍不能按功能或模型拆分，预算讨论适合做趋势判断，不适合夸大现有精细度。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>3. Voice Agent 开始进入“评测先行”的阶段</h3>
+        <p><strong>时效性：</strong>高。官方文章发布于 2026-06-19。</p>
+        <p><strong>关键事实：</strong>ElevenLabs 将评测拆成 6 个支柱，并明确提出 MOS 4.3-4.5 等生产级目标表达，把 STT、TTS、LLM、工具调用、fallback 和延迟统一到一套验收语言。</p>
+        <p><strong>对创作者的意义：</strong>这条非常适合做“Voice Agent 下半场不是像不像人，而是能不能过 SLA”的行业判断稿。</p>
+        <p><strong>风险与不确定性：</strong>指标框架来自厂商官方，引用时要区分“行业方法论”与“厂商自证”。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>4. OpenAI 正在把内容工作流推向“技能化”和“周期化”</h3>
+        <p><strong>时效性：</strong>中高。页面显示更新于 2 天前，相关更新日期为 2026-06-18 和 2026-06-17。</p>
+        <p><strong>关键事实：</strong>ChatGPT 新增发音指导、connected apps 权限控制、<code>Start writing</code>；Codex 增加 <code>Record &amp; Replay</code>；ChatGPT 增强 <code>Scheduled tasks</code>，可处理提醒、重复工作和监控。</p>
+        <p><strong>对创作者的意义：</strong>这说明通用 AI 助手正在从“回答器”变成“内容工作台入口”，很适合面向训练营、课程、效率号做结构化拆解。</p>
+        <p><strong>风险与不确定性：</strong>不同功能对应不同平台、计划和区域范围，不能写成所有用户统一可用。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>5. ElevenMusic Mixes 说明 AI 音乐开始卷持续关系，而不是一次性炫技</h3>
+        <p><strong>时效性：</strong>中高。官方文章发布于 2026-06-18。</p>
+        <p><strong>关键事实：</strong>每周刷新一次，33 首曲目围绕你的口味；Pro 用户每周有 11 首专门生成曲目；官方目标是 “generate around you”。</p>
+        <p><strong>对创作者的意义：</strong>这说明 AI 音乐平台正在从工具逻辑切向平台和留存逻辑，对短视频配乐、播客和音频产品观察都很有价值。</p>
+        <p><strong>风险与不确定性：</strong>长期留存和版权争议仍要继续观察，当前更适合作为趋势观察。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>6. Firecrawl Research Index 说明研究 Agent 已经长出独立产品层</h3>
+        <p><strong>时效性：</strong><span class="warn">窗口边缘</span>。官方博客首发于 2026-06-17，超出严格 48 小时窗口；但周末新增信号稀疏，且其对研究型创作者意义仍在发酵，因此纳入。</p>
+        <p><strong>关键事实：</strong>官方称覆盖 300 万+ arXiv 论文与 GitHub 研究资产、每日刷新，并给出 arXivQA recall 与 0.750 MRR 等基准；现已支持 API、CLI、MCP、SDK。</p>
+        <p><strong>对创作者的意义：</strong>对论文拆解、教程、知识服务、产业研究类内容来说，这是很强的“研究工作流基础设施化”信号。</p>
+        <p><strong>风险与不确定性：</strong>性能表述主要来自官方 benchmark，不应写成独立第三方共识。</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <article class="topic">
+        <div class="priority">优先级 S</div>
+        <h3>选题 01｜Agent 下半场不是更聪明，而是更能上线：三条官方信号说明 AI Agent 进入 production 时代</h3>
+        <p><strong>目标受众：</strong>Agent 创业者、开发者自媒体、企业 AI 顾问、知识付费作者。</p>
+        <p><strong>切题角度：</strong>把 Cloudflare 部署、GitHub AI credits 指标、ElevenLabs 评测框架放在一起，讲 Agent 商业化成熟度。</p>
+        <p><strong>爆点：</strong>Agent 可以不登录就先部署；AI 消耗开始按用户透明化；Voice Agent 开始有明确生产级验收目标。</p>
+        <p><strong>内容结构：</strong>1）为什么上半场只卷 demo；2）为什么下半场一定卷部署、治理、评测；3）三条官方信号分别说明了什么；4）这对创作者和服务商意味着什么。</p>
+        <p><strong>痛点 / 爽点 / 痒点：</strong>痛点是市场内容仍停留在演示层；爽点是能给出更成熟的行业判断框架；痒点是自然引出 observability、governance、agent-ready infra 的下一层机会。</p>
+        <p><strong>推荐形式：</strong>深度长文、直播拆解、播客、社群内部分享。</p>
+        <p><strong>可引用来源：</strong><a href="https://blog.cloudflare.com/temporary-accounts/">Cloudflare Temporary Accounts</a>；<a href="https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/">GitHub AI Credits Metrics API</a>；<a href="https://elevenlabs.io/blog/voice-agent-evaluation-framework-6-pillars-explained">ElevenLabs Voice Agent Evaluation</a></p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A+</div>
+        <h3>选题 02｜Cloudflare 让 AI Agent 不登录也能部署，这为什么比一个新模型更重要</h3>
+        <p><strong>目标受众：</strong>AI 编程创作者、Agent 创业者、开发者社区、自媒体观察者。</p>
+        <p><strong>切题角度：</strong>把它写成 “Agent 从会写代码到能完成部署闭环” 的基础设施转折点。</p>
+        <p><strong>爆点：</strong>不登录也能部署；60 分钟内认领账户；Agent 可以自己写、自己发、自己验证。</p>
+        <p><strong>内容结构：</strong>1）为什么 Agent 一直卡在最后一步；2）Cloudflare 这次具体放开了什么；3）这为什么比模型升级更关键；4）哪些平台会被迫跟进。</p>
+        <p><strong>痛点 / 爽点 / 痒点：</strong>痛点是很多 AI 编程叙事都卡在部署和认证；爽点是第一次能把 Agent 真闭环讲得很直观；痒点是会继续引出支付、认证、监控等下一层基础设施。</p>
+        <p><strong>推荐形式：</strong>公众号观察稿、技术口播、直播拆解、播客。</p>
+        <p><strong>可引用来源：</strong><a href="https://blog.cloudflare.com/temporary-accounts/">Cloudflare Temporary Accounts for AI agents</a></p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A</div>
+        <h3>选题 03｜研究 Agent 工具栈正在独立成类，知识服务赛道该怎么跟</h3>
+        <p><strong>目标受众：</strong>研究型创作者、AI 教程作者、课程产品作者、行业分析号。</p>
+        <p><strong>切题角度：</strong>不是吹一个工具，而是讲研究 Agent 为什么值得成为独立工具层。</p>
+        <p><strong>爆点：</strong>覆盖 300 万+ arXiv 论文；拉通 GitHub 研究资产；研究检索、验证和实现合成一条工作流。</p>
+        <p><strong>内容结构：</strong>1）传统搜索为什么不够；2）Research Index 的产品定义；3）研究型内容工作流会怎么变；4）厂商 benchmark 的边界在哪里。</p>
+        <p><strong>痛点 / 爽点 / 痒点：</strong>痛点是抓资料、核来源、追代码成本太高；爽点是能把深度研究工具链讲成具体工作流；痒点是会追问更垂直的学术或投研 Agent 会不会出现。</p>
+        <p><strong>推荐形式：</strong>工具解析、长文、社群内部分享、课程预热稿。</p>
+        <p><strong>可引用来源：</strong><a href="https://www.firecrawl.dev/blog/research-index-launch">Firecrawl Research Index</a></p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A-</div>
+        <h3>选题 04｜ChatGPT 和 Codex 正在吃掉内容工作台的上游入口</h3>
+        <p><strong>目标受众：</strong>知识博主、效率内容创作者、AI 工作流培训作者。</p>
+        <p><strong>切题角度：</strong>讲“内容工作流如何在一个对话入口里被拆解、复用和自动化”。</p>
+        <p><strong>爆点：</strong>回答高亮后可直接开始写作；connected apps 权限控制；把示范动作转成 skill；定时任务可做提醒和监控。</p>
+        <p><strong>内容结构：</strong>1）轻内容工作流为什么最容易被 AI 吃掉；2）这次补了哪些关键入口；3）Record &amp; Replay 与 Scheduled tasks 为什么重要；4）未来什么岗位会先被工作流模板化。</p>
+        <p><strong>痛点 / 爽点 / 痒点：</strong>痛点是创作者频繁切换工具；爽点是一个示范动作能变成长期复用能力；痒点是会继续追问团队怎样沉淀自己的 AI skill 库。</p>
+        <p><strong>推荐形式：</strong>工作流教程、产品观察、短视频口播、训练营素材。</p>
+        <p><strong>可引用来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI ChatGPT Release Notes</a></p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A-</div>
+        <h3>选题 05｜AI 音乐开始从“生成一首歌”变成“围着你持续生成”</h3>
+        <p><strong>目标受众：</strong>AI 音乐创作者、短视频创作者、音频产品观察者。</p>
+        <p><strong>切题角度：</strong>从 ElevenMusic Mixes 切入，讲 AI 音乐产品为什么从炫技走向留存逻辑。</p>
+        <p><strong>爆点：</strong>每周 33 首；Pro 用户 11 首专属生成曲目；官方提出 “generate around you”。</p>
+        <p><strong>内容结构：</strong>1）AI 音乐上一阶段的问题；2）Mixes 为什么代表平台逻辑变化；3）对创作者生态的影响；4）版权和订阅模型风险。</p>
+        <p><strong>痛点 / 爽点 / 痒点：</strong>痛点是产品多但关系弱；爽点是能快速看懂平台逻辑；痒点是会继续追问版权、风格归属和商业模式。</p>
+        <p><strong>推荐形式：</strong>趋势稿、产品评测、播客、短视频口播。</p>
+        <p><strong>可引用来源：</strong><a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Mixes</a></p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div>
+          <div class="best-label">Best Pick</div>
+        </div>
+        <div>
+          <div class="best-title">Agent 下半场不是更聪明，而是更能上线：三条官方信号说明 AI Agent 进入 production 时代</div>
+          <p class="summary">周末新增“大模型级”爆点有限，但这组信号能拼出一个更完整、更高价值的行业判断。它同时覆盖部署、预算、评测三条最接近真实商用的主线，比单条产品新闻更适合做高信息密度内容，也更适合 AI 编程、自媒体观察、知识付费和企业咨询四类受众。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

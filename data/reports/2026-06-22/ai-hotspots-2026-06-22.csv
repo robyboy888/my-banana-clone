@@ -1,0 +1,7 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-06-19","Cloudflare 推出 Temporary Accounts for AI agents，允许 Agent 用 wrangler deploy --temporary 直接部署，60 分钟内可认领","Agent 更接近自己写、自己发、自己验证的闭环，适合讲 AI 编程和 Agent 基础设施拐点","https://blog.cloudflare.com/temporary-accounts/","高","Agent 部署、AI 编程、基础设施工作流"
+"2026-06-19","GitHub Copilot usage metrics API 新增 ai_credits_used，可按用户查看每日和 28 日 AI credits 消耗","AI 工具进入谁在用、花了多少、值不值的精细化管理阶段，适合讲团队 ROI 和 AI 治理","https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/","高","AI 成本管理、团队治理、Copilot 商业化"
+"2026-06-19","ElevenLabs 发布 voice agent evaluation framework，明确 MOS、任务成功率、延迟等生产级评测目标","Voice Agent 从会说话转向可评测、可上线、可对比，适合讲语音 Agent 的下半场","https://elevenlabs.io/blog/voice-agent-evaluation-framework-6-pillars-explained","高","Voice Agent、评测方法、B2B AI 服务"
+"2026-06-18","OpenAI 更新 ChatGPT app experience，并在同页更新 Codex Record & Replay 与 ChatGPT Scheduled tasks","通用助手继续向内容工作台靠拢，适合讲内容工作流为什么会被技能化、自动化、周期化","https://help.openai.com/en/articles/6825453-chatgpt-release-notes","高","ChatGPT 工作流、内容自动化、技能复用"
+"2026-06-18","ElevenLabs 发布 ElevenMusic Mixes：每周 33 首个性化曲目，其中部分直接为单个用户生成","AI 音乐开始从一次性生成走向长期关系和平台留存，适合讲 AI 音乐产品逻辑变化","https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic","高","AI 音乐、个性化内容供给、创作者音频产品"
+"2026-06-17（窗口边缘）","Firecrawl 发布 Research Index，覆盖 300 万+ arXiv 论文与 GitHub 研究资产，支持 API、CLI、MCP、SDK","深度研究型 Agent 正在成为独立产品层，适合讲研究 Agent 工具栈与知识服务升级","https://www.firecrawl.dev/blog/research-index-launch","中高（官方可信，性能表述待独立验证）","Deep Research、研究 Agent、知识付费工具链"

@@ -1,0 +1,9 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-06-15,"Meta 发布 Facebook 新 AI 工具，包含 AI Mode、AI 编辑、拼贴模板、视频转场和 AI 服饰/头像改造","AI 开始直接进入内容分发平台与发布动作本身","https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/","高","平台分发、创作者运营、Facebook 新机会"
+2026-06-15,"Adobe 发布新一轮 Creative Cloud AI 工作流更新，覆盖 Lightroom、Premiere、After Effects、Photoshop、Illustrator","图像筛片、B-roll、字幕、遮罩、反光去除、概念转矢量等环节继续被压缩","https://blog.adobe.com/en/publish/2026/06/15/from-culling-to-compositing-new-creative-cloud-innovations-across-every-stage-of-your-workflow","高","创作流程拆解、剪辑提效、设计师工具更新"
+2026-06-15,"Gemini API release notes 宣布 Imagen 4 / Gemini 3 Image 一批模型将于 2026-08-17 下线，Veo 2 / Veo 3 旧模型将于 2026-06-30 下线","依赖旧模型接口做图、做视频、做自动化工作流的人，需要立刻排查迁移成本","https://ai.google.dev/gemini-api/docs/changelog","高","模型迁移、接口风险、创作者工具保质期"
+2026-06-12,"OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程","知识付费、训练营、企业内训开始从教提示词转向教工作流、边界和结果审阅","https://openai.com/index/academy-courses-applying-ai-at-work/","高","课程拆解、训练营、AI 教育赛道判断"
+2026-06-16,"Microsoft Work IQ API endpoints 将在今天 GA，包含 A2A、remote MCP server 和 REST API","Agent 创作者与工具团队会更关注生产级接口、治理和成本控制","https://devblogs.microsoft.com/microsoft365dev/work-iq-production-ready-intelligence-for-every-agent/","高","Agent 基础设施、B2B 工具趋势、开发者内容"
+2026-06-12,"Anthropic 因美国政府出口管制指令暂停 Fable 5 与 Mythos 5 访问","AI 产品可用性已经不是纯产品问题，合规和政策变量会直接影响创作者依赖的平台","https://www.anthropic.com/news/fable-mythos-access","高","平台风险、出海合规、行业评论"
+2026-06-11,"ElevenLabs 在 ElevenCreative 上线 Avatars，并把 Avatar node 接入 Flows","AI 视频开始从单条成片走向可批处理、多语言、多角色复用的流水线","https://elevenlabs.io/blog/introducing-avatars","高","数字人视频、批量内容生产、课程与营销视频"
+2026-06-11,"HeyGen《The State of Enterprise Video 2026》强调 AI 视频瓶颈已转向治理、审批、可见性和 ROI","适合讲 AI 视频赛道从炫技期进入系统化交付期","https://www.heygen.com/blog/the-state-of-enterprise-video-2026","中高","行业趋势、企业视频、系统能力竞争"

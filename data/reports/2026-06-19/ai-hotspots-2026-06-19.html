@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-19</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --line: #d9e3ef;
+      --text: #17324a;
+      --muted: #5e7288;
+      --blue: #2a68ff;
+      --blue-soft: #edf4ff;
+      --blue-deep: #153b73;
+      --green: #16724f;
+      --amber: #8f6200;
+      --shadow: 0 18px 40px rgba(27, 76, 148, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(42, 104, 255, 0.11), transparent 26%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1540px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1320px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .topic .priority {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #136f49;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    ul {
+      margin: 10px 0 0 22px;
+      padding: 0;
+      line-height: 1.85;
+    }
+
+    li + li { margin-top: 4px; }
+    p { margin: 0; line-height: 1.85; }
+    p + p { margin-top: 10px; }
+
+    .best-pick {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+      color: #fff;
+    }
+
+    .best-pick .label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    .best-pick .title {
+      margin-top: 8px;
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .best-pick p {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; margin: 0; }
+      .hero, .section { box-shadow: none; }
+      a { color: #0f3ca5; }
+    }
+
+    @media (max-width: 980px) {
+      .meta, .signal-bar, .best-pick {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 32px; }
+      .page { width: min(100vw, calc(100vw - 20px)); margin: 10px auto 20px; }
+      .hero, .section { padding: 20px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <span class="eyebrow">AI 自媒体日报</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-19</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">北京时间 2026-06-17 00:00 至 2026-06-19 09:30</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先筛选过去 24-48 小时内与 Agent、创作者工具链、视频/语音/图文生产、平台分发和品牌营销相关的官方信号</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天最值得讲的，不是“哪个大模型又更强了”，而是 AI 创作者工具正在系统性从生成能力升级到任务编排、个性化供给和平台内增长。Adobe 在重写创意工作流，Character.AI 在补创作者增长层，ElevenLabs 在把 AI 音乐做成持续关系产品，GitHub 在让 Agent 学会自己找工具，NVIDIA 则从广告营销基础设施层证明，内容产业的 AI 化已经不止停留在演示视频。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>主线 01</strong>
+          <span>创意工作流 Agent 化，重点不再是出一张图，而是能不能直接交付一个成品流程。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 02</strong>
+          <span>创作者平台从“能创作”转向“能增长”，指标、关注和分发入口一起被补齐。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 03</strong>
+          <span>AI 内容推荐正在走向“为你生成”，个性化供给成为新产品逻辑。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 04</strong>
+          <span>Agent 生态开始卷发现层和工作台，而不是只卷接入多少工具。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">Creative Agent</span>
+        <span class="pill">Creator Growth</span>
+        <span class="pill">AI Music</span>
+        <span class="pill">Agent Discovery</span>
+        <span class="pill">Marketing AI</span>
+      </div>
+      <div class="note">说明：本报告仅采用可验证来源。涉及 beta、private beta、即将上线的功能，已在分析区单独标注“不确定/待验证”边界。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-18</td>
+              <td>Adobe 宣布扩展 creative agent 到 Firefly 与 Creative Cloud 多款应用，并接入 ChatGPT、Claude、Copilot、Gemini、Slack 等平台</td>
+              <td>创作者工具的竞争点从“会不会生成”转向“能不能直接编排品牌、短视频、剪辑和多步骤制作流程”</td>
+              <td><a href="https://news.adobe.com/news/2026/06/adobe-unveils-major-expansion">Adobe News</a></td>
+              <td class="cred-high">高</td>
+              <td>创作工作流升级、Adobe 生态、Agent 化创意工具</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>ElevenLabs 发布 ElevenMusic Mixes：每周 33 首个性化播放列表，其中部分曲目专门为单个用户生成</td>
+              <td>AI 音乐产品开始从“给你生成一首歌”升级到“围绕你的口味持续生成和推荐”</td>
+              <td><a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 音乐、个性化推荐、创作者音频工具</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>NVIDIA 发布 Cannes Lions 前瞻，展示广告营销伙伴如何用 NVIDIA 技术做因果分析、竞价和推荐</td>
+              <td>广告内容、品牌营销、投放优化都在被 AI 基础设施化，适合切入“AI 将先改变谁的内容工作”</td>
+              <td><a href="https://blogs.nvidia.com/blog/nvidia-ai-marketing-advertising-cannes-lions/">NVIDIA Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>营销 AI、广告投放、品牌内容生产</td>
+            </tr>
+            <tr>
+              <td>2026-06-17</td>
+              <td>GitHub 发布 agent finder，支持 Copilot 按任务搜索 MCP servers、skills、agents 和 tools，并基于 ARD 规范工作</td>
+              <td>Agent 生态从“手工预装工具”升级到“按任务发现工具”，对做 Agent 教程、MCP 生态和 AI 工具导航的人很有价值</td>
+              <td><a href="https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/">GitHub Changelog</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 标准、MCP 生态、工具分发</td>
+            </tr>
+            <tr>
+              <td>2026-06-17</td>
+              <td>GitHub Copilot app 正式 GA，auto mode 也向全部 Copilot 计划开放</td>
+              <td>AI 编程工具从聊天框走向工作台，内容创作者可以开始讲“agent-driven development”的完整工作方式</td>
+              <td><a href="https://github.blog/changelog/2026-06-17-github-copilot-app-generally-available/">Copilot app GA</a>；<a href="https://github.blog/changelog/2026-06-17-auto-mode-in-copilot-chat-available-for-all-users/">Auto mode</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 编程工作流、开发者创作、Agent 工作台</td>
+            </tr>
+            <tr>
+              <td>2026-06-17</td>
+              <td>Character.AI 上线 Creator Guide、Creator Insights、Leaderboards，并预告 Following Tab 与新角色通知</td>
+              <td>AI 创作者平台开始把“创作”与“增长”打通，说明未来的 AI 角色创作生态会越来越像完整内容平台</td>
+              <td><a href="https://blog.character.ai/creator-bundle/">Character.AI Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 角色创作、平台增长、创作者经济</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. Adobe 把 creative agent 从“会生成”推进到“会编排”</h3>
+        <p>Adobe 在 2026-06-18 的公告里，明确把竞争点从单次生成拉到了跨应用、多步骤、可交付的工作流编排。它不只是在 Firefly 里加功能，而是在把 brand kit、短产品视频、Quick Cut、storyboard 到 video 生成、跨应用 AI Assistant 一起串起来。</p>
+        <ul>
+          <li>creative agent 会进入 Premiere、Photoshop、Illustrator、InDesign、Frame.io。</li>
+          <li>Adobe 还把工具面向 ChatGPT、Claude、Copilot、Gemini、Slack 等平台扩展。</li>
+          <li>不确定性：部分能力仍处于 public beta 或 private beta，不能写成全面正式落地。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. ElevenMusic Mixes 说明 AI 音乐开始卷持续关系，而不是一次性生成</h3>
+        <p>ElevenLabs 这次最值得注意的不是“能生成音乐”，而是它把产品逻辑改成了一个每周持续更新、会根据你行为变化的个性化供给系统。官方甚至直接说，目标不是推荐音乐给你，而是“generate around you”。</p>
+        <ul>
+          <li>每周 33 首；Pro 用户每周 11 首独家生成曲目，免费用户 5 首。</li>
+          <li>产品已在 web 和 iOS 上可用。</li>
+          <li>不确定性：长期留存和版权讨论还要继续观察。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. NVIDIA 这条更像“营销内容产业正在被 AI 基础设施改造”</h3>
+        <p>这不是一个直接面向普通创作者的新 app，而是一条关于品牌内容、广告投放和推荐系统正在 AI 化的强行业信号。对做品牌营销、广告科技和内容商业化观察的人，信息密度很高。</p>
+        <ul>
+          <li>博客展示 Alembic、AWS、Criteo 等案例，重点落在因果分析、竞价、推荐和基础设施。</li>
+          <li>Criteo 被写明在 Blackwell GPUs 上实现约 2x 训练加速，并节省约 17,000 GPU 小时/年。</li>
+          <li>不确定性：这是趋势展示，不是面向大众创作者的普适产品上线。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. GitHub 把 Agent 生态从“装工具”推到“找工具”</h3>
+        <p>agent finder 的价值不在于又多了一个功能，而在于它把 discovery layer 产品化了。GitHub 明确支持搜索 MCP servers、skills、agents、tools，并强调按企业许可范围发现，不会自动安装。</p>
+        <ul>
+          <li>这对做 Agent 教程、MCP 工具导航和工具作者生态观察的人都很适合。</li>
+          <li>不确定性：更偏开发者和技术型受众，对泛创作者的直接感知没那么强。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. GitHub Copilot app GA 与 auto mode 一起把“AI 编程工作台”讲清楚了</h3>
+        <p>Copilot app 支持从 issue、PR 或 prompt 发起 session，能并行跑多个 worktree，再在终端和浏览器里验证结果；auto mode 进一步把模型选择自动化，并给付费用户 10% 折扣。这比单纯“换了个更强模型”更适合做方法论内容。</p>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. Character.AI 开始把 AI 创作者平台做得更像完整内容平台</h3>
+        <p>Character.AI 这次上新的真正看点，是把创作者层能力补齐了。Creator Guide 解决创作，Creator Insights 解决复盘，Leaderboards 解决曝光，Following Tab 和通知则在补分发与粉丝沉淀。</p>
+        <ul>
+          <li>Creator Insights 明确提供 interactions、followers、likes、discoveries 等指标。</li>
+          <li>不确定性：Following Tab 和角色通知仍属“very soon / soon”，不能写成已全面上线。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <span class="priority">优先级 S</span>
+        <h3>选题 01｜Adobe 把创意 Agent 做进 Photoshop 和 Premiere，AI 创作开始从“出图”走向“交付”</h3>
+        <ul>
+          <li>标题方向：`Adobe 这次不只是加了 AI，而是在重写创作者的工作流`</li>
+          <li>目标受众：设计师、短视频团队、品牌内容团队、AI 创作博主。</li>
+          <li>切题角度：讲 creative agent 为什么代表“交付工具”而不是“生成工具”。</li>
+          <li>爆点：接入 ChatGPT、Claude、Copilot、Gemini、Slack；可编排 brand kit、Quick Cut、短产品视频。</li>
+          <li>内容结构：创作者不缺生成按钮 → creative agent 解决什么 → 为什么这会改变工作流 → 下一步谁会跟进。</li>
+          <li>痛点：AI 工具很多，但流程仍然碎片化。</li>
+          <li>爽点：把“工作流 Agent 化”讲清楚，信息密度高且覆盖面广。</li>
+          <li>痒点：观众会继续追问 Canva、CapCut、Figma 是否也会走同一路线。</li>
+          <li>推荐内容形式：公众号深度稿、B 站口播、直播拆解。</li>
+          <li>可引用来源：<a href="https://news.adobe.com/news/2026/06/adobe-unveils-major-expansion">Adobe News</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A+</span>
+        <h3>选题 02｜Agent 开始会“找工具”了，MCP 之后真正要卷的是发现层</h3>
+        <ul>
+          <li>标题方向：`GitHub 让 Copilot 自己找工具，Agent 生态开始卷发现层了`</li>
+          <li>目标受众：AI 开发者创作者、Agent 创业者、MCP 作者。</li>
+          <li>切题角度：用 agent finder 切入工具 discovery、registry 和治理层的机会。</li>
+          <li>爆点：基于 ARD；支持搜索 MCP servers、skills、agents、tools；不会自动安装。</li>
+          <li>内容结构：当前痛点 → discovery layer 在解决什么 → GitHub 为什么做 → 对工具作者意味着什么。</li>
+          <li>痛点：大家都讲接入，很少讲发现和治理。</li>
+          <li>爽点：给技术型受众更前一层的机会判断。</li>
+          <li>痒点：以后做 AI 工具是不是也要做 registry 分发和兼容性。</li>
+          <li>推荐内容形式：技术长文、X 线程、直播拆解。</li>
+          <li>可引用来源：<a href="https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/">GitHub Agent finder</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A</span>
+        <h3>选题 03｜AI 音乐产品进入新阶段：不是给你一首歌，而是围着你的口味持续生成</h3>
+        <ul>
+          <li>标题方向：`一周 33 首、部分只属于你：AI 音乐为什么开始卷“为你生成”`</li>
+          <li>目标受众：AI 音乐创作者、短视频创作者、播客作者、音频产品观察者。</li>
+          <li>切题角度：用 ElevenMusic Mixes 说明 AI 音乐正在从工具逻辑走向平台逻辑。</li>
+          <li>爆点：每周 33 首；Pro 用户 11 首独家生成曲目；官方提出 “generate around you”。</li>
+          <li>内容结构：上一阶段为什么停留在炫技 → Mixes 的变化 → 平台逻辑如何形成 → 版权与留存会怎么走。</li>
+          <li>痛点：AI 音乐工具很多，但真正长期使用的产品少。</li>
+          <li>爽点：帮助观众看到 AI 音乐的下一阶段不只是 demo。</li>
+          <li>痒点：会引出版权、风格归属、订阅模型等后续问题。</li>
+          <li>推荐内容形式：趋势分析、产品评测、短视频口播、播客。</li>
+          <li>可引用来源：<a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A-</span>
+        <h3>选题 04｜Character.AI 开始卷创作者增长了，AI 角色平台为什么越来越像内容平台</h3>
+        <ul>
+          <li>标题方向：`Character.AI 不只教你做角色了，它开始教你涨粉了`</li>
+          <li>目标受众：AI 娱乐赛道创作者、虚拟角色作者、平台观察者。</li>
+          <li>切题角度：从 Creator Insights、Leaderboards、Following Tab 讲 AI 角色平台的结构升级。</li>
+          <li>爆点：指标体系、榜单、关注分发、通知链路一起补齐。</li>
+          <li>内容结构：为什么平台一定会补增长层 → 这次补了什么 → 对创作者经济意味着什么 → 下一步会怎么卷。</li>
+          <li>痛点：做了角色，但不知道怎么增长和复盘。</li>
+          <li>爽点：给角色创作者一套更清晰的平台判断框架。</li>
+          <li>痒点：会继续追问变现、平台规则和内容同质化。</li>
+          <li>推荐内容形式：趋势稿、直播点评、出海观察。</li>
+          <li>可引用来源：<a href="https://blog.character.ai/creator-bundle/">Character.AI Blog</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div>
+          <div class="label">Top Pick</div>
+          <div class="title">Adobe 把创意 Agent 做进 Photoshop 和 Premiere，AI 创作开始从“出图”走向“交付”</div>
+        </div>
+        <div>
+          <p>这条选题发布时间新、覆盖面广，而且天然带有方法论价值。它既能讲 Adobe 的具体动作，也能上升到整个创作者工具行业正在从“生成按钮”升级为“结果编排”的判断，最容易做出有传播力又有判断力的内容。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

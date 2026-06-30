@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-17</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d7e0ec;
+      --text: #16324a;
+      --muted: #60758a;
+      --blue: #2f6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --green: #1d7b57;
+      --amber: #946200;
+      --shadow: 0 18px 40px rgba(30, 77, 150, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1540px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1320px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .analysis-card ul, .topic ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .priority {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin-top: 14px;
+    }
+
+    .cell {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fbff;
+      border: 1px solid #e2ebf7;
+    }
+
+    .cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: #204271;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .cell p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .recommend {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #edf5ff 0%, #f9fbff 100%);
+      border: 1px solid #d7e7ff;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1080px) {
+      .page { width: min(100vw - 20px, 1540px); margin: 12px auto 24px; }
+      .hero, .section { padding: 20px; }
+      h1 { font-size: 32px; }
+      .meta, .signal-bar, .grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      a { color: #123b75; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 自媒体选题库</div>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">今天最值得讲的，不是哪家模型又多了一项参数，而是创作者这门生意正在同时被三股力量改写：创意 AI 已经成为基础设施，平台开始把 AI 做进发布流程，Agent 平台开始从演示效果转向治理、上下文和成本控制。对 AI 自媒体创作者来说，这意味着内容选题也要从“新闻搬运”升级到“工作流与赛道判断”。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-17</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">重点覆盖 2026-06-15 至 2026-06-17 上午</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者与创作者服务者</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天的高价值叙事可以压缩成四句：第一，AI 创作已经从“会不会用”变成“离不开”；第二，平台正在把 AI 长进分发与发布动作本身；第三，创作软件厂商真正卷的是减少流程摩擦，而不是继续堆炫技效果；第四，Agent 商业化已进入平台、治理、上下文和服务网络的竞争阶段。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>AI 成为基础设施</strong>
+          <span>Adobe 报告显示，创作者已经不再把 AI 当成尝鲜功能，而是把它视为业务增长与内容生产的必需能力。</span>
+        </div>
+        <div class="signal">
+          <strong>平台内创作加速</strong>
+          <span>Meta 把 AI Mode、AI 编辑、拼贴与视频转场直接做进 Facebook，平台开始同时控制创作入口与流量入口。</span>
+        </div>
+        <div class="signal">
+          <strong>流程摩擦继续被砍</strong>
+          <span>Adobe 的 Lightroom、Premiere、After Effects、Photoshop、Illustrator 更新，几乎都在围绕筛片、补镜头、抠像、清反光这些琐碎环节提效。</span>
+        </div>
+        <div class="signal">
+          <strong>Agent 进入生产化</strong>
+          <span>Databricks 与 Microsoft 同时把焦点放在上下文接入、治理、预算和安全，说明 Agent 已经离开“好不好玩”的讨论阶段。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">Adobe Creator Report</span>
+        <span class="pill">Agent Bricks</span>
+        <span class="pill">Work IQ GA</span>
+        <span class="pill">Facebook AI Mode</span>
+        <span class="pill">Creative Cloud Workflow</span>
+        <span class="pill">Gemini Deprecations</span>
+        <span class="pill">OpenAI Partner Network</span>
+        <span class="pill">OpenAI Academy</span>
+      </div>
+      <div class="note">说明：本期以 2026-06-15 到 2026-06-17 上午的最新官方更新为主。OpenAI 的两条信号发布时间分别为 2026-06-14 与 2026-06-12，虽略超 48 小时，但仍在持续影响 AI 服务生态和知识付费赛道，因此保留为边缘补充信号，并在正文中明确标注日期。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Adobe 发布 2026 Creators’ Toolkit Report：87% 使用创意 AI 的创作者表示业务或受众增长被加速，75% 认为 AI 已集成或成为必需。</td>
+              <td>AI 对创作者已从尝鲜功能变成基础设施，下一阶段更值钱的是声音、审美、判断和可控工作流。</td>
+              <td><a href="https://news.adobe.com/news/2026/06/creators-toolkit-report-2026">Adobe 官方</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 创作者方法论、增长叙事、知识付费升级</td>
+            </tr>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Databricks 在 DAIS 2026 扩展 Agent Bricks，称已构建 100k+ agents、每年处理 1+ quadrillion tokens。</td>
+              <td>Agent 赛道的竞争重点继续从 demo 转向模型选择、上下文接入、安全治理和成本控制。</td>
+              <td><a href="https://www.databricks.com/blog/agent-bricks-dais-2026">Databricks</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 基础设施、开发者生态、B2B 趋势解读</td>
+            </tr>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Microsoft Work IQ API endpoints 正式 GA，包含 A2A、remote MCP server 和 REST API，并强调治理与成本管理。</td>
+              <td>企业级 Agent 正在进入生产化阶段，创作者可借此讲清 Agent 商业落地真正卡在哪。</td>
+              <td><a href="https://devblogs.microsoft.com/microsoft365dev/work-iq-production-ready-intelligence-for-every-agent/">Microsoft</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 商业化、MCP/A2A 科普、企业内容</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Meta 为 Facebook 上线 AI Mode、AI 编辑、拼贴模板、视频转场和 AI 穿搭/头像改造。</td>
+              <td>AI 开始从独立工具迁移到分发平台内部，平台同时影响流量入口与创作入口。</td>
+              <td><a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta 官方</a></td>
+              <td class="cred-high">高</td>
+              <td>平台内创作、社媒增长、Facebook 新机会</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Adobe 更新 Creative Cloud 工作流：Lightroom Assisted Culling GA、Photo to Video、Premiere/AE/Photoshop/Illustrator 多项 AI 提效能力上线。</td>
+              <td>创作软件厂商的重点不再只是生成效果，而是系统性减少筛片、补镜头、遮罩、清反光等脏活累活。</td>
+              <td><a href="https://blog.adobe.com/en/publish/2026/06/15/from-culling-to-compositing-new-creative-cloud-innovations-across-every-stage-of-your-workflow">Adobe Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>剪辑提效、摄影后期、设计流程拆解</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Gemini API changelog 宣布 Imagen 4 / Gemini 3 Image 系列将于 2026-08-17 下线，Veo 2 / Veo 3 旧模型将于 2026-06-30 下线。</td>
+              <td>AI 图文和视频工作流的维护成本上升，卖模板、卖 SOP、卖自动化的人需要提前处理迁移风险。</td>
+              <td><a href="https://ai.google.dev/gemini-api/docs/changelog">Google AI for Developers</a></td>
+              <td class="cred-high">高</td>
+              <td>模型折旧、工作流迁移、工具保质期</td>
+            </tr>
+            <tr>
+              <td>2026-06-14</td>
+              <td>OpenAI 发布 Partner Network：投入 1.5 亿美元，目标到 2026 年底培训 30 万名认证顾问。</td>
+              <td>AI 咨询、陪跑、企业培训和交付服务在加速平台化，知识服务创作者有机会切入 B2B 服务市场。</td>
+              <td><a href="https://openai.com/index/introducing-openai-partner-network/">OpenAI</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 服务商生态、咨询机会、企业培训</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程。</td>
+              <td>AI 教学与知识付费赛道开始从提示词技巧转向可复用工作流、人机协作边界和结果审阅。</td>
+              <td><a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></td>
+              <td class="cred-high">高</td>
+              <td>课程设计、训练营升级、AI 教育赛道</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. Adobe 用一份创作者报告，直接把 2026 年的 AI 创作赛道讲透了</h3>
+        <ul>
+          <li>Adobe 于 2026-06-16 发布 Creators’ Toolkit Report，给出一组很适合创作者传播的结论：87% 说 AI 在加速业务或受众增长，75% 说 AI 已经是集成或必需能力。</li>
+          <li>更关键的是控制权维度：85% 认为最终创意决定权必须留在创作者手里，44% 希望随时可 review、edit 或 undo，37% 希望知道 agent 在做什么以及为什么。</li>
+          <li>这意味着 2026 年下半年的竞争重点，正在从“会不会用 AI”转向“谁能把 AI 用成自己的稳定风格和可控系统”。</li>
+          <li>风险提示：这是厂商调研报告，适合做强行业信号，不宜把每个比例都讲成行业绝对共识。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. Databricks 和 Microsoft 同步提醒：Agent 真正难的不是做出来，而是把它管起来</h3>
+        <ul>
+          <li>Databricks 在 2026-06-16 的 Agent Bricks 更新里直说，核心 agent loop 只是 1%，其余 99% 是 token、部署、安全、评估、监控、上下文和共享等隐藏技术债。</li>
+          <li>Microsoft Work IQ 则把 GA 能力明确落在 A2A、remote MCP server、REST API、治理、审计和预算控制上。</li>
+          <li>两条放在一起看，已经足够说明 Agent 内容赛道的真正升级方向：从 demo 审美转向生产化认知。</li>
+          <li>对做企业内容、开发者内容、Agent 训练营和技术咨询的创作者，都是很好的解释型选题。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. Meta 把 AI 长进 Facebook，平台开始同时重写“发现”和“发布”两端</h3>
+        <ul>
+          <li>Meta 于 2026-06-15 发布 Facebook 新 AI 功能，既包括 AI Mode，也包括 AI 编辑、拼贴 cutout 模板、视频转场和 AI 穿搭/头像改造。</li>
+          <li>AI Mode 的关键不在于“又多了个问答框”，而在于它会基于公开的 Groups、Reels 等内容给答案，这比传统搜索更接近平台内内容消费逻辑。</li>
+          <li>对创作者而言，平台未来可能同时决定流量入口和创作入口，这会重新定义独立创作工具与平台之间的边界。</li>
+          <li>不确定项：官方没有给出完整地域和用户覆盖节奏，因此更适合讲方向，不宜夸大成“全量可用”。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. Adobe 的产品更新说明，创作软件厂商卷的已经是“帮你少做脏活”</h3>
+        <ul>
+          <li>Adobe 在 2026-06-15 发布的 Creative Cloud 更新里，把重点放在 Assisted Culling、Photo to Video、Object Mask、Object Matte、Reflection Removal、Concept to Vector 等具体流程环节。</li>
+          <li>这条信号的价值，不在于又多了多少模型能力，而在于后期制作中最碎、最耗时、最不性感的步骤正在持续自动化。</li>
+          <li>它很适合做摄影师、剪辑师、设计师和短视频团队都能听懂的“真提效”型内容。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. Google 的下线公告再次证明：AI 工作流的保质期正在急剧缩短</h3>
+        <ul>
+          <li>Google 在 2026-06-15 的 Gemini API changelog 中写明，一批 Imagen 4 / Gemini 3 Image 模型将于 2026-08-17 关停，一批 Veo 2 / Veo 3 旧模型将于 2026-06-30 关停。</li>
+          <li>对创作者来说，这不只是开发者新闻，而是工作流维护成本、课程更新频率和模板交付承诺的问题。</li>
+          <li>它非常适合切出“AI 自动化越来越像带运维属性的生意”这个角度。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. OpenAI 正在同时搭建“AI 服务市场”和“AI 教学标准”</h3>
+        <ul>
+          <li>Partner Network 于 2026-06-14 发布，OpenAI 表示将投入 1.5 亿美元，并计划到 2026 年底培训 30 万名认证顾问。</li>
+          <li>Academy 新课程于 2026-06-12 发布，课程结构从 AI 基础、可复用 workflow 一直连到 agent-assisted workflows。</li>
+          <li>这说明 AI 咨询、培训、交付、陪跑这类“围绕模型的服务能力”正在加速平台化和标准化。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 01｜Adobe 1.6 万创作者报告说透了：AI 已经不是加分项，而是创作基础设施</h3>
+          <span class="priority">优先级 S</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 自媒体创作者、设计师、短视频团队、知识付费从业者、创作者教练。</p></div>
+          <div class="cell"><b>切题角度</b><p>从最新创作者调查切入，讲 2026 年创作者竞争的核心已经从“会不会用 AI”转向“能不能把 AI 用成自己的稳定能力”。</p></div>
+          <div class="cell"><b>爆点</b><p>87% 说 AI 加速业务或受众增长，75% 说 AI 已经集成或成为必需，85% 说最终创意决定权必须留给创作者。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲“AI 会不会替代创作者”为什么过时，再拆报告结论，然后落到声音、审美、判断、可控工作流这四个升级方向。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多创作者会用 AI 但仍然同质化；爽点是终于有人讲清楚下一步拼什么；痒点是观众会继续追问如何建立真正不可替代的个人能力。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号深度稿、B 站口播、直播拆解。来源：<a href="https://news.adobe.com/news/2026/06/creators-toolkit-report-2026">Adobe Creators’ Toolkit Report</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 02｜Facebook 把 AI 直接做进发布流程了，平台是不是要开始吞掉创作者工具链？</h3>
+          <span class="priority">优先级 A+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>社媒运营者、海外平台创作者、短视频创作者、内容矩阵团队。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Facebook 的 AI Mode 与 AI 编辑切入，讲“平台内创作”为什么会成为下一轮平台竞争关键。</p></div>
+          <div class="cell"><b>爆点</b><p>AI Mode 基于公开内容给答案，拼贴、转场和 AI 穿搭直接嵌进 Facebook 内部。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲平台从分发扩张到创作，再拆功能，再讨论独立工具和平台之间的边界会怎么变化。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是创作者工具切换过多；爽点是一次看懂平台为什么越来越像创作操作系统；痒点是大家自然会联想到其他平台会不会跟进。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐短视频口播、直播评论、趋势长文。来源：<a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta 官方</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 03｜Gemini 又在下线旧模型，AI 工作流最贵的地方其实是维护，不是搭建</h3>
+          <span class="priority">优先级 A</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 工作流作者、独立开发者、技术型自媒体、卖模板和自动化方案的人。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Google 的 deprecation 公告切入，讲 AI 工作流的高折旧本质。</p></div>
+          <div class="cell"><b>爆点</b><p>Imagen 4 / Gemini 3 Image 和 Veo 2 / Veo 3 都出现明确关停日期，迁移变成必修动作。</p></div>
+          <div class="cell"><b>内容结构</b><p>先列出下线清单和时间，再解释为什么创作者也必须关心 API 生命周期，最后给出降低折旧风险的原则。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人只算搭建成本没算维护成本；爽点是受众会拿到更现实的成本观；痒点是大家会继续问还有哪些平台同样脆弱。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号分析、开发者长帖、直播拆解。来源：<a href="https://ai.google.dev/gemini-api/docs/changelog">Google AI for Developers</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 04｜Agent 进入生产化之后，为什么真正的竞争点变成了上下文、治理和成本？</h3>
+          <span class="priority">优先级 A-</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 开发者、B2B SaaS 创作者、企业数字化顾问、技术媒体。</p></div>
+          <div class="cell"><b>切题角度</b><p>把 Databricks Agent Bricks 与 Microsoft Work IQ 放在一起讲，解释 Agent 商业落地的真实门槛。</p></div>
+          <div class="cell"><b>爆点</b><p>Databricks 说 core agent loop 只是 1%，Work IQ GA 则强调 A2A、remote MCP server、审计和预算控制。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲很多 Agent 内容还停留在表演层，再拆这两家公司各自解决什么问题，最后把术语翻译成创作者能讲清楚的话。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人知道 Agent 火但不懂企业为何难以上线；爽点是这类内容很容易建立“懂行”的认知差；痒点是会引出 MCP、A2A、Agent 平台的后续讨论。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐技术长文、播客、知识社群串讲。来源：<a href="https://www.databricks.com/blog/agent-bricks-dais-2026">Databricks</a>、<a href="https://devblogs.microsoft.com/microsoft365dev/work-iq-production-ready-intelligence-for-every-agent/">Microsoft</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="recommend">
+        <h3 style="margin:0 0 10px;">Adobe 1.6 万创作者报告说透了：AI 已经不是加分项，而是创作基础设施</h3>
+        <p class="lead">这是今天最适合优先做的题。它足够新，且直接命中 AI 自媒体创作者最关心的问题：AI 现在到底该怎么用，下一步拼什么。它既能做行业判断，也能顺手带出课程、训练营、咨询服务和创作者升级方法论，延展性最强。</p>
+      </div>
+      <p class="footer">说明：本报告优先使用官方博客、开发者文档、公司公告与产品更新页作为事实锚点。Adobe 创作者报告属于厂商调研报告，适合作为强行业信号；Google Gemini changelog 属于开发者 release notes，更适合作为迁移提醒和工作流折旧判断。</p>
+    </section>
+  </div>
+</body>
+</html>

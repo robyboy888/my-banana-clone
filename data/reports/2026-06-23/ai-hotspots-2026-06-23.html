@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-23</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --line: #d9e3ef;
+      --text: #17324a;
+      --muted: #5e7288;
+      --blue: #2a68ff;
+      --blue-soft: #edf4ff;
+      --blue-deep: #153b73;
+      --orange: #b96b18;
+      --shadow: 0 18px 40px rgba(27, 76, 148, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(42, 104, 255, 0.11), transparent 26%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1560px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero { padding: 28px 32px 26px; }
+    .section { margin-top: 22px; padding: 24px 28px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .summary {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card, .signal {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label, .signal-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value, .signal-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal-value.small { font-size: 15px; font-weight: 600; }
+
+    .note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff7ea;
+      border: 1px solid #f3d8ae;
+      color: #77501a;
+      line-height: 1.8;
+    }
+
+    ul {
+      margin: 10px 0 0 22px;
+      line-height: 1.9;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1120px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    th {
+      background: #eff5ff;
+      color: #143860;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .hotspot, .topic {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+      margin-top: 14px;
+    }
+
+    .hotspot h3, .topic h3 {
+      margin: 0 0 8px;
+      color: #103860;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .hotspot p, .topic p {
+      margin: 8px 0;
+      line-height: 1.88;
+      font-size: 15px;
+    }
+
+    .priority {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .best-pick {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #edf4ff 0%, #ffffff 100%);
+      border: 1px solid #cfe0ff;
+    }
+
+    .best-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-deep);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .best-title {
+      margin: 4px 0 10px;
+      font-size: 26px;
+      color: #103860;
+      line-height: 1.4;
+      font-weight: 800;
+    }
+
+    .warn { color: var(--orange); font-weight: 700; }
+
+    @media (max-width: 980px) {
+      .page { width: min(100%, calc(100vw - 24px)); margin: 12px auto 24px; }
+      .hero, .section { border-radius: 20px; }
+      h1 { font-size: 30px; }
+      .meta, .signal-bar, .best-pick { grid-template-columns: 1fr; }
+      .best-title { font-size: 22px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section, .topic, .hotspot {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      a { color: #113c77; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">AI 自媒体创作者日报</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="summary">今天最值得讲的，不是哪家模型又多了几个 benchmark，而是 AI 工具开始明显从一次性生成器，升级成长期工作台。OpenAI 在推长任务和安全闭环，GitHub 在补 agent 入口与预算视图，Adobe 在抢创作者全流程 studio。这些变化比单一模型更新，更接近创作者接下来真的会用到的能力。</p>
+
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-23</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">北京时间 2026-06-21 00:00 至 2026-06-23 09:40</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先官方可验证信号</div>
+        </div>
+      </div>
+
+      <div class="signal-bar">
+        <div class="signal">
+          <div class="signal-label">今日主线</div>
+          <div class="signal-value small">从生成按钮到长期工作台</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">高可信热点</div>
+          <div class="signal-value">7 条</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">推荐选题</div>
+          <div class="signal-value">5 个</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">最推荐方向</div>
+          <div class="signal-value small">长期工作流与创作工作台</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>窗口说明：</strong>严格过去 24-48 小时内的强信号，今天明显偏向 Agent、开发者工具与企业落地；纯创作者工具更新相对少，因此补充纳入 2026-06-18 的 Adobe Firefly 信号，并在表格中明确标注为补充项。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="summary">如果把今天能验证到的高质量信号拼在一起，最值得传播的判断是：AI 工具的竞争焦点，正在从“谁能生成一下”转向“谁能持续接住一个项目”。这意味着接下来更有传播力的内容，不是单条新功能快讯，而是解释上下文持续、任务持续、素材持续、权限持续和预算持续，分别会怎样改变创作者和团队的日常工作。</p>
+      <ul>
+        <li>对技术向创作者：重点讲 Agent 为什么开始进入生产闭环。</li>
+        <li>对效率向创作者：重点讲长任务、附件化、工作台化会怎么改写日常流程。</li>
+        <li>对工具评测作者：重点讲 Adobe、OpenAI、GitHub 分别在抢哪一层入口。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table aria-label="今日热点摘要表">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-22</td>
+              <td>OpenAI 发布 Daybreak 与 Patch the Planet，把重点从漏洞发现推进到补丁自动化和开源修复。</td>
+              <td>对开发者/Agent 赛道创作者，这是 AI 从 demo 走向生产修复闭环的硬信号。</td>
+              <td><a href="https://openai.com/index/daybreak-securing-the-world/">Daybreak</a><br><a href="https://openai.com/index/patch-the-planet/">Patch the Planet</a></td>
+              <td>高</td>
+              <td>Agent、网络安全、AI 自动化基础设施</td>
+            </tr>
+            <tr>
+              <td>2026-06-22</td>
+              <td>OpenAI 发布 Codex-Maxxing for Long-Running Work，强调持久上下文、可验证步骤、长任务协同。</td>
+              <td>很适合切“AI 工作流为什么开始像项目管理系统”。</td>
+              <td><a href="https://openai.com/index/codex-maxxing-long-running-work/">OpenAI 官方</a></td>
+              <td>高</td>
+              <td>Codex、长任务工作流、团队协作</td>
+            </tr>
+            <tr>
+              <td>2026-06-22</td>
+              <td>ChatGPT Release Notes 更新：长文本粘贴自动转附件；ChatGPT 内 o3 将于 2026-08-26 退役，GPT-4.5 将于 2026-06-27 退役。</td>
+              <td>教程博主和训练营需要更新模型口径；长稿处理更适合内容生产。</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI Help</a></td>
+              <td>高</td>
+              <td>ChatGPT 使用习惯、模型迁移、内容生产工作流</td>
+            </tr>
+            <tr>
+              <td>2026-06-22</td>
+              <td>GitHub 在 JetBrains IDE 中预览 Claude 作为 agent provider，并加入组织级 agents、每轮 credits 指示，cloud agent 同日 GA。</td>
+              <td>多代理工作流正在从实验功能变成可教学、可演示、可管理的生产功能。</td>
+              <td><a href="https://github.blog/changelog/2026-06-22-new-features-and-claude-as-agent-provider-preview-in-jetbrains-ides/">GitHub Changelog</a></td>
+              <td>高</td>
+              <td>Copilot、Claude、Agent IDE、开发者教育</td>
+            </tr>
+            <tr>
+              <td>2026-06-21</td>
+              <td>Samsung Electronics 部署 ChatGPT Enterprise 和 Codex，OpenAI 称其为 largest enterprise deployments 之一。</td>
+              <td>企业 AI 已从试点走向大规模部署，适合讲 AI 工具采购和工作流改造。</td>
+              <td><a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/">OpenAI 官方</a></td>
+              <td>高</td>
+              <td>企业 AI 落地、Codex adoption、AI 组织变革</td>
+            </tr>
+            <tr>
+              <td>2026-06-19</td>
+              <td>GitHub Copilot usage metrics API 新增 <code>ai_credits_used</code> 用户级字段。</td>
+              <td>AI 工具开始进入谁在用、花了多少、值不值的管理口径。</td>
+              <td><a href="https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/">GitHub Changelog</a></td>
+              <td>高</td>
+              <td>AI 成本治理、Copilot 商业化、团队管理</td>
+            </tr>
+            <tr>
+              <td>2026-06-18<br><span class="warn">补充</span></td>
+              <td>Adobe 发布 Firefly AI Assistant 与升级版 creative AI studio，加入品牌包、故事板转视频、Quick Cut、Projects 与 Elements。</td>
+              <td>这是今天最直接面向内容创作者的信号之一：Firefly 正在抢全流程工作台位置。</td>
+              <td><a href="https://blog.adobe.com/en/publish/2026/06/18/adobe-firefly-introduces-new-agentic-capabilities-and-an-upgraded-creative-ai-studio-built-for-the-way-you-work">Adobe 官方</a></td>
+              <td>高</td>
+              <td>AI 创作工作流、视频生产、品牌内容</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <article class="hotspot">
+        <h3>1. OpenAI Daybreak / Patch the Planet：Agent 叙事开始从“发现问题”走向“修补问题”</h3>
+        <p><strong>关键事实：</strong>Daybreak 在 2026-06-22 明确把重点放在 patching vulnerable software at machine speed；Patch the Planet 则把验证、补丁、测试、披露串成完整流程。OpenAI 还在 Daybreak 中写到已有 30 多个开源项目参与。</p>
+        <p><strong>对创作者的意义：</strong>这不是一般安全新闻，而是非常好的“Agent 进入工程闭环”素材，适合开发者向和产业判断向内容。</p>
+        <p><strong>风险：</strong>现阶段仍偏 trusted defenders 与合作项目，更适合讲方向，不适合写成“人人都能马上自动修洞”。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>2. Codex-Maxxing：OpenAI 在公开教育市场如何做“长任务 AI”</h3>
+        <p><strong>关键事实：</strong>OpenAI 把 Codex 定义为 persistent workspace，强调上下文保持、复杂工作流管理、可验证步骤和人机分工。</p>
+        <p><strong>对创作者的意义：</strong>这条特别适合解释为什么下一阶段拼的不是提示词，而是任务编排、上下文沉淀和复盘机制。</p>
+        <p><strong>风险：</strong>这是方法论/白皮书型信号，不是单一功能 release，传播时要明确定位。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>3. ChatGPT Release Notes：模型退役日期和输入方式变化都值得做实用向内容</h3>
+        <p><strong>关键事实：</strong>Free/Go 超过 10k 字符、Plus/Pro/Business 超过 5k 字符的长文本将自动转为附件；ChatGPT 内的 GPT-4.5 将于 2026-06-27 退役，o3 将于 2026-08-26 退役，且不影响 API。</p>
+        <p><strong>对创作者的意义：</strong>这对教程内容、截图教学、长文工作流和社群答疑的实操口径都有直接影响。</p>
+        <p><strong>风险：</strong>一定要区分 ChatGPT 与 API，避免误传。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>4. GitHub JetBrains + Claude provider：多代理 IDE 已经进入可教学状态</h3>
+        <p><strong>关键事实：</strong>GitHub 在 2026-06-22 的 changelog 中同时放出了 Claude provider 预览、组织级 agents、长任务消息排队/插队、debug summary、per-turn credits indicator，以及 cloud agent GA。</p>
+        <p><strong>对创作者的意义：</strong>这是很适合录屏、对比评测和教程拆解的一组更新，因为它说明“AI 编程工作台”已经有了比较完整的叙事。</p>
+        <p><strong>风险：</strong>GitHub 明确说明 Claude agent 当前运行在 bypass permissions mode，权限边界要讲清楚。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>5. Samsung 大规模上 Codex：企业 AI 已经从试点走向组织级部署</h3>
+        <p><strong>关键事实：</strong>OpenAI 写明这是其 largest enterprise deployments 之一，且覆盖技术与非技术岗位。文中还提到 Codex 每周活跃用户超过 500 万，韩国周活自 2026-02-01 以来增长近 800%。</p>
+        <p><strong>对创作者的意义：</strong>对企业服务、培训、咨询和产业观察内容，这条比泛泛“AI 很火”更像真实采购与组织行为信号。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>6. GitHub AI credits 指标：AI 工具进入精细化预算时代</h3>
+        <p><strong>关键事实：</strong><code>ai_credits_used</code> 已进入 enterprise / org 用户级报告，但 GitHub 也明确它是 metrics signal，不是最终 invoicing。</p>
+        <p><strong>对创作者的意义：</strong>很适合切“AI 工具开始接受财务问题，而不只是体验问题”的管理视角。</p>
+      </article>
+
+      <article class="hotspot">
+        <h3>7. Adobe Firefly：最接近创作者生产现场的一条信号</h3>
+        <p><strong>关键事实：</strong>Adobe 直接点名 social creators 和 solopreneurs，并推出 brand kit creation、short product video creation、storyboards to video、Quick Cut，以及强调 persistent context 的 Projects / Elements。</p>
+        <p><strong>对创作者的意义：</strong>这是“工作台化”最具体的一条 creator 信号，适合写成平台竞争、工作流升级或视频生产链条变化。</p>
+        <p><strong>风险：</strong>部分能力仍处于 beta / private beta，传播时要标清可用阶段。</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <article class="topic">
+        <div class="priority">优先级 S</div>
+        <h3>选题 01｜AI 创作工具正在从“生成按钮”变成“长期工作台”</h3>
+        <p><strong>目标受众：</strong>AI 自媒体创作者、知识付费作者、效率号、工具评测作者。</p>
+        <p><strong>切题角度：</strong>把 Codex 长任务、ChatGPT 附件化、Firefly Projects/Elements 放在一起，讲“持续上下文”如何重写创作流程。</p>
+        <p><strong>爆点：</strong>长任务被正式产品化；长稿输入方式被重写；视频/品牌/素材开始在一个 studio 里持续复用。</p>
+        <p><strong>内容结构：</strong>1）上一代 AI 工具为什么更像一次性生成器；2）今天这些更新共同补了哪三块能力；3）创作者的选题、脚本、剪辑、协作会怎么变；4）谁会最先受益。</p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A+</div>
+        <h3>选题 02｜为什么说 AI Agent 已经从 demo 阶段走向生产闭环</h3>
+        <p><strong>目标受众：</strong>开发者向自媒体、Agent 创业者、企业 AI 顾问。</p>
+        <p><strong>切题角度：</strong>把 Daybreak、Patch the Planet、GitHub agent/provider/credits 串成“部署后时代”的新叙事。</p>
+        <p><strong>爆点：</strong>从找漏洞到补漏洞；从单代理到组织级 agent；从体验视角到预算视角。</p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A</div>
+        <h3>选题 03｜ChatGPT 退旧模型、改长文本输入，对教程博主意味着什么</h3>
+        <p><strong>目标受众：</strong>ChatGPT 教程号、训练营作者、办公效率博主。</p>
+        <p><strong>切题角度：</strong>把模型退役日期和长文输入方式改变，写成强实用的更新提醒。</p>
+        <p><strong>爆点：</strong>GPT-4.5 2026-06-27 退役；o3 2026-08-26 退役；长文本自动转附件。</p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A-</div>
+        <h3>选题 04｜Adobe Firefly 正在抢“内容工作台”，而不只是 AI 画图入口</h3>
+        <p><strong>目标受众：</strong>短视频创作者、品牌内容团队、设计博主、AI 工具评测号。</p>
+        <p><strong>切题角度：</strong>突出 Firefly 不再只是“生成”，而是在抢品牌、故事板、视频初剪、素材复用和项目上下文这整条链路。</p>
+      </article>
+
+      <article class="topic">
+        <div class="priority">优先级 A-</div>
+        <h3>选题 05｜Samsung 大规模上 ChatGPT 和 Codex，企业 AI 真正的竞争开始了</h3>
+        <p><strong>目标受众：</strong>企业服务作者、B2B AI 观察者、咨询型内容创作者。</p>
+        <p><strong>切题角度：</strong>从 Samsung 部署切入，讲 AI adoption 已经进入组织改造阶段。</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div>
+          <div class="best-label">Best Pick</div>
+        </div>
+        <div>
+          <div class="best-title">AI 创作工具正在从“生成按钮”变成“长期工作台”</div>
+          <p class="summary">这是今天最适合 AI 自媒体创作者的切口，因为它能把 OpenAI、GitHub、Adobe 三类更新整合成一条更高价值的判断：真正改变创作者效率的，不是再多一个“生成”按钮，而是有没有能力持续承接一个项目、复用上下文、管理素材，并把多轮工作留在同一套工作台里。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-16</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --line: #d9e3f0;
+      --text: #17324d;
+      --muted: #5c7288;
+      --blue: #2e6bff;
+      --blue-soft: #eef4ff;
+      --blue-deep: #163b74;
+      --green: #1f7a58;
+      --amber: #9a6700;
+      --shadow: 0 18px 40px rgba(32, 76, 144, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(46, 107, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1520px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 32px 26px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1280px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .analysis-card ul, .topic ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .priority {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin-top: 14px;
+    }
+
+    .cell {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fbff;
+      border: 1px solid #e2ebf7;
+    }
+
+    .cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: #204271;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .cell p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .recommend {
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #edf5ff 0%, #f9fbff 100%);
+      border: 1px solid #d7e7ff;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .page { width: min(100vw - 20px, 1520px); margin: 12px auto 24px; }
+      .hero, .section { padding: 20px; }
+      h1 { font-size: 32px; }
+      .meta, .signal-bar, .grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      a { color: #123b75; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">AI 自媒体选题库</div>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">今天最值得讲的，不是哪家模型又涨了多少分，而是平台、创作软件和模型接口正在同时改写创作者的生产链路。Meta 把 AI 推进 Facebook 的搜索与发布流程，Adobe 继续压缩摄影和视频后期里的繁琐工序，Google 则用一纸 changelog 再次提醒所有做 AI 工作流的人，旧接口会很快折旧。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-16</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">重点覆盖 2026-06-14 至 2026-06-16</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天的高价值叙事可以压缩成三句：第一，AI 开始从独立工具迁移到内容平台内部；第二，创作软件厂商的重点，正在从“生成惊艳效果”转向“消灭流程摩擦”；第三，模型和接口的生命周期越来越短，创作者必须把迁移、治理和平台依赖风险当成日常经营问题。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>平台内创作成形</strong>
+          <span>Meta 把 AI Mode、AI 编辑和分享建议直接做进 Facebook，平台开始同时吃掉搜索入口和创作入口。</span>
+        </div>
+        <div class="signal">
+          <strong>创作流程继续自动化</strong>
+          <span>Adobe 本轮更新更像一套创作提效包，从筛片、补 b-roll 到字幕、遮罩、反光去除都在继续自动化。</span>
+        </div>
+        <div class="signal">
+          <strong>工具保质期更短</strong>
+          <span>Google Gemini API 的图片和视频模型下线公告，再次说明 AI 工作流最难的部分往往是维护，而不是第一次搭建。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">Facebook AI Tools</span>
+        <span class="pill">Adobe Creative Cloud</span>
+        <span class="pill">Gemini API Deprecations</span>
+        <span class="pill">OpenAI Academy</span>
+        <span class="pill">Work IQ GA</span>
+        <span class="pill">Anthropic Fable 5</span>
+        <span class="pill">ElevenLabs Avatars</span>
+        <span class="pill">HeyGen Report</span>
+      </div>
+      <div class="note">说明：过去 24-48 小时内新增官方重磅发布不算密集，因此本报告保留了 2026-06-11 至 2026-06-12 仍在持续发酵、且对创作者工作流更直接的窗口边缘信号，并在表格中如实标注时间。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Meta 发布 Facebook 新 AI 工具，包含 AI Mode、AI 编辑、拼贴模板、视频转场和 AI 服饰/头像改造。</td>
+              <td>AI 开始直接进入内容分发平台与发布动作本身。</td>
+              <td><a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta 官方</a></td>
+              <td class="cred-high">高</td>
+              <td>平台分发、创作者运营、Facebook 新机会</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Adobe 发布新一轮 Creative Cloud AI 工作流更新，覆盖 Lightroom、Premiere、After Effects、Photoshop、Illustrator。</td>
+              <td>图像筛片、B-roll、字幕、遮罩、反光去除、概念转矢量等环节继续被压缩。</td>
+              <td><a href="https://blog.adobe.com/en/publish/2026/06/15/from-culling-to-compositing-new-creative-cloud-innovations-across-every-stage-of-your-workflow">Adobe 官方</a></td>
+              <td class="cred-high">高</td>
+              <td>创作流程拆解、剪辑提效、设计师工具更新</td>
+            </tr>
+            <tr>
+              <td>2026-06-15</td>
+              <td>Gemini API release notes 宣布 Imagen 4 / Gemini 3 Image 一批模型将于 2026-08-17 下线，Veo 2 / Veo 3 旧模型将于 2026-06-30 下线。</td>
+              <td>依赖旧模型接口做图、做视频、做自动化工作流的人，需要立刻排查迁移成本。</td>
+              <td><a href="https://ai.google.dev/gemini-api/docs/changelog">Google AI for Developers</a></td>
+              <td class="cred-high">高</td>
+              <td>模型迁移、接口风险、创作者工具保质期</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程。</td>
+              <td>知识付费、训练营、企业内训开始从教提示词转向教工作流、边界和结果审阅。</td>
+              <td><a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></td>
+              <td class="cred-high">高</td>
+              <td>课程拆解、训练营、AI 教育赛道判断</td>
+            </tr>
+            <tr>
+              <td>2026-06-16</td>
+              <td>Microsoft Work IQ API endpoints 将在今天 GA，包含 A2A、remote MCP server 和 REST API。</td>
+              <td>Agent 创作者与工具团队会更关注生产级接口、治理和成本控制。</td>
+              <td><a href="https://devblogs.microsoft.com/microsoft365dev/work-iq-production-ready-intelligence-for-every-agent/">Microsoft Work IQ</a></td>
+              <td class="cred-high">高</td>
+              <td>Agent 基础设施、B2B 工具趋势、开发者内容</td>
+            </tr>
+            <tr>
+              <td>2026-06-12</td>
+              <td>Anthropic 因美国政府出口管制指令暂停 Fable 5 与 Mythos 5 访问。</td>
+              <td>AI 产品可用性已经不是纯产品问题，合规和政策变量会直接影响创作者依赖的平台。</td>
+              <td><a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic 公告</a></td>
+              <td class="cred-high">高</td>
+              <td>平台风险、出海合规、行业评论</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>ElevenLabs 在 ElevenCreative 上线 Avatars，并把 Avatar node 接入 Flows。</td>
+              <td>AI 视频开始从单条成片走向可批处理、多语言、多角色复用的流水线。</td>
+              <td><a href="https://elevenlabs.io/blog/introducing-avatars">ElevenLabs Avatars</a></td>
+              <td class="cred-high">高</td>
+              <td>数字人视频、批量内容生产、课程与营销视频</td>
+            </tr>
+            <tr>
+              <td>2026-06-11</td>
+              <td>HeyGen《The State of Enterprise Video 2026》强调 AI 视频瓶颈已转向治理、审批、可见性和 ROI。</td>
+              <td>适合讲 AI 视频赛道从炫技期进入系统化交付期。</td>
+              <td><a href="https://www.heygen.com/blog/the-state-of-enterprise-video-2026">HeyGen report</a></td>
+              <td class="cred-watch">中高</td>
+              <td>行业趋势、企业视频、系统能力竞争</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. Meta 把 AI 真正推进 Facebook 发布流程</h3>
+        <ul>
+          <li>Meta 于 2026-06-15 发布新一轮 Facebook AI 工具，包含 AI Mode、AI 编辑和分享建议。</li>
+          <li>AI Mode 的定位不是普通搜索框，而是基于公开 Groups、Reels 等内容给出答案和建议。</li>
+          <li>这意味着平台开始同时改写创作者的内容发现、素材包装和发布动作。</li>
+          <li>不确定项：官方没有给出完整的全球覆盖节奏，因此更适合讲趋势，不适合夸大成全量开放。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. Adobe 的重点，是继续干掉创作流程里的繁琐步骤</h3>
+        <ul>
+          <li>Lightroom 的 Assisted Culling 已 GA，Photo to Video 可把照片生成 b-roll 或 reels。</li>
+          <li>Premiere、After Effects、Photoshop、Illustrator 同轮更新，覆盖字幕、遮罩、反光去除和概念转矢量。</li>
+          <li>这条新闻最适合用来讲“AI 创作软件真正值钱的地方，是持续减少脏活累活”。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. Gemini API 下线公告说明 AI 工作流的维护成本正在上升</h3>
+        <ul>
+          <li>Google 在 2026-06-15 的 release notes 中明确，一批图片和视频生成模型已进入关停倒计时。</li>
+          <li>这对靠旧模型接口做自动化图文、视频和批量生产的人是直接风险提示。</li>
+          <li>适合做“AI 自动化真正难的是维护，不是搭第一版”的方法论内容。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. OpenAI Academy 继续强化“工作流教育”而不是“提示词教育”</h3>
+        <ul>
+          <li>OpenAI 把新课程设计成从 AI fundamentals 到 repeatable workflows，再到 agent-assisted workflows 的连续路径。</li>
+          <li>这对于做课程、训练营、企业内训的创作者，是很强的市场信号。</li>
+          <li>它说明下一阶段更保值的内容，很可能是方法、流程和边界，而不是单个模型技巧。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. Work IQ GA 让 Agent 赛道更像基础设施赛道</h3>
+        <ul>
+          <li>Microsoft 强调 Work IQ 的 GA 能力是 A2A、remote MCP server 和 REST API，以及治理和成本控制。</li>
+          <li>这很适合讲“真正的 Agent 商业化，正在从 demo 走向接口、审计和计费体系”。</li>
+          <li>面向大众时需要翻译成更易懂的话术，但对开发者与 B2B 自媒体价值很高。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. Anthropic 事件继续提醒创作者警惕平台依赖风险</h3>
+        <ul>
+          <li>Anthropic 在 2026-06-12 公告称，美国政府指令要求暂停 Fable 5 与 Mythos 5 的访问。</li>
+          <li>官方没有披露完整国家安全细节，因此更适合做事实梳理和影响分析。</li>
+          <li>这条新闻的重点是：AI 产品可用性已经会被政策和合规变量直接重写。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>7. ElevenLabs 与 HeyGen 共同指向 AI 视频的系统化阶段</h3>
+        <ul>
+          <li>ElevenLabs 用 Avatars 与 Flows 讲产品闭环，HeyGen 用报告讲行业瓶颈已经转向治理、审批和 ROI。</li>
+          <li>两者合在一起，是“AI 视频从能生成走向能批量交付”的强信号。</li>
+          <li>HeyGen 报告属于厂商自发布报告，适合作趋势信号，不宜单独当作唯一证据链。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 01｜Facebook 把 AI 直接做进发布流程了，创作者还需要单独开那么多工具吗？</h3>
+          <span class="priority">优先级 S</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>社媒运营者、短视频创作者、内容团队、做海外平台增长的人。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Facebook 的 AI Mode、AI 编辑和分享建议，讲平台如何同时吃掉搜索入口和创作入口。</p></div>
+          <div class="cell"><b>爆点</b><p>AI Mode 直接基于公开内容回答问题，AI 编辑能力进入照片、视频和 profile image。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲 AI 为什么开始从独立工具迁移到平台内，再拆 Meta 这次把哪些动作产品化，最后推演创作者工具链会如何缩短。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是创作者工具切换太多；爽点是一次看懂平台内创作趋势；痒点是观众会继续追问其他平台会不会跟进。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号深度稿、短视频口播、直播拆解。来源：<a href="https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/">Meta 官方</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 02｜Adobe 这轮更新最狠的，不是更会生图，而是继续消灭繁琐工序</h3>
+          <span class="priority">优先级 A+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>摄影师、剪辑师、设计师、短视频团队、AI 工具测评博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>不讲 AI 好神奇，重点讲哪些具体生产步骤被继续压缩。</p></div>
+          <div class="cell"><b>爆点</b><p>Assisted Culling 已 GA，Photo to Video 直接把照片变成 b-roll 或 reels，遮罩和反光处理进一步自动化。</p></div>
+          <div class="cell"><b>内容结构</b><p>先列出后期最耗时的动作，再对照 Adobe 更新逐项拆解，最后判断哪些岗位最先被提效。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是后期流程碎且重复；爽点是能直观看到省时点；痒点是会继续比较 Adobe、CapCut、Runway、Descript 的边界。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐产品拆解视频、教程型图文、直播实测。来源：<a href="https://blog.adobe.com/en/publish/2026/06/15/from-culling-to-compositing-new-creative-cloud-innovations-across-every-stage-of-your-workflow">Adobe 官方</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 03｜Gemini API 又开始下线旧模型了，AI 工作流真正难的是维护，不是搭出来</h3>
+          <span class="priority">优先级 A</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 工作流作者、独立开发者、卖自动化模板的人、技术型自媒体。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Google 的 deprecation 公告切入，讲 AI 工作流折旧速度。</p></div>
+          <div class="cell"><b>爆点</b><p>一批图片和视频模型已经进入关停倒计时，迁移不是可选项，而是必须做的维护动作。</p></div>
+          <div class="cell"><b>内容结构</b><p>先解释这次下线了哪些模型，再讲为什么创作者也要关心 API 版本问题，最后给出降低模型依赖风险的原则。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多创作者没把维护周期算进去；爽点是拿到现实的成本观；痒点是会继续追问还有哪些平台同样脆弱。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号分析、长线程、实战分享。来源：<a href="https://ai.google.dev/gemini-api/docs/changelog">Google AI for Developers</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 04｜OpenAI 已经在用课程结构告诉你，下一代 AI 知识付费卖什么</h3>
+          <span class="priority">优先级 A-</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>AI 培训顾问、知识付费创作者、企业内训负责人、AI 教育博主。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 OpenAI Academy 的课程结构反推 AI 教育赛道升级方向。</p></div>
+          <div class="cell"><b>爆点</b><p>官方直接把课程分成基础、可复用 workflow、agent-assisted workflow。</p></div>
+          <div class="cell"><b>内容结构</b><p>先讲提示词教育为什么开始不够用，再拆三门课训练什么能力，最后推演训练营、课程和企业培训如何换打法。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是技巧课学完难落地；爽点是快速看懂平台方的新标准；痒点是创作者会自然反思自己的知识产品。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐公众号深度稿、长视频、直播课预热。来源：<a href="https://openai.com/index/academy-courses-applying-ai-at-work/">OpenAI Academy</a></p></div>
+        </div>
+      </div>
+
+      <div class="topic">
+        <div class="topic-header">
+          <h3>选题 05｜Anthropic 事件提醒所有 AI 创作者：真正的风险不只在模型能力，也在平台可用性</h3>
+          <span class="priority">优先级 B+</span>
+        </div>
+        <div class="grid">
+          <div class="cell"><b>目标受众</b><p>行业观察者、AI 工具博主、出海团队、平台评测作者。</p></div>
+          <div class="cell"><b>切题角度</b><p>从 Anthropic 事件讲清平台依赖风险为什么突然变得具体。</p></div>
+          <div class="cell"><b>爆点</b><p>官方公告直接说明政府指令要求停用，原因细节又未完全公开。</p></div>
+          <div class="cell"><b>内容结构</b><p>先还原事件本身，再讲为什么这件事对创作者也重要，最后推演内容业务如何降低单平台依赖。</p></div>
+          <div class="cell"><b>痛点 / 爽点 / 痒点</b><p>痛点是很多人只看功能和价格；爽点是看懂更高层变量；痒点是观众会继续追问哪些模型和地区更脆弱。</p></div>
+          <div class="cell"><b>推荐形式 / 来源</b><p>推荐行业评论视频、播客、公众号长文。来源：<a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic 公告</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="recommend">
+        <h3 style="margin:0 0 10px;">Facebook 把 AI 直接做进发布流程了，创作者还需要单独开那么多工具吗？</h3>
+        <p class="lead">这是今天最适合优先做的题。它是 2026-06-15 的新增官方发布，对 AI 自媒体创作者最直接，既涉及平台分发，也涉及创作动作本身，而且很适合讲成一个更大的行业方向：平台内创作正在加速成形。</p>
+      </div>
+      <p class="footer">说明：本报告优先使用官方博客、产品更新页、开发者文档、帮助中心与公司公告作为事实锚点。HeyGen 报告属于厂商自发布行业报告，可信度标记为“中高”。Anthropic 事件的更深层因果链官方未完整披露，相关延伸判断应视为待验证。</p>
+    </section>
+  </div>
+</body>
+</html>

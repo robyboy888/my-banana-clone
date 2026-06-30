@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-09</title>
+  <style>
+    :root {
+      --bg: #eef4fb;
+      --paper: #ffffff;
+      --ink: #1d2a39;
+      --muted: #607086;
+      --line: #d5e0ef;
+      --blue: #1d63cf;
+      --blue-soft: #ebf3ff;
+      --blue-deep: #123f8c;
+      --good: #0b7a4b;
+      --mid: #8a5a00;
+      --shadow: 0 18px 48px rgba(20, 54, 110, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    .page {
+      width: min(1460px, calc(100vw - 36px));
+      margin: 18px auto 36px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero {
+      padding: 34px 40px 28px;
+      background:
+        radial-gradient(circle at top right, rgba(29, 99, 207, 0.16), transparent 34%),
+        linear-gradient(135deg, #f9fcff 0%, #edf4ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 38px;
+      line-height: 1.16;
+      letter-spacing: 0.02em;
+      color: var(--blue-deep);
+    }
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.82;
+      font-size: 15px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .meta-card, .signal, .topic, .note {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .meta-card {
+      padding: 14px 16px;
+    }
+    .meta-card .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .meta-card .value {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .content {
+      padding: 26px 34px 40px;
+    }
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #164ca3;
+      font-size: 26px;
+      line-height: 1.24;
+    }
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .signal {
+      padding: 16px 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .signal h3 {
+      margin: 0 0 8px;
+      color: var(--blue-deep);
+      font-size: 18px;
+    }
+    .signal p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.76;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      padding: 12px;
+      line-height: 1.72;
+      word-break: break-word;
+    }
+    th {
+      background: var(--blue-soft);
+      color: #164898;
+      font-size: 13px;
+    }
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .cred-high {
+      color: var(--good);
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 8px;
+      padding: 16px 18px;
+      background: #f9fbff;
+      line-height: 1.8;
+    }
+    .topics {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .topic {
+      padding: 20px 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+    .topic-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .topic-no {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+    }
+    .topic-priority {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid #c9ecd8;
+      background: #e8f8f0;
+      color: #0b7a4b;
+    }
+    .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.36;
+      color: var(--blue-deep);
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .chip {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #2b5ba8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 1fr;
+      gap: 18px;
+    }
+    .topic p, .topic li, .sources li {
+      font-size: 14px;
+      line-height: 1.82;
+      margin: 0 0 10px;
+    }
+    .sources {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .sources ol {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    @media (max-width: 1120px) {
+      .meta, .signals, .topic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media print {
+      body { background: #fff; }
+      .page {
+        width: auto;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="lead">面向 AI 自媒体创作者的日报版选题库。今天优先看过去 48 小时内的可验证信号，并补充近 7-10 天仍然值得创作者跟进的话题，重点落在内容生产、分发规则、变现模式和 AI 工作流。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <span class="label">采集日期</span>
+          <div class="value">2026-06-09</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">主要采集窗口</span>
+          <div class="value">2026-06-07 至 2026-06-09</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">补充信号窗口</span>
+          <div class="value">2026-05-27 至 2026-06-06</div>
+        </div>
+        <div class="meta-card">
+          <span class="label">定位说明</span>
+          <div class="value">筛选会改变创作者工作流和变现方式的热点</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <h2 class="section-title">今日判断</h2>
+      <div class="signals">
+        <article class="signal">
+          <h3>记忆层升级</h3>
+          <p>OpenAI 正把 ChatGPT 从单次会话工具推向长期工作搭子，创作者以后拼的不只是 prompt，还会拼上下文经营能力。</p>
+        </article>
+        <article class="signal">
+          <h3>平台规则前置</h3>
+          <p>YouTube 开始把 AI 内容披露做得更显眼，并用系统信号主动识别。AI 创作的门槛开始从生成，转向规则与信任。</p>
+        </article>
+        <article class="signal">
+          <h3>创作者资产延展</h3>
+          <p>ElevenLabs 的最新披露说明，未来能卖的可能不只是内容，也包括声音、模板、角色设定和可复用人格资产。</p>
+        </article>
+      </div>
+
+      <h2 class="section-title">今日热点摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">时间</th>
+            <th style="width: 20%;">热点信号</th>
+            <th style="width: 22%;">对创作者的意义</th>
+            <th style="width: 24%;">来源链接</th>
+            <th style="width: 8%;">可信度</th>
+            <th style="width: 14%;">内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-04</td>
+            <td>OpenAI 发布新版 ChatGPT memory 架构，基于 dreaming 做持续记忆</td>
+            <td>AI 更适合承接长期写作、研究、脚本策划和复盘项目，创作者的“第二大脑”叙事更具体了。</td>
+            <td><a href="https://openai.com/index/chatgpt-memory-dreaming/">OpenAI 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>个人 AI 工作流、创作搭子、知识资产沉淀</td>
+          </tr>
+          <tr>
+            <td>2026-06-02</td>
+            <td>OpenAI 发布 Codex for every role, tool, and workflow</td>
+            <td>AI 从“给草稿”走向“直接出资产、页面和可交付物”，而且明确覆盖 creative production 与 product design。</td>
+            <td><a href="https://openai.com/index/codex-for-every-role-tool-workflow/">OpenAI 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>非程序员 AI 工作台、内容到成品闭环</td>
+          </tr>
+          <tr>
+            <td>2026-06-02</td>
+            <td>GitHub 发布 Copilot app，强调 agent-native desktop 和并行任务控制</td>
+            <td>多任务 AI 工作台范式开始成熟，这套模式会外溢到内容团队、独立创作者和自动化运营。</td>
+            <td><a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>Agent 工作台、单人团队自动化</td>
+          </tr>
+          <tr>
+            <td>2026-06-03</td>
+            <td>Anthropic 发布 Claude Partner Network 的 Services Track 和 Partner Hub</td>
+            <td>AI 行业从拼模型转向拼交付、拼认证、拼实施网络，适合切入“Agent 服务化”和顾问化机会。</td>
+            <td><a href="https://www.anthropic.com/news/services-track-partner-hub/">Anthropic 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>Agent 服务商、AI 交付层叙事</td>
+          </tr>
+          <tr>
+            <td>2026-06-01</td>
+            <td>NVIDIA 发布开源物理世界基础模型 Cosmos 3</td>
+            <td>世界模型与多模态生成继续推进，适合作为“视频生成下一阶段”或“开源多模态趋势”内容补充。</td>
+            <td><a href="https://www.globenewswire.com/news-release/2026/06/01/3303987/0/en/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai.html">NVIDIA / GlobeNewswire</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>世界模型、视频生成下一站、开源多模态趋势</td>
+          </tr>
+          <tr>
+            <td>2026-05-27</td>
+            <td>YouTube 更新 AI 标签规则，并开始引入自动识别信号</td>
+            <td>直接影响 AI 视频、AI Shorts、数字人和合成口播内容的发布规则与风险管理。</td>
+            <td><a href="https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/">YouTube 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>AI 内容平台规则、创作者合规、信任管理</td>
+          </tr>
+          <tr>
+            <td>2026-05-22<br>2026-05-27 更新</td>
+            <td>ElevenLabs 披露 Voice Library 创作者累计收入超 2200 万美元</td>
+            <td>声音开始成为可复用、可计费、可持续分成的创作者资产，而不只是交付媒介。</td>
+            <td><a href="https://elevenlabs.io/blog/22-million-earned-by-voice-creators-on-elevenlabs">ElevenLabs 官方</a></td>
+            <td><span class="cred-high">高</span></td>
+            <td>AI 声音副业、声音 IP、创作者资产化</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>窗口说明：</strong>2026-06-07 至 2026-06-09 之间，直接面向创作者的官方大更新相对稀疏，因此今天保留了近 7-10 天内仍具明显讨论价值的官方信号。所有表内条目都能回溯到公开来源，未采用无出处传闻。
+      </div>
+
+      <h2 class="section-title">推荐选题</h2>
+      <div class="topics">
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 01</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>ChatGPT 现在会“长期记住你在做什么”了，AI 创作者工作流要变了</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 工具重度用户</span>
+            <span class="chip">目标受众：知识博主</span>
+            <span class="chip">目标受众：脚本创作者</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>这不是普通功能更新，而是 AI 从“会话工具”走向“持续参与项目”的工作模式升级。</p>
+              <p><strong>爆点：</strong>过去每次都要重喂上下文，现在 OpenAI 明牌推动长期记忆与记忆摘要。</p>
+              <p><strong>内容结构：</strong>先解释 dreaming 和记忆摘要，再讲它对写作、选题、复盘型创作者为什么重要，最后补上边界与风险。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>每次重讲背景，AI 不记得栏目风格，长期项目难衔接。</p>
+              <p><strong>爽点：</strong>更像一个真正持续工作的创作搭子。</p>
+              <p><strong>痒点：</strong>未来谁最会经营自己的 AI 长期上下文，谁就更高效。</p>
+              <p><strong>推荐形式：</strong>快评视频，公众号分析文，直播讨论。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://openai.com/index/chatgpt-memory-dreaming/">OpenAI 官方</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 02</span>
+            <span class="topic-priority">优先级 S</span>
+          </div>
+          <h3>YouTube 开始自动识别 AI 视频了，AI 创作者最该补的不是提示词，而是平台规则</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 视频创作者</span>
+            <span class="chip">目标受众：Shorts 创作者</span>
+            <span class="chip">目标受众：数字人账号</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>平台开始把 AI 内容披露做成规则化和自动化问题，这会直接改变发布策略和观众预期管理。</p>
+              <p><strong>爆点：</strong>你不标，不代表平台看不出来。</p>
+              <p><strong>内容结构：</strong>先拆规则变化，再讲哪些内容最容易踩线，最后做一份 AI 视频合规清单。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>怕误判，怕限流，不知道什么必须标。</p>
+              <p><strong>爽点：</strong>规则更透明，知道怎么避坑。</p>
+              <p><strong>痒点：</strong>未来平台会不会继续细分 AI 内容等级。</p>
+              <p><strong>推荐形式：</strong>避坑视频，清单帖，长图规则拆解。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/">YouTube 官方</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 03</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>ElevenLabs 已经让 10400 多个创作者赚到钱，声音会不会成为下一种 AI 数字资产</h3>
+          <div class="chips">
+            <span class="chip">目标受众：播客主</span>
+            <span class="chip">目标受众：配音从业者</span>
+            <span class="chip">目标受众：音频创业者</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>重点不是 AI 配音更强了，而是声音本身开始进入平台化、资产化、持续分成化阶段。</p>
+              <p><strong>爆点：</strong>2200 万美元累计收入和 10400+ 赚钱创作者，是非常直观的平台级信号。</p>
+              <p><strong>内容结构：</strong>先拆公告里的关键数字，再讲哪类声音最可能成为资产，最后讲授权和人格权边界。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>变现模式单一，声音接单门槛高，价值难放大。</p>
+              <p><strong>爽点：</strong>一条声线也可能成为长期收入来源。</p>
+              <p><strong>痒点：</strong>普通人有没有机会把声线做成可授权 IP。</p>
+              <p><strong>推荐形式：</strong>案例拆解视频，播客话题，趋势长文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://elevenlabs.io/blog/22-million-earned-by-voice-creators-on-elevenlabs">ElevenLabs 官方</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 04</span>
+            <span class="topic-priority">优先级 A</span>
+          </div>
+          <h3>OpenAI 已经不把 Codex 当开发工具了，AI 正在吃掉创意生产链的最后一公里</h3>
+          <div class="chips">
+            <span class="chip">目标受众：AI 生产力博主</span>
+            <span class="chip">目标受众：设计工具博主</span>
+            <span class="chip">目标受众：品牌运营</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>创作者真正关心的不是模型会不会写，而是它能不能直接出资产、出页面、出可交付物。</p>
+              <p><strong>爆点：</strong>OpenAI 直接点名 creative production、product design、Sites 和 annotations。</p>
+              <p><strong>内容结构：</strong>先解释这次发布为什么值得非程序员关注，再拆 creative production 背后的交付逻辑，最后讲谁会吃掉最后一公里。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>AI 只会给草稿，成品还要手工收尾。</p>
+              <p><strong>爽点：</strong>从 brief 到资产交付链路更短。</p>
+              <p><strong>痒点：</strong>谁控制最后一公里，谁就可能拿走最大价值。</p>
+              <p><strong>推荐形式：</strong>趋势点评，屏录演示，公众号深度文。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://openai.com/index/codex-for-every-role-tool-workflow/">OpenAI 官方</a></p>
+        </article>
+
+        <article class="topic">
+          <div class="topic-head">
+            <span class="topic-no">选题 05</span>
+            <span class="topic-priority">优先级 B</span>
+          </div>
+          <h3>GitHub 先把 Agent 工作台做出来了，这会不会是所有内容工具的下一站</h3>
+          <div class="chips">
+            <span class="chip">目标受众：效率赛道创作者</span>
+            <span class="chip">目标受众：独立创作者</span>
+            <span class="chip">目标受众：AI 产品观察者</span>
+          </div>
+          <div class="topic-grid">
+            <div>
+              <p><strong>切题角度：</strong>开发者工具先行，但它展示的是更普遍的 AI 工作流未来。</p>
+              <p><strong>爆点：</strong>一个界面并行盯多个 agent，已经不是 demo，而是正式产品方向。</p>
+              <p><strong>内容结构：</strong>先讲 Copilot app 的关键信号，再讲它对内容工作的启发，最后判断创作者版 Agent 工作台的样子。</p>
+            </div>
+            <div>
+              <p><strong>痛点：</strong>任务拆分难，协作不可见，会话很碎。</p>
+              <p><strong>爽点：</strong>AI 开始像团队，而不是像聊天框。</p>
+              <p><strong>痒点：</strong>单人团队会不会因此更强。</p>
+              <p><strong>推荐形式：</strong>观点短视频，直播讨论，趋势文章。</p>
+            </div>
+          </div>
+          <p><strong>可引用来源：</strong><a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub 官方</a></p>
+        </article>
+      </div>
+
+      <section class="sources">
+        <h2 class="section-title">参考来源</h2>
+        <ol>
+          <li>OpenAI, <a href="https://openai.com/index/chatgpt-memory-dreaming/">Dreaming: Better memory for a more helpful ChatGPT</a>, 2026-06-04。</li>
+          <li>OpenAI, <a href="https://openai.com/index/codex-for-every-role-tool-workflow/">Codex for every role, tool, and workflow</a>, 2026-06-02。</li>
+          <li>GitHub, <a href="https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/">GitHub Copilot app: The agent-native desktop experience</a>, 2026-06-02。</li>
+          <li>Anthropic, <a href="https://www.anthropic.com/news/services-track-partner-hub">Introducing the Services Track and Partner Hub of the Claude Partner Network</a>, 2026-06-03。</li>
+          <li>NVIDIA, <a href="https://www.globenewswire.com/news-release/2026/06/01/3303987/0/en/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai.html">NVIDIA Launches Cosmos 3, the Open Frontier Foundation Model for Physical AI</a>, 2026-06-01。</li>
+          <li>YouTube, <a href="https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/">Improving AI labels for viewers and creators</a>, 2026-05-27。</li>
+          <li>ElevenLabs, <a href="https://elevenlabs.io/blog/22-million-earned-by-voice-creators-on-elevenlabs">$22 million earned by voice creators on ElevenLabs</a>, published 2026-05-22, updated 2026-05-27。</li>
+        </ol>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

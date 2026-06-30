@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-24</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --line: #d9e3ef;
+      --text: #17324a;
+      --muted: #5e7288;
+      --blue: #2a68ff;
+      --blue-soft: #edf4ff;
+      --blue-deep: #153b73;
+      --gold: #b96b18;
+      --shadow: 0 18px 40px rgba(27, 76, 148, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(42, 104, 255, 0.11), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1560px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero { padding: 28px 32px 26px; }
+    .section { margin-top: 22px; padding: 24px 28px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .summary {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card, .signal {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label, .signal-label, .pill {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value, .signal-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal-value.small { font-size: 15px; font-weight: 600; }
+
+    .note {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f8fbff;
+      border: 1px dashed #bfd2eb;
+      line-height: 1.8;
+      color: #35506c;
+    }
+
+    .judgement, .analysis-grid, .topics {
+      display: grid;
+      gap: 14px;
+    }
+
+    .judgement {
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: #fcfdff;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #143f77;
+    }
+
+    .card p, .card li, .topic-card li, .analysis-card li {
+      font-size: 15px;
+      line-height: 1.84;
+      color: #25425e;
+    }
+
+    ul, ol { margin: 0; padding-left: 20px; }
+    li + li { margin-top: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    thead th {
+      background: var(--blue-soft);
+      color: #17407c;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 12px;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) td { background: #fbfdff; }
+
+    .analysis-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .analysis-card, .topic-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      background: #ffffff;
+    }
+
+    .analysis-card h3, .topic-card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      color: #163e75;
+    }
+
+    .topic-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .priority {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: #e9f1ff;
+      color: #12418c;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+      background: #fbfdff;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #173f74;
+      font-size: 14px;
+    }
+
+    .best-pick {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border: 1px solid #cddcf2;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #edf4ff 0%, #fbfdff 100%);
+    }
+
+    .best-badge {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #11408c;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .footer {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .section { box-shadow: none; }
+      a { color: #0f4bc2; text-decoration: none; }
+    }
+
+    @media (max-width: 1100px) {
+      .meta, .signal-bar, .judgement, .analysis-grid, .topic-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <span class="eyebrow">AI Hotspots for Creators</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <p class="summary">今天的高可信信号集中在一个非常清晰的方向：AI 工具正在从“个人聊天框”走向“团队真实工作入口”。Slack、Terminal、Canvas、Ads Manager 和视频编辑链路，正在同时被 AI 占领。</p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-24</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">2026-06-22 00:00 至 2026-06-24 09:40（北京时间）</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先官方博客、产品更新页与权威发布面</div>
+        </div>
+      </div>
+      <div class="signal-bar">
+        <div class="signal">
+          <div class="signal-label">主线判断</div>
+          <div class="signal-value small">AI 开始占据团队工作入口位</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">最高时效</div>
+          <div class="signal-value small">Anthropic / GitHub，2026-06-23</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">创作者高相关</div>
+          <div class="signal-value small">Runway 视频改稿 + ElevenLabs 广告出海</div>
+        </div>
+        <div class="signal">
+          <div class="signal-label">内容策略</div>
+          <div class="signal-value small">从“功能快讯”升级为“工作流判断”</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <div class="judgement">
+        <div class="card">
+          <h3>今天最值得讲什么</h3>
+          <ol>
+            <li>Anthropic 把 Claude 放进 Slack，强调共享上下文、异步执行、预算和日志可控。</li>
+            <li>GitHub 同一天推进了两条线：`BYOK` 让团队能带自己的模型进工作台；Copilot CLI 则把终端做成完整操作面。</li>
+            <li>Runway 和 ElevenLabs 分别落在视频改稿和广告本地化这两个最接近内容 ROI 的环节。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>更适合怎么讲</h3>
+          <ul>
+            <li>AI 工具为什么开始争抢 Slack、Terminal、Canvas、Ads Manager 这些入口。</li>
+            <li>创作者为什么要开始关注上下文持续、资产持续、渠道持续和成本可控。</li>
+            <li>哪些变化会直接改变视频修改、广告出海、团队协作和知识付费交付方式。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">今天不建议做成单纯“新闻串烧”。更稳的打法是把多条官方更新串成一条主线：AI 正在从生成按钮，进化成可长期驻场、可管预算、可跨工具、可对接分发平台的工作台。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>热点信号</th>
+            <th>对创作者的意义</th>
+            <th>来源链接</th>
+            <th>可信度</th>
+            <th>内容机会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-23</td>
+            <td>Anthropic 发布 <a href="https://www.anthropic.com/news/introducing-claude-tag">Claude Tag</a>，把 Claude 变成可被团队在 Slack 里 @ 的异步协作成员</td>
+            <td>这是“AI 同事化”的强信号，适合团队协作、Agent、知识付费和企业培训内容</td>
+            <td><a href="https://www.anthropic.com/news/introducing-claude-tag">Anthropic 官方</a></td>
+            <td>高</td>
+            <td>Slack Agent、团队 AI 协作、组织级权限与预算</td>
+          </tr>
+          <tr>
+            <td>2026-06-23</td>
+            <td>GitHub 发布 <a href="https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok/">Copilot app support for BYOK</a></td>
+            <td>模型选择权回到团队手里，适合切数据边界、BYOK 和 Agent 成本治理</td>
+            <td><a href="https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok/">GitHub 官方</a></td>
+            <td>高</td>
+            <td>BYOK、私有部署、Agent 成本与数据边界</td>
+          </tr>
+          <tr>
+            <td>2026-06-23</td>
+            <td>GitHub 让 <a href="https://github.blog/changelog/2026-06-23-copilot-cli-new-terminal-interface-is-generally-available/">Copilot CLI 新终端界面正式 GA</a></td>
+            <td>终端开始变成 AI 工作台，适合教程、录屏和开发者效率方法论</td>
+            <td><a href="https://github.blog/changelog/2026-06-23-copilot-cli-new-terminal-interface-is-generally-available/">GitHub 官方</a></td>
+            <td>高</td>
+            <td>终端工作流、AI 编程教育、CLI Agent</td>
+          </tr>
+          <tr>
+            <td>2026-06-22</td>
+            <td>Runway 宣布 <a href="https://runwayml.com/news/aleph-2-in-figma-weave">Aleph 2.0 接入 Figma Weave</a></td>
+            <td>视频修改开始进入可视化批量改稿阶段，适合讲短视频和品牌视频提效</td>
+            <td><a href="https://runwayml.com/news/aleph-2-in-figma-weave">Runway 官方</a></td>
+            <td>高</td>
+            <td>AI 视频编辑、关键帧工作流、设计协同</td>
+          </tr>
+          <tr>
+            <td>2026-06-22</td>
+            <td>ElevenLabs 发布 <a href="https://elevenlabs.io/blog/introducing-ads-engine-in-elevencreative">Ads Engine</a>，主打把现有广告素材本地化到 50+ 语言并回推 Google / Meta / LinkedIn</td>
+            <td>比单纯配音更接近收入闭环，适合内容出海、跨境广告和品牌代运营选题</td>
+            <td><a href="https://elevenlabs.io/blog/introducing-ads-engine-in-elevencreative">ElevenLabs 官方</a></td>
+            <td>高</td>
+            <td>AI 广告本地化、出海增长、内容商业化</td>
+          </tr>
+          <tr>
+            <td>2026-06-23</td>
+            <td>OpenAI 发布 <a href="https://openai.com/index/helping-build-shared-standards-for-advanced-ai/">shared standards</a> 相关文章，强调评测、第三方证据和标准化</td>
+            <td>这会影响企业采购与合规判断，适合产业观察和知识付费内容</td>
+            <td><a href="https://openai.com/index/helping-build-shared-standards-for-advanced-ai/">OpenAI 官方</a></td>
+            <td>高</td>
+            <td>AI 标准化、合规采购、产业判断</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+      <div class="analysis-grid">
+        <article class="analysis-card">
+          <h3>1. Claude Tag：AI 开始从私聊助手变成“频道成员”</h3>
+          <ul>
+            <li>时效性：高。Anthropic 官方新闻页日期为 2026-06-23。</li>
+            <li>事实要点：Slack 首发；共享频道上下文；可异步工作数小时或数天；管理员可控制工具权限、预算与日志。</li>
+            <li>创作者意义：很适合转成趋势稿、教程稿、团队协作方式变化稿。</li>
+            <li>风险边界：当前是 Claude Enterprise / Team beta；内部使用数据来自官方自述，不宜外推成行业平均值。</li>
+          </ul>
+        </article>
+        <article class="analysis-card">
+          <h3>2. GitHub BYOK：模型选择权、数据边界和预算口径一起回来</h3>
+          <ul>
+            <li>时效性：高。GitHub changelog 日期为 2026-06-23。</li>
+            <li>事实要点：可接 OpenAI、Anthropic、LM Studio、Ollama 与 OpenAI-compatible endpoint；密钥走本地 keychain。</li>
+            <li>创作者意义：适合切入“模型不再只是买一个 SaaS，而是被装进团队自己的边界和工作流里”。</li>
+            <li>风险边界：更偏团队和企业场景；普通个人创作者短期更适合理解趋势，而不是立刻自建推理栈。</li>
+          </ul>
+        </article>
+        <article class="analysis-card">
+          <h3>3. Copilot CLI GA：终端正在成为完整 AI 工作台</h3>
+          <ul>
+            <li>时效性：高。GitHub changelog 日期为 2026-06-23。</li>
+            <li>事实要点：终端内可浏览 Issues、PR、gists，并直接配置 MCP、skills、plugins、settings。</li>
+            <li>创作者意义：极适合录屏和教程，因为它把“AI 编程”从聊天侧栏推进到真实操作台。</li>
+            <li>风险边界：受众偏开发者，面向泛人群时要转成“工作台化”而不是术语堆砌。</li>
+          </ul>
+        </article>
+        <article class="analysis-card">
+          <h3>4. Runway Aleph 2.0 + Figma Weave：视频改稿开始像改设计稿</h3>
+          <ul>
+            <li>时效性：高。Runway 官方页面日期为 2026-06-22。</li>
+            <li>事实要点：抽关键帧改稿，再用时间戳把修改传播到整段视频；官方写明最长 30 秒、1080p、多镜头序列。</li>
+            <li>创作者意义：非常适合短视频和品牌视频创作者，主线是“修改成本下降”。</li>
+            <li>风险边界：复杂场景稳定性仍待更多外部案例验证，更适合讲工作流潜力。</li>
+          </ul>
+        </article>
+        <article class="analysis-card">
+          <h3>5. ElevenLabs Ads Engine：AI 创作链条继续往投放回路里扎</h3>
+          <ul>
+            <li>时效性：高。ElevenLabs 官方博客日期为 2026-06-22。</li>
+            <li>事实要点：连接广告账户，基于现有有效素材做文本翻译、图像适配、视频 dubbing，并回推渠道。</li>
+            <li>创作者意义：对内容出海、跨境广告和品牌代运营更接近收入闭环。</li>
+            <li>风险边界：不能直接把“可本地化”夸大成“必然提升 ROI”。</li>
+          </ul>
+        </article>
+        <article class="analysis-card">
+          <h3>6. OpenAI 标准化动作：下一波竞争不只看能力，还看可验证与可采购</h3>
+          <ul>
+            <li>时效性：高。OpenAI 官方页面日期为 2026-06-23。</li>
+            <li>事实要点：强调 shared standards、assessment criteria、第三方证据与机构协作。</li>
+            <li>创作者意义：可支撑“AI 行业开始补信任层”的产业判断。</li>
+            <li>风险边界：这条更偏治理和采购逻辑，不是大众用户的直接功能更新。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+      <div class="topics">
+        <article class="topic-card">
+          <div class="topic-head">
+            <h3>选题 01｜AI 同事真的来了：Anthropic 把 Claude 放进 Slack，团队协作会先被改写</h3>
+            <span class="priority">S 级</span>
+          </div>
+          <p>适合把“AI 助手”讲成“AI 同事”。它同时具备强时效、强代入、强争议和强外溢性。</p>
+          <div class="topic-grid">
+            <div class="mini"><strong>目标受众</strong>AI 从业者、内容团队负责人、知识付费操盘手、企业培训讲师</div>
+            <div class="mini"><strong>切题角度</strong>不是 Slack 接了 Claude，而是 AI 开始占据团队真实工作入口</div>
+            <div class="mini"><strong>爆点</strong>共享上下文、异步执行、预算控制、日志留痕</div>
+            <div class="mini"><strong>推荐形式</strong>趋势解读长文 / 口播视频 / 直播拆解</div>
+          </div>
+          <ul>
+            <li>痛点：团队里 AI 只能个人用，信息不共享，交接与复盘成本高。</li>
+            <li>爽点：一个频道里直接委派任务，别人还能接着上下文继续推进。</li>
+            <li>痒点：如果 AI 真能长期挂在群里，内容团队会不会少很多重复沟通？</li>
+            <li>来源：<a href="https://www.anthropic.com/news/introducing-claude-tag">Anthropic 官方</a></li>
+          </ul>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <h3>选题 02｜AI 视频修改进入“关键帧改一次，全片跟着改”时代，Runway 这步很危险</h3>
+            <span class="priority">S 级</span>
+          </div>
+          <p>适合面向短视频创作者和品牌内容团队，主线不是炫技，而是把视频改稿成本压扁。</p>
+          <div class="topic-grid">
+            <div class="mini"><strong>目标受众</strong>短视频创作者、视频团队、广告导演、品牌工作室</div>
+            <div class="mini"><strong>切题角度</strong>视频后期最贵的是反复改稿，不是首次生成</div>
+            <div class="mini"><strong>爆点</strong>改一帧，整段相关画面同步更新；画布式协同</div>
+            <div class="mini"><strong>推荐形式</strong>案例拆解视频 / 图文教程 / 工作流对比帖</div>
+          </div>
+          <ul>
+            <li>痛点：视频改一个元素往往要重做多镜头、多版本。</li>
+            <li>爽点：少重拍、少返工、少跨工具。</li>
+            <li>痒点：未来视频编辑会不会像 Figma 改设计稿一样轻？</li>
+            <li>来源：<a href="https://runwayml.com/news/aleph-2-in-figma-weave">Runway 官方</a></li>
+          </ul>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <h3>选题 03｜不是翻译，是直接出海投放：ElevenLabs 开始把 AI 接进广告账户</h3>
+            <span class="priority">A 级</span>
+          </div>
+          <p>最适合做内容出海、跨境增长和商业化方向的深度稿。</p>
+          <div class="topic-grid">
+            <div class="mini"><strong>目标受众</strong>跨境卖家、品牌操盘手、投放团队、内容出海创作者</div>
+            <div class="mini"><strong>切题角度</strong>从“AI 帮你做素材”转成“AI 帮你把有效素材扩到更多市场”</div>
+            <div class="mini"><strong>爆点</strong>Google / Meta / LinkedIn 直连；文案、图像、视频一起本地化</div>
+            <div class="mini"><strong>推荐形式</strong>商业分析图文 / 直播聊增长 / 方法论短视频</div>
+          </div>
+          <ul>
+            <li>痛点：每多一个市场，就多一轮创意制作、配音和投放配置。</li>
+            <li>爽点：把已跑通的广告更快复制到多语言市场。</li>
+            <li>痒点：内容出海竞争会不会从“谁能做素材”变成“谁能最快扩市场”？</li>
+            <li>来源：<a href="https://elevenlabs.io/blog/introducing-ads-engine-in-elevencreative">ElevenLabs 官方</a></li>
+          </ul>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <h3>选题 04｜Copilot 开始支持自带模型，终端也变工作台了：开发者 AI 进入“自建栈”阶段</h3>
+            <span class="priority">A 级</span>
+          </div>
+          <p>把 GitHub 同日两条更新合并成一条主线讲，会比拆开更有结构感。</p>
+          <div class="topic-grid">
+            <div class="mini"><strong>目标受众</strong>开发者、自媒体讲师、企业 AI 顾问、Agent 工具观察者</div>
+            <div class="mini"><strong>切题角度</strong>模型选择权和工作入口，正在同时发生变化</div>
+            <div class="mini"><strong>爆点</strong>BYOK + 终端 GA；MCP、skills、plugins 一起进工作台</div>
+            <div class="mini"><strong>推荐形式</strong>趋势稿 / 工具盘点视频 / 直播对比演示</div>
+          </div>
+          <ul>
+            <li>痛点：不同模型、不同工具、不同入口割裂，工作流难统一。</li>
+            <li>爽点：一个工作台里接私有模型、看任务、配工具。</li>
+            <li>痒点：未来团队会不会自己组“AI 开发栈”，而不是全盘交给单一厂商？</li>
+            <li>来源：<a href="https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok/">GitHub BYOK</a> / <a href="https://github.blog/changelog/2026-06-23-copilot-cli-new-terminal-interface-is-generally-available/">GitHub CLI GA</a></li>
+          </ul>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <h3>选题 05｜AI 行业开始补“信任层”：为什么接下来大家都会谈标准、评测和采购</h3>
+            <span class="priority">B 级</span>
+          </div>
+          <p>这是产业判断稿，不是功能稿，适合拉开和日更快讯的差异。</p>
+          <div class="topic-grid">
+            <div class="mini"><strong>目标受众</strong>产业观察者、企业服务博主、知识付费作者、咨询顾问</div>
+            <div class="mini"><strong>切题角度</strong>下一阶段竞争不只看能力，还看可验证和可采购</div>
+            <div class="mini"><strong>爆点</strong>shared standards、assessment、third-party evidence</div>
+            <div class="mini"><strong>推荐形式</strong>深度图文 / 播客选题 / 产业判断视频</div>
+          </div>
+          <ul>
+            <li>痛点：很多产业内容只讲模型，不讲企业为什么敢买。</li>
+            <li>爽点：一条治理信号把能力、评测、采购、合规串起来。</li>
+            <li>痒点：谁先补齐信任层，谁就更可能吃到企业预算？</li>
+            <li>来源：<a href="https://openai.com/index/helping-build-shared-standards-for-advanced-ai/">OpenAI 官方</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div class="best-badge">TOP PICK</div>
+        <div>
+          <h3 style="margin:0 0 8px;color:#123d78;">AI 同事真的来了：Anthropic 把 Claude 放进 Slack，团队协作会先被改写</h3>
+          <p style="margin:0;font-size:15px;line-height:1.86;">这条同时满足强时效、强代入、强争议和强外溢性。无论受众是开发者、内容团队、企业管理者还是 AI 工具重度用户，都能立刻理解“一个长期驻场、可异步执行、可控权限和预算的 AI 同事”意味着什么。</p>
+        </div>
+      </div>
+      <div class="footer">说明：本报告只使用可验证公开来源。关于未来影响、传播潜力和商业判断的部分，属于基于已公开事实的分析推断，不等同于厂商官方承诺。</div>
+    </section>
+  </div>
+</body>
+</html>

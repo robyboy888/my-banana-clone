@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 行业热点自媒体选题库 - 2026-06-20</title>
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --paper: #ffffff;
+      --line: #d9e3ef;
+      --text: #17324a;
+      --muted: #5e7288;
+      --blue: #2a68ff;
+      --blue-soft: #edf4ff;
+      --blue-deep: #153b73;
+      --green: #16724f;
+      --amber: #8f6200;
+      --shadow: 0 18px 40px rgba(27, 76, 148, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(42, 104, 255, 0.11), transparent 26%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1560px, calc(100vw - 40px));
+      margin: 24px auto 40px;
+    }
+
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero { padding: 28px 32px 26px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #10325f;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfdff;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      margin-top: 6px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #143860;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      padding-left: 14px;
+      border-left: 6px solid var(--blue);
+      color: #15407b;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.88;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .signal {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #18427b;
+      font-size: 16px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .summary-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff5ff;
+      border: 1px solid #dbe8ff;
+      color: #234d86;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #f1d7a6;
+      background: #fff8ea;
+      color: #7b5a0c;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1380px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    th {
+      background: #f2f7ff;
+      color: #18427b;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .cred-high { color: var(--green); font-weight: 700; }
+    .cred-watch { color: var(--amber); font-weight: 700; }
+
+    .analysis-card, .topic {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      margin-top: 16px;
+    }
+
+    .analysis-card h3, .topic h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #133765;
+      line-height: 1.35;
+    }
+
+    .topic .priority {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #136f49;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    ul {
+      margin: 10px 0 0 22px;
+      padding: 0;
+      line-height: 1.85;
+    }
+
+    li + li { margin-top: 4px; }
+    p { margin: 0; line-height: 1.85; }
+    p + p { margin-top: 10px; }
+
+    .best-pick {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+      color: #fff;
+    }
+
+    .best-pick .label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    .best-pick .title {
+      margin-top: 8px;
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .best-pick p {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; margin: 0; }
+      .hero, .section { box-shadow: none; }
+      a { color: #0f3ca5; }
+    }
+
+    @media (max-width: 980px) {
+      .meta, .signal-bar, .best-pick {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 32px; }
+      .page { width: min(100vw, calc(100vw - 20px)); margin: 10px auto 20px; }
+      .hero, .section { padding: 20px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <span class="eyebrow">AI 自媒体日报</span>
+      <h1>AI 行业热点自媒体选题库</h1>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-label">采集日期</div>
+          <div class="meta-value">2026-06-20</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">采集窗口</div>
+          <div class="meta-value">北京时间 2026-06-18 00:00 至 2026-06-20 09:05</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">定位说明</div>
+          <div class="meta-value">面向 AI 自媒体创作者，优先筛选过去 24-48 小时内与 Agent、创作者工具链、语音/图文/研究工作流、开发者协作和平台分发相关的官方信号</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日判断</h2>
+      <p class="lead">今天更值得讲的，不是单一模型能力，而是 AI 工具链正在同步往持续关系、工作流治理、研究基础设施和公司边界扩张四个方向推进。ElevenLabs 在把 AI 音乐和 Voice Agent 做成可持续产品，GitHub 在把 AI 使用量和团队规则纳入治理层，Firecrawl 在给研究 Agent 单独做检索层，Midjourney 则试图用一场跨界叙事重新定义自己的想象空间。</p>
+      <div class="signal-bar">
+        <div class="signal">
+          <strong>主线 01</strong>
+          <span>持续关系化：AI 产品开始围绕你的行为持续供给内容，而不只是一次性生成。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 02</strong>
+          <span>治理化：团队开始关心 AI 用量、组织规约和 review 规则，而不只关心模型强弱。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 03</strong>
+          <span>研究基础设施化：深度研究 Agent 正在拥有独立工具层和检索层。</span>
+        </div>
+        <div class="signal">
+          <strong>主线 04</strong>
+          <span>边界扩张化：一批 AI 公司开始用跨界叙事争夺下一轮注意力。</span>
+        </div>
+      </div>
+      <div class="summary-strip">
+        <span class="pill">AI 成本透明化</span>
+        <span class="pill">Voice Agent 评测</span>
+        <span class="pill">Research Agent</span>
+        <span class="pill">AI 音乐留存</span>
+        <span class="pill">跨界叙事</span>
+      </div>
+      <div class="note">说明：所有事实性表述均附来源。Midjourney Medical 源页未直接显示发布时间，因此在本报告中统一标记为“时间待核”，仅当作 2026-06-20 的公开信号讨论。</div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日热点摘要</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>热点信号</th>
+              <th>对创作者的意义</th>
+              <th>来源链接</th>
+              <th>可信度</th>
+              <th>内容机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-06-19</td>
+              <td>GitHub Copilot usage metrics API 新增 <code>ai_credits_used</code>，可按用户查看每日 AI credits 消耗</td>
+              <td>AI 工具开始进入“谁在用、用了多少、值不值”的精细化管理阶段，适合讲 AI 团队成本与 ROI</td>
+              <td><a href="https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/">GitHub Changelog</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 成本管理、团队治理、Copilot 商业化</td>
+            </tr>
+            <tr>
+              <td>2026-06-19</td>
+              <td>ElevenLabs 发布 voice agent evaluation framework，明确 MOS、TSR、首字音延迟等评测目标</td>
+              <td>Voice Agent 赛道从“会说话”转向“可评测、可上线、可对比”</td>
+              <td><a href="https://elevenlabs.io/blog/voice-agent-evaluation-framework-6-pillars-explained">ElevenLabs Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>Voice Agent、评测方法、B2B AI 服务</td>
+            </tr>
+            <tr>
+              <td>2026-06-19</td>
+              <td>Firecrawl Research Index 在 Product Hunt 当天发酵，官方强调其面向 AI/ML research agent，覆盖 300 万+ arXiv 论文与 GitHub 研究资产</td>
+              <td>深度研究型 Agent 正在成为独立产品层，适合讲“研究 Agent 工具栈”与知识服务升级</td>
+              <td><a href="https://www.firecrawl.dev/blog/research-index-launch">Firecrawl Blog</a>；<a href="https://www.producthunt.com/products/extract-by-firecrawl">Product Hunt</a></td>
+              <td class="cred-high">高</td>
+              <td>Deep Research、研究 Agent、知识付费工具链</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>OpenAI 更新 ChatGPT app：新增 60+ 语言发音指导、connected apps 权限控制、从回答直接开始写作、iOS 更快上传图片</td>
+              <td>通用助手继续向内容助手靠拢，适合讲“ChatGPT 正在怎样吃掉轻量内容工作流”</td>
+              <td><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI Help</a></td>
+              <td class="cred-high">高</td>
+              <td>ChatGPT 工作流、轻内容生产、效率工具</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>GitHub Copilot code review 支持读取仓库根目录 <code>AGENTS.md</code></td>
+              <td>AI 编程工具开始读取团队规则，适合讲“AI 终于开始理解你的组织约束”</td>
+              <td><a href="https://github.blog/changelog/2026-06-18-copilot-code-review-agents-md-support-and-ui-improvements/">GitHub Changelog</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 编程规范、团队协作、Agent 指令工程</td>
+            </tr>
+            <tr>
+              <td>2026-06-18</td>
+              <td>ElevenLabs 发布 ElevenMusic Mixes：每周 33 首个性化曲目，其中部分直接为单个用户生成</td>
+              <td>AI 音乐开始从一次性生成走向长期关系和平台留存</td>
+              <td><a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Blog</a></td>
+              <td class="cred-high">高</td>
+              <td>AI 音乐、个性化内容供给、创作者音频产品</td>
+            </tr>
+            <tr>
+              <td>2026-06-20（时间待核）</td>
+              <td>Midjourney 公布 Midjourney Medical / Midjourney Spa，宣布投入全身超声扫描与健康数据叙事</td>
+              <td>极强传播性跨界信号，适合做“AI 公司边界扩张”的观察稿，但必须强调仍待验证发布时间和落地路径</td>
+              <td><a href="https://www.midjourney.com/medical/blogpost">Midjourney Medical</a></td>
+              <td class="cred-watch">中（发布时间待核）</td>
+              <td>公司战略转向、AI 医疗叙事、注意力竞争</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">热点分析</h2>
+
+      <div class="analysis-card">
+        <h3>1. GitHub 这次最关键的不是模型，而是把 AI 使用量做成了管理对象</h3>
+        <p>2026-06-19 的 changelog 新增 <code>ai_credits_used</code> 字段，意味着 Copilot 的企业级讨论重心开始从“模型强不强”切到“消耗多少、价值在哪、预算怎么控”。这类信号对 AI 团队管理、培训、组织采购和服务商内容都很重要。</p>
+        <ul>
+          <li>可在单日和 28 日用户级报告中查看。</li>
+          <li>GitHub 明确说明这是分析信号，不是最终 billed total。</li>
+          <li>当前还不能按模型、功能或 surface 拆得更细。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>2. Voice Agent 开始进入“评测先行”的阶段</h3>
+        <p>ElevenLabs 这篇文章的重要性，不在于它是厂商内容，而在于它把 Voice Agent 的生产级语言说清楚了：MOS、TSR、首字音延迟、fallback rate、tool call accuracy。赛道明显正在从 demo 阶段转向上线与采购阶段。</p>
+        <ul>
+          <li>文中给出 MOS 4.3-4.5、TSR &gt; 85%、首字音延迟 &lt; 500ms 等目标。</li>
+          <li>适合做“什么样的 Voice Agent 才算能商用”的内容。</li>
+          <li>要区分通用框架建议与厂商自家能力表述。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>3. Firecrawl Research Index 说明研究 Agent 开始有独立产品层</h3>
+        <p>这条不是普通“又一个 AI 搜索产品”更新。官方直接把产品定义成面向 research agent 的索引层，并把论文、代码、GitHub 研究资产拉通。再叠加 2026-06-19 的 Product Hunt 发酵，它已经具备成为内容热点的条件。</p>
+        <ul>
+          <li>官方称覆盖 300 万+ arXiv 论文和顶级 GitHub 研究资产。</li>
+          <li>官方称其在 arXivQA 上 recall 比下一家高 18%。</li>
+          <li>benchmark 主要来自官方，引用时要保留边界。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4. ChatGPT 正在继续吞掉轻量内容工作流</h3>
+        <p>OpenAI 这次没有发大模型，而是在 release notes 里继续把 ChatGPT 往内容助手方向推进。发音指导、connected apps 权限控制、从回答直接开始写作，都是“让用户少切一次工具”的设计。</p>
+        <ul>
+          <li>适合讲“ChatGPT 为什么越来越像上游内容入口”。</li>
+          <li>对语言学习、知识博主、轻内容生产者尤其好讲。</li>
+          <li>传播时需要重新结构化，避免被看成零散小更新。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>5. GitHub 让 AI 编程工具开始读取团队规则</h3>
+        <p>Copilot code review 读取 <code>AGENTS.md</code>，本质上是让 AI 从“读代码”扩展到“读组织规则”。这对做 AI 编程、团队协作和规范工程内容的人，切题价值很高。</p>
+        <ul>
+          <li>适合讲“为什么未来团队会把规约文件变成 AI 原生资产”。</li>
+          <li>同时补了 draft PR 请求 review 和 timeline 噪音折叠。</li>
+          <li>前提是团队真的维护规约文件。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>6. ElevenMusic Mixes 证明 AI 音乐开始卷持续关系</h3>
+        <p>每周 33 首、其中一部分直接为你生成，这种设计已经不是“玩一次”的 demo 逻辑，而是明显的平台留存逻辑。AI 音乐赛道正在从功能炫技变成关系经营。</p>
+        <ul>
+          <li>Pro 用户每周 11 首专属生成曲目，免费用户 5 首。</li>
+          <li>官方直接说目标是 “generate around you”。</li>
+          <li>后续仍要观察版权和留存表现。</li>
+        </ul>
+      </div>
+
+      <div class="analysis-card">
+        <h3>7. Midjourney Medical 是今天传播性最强、也最需要边界感的一条</h3>
+        <p>这条内容的传播潜力极高，因为它天然具备“做图公司突然去做医疗”的冲突感。但它同样最容易被写歪。正确写法应该是：把它当作一家 AI 公司试图扩张叙事边界的公开信号，而不是已经落地的医疗产品新闻。</p>
+        <ul>
+          <li>页面写到 2027 年旧金山首个 Spa 和后续扩张路线图。</li>
+          <li>大量内容属于愿景式路线图，不应转写成既成事实。</li>
+          <li>源页未直接给出明确发布时间，因此本报告保留“时间待核”标记。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">推荐选题</h2>
+
+      <div class="topic">
+        <span class="priority">优先级 S</span>
+        <h3>选题 01｜Midjourney 不做图了，开始做医疗：一家生成式 AI 公司为什么要突然跨到身体数据</h3>
+        <ul>
+          <li>标题方向：`Midjourney 突然宣布做医疗，这家公司到底想干什么`</li>
+          <li>目标受众：AI 行业观察者、科技媒体受众、关注公司战略和趋势判断的创作者。</li>
+          <li>切题角度：把它写成“AI 公司边界扩张”的叙事，而不是医疗产品测评。</li>
+          <li>爆点：做图公司突然讲医疗和 Spa；直接给出 2027、2028、2031 路线图。</li>
+          <li>内容结构：为什么不是常规模型更新 → 在卖什么叙事 → 为什么现在出现 → 哪些是事实，哪些是愿景。</li>
+          <li>痛点：读者很难判断这是认真战略还是注意力事件。</li>
+          <li>爽点：一条内容就能把公司战略、行业想象力和注意力竞争讲透。</li>
+          <li>痒点：会继续引出“下一个跨界的 AI 公司是谁”。</li>
+          <li>推荐内容形式：公众号观察稿、视频口播、直播热评。</li>
+          <li>可引用来源：<a href="https://www.midjourney.com/medical/blogpost">Midjourney Medical</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A+</span>
+        <h3>选题 02｜AI 音乐开始从“生成一首歌”变成“围着你持续生成”</h3>
+        <ul>
+          <li>标题方向：`ElevenMusic 上线 Mixes，AI 音乐正式进入“关系型产品”阶段`</li>
+          <li>目标受众：AI 音乐创作者、短视频创作者、音频产品观察者。</li>
+          <li>切题角度：用 ElevenMusic Mixes 解释 AI 音乐从工具逻辑转向平台逻辑。</li>
+          <li>爆点：每周 33 首；Pro 用户 11 首专属生成曲目；官方提出 “generate around you”。</li>
+          <li>内容结构：上一阶段问题 → Mixes 为什么重要 → 平台留存逻辑 → 版权与订阅风险。</li>
+          <li>痛点：AI 音乐工具很多，但长期关系产品很少。</li>
+          <li>爽点：能快速建立“平台逻辑”认知，而不是只看炫技。</li>
+          <li>痒点：会继续追问版权、归属、留存和商业模型。</li>
+          <li>推荐内容形式：趋势分析、产品评测、播客、短视频口播。</li>
+          <li>可引用来源：<a href="https://elevenlabs.io/blog/introducing-mixes-on-elevenmusic">ElevenLabs Mixes</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A</span>
+        <h3>选题 03｜Agent 下半场不是拼会不会做事，而是拼能不能被评测、被治理、被控成本</h3>
+        <ul>
+          <li>标题方向：`Voice Agent、Copilot、Research Agent 同时给出一个信号：Agent 进入运维时代`</li>
+          <li>目标受众：Agent 创业者、开发者自媒体、知识付费作者、企业 AI 顾问。</li>
+          <li>切题角度：把 ElevenLabs 评测框架、GitHub AI credits 指标、AGENTS.md 支持放在一起讲成熟度。</li>
+          <li>爆点：评测指标标准化、用户级 AI 消耗透明化、团队规则进入 AI review 上下文。</li>
+          <li>内容结构：为什么上半场只卷 demo → 为什么下半场卷治理 → 三个官方信号说明什么 → 对内容创作者意味着什么。</li>
+          <li>痛点：市场上大量 Agent 内容仍停留在演示层。</li>
+          <li>爽点：能给受众一套明显更成熟的行业判断框架。</li>
+          <li>痒点：会引出谁来做 observability / governance 平台。</li>
+          <li>推荐内容形式：深度长文、社群分享、直播拆解、播客。</li>
+          <li>可引用来源：<a href="https://elevenlabs.io/blog/voice-agent-evaluation-framework-6-pillars-explained">ElevenLabs Voice Agent Evaluation</a>；<a href="https://github.blog/changelog/2026-06-19-ai-credits-consumed-per-user-now-in-the-copilot-usage-metrics-api/">GitHub AI Credits Metrics API</a>；<a href="https://github.blog/changelog/2026-06-18-copilot-code-review-agents-md-support-and-ui-improvements/">GitHub AGENTS.md Support</a></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <span class="priority">优先级 A-</span>
+        <h3>选题 04｜研究 Agent 工具栈正在独立成类，知识服务赛道该怎么跟</h3>
+        <ul>
+          <li>标题方向：`Firecrawl 把 Research Index 推到台前，深度研究 Agent 已经单独成类了`</li>
+          <li>目标受众：研究型创作者、AI 教程作者、课程产品作者、行业分析号。</li>
+          <li>切题角度：讲研究 Agent 为什么值得成为独立工具层，而不是吹单个产品。</li>
+          <li>爆点：覆盖 300 万+ arXiv 论文、拉通 GitHub 研究资产、Product Hunt 发酵强。</li>
+          <li>内容结构：传统搜索不够 → 产品定义是什么 → 研究型工作流怎么变 → benchmark 边界在哪。</li>
+          <li>痛点：研究型内容创作者抓资料成本高、核验成本更高。</li>
+          <li>爽点：能把“深度研究工具链”讲成具体工作流。</li>
+          <li>痒点：会继续追问是否会出现更垂直的投研/学术 Agent。</li>
+          <li>推荐内容形式：工具解析、长文、社群内部分享。</li>
+          <li>可引用来源：<a href="https://www.firecrawl.dev/blog/research-index-launch">Firecrawl Research Index</a>；<a href="https://www.producthunt.com/products/extract-by-firecrawl">Product Hunt Launch</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日最推荐</h2>
+      <div class="best-pick">
+        <div>
+          <div class="label">Top Pick</div>
+          <div class="title">Midjourney 不做图了，开始做医疗：一家生成式 AI 公司为什么要突然跨到身体数据</div>
+        </div>
+        <div>
+          <p>这条最容易形成大范围讨论，因为它兼具跨界冲突感、战略悬念和强烈的“行业边界被重写”叙事。前提是要把事实和愿景严格拆开写，不把路线图包装成已落地结果。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

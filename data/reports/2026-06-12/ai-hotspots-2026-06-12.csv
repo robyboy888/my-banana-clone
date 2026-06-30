@@ -1,0 +1,8 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-06-11,"OpenAI 宣布将收购 Ona，把安全、持久化、客户可控的云执行能力并入 Codex","适合讲 Agent 从本机会话走向长时云执行，焦点转到基础设施与权限控制","https://openai.com/index/openai-to-acquire-ona/","高","长时 Agent、企业部署、AI 工作台"
+2026-06-10,"OpenAI 宣布 Oracle 客户未来几周可用既有 Oracle 云承诺采购 OpenAI 模型与 Codex","适合讲 AI 平台竞争进入正式采购链与预算入口争夺","https://openai.com/index/openai-on-oracle-cloud/","高","企业采购、云生态、B2B AI"
+2026-06-11,"Anthropic 与 DXC 建立多年全球联盟，把 Claude 推进银行、航空、保险等受监管系统","适合讲 AI 从 demo 走向核心行业系统与实施网络","https://www.anthropic.com/news/dxc-anthropic-alliance","高","核心行业落地、Agent 实施网络"
+2026-06-10,"Anthropic 发布《Policy on the AI Exponential》，同时提出 Advanced AI Framework 与 Economic Policy Framework","适合讲头部模型公司正在争规则定义权，而非只发产品","https://www.anthropic.com/policy-on-the-ai-exponential","高","政策评论、商业解读、行业规则"
+2026-06-11,"GitHub 在 secret scanning 验证环节加入 context-aware LLM reasoning 以减少误报","适合讲 AI 在安全运营中的幕后价值，不只会生成内容，还会降低噪音","https://github.blog/security/making-secret-scanning-more-trustworthy-reducing-false-positives-at-scale/","高","AI 安全、基础设施、企业运维"
+2026-06-10,"GitHub 让 Copilot CLI 通过语言服务器获得结构化代码智能","适合讲 Agent 上限取决于上下文接入，而不只靠提示词","https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/","高","教程演示、方法论、知识付费"
+2026-06-10,"Google 发布 Gemini 面向小商家的新能力：Google Business Profile 连接 + Business notebooks","适合讲 AI 助手开始真正理解业务上下文，对商家内容运营更有落地感","https://blog.google/innovation-and-ai/products/gemini-app/gemini-features-for-businesses/","高","中小商家、品牌运营、评论回复自动化"

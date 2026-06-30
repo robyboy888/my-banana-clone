@@ -1,0 +1,9 @@
+时间,热点信号,对创作者的意义,来源链接,可信度,内容机会
+2026-06-12,"OpenAI Academy 新增 AI Foundations、Applied AI Foundations、Agents and Workflows 三门课程","知识付费、训练营、企业培训赛道，正在从教提示词转向教工作流与 Agent 管理","https://openai.com/index/academy-courses-applying-ai-at-work/",高,"课程拆解、训练营、AI 内训、个人 IP"
+2026-06-12,"OpenAI 发布 Preply 案例：AI 自动生成课后总结、反馈与练习","适合讲 AI 不一定替代老师，而是先替代老师背后的重复劳动","https://openai.com/index/preply/",高,"教育产品、教练型服务、知识付费升级"
+2026-06-12,"Anthropic 宣布因美国政府出口管制指令，暂停 Claude Fable 5 和 Mythos 5 访问","这是前沿模型可用性受政策直接影响的强信号，适合做平台风险与地缘合规内容","https://www.anthropic.com/news/fable-mythos-access",高,"模型管制、出海合规、产品风险解读"
+2026-06-12,"Anthropic 与 TCS 合作，将 Claude 推向 56 个国家的 50,000 名员工，并打包面向受监管行业的方案","企业 Agent 扩张正在依赖咨询与交付网络，而不是只靠模型公告","https://www.anthropic.com/news/tcs-anthropic-partnership",高,"B2B AI、渠道战、企业服务"
+2026-06-12,"Anthropic 发布首份 Public Record 调查：64% 的美国人担心 AI 致失业，超 70% 支持政府介入监管","给大众向内容提供了真实情绪底稿，观众更关心工作、责任与控制权","https://www.anthropic.com/news/anthropic-public-record",高,"舆情解读、就业焦虑、监管叙事"
+2026-06-12,"GitHub Copilot CLI 更克制的 subagent delegation 已上线 100% 生产流量，A/B 测试显示失败率下降 23%","Agent 竞争从会不会做事转向怎么编排、何时分工、如何减少等待与失败","https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/",高,"Agent 方法论、开发者评测、产品拆解"
+2026-06-12,"GitHub Copilot code review 新增组织级 runner 控制、内容排除、移除自定义指令字符限制","说明 AI 代码代理开始进入更细颗粒度的企业治理阶段","https://github.blog/changelog/2026-06-12-copilot-code-review-new-configurations-and-controls/",高,"企业治理、团队实践、AI 开发规范"
+2026-06-11,"窗口边缘补充：Runway 与 Lionsgate 扩大合作，联合开发新 IP，首批包含短剧形态项目","对视频创作者高度相关，说明生成式视频开始进入正式内容开发链","https://runwayml.com/news/runway-and-lionsgate-expand-partnership",高,"AI 影视、短剧工业化、创作者机会"

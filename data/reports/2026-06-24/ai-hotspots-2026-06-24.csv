@@ -1,0 +1,7 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-06-23","Anthropic 发布 Claude Tag，把 Claude 变成可被团队在 Slack 里 @ 的异步协作成员","这是“AI 同事化”的强信号，适合团队协作、Agent、知识付费和企业培训内容","https://www.anthropic.com/news/introducing-claude-tag","高","Slack Agent、团队 AI 协作、组织级权限与预算"
+"2026-06-23","GitHub 发布 Copilot app support for BYOK，可接 OpenAI、Anthropic、本地模型和私有网关","模型选择权回到团队手里，适合切数据边界、BYOK 和 Agent 成本治理","https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok/","高","BYOK、私有部署、Agent 成本与数据边界"
+"2026-06-23","GitHub 让 Copilot CLI 新终端界面正式 GA，终端里可直接处理 issue、PR、MCP、skills、plugins","终端开始变成 AI 工作台，适合教程、录屏和开发者效率方法论","https://github.blog/changelog/2026-06-23-copilot-cli-new-terminal-interface-is-generally-available/","高","终端工作流、AI 编程教育、CLI Agent"
+"2026-06-22","Runway 宣布 Aleph 2.0 接入 Figma Weave，可通过关键帧把修改同步到整段视频","视频修改开始进入可视化批量改稿阶段，适合讲短视频和品牌视频提效","https://runwayml.com/news/aleph-2-in-figma-weave","高","AI 视频编辑、关键帧工作流、设计协同"
+"2026-06-22","ElevenLabs 发布 Ads Engine，把现有广告素材本地化到 50+ 语言并回推 Google、Meta、LinkedIn","比单纯配音更接近收入闭环，适合内容出海、跨境广告和品牌代运营选题","https://elevenlabs.io/blog/introducing-ads-engine-in-elevencreative","高","AI 广告本地化、出海增长、内容商业化"
+"2026-06-23","OpenAI 发布 shared standards 相关文章，强调评测、第三方证据和标准化","这会影响企业采购与合规判断，适合产业观察和知识付费内容","https://openai.com/index/helping-build-shared-standards-for-advanced-ai/","高","AI 标准化、合规采购、产业判断"

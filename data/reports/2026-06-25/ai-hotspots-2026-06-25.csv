@@ -1,0 +1,8 @@
+"时间","热点信号","对创作者的意义","来源链接","可信度","内容机会"
+"2026-06-24","Gemini API 更新：Computer Use 在 Gemini 3.5 Flash 进入 public preview","浏览器、移动端、桌面端自动操作能力更接近可产品化，适合讲 Agent 执行层落地","https://ai.google.dev/gemini-api/docs/changelog","高","Browser Agent、流程自动化、教程型产品"
+"2026-06-24","Figma 在 Config 2026 同日集中发布设计 Agent 增强、Figma Motion、Code Layers、Weave 连接","设计和前端创作的工作面被 AI 重构，适合讲设计协作和创作流程升级","https://www.figma.com/blog/","高","AI 设计工作流、设计师转型、创作协同"
+"2026-06-23","Anthropic 发布 Claude Tag，让 Claude 作为 Slack 里的团队成员协作","AI 同事化进入更直观阶段，适合团队协作、社群运营和知识付费组织升级内容","https://www.anthropic.com/news/introducing-claude-tag","高","Slack Agent、团队 AI 协作、组织级记忆"
+"2026-06-23","GitHub 发布 Copilot CLI 新终端界面 GA","终端正在变成 AI 工作台，适合录屏教程、效率方法论和开发者内容","https://github.blog/changelog/2026-06-23-copilot-cli-new-terminal-interface-is-generally-available/","高","终端工作流、AI 编程教育、MCP/skills/plugin"
+"2026-06-23","GitHub 发布 Copilot app support for BYOK","模型选择权、数据边界和私有推理通道开始回到团队手里","https://github.blog/changelog/2026-06-23-github-copilot-app-support-for-byok/","高","BYOK、多模型治理、私有部署"
+"2026-06-22","Runway 宣布 Aleph 2.0 接入 Figma Weave","视频修改从整段返工走向关键帧改稿，适合短视频和品牌内容团队","https://runwayml.com/news/aleph-2-in-figma-weave","高","AI 视频编辑、关键帧工作流、版本协作"
+"2026-06-22","ElevenLabs 发布 Ads Engine，可把广告素材本地化到 50+ 语言并回推广告平台","AI 创作开始直接连到投放回路，对出海创作者和代运营更接近收入闭环","https://elevenlabs.io/blog/introducing-ads-engine-in-elevencreative","高","AI 广告本地化、跨境投放、内容变现"
