@@ -3,6 +3,17 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone()
+
+  if (url.pathname === '/reports' || url.pathname === '/reports/') {
+    url.pathname = '/report-archive'
+    return NextResponse.rewrite(url)
+  }
+
+  if (url.pathname.startsWith('/reports/')) {
+    return NextResponse.next()
+  }
+
   // 1. 创建初始响应
   let response = NextResponse.next({
     request: {
@@ -50,7 +61,6 @@ export async function middleware(request: NextRequest) {
   // 此操作会自动刷新过期的 Session
   const { data: { user } } = await supabase.auth.getUser()
 
-  const url = request.nextUrl.clone()
   const isLoginPage = url.pathname === '/admin/login'
   const isAdminPath = url.pathname.startsWith('/admin')
 
@@ -72,5 +82,5 @@ export async function middleware(request: NextRequest) {
 
 // 6. 匹配器：确保对 /admin 及其所有子路径生效
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/reports/:path*'],
 }
