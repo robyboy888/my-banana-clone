@@ -30,7 +30,7 @@ export default async function ReportDatePage({
         </a>
       </p>
       <p className="mt-3 text-sm">
-        <Link className="text-blue-700 hover:underline" href="/reports/">
+        <Link className="text-blue-700 hover:underline" href="/reports">
           返回归档
         </Link>
       </p>
