@@ -1,0 +1,9 @@
+﻿type,priority,title,time,signal,audience,angle,sources,risk
+hotspot,,,2026-09-14（严格窗口内，OpenAI 客户案例）,Fyxer 把邮件助理拆成 30—50 个专用模型，结合 50 万小时以上真人行政助理工作流；用户修改后的草稿会转成 DPO 偏好数据并经 A/B 测试。官方案例称 53% 的 AI 草稿被原样采用、90 天留存率超过 90%。,,垂直 Agent 的护城河不只是换更强基模，而是任务拆分、岗位数据、记忆选择、反馈闭环和上线评测。,https://openai.com/index/fyxer/,数据为厂商与客户自报，未见独立审计口径。
+hotspot,,,2026-09-14（严格窗口内，OpenAI 客户案例）,Perplexity 表示 GPT-6 Astra 可用于生成通信、修改真实系统和监控生产软件；团队还让模型构建模拟外部服务的测试程序，检查端到端工作流。,,Agent 竞争正在从“能写代码”转向“能否生成可验证的测试环境并安全触碰真实系统”。,https://openai.com/index/perplexity-improving-accuracy-with-astra/,能力描述为客户自报，未披露失败率、权限边界或回滚数据。
+hotspot,,,2026-09-11（延伸观察，不计入严格窗口新品）,OpenAI 公开其在线存储扩展经验，标题明确指向为超过 10 亿 ChatGPT 用户服务。,,大规模 AI 产品的差异逐渐从模型能力延伸到存储、可靠性和迁移方法。,https://openai.com/index/scaling-postgresql/,必须标明为延伸观察，不根据标题自行推导架构数字。
+hotspot,,,2026-09-11（延伸观察，不计入严格窗口新品）,GitHub Copilot code review 可使用更完整的 shell 工具运行构建、测试和定向脚本，Lite 档采用多 Agent 集成评审，并能在修复后自动解决旧评论。,,AI 评审开始强调运行证据和复查闭环，而不是只生成评论。,https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/,内部实验效果待外部验证，关键代码仍需人工负责。
+topic,A+,一个邮件 Agent 为什么要用 30—50 个模型：真正的护城河是用户每一次修改,,,AI 创业者；产品经理；自媒体创作者；企业数字化团队；Agent 开发者,拆解垂直 Agent 的任务拆分、岗位数据、记忆、用户反馈和上线评测。,https://openai.com/index/fyxer/,数字未经独立审计；不要把专用模型数量误写成大模型数量。
+topic,A,Agent 要进生产系统，先得学会“造假”：Perplexity 为什么让模型模拟外部服务,,,开发者；技术负责人；AI 编程账号；SaaS 创业者；测试工程师,用测试替身与模拟响应解释 Agent 如何验证端到端流程。,https://openai.com/index/perplexity-improving-accuracy-with-astra/,客户故事没有公开量化评测，标题需澄清“造假”为测试模拟。
+topic,B+,别再只测 Agent 会不会回答：能不能自己跑测试，才是下一道分水岭,,,AI 应用团队；研发负责人；企业采购者；AI 工具测评账号,用 Perplexity 与 GitHub 两个案例总结可验证 Agent 方法论。,https://openai.com/index/perplexity-improving-accuracy-with-astra/ https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/,跨日期趋势判断属于分析，正文需标明各自日期。
+topic,B,模型越强，基础设施越重要：10 亿用户规模的 AI 产品为什么要重新讲存储,,,AI 创业者；工程管理者；架构师；科技商业自媒体,解释模型能力之外的可靠性、迁移与成本问题。,https://openai.com/index/scaling-postgresql/,仅作延伸观察，且避免与 9 月 12 日已入选主题重复。

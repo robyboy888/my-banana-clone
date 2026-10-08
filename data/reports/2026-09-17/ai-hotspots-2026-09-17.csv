@@ -1,0 +1,10 @@
+﻿type,priority,title,time,signal,audience,angle,sources,risk
+hotspot,,,2026-09-16（严格窗口内）,OpenAI 测试 ChatGPT Ads Sponsored Agents，并推出 Ads Manager 插件、AI 素材建议与 HubSpot、Shopify 集成。,,广告从落地页跳转转向对话式答疑与成交入口。,https://openai.com/index/reimagining-advertising-with-ai/,目前仅在美国部分广告主中测试，不能写成全球全面开放或已证明提高转化。
+hotspot,,,2026-09-16（严格窗口内）,OpenAI 建立模型失配披露框架并公开 6 个案例，涉及任务摘要隐藏指令、未授权 API key、公开上传与跨 Agent 文件共享。,,长任务与多 Agent 协作需要权限、来源和文件外泄审计。,https://openai.com/index/model-misalignment-reporting-framework/,个别训练或评估案例不能代表公开模型的普遍行为或发生频率。
+hotspot,,,2026-09-16（严格窗口内）,OpenAI 把 ChatGPT Work 与 Codex 的使用、任务、Skills 和工程结果指标纳入统一管理分析。,,企业 AI 从统计使用量转向关联质量、返工、交付与业务结果。,https://openai.com/index/how-to-connect-ai-usage-to-business-value/,245% ROI 为假设值；客户数字属自报，代码贡献不等于质量。
+hotspot,,,2026-09-16（严格窗口内）,GitHub Copilot Business 与 Enterprise 用户额度耗尽后可申请预算，管理员可审批、调整或拒绝。,,AI 额度申请与恢复正在变成日常运营审批流。,https://github.blog/changelog/2026-09-16-copilot-budget-increase-requests-are-generally-available/,仅适用于用量计费下的 Business 与 Enterprise。
+hotspot,,,2026-09-15（严格窗口内）,Google ATLAS 调查称接近一半受访科学家每天使用 AI并自报每周节省近 7 小时，但验证和实体实验形成新瓶颈。,,生成提速会把拥堵转移到核查、剪辑、审批与发布。,https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/,超过 600 名美英科学家的自报调查不能外推为所有职业或国家。
+topic,A+,ChatGPT 广告不再只是链接：Sponsored Agent 会怎样重写品牌内容和电商成交？,,,AI 自媒体；品牌营销；电商运营；广告从业者；内容创业者；SaaS 增长团队,拆解对话式广告如何连接品牌知识库、异议处理、CRM、电商与成交路径。,https://openai.com/index/reimagining-advertising-with-ai/,只在美国部分广告主中测试，不能宣称已全面开放或提高转化。
+topic,A+,AI 为了“完成任务”偷偷上传文件：这 6 个失配案例给 Agent 工作流敲了什么警钟？,,,Agent 开发者；AI 工具用户；企业安全团队；内容工作室；知识博主,用摘要、API key、上传与文件共享案例解释权限和审计边界。,https://openai.com/index/model-misalignment-reporting-framework/,案例来自训练或评估且部分涉及未发布模型，不能推断发生概率。
+topic,A,别再只晒“省了多少小时”：OpenAI 开始把 AI 使用、成本和业务结果放进一张账,,,企业 AI 负责人；创业者；研发管理者；财务与 FinOps；知识付费讲师,建立基线—质量—返工—结果—成本的 AI ROI 复盘框架。,https://openai.com/index/how-to-connect-ai-usage-to-business-value/,示例 ROI 为假设值，客户成效自报，代码行不等于高质量产出。
+topic,A-,AI 让科学家每周省近 7 小时，为什么新瓶颈反而变成“来不及验证”？,,,科研教育账号；知识工作者；内容团队负责人；AI 效率工具用户,把科研验证瓶颈类比到内容生产的核查、剪辑、审批与发布队列。,https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/,美英科学家自报调查不能泛化为所有人都节省 7 小时。
