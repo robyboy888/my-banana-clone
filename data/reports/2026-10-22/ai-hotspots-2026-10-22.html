@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>2026-10-22 AI 行业热点自媒体选题库</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f4f1ec;color:#1d2433;font-family:"Microsoft YaHei","PingFang SC",sans-serif;line-height:1.72}main{max-width:1180px;margin:auto;padding:36px 24px 72px}header{padding:34px;border-radius:22px;background:linear-gradient(135deg,#271b3f,#7c3c5f);color:#fff}h1{margin:0 0 12px;font-size:clamp(28px,4vw,44px)}h2{margin-top:38px}.note{margin:22px 0;padding:18px 22px;border-left:5px solid #9d4d67;background:#f8eaf0;border-radius:10px}.table{overflow:auto;background:#fff;border-radius:16px;box-shadow:0 8px 30px #1d243312}table{border-collapse:collapse;min-width:1100px;width:100%}th,td{padding:15px;border-bottom:1px solid #e2ddd6;vertical-align:top;text-align:left}th{background:#efe5eb}a{color:#81405c}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}article{background:#fff;padding:22px;border-radius:16px;box-shadow:0 8px 30px #1d243312}.k{font-size:13px;color:#9d4d67;font-weight:700}.best{margin-top:28px;padding:26px;border-radius:16px;background:#271b3f;color:#fff}.best h2{margin-top:0}.best a{color:#f4bdd0}.meta{opacity:.9}.risk{padding:12px;background:#fff5e9;border-radius:10px}.sources{margin-top:32px;padding:20px;background:#fff;border-radius:14px}@media print{body{background:#fff}main{max-width:none;padding:8mm}header,article,.table{break-inside:avoid}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <h1>AI 行业热点自媒体选题库</h1>
+    <div class="meta">采集日期：2026-10-22<br>严格窗口：2026-10-20 09:00 至 2026-10-22 09:00（Asia/Shanghai，过去 48 小时）<br>候选发现：AI HOT 严格窗口精选 31 条；核心事实均回到一手页面核验。</div>
+  </header>
+  <div class="note"><b>严格窗口不冷。</b> 10 月 21 日的强信号集中在 AI 辅助漏洞发现、AI 工具供应链、主动式 Agent、分布式科研和人机协作证明。今天最值得写的是：能力扩大后，验证、修补、审批和供应链治理如何跟上。</div>
+
+  <h2>热点摘要</h2>
+  <div class="table"><table>
+    <thead><tr><th>时间</th><th>热点信号</th><th>创作者意义</th><th>来源</th><th>边界</th></tr></thead>
+    <tbody>
+      <tr><td>10 月 21 日</td><td><b>PHP2Shell：</b>两组核心 PHP 内存安全问题可导致未认证远程代码执行或进程内存泄露，最高 CVSS 9.2；影响至少追溯到 PHP 5.4。Calif 使用 GPT-5.6 Sol 发现关键缺陷，Wiz 独立发现并报告相关问题，PHP 维护者主导修复。</td><td>AI 降低复杂漏洞研究门槛后，维护者响应、版本识别、补丁分发与资产盘点成为系统瓶颈。</td><td><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI</a> · <a href="https://www.wiz.io/blog/php2shell-php-rce">Wiz</a></td><td>生态规模不等于同等可利用率；不能把全部成果归功于单一模型。</td></tr>
+      <tr><td>10 月 21 日</td><td><b>LiteLLM 供应链事件：</b>恶意 1.107.0 包进入 PyPI，相关 Docker/GHCR 镜像标签也受影响，恶意代码针对浏览器、云与 AI 凭据并保留休眠的命令控制能力。</td><td>AI Gateway 是模型密钥、云凭据、日志与业务请求的交汇点，爆炸半径远大于普通依赖。</td><td><a href="https://www.wiz.io/blog/litellm-compromised-steals-credentials">Wiz</a></td><td>版本回退不是完整处置，还需隔离、轮换凭据和检查日志。</td></tr>
+      <tr><td>10 月 21 日</td><td><b>Claude Duet：</b>主动生成晨报、持续后台工作并在需要时联系用户；发送消息、付款、签署文件或删除内容前要求批准。当前从美国 Pro/Max 用户候补开始。</td><td>Agent 的关键指标从“能不能执行”转向“何时主动、何时停下等人”。</td><td><a href="https://claude.com/resources/articles/claude-duet">Anthropic</a></td><td>仍是研究预览，官方承认可能误判紧急程度，并消耗共享套餐额度。</td></tr>
+      <tr><td>10 月 21 日</td><td><b>数千 Agent 并行科研：</b>GPT-Rosalind Agent 分析数百万小鼠脑细胞的既有 CRISPR 数据，32 分钟形成推理图谱；最大负载引用 700 多篇文献，盲评中专家 75% 更偏好分布式报告。</td><td>多 Agent 的价值在于把大任务拆成可并行、可汇总、可专家复核的证据单元。</td><td><a href="https://openai.com/index/scaling-ai-research-for-complex-biological-data/">OpenAI</a></td><td>研究线索不是临床验证，也不是已证实的治疗效果。</td></tr>
+      <tr><td>10 月 21 日</td><td><b>KLS 猜想证明：</b>人类研究者指导 Agent 探索并剪枝 100 多条候选路径；相近 token 预算的无指导尝试未成功，另有独立证明与 Lean 形式化交叉验证。</td><td>高难知识工作的稀缺环节是选题、判断中间结果、重定向搜索和独立验证。</td><td><a href="https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/">Microsoft Research</a></td><td>不能声称模型端到端独立完成证明，也不能把个案外推为通用配方。</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>事实分析与风险</h2>
+  <div class="grid">
+    <article><h3>发现更快，修补更难</h3><p>PHP2Shell 的价值不只在于“AI 找到漏洞”。从模型与研究者发现，到 PHP 维护者修复，再到云厂商、托管商、政府机构和企业用户部署更新，真正的防守链条跨越多个组织。</p><p class="risk"><b>风险：</b>“影响约 70% 网站”是生态传播性表述，不等于所有站点都处于同一版本、配置和可利用状态。</p></article>
+    <article><h3>AI Gateway 变成凭据交汇点</h3><p>LiteLLM 一类代理层往往能读取多个模型服务、云账户和观测系统的秘密。内容重点应从选型对比转向依赖锁定、构件哈希、最小权限、短期凭据和事件后的完整轮换。</p><p class="risk"><b>风险：</b>已经安装或拉取恶意构件的环境不能只降级版本后继续运行。</p></article>
+    <article><h3>主动式 Agent 要测分寸感</h3><p>Claude Duet 把主动提醒、后台持续工作与高风险动作审批放在同一产品里。实测至少要记录误报、漏报、打扰次数、审批清晰度、撤销能力和额度消耗。</p><p class="risk"><b>风险：</b>早期预览案例不是稳定生产表现，地区和套餐限制必须写清楚。</p></article>
+    <article><h3>并行科研不是角色扮演</h3><p>GPT-Rosalind 的关键是按基因扰动拆任务、统一证据格式、合并推理图谱并交给专家盲评。这个结构可迁移到深度内容和投研，但不能省略证据冲突处理。</p><p class="risk"><b>风险：</b>32 分钟与 75% 偏好来自特定设置，不能泛化为所有科研任务。</p></article>
+    <article><h3>人类剪枝决定研究方向</h3><p>KLS 项目中，人类持续查看中间结果、淘汰无效方向并重定向下一轮。无指导尝试在相近预算下没有成功，说明“把终点问题直接交给模型”并不是强工作流。</p><p class="risk"><b>风险：</b>数学共同体仍会继续审阅和简化证明；共同作者与独立验证者不可省略。</p></article>
+  </div>
+
+  <h2>推荐选题</h2>
+  <div class="grid">
+    <article><div class="k">选题 01｜A+</div><h3>AI 把漏洞挖掘提速之后，为什么全球修补反而成了真正瓶颈？</h3><p><b>受众：</b>AI 与安全从业者、技术管理者、开源维护者、科技自媒体</p><p><b>角度：</b>拆解模型发现、研究者验证、维护者修复、云厂商缓解和组织升级的完整链条。</p><p><b>结构：</b>漏洞与影响 → AI 的角色 → 跨组织协调 → Defender's Window → 老版本 → 资产盘点 → 开源维护机制。</p><p class="risk"><b>风险：</b>不把生态规模写成同等可利用率，不把协同成果简化为单一模型攻破 PHP。</p></article>
+    <article><div class="k">选题 02｜A</div><h3>AI 基础设施最危险的后门，可能藏在你每天 pip install 的代理层</h3><p><b>受众：</b>AI 应用开发者、平台工程师、安全负责人、独立开发者</p><p><b>角度：</b>用 LiteLLM 事件解释 Gateway 的凭据交汇风险，以及锁版本、最小权限、短期凭据和可复现构建。</p><p><b>结构：</b>攻击入口 → Gateway 价值 → PyPI/镜像双通道 → 锁文件与哈希 → 凭据隔离 → 轮换 → 演练。</p><p class="risk"><b>风险：</b>受影响标签和取证时间线仍可能更新。</p></article>
+    <article><div class="k">选题 03｜A-</div><h3>Agent 开始主动找你之后，真正该测的不是勤快，而是分寸</h3><p><b>受众：</b>效率工具用户、内容团队、小企业主、AI 产品经理</p><p><b>角度：</b>设计七日实测，记录主动时机、打扰次数、审批、撤销和额度消耗。</p><p><b>结构：</b>主动式差别 → 晨报 → 紧急度 → 审批 → 隐私 → 通知疲劳 → 评分表。</p><p class="risk"><b>风险：</b>当前仅为美国 Pro/Max 候补预览。</p></article>
+    <article><div class="k">选题 04｜A-</div><h3>数千个 Agent 做科研，关键不是“人多”，而是把证据拆到可验证</h3><p><b>受众：</b>研究者、知识型创作者、咨询与投研团队、Agent 开发者</p><p><b>角度：</b>比较单 Agent 塞满上下文与分布式证据单元的覆盖率、合并成本和专家复核方式。</p><p><b>结构：</b>任务拆分 → 文献覆盖 → 报告格式 → 冲突消解 → 盲评 → 实验 → 可复制模板。</p><p class="risk"><b>风险：</b>线索不等于生物学结论。</p></article>
+    <article><div class="k">选题 05｜B+</div><h3>AI 证明 31 年数学难题？真正值钱的可能是人类如何剪掉 100 条错路</h3><p><b>受众：</b>AI 科普作者、科研管理者、知识付费创作者、教育从业者</p><p><b>角度：</b>解释人类如何检查中间结果、剪枝、递归改进，并用独立证明与 Lean 形式化建立可信度。</p><p><b>结构：</b>KLS 是什么 → 100 多条路径 → 人类剪枝 → 无指导失败 → 独立证明 → Lean → 方法启示。</p><p class="risk"><b>风险：</b>不声称模型端到端独立完成证明。</p></article>
+  </div>
+
+  <section class="best"><h2>今日最推荐</h2><h3>AI 把漏洞挖掘提速之后，为什么全球修补反而成了真正瓶颈？</h3><p>这个题材同时具备重大公共影响、明确 AI 参与、开源维护者角色和跨公司协同，且与昨日“企业 Agent 内部人”治理题材明显区分。最值得追问的是：当发现与利用都加速，防守方怎样让补丁真正跑赢攻击。</p><p><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI 原文</a> · <a href="https://www.wiz.io/blog/php2shell-php-rce">Wiz 技术分析</a></p></section>
+
+  <section class="sources"><h2>延伸观察</h2><p><a href="https://openai.com/index/openai-models-google-cloud/">OpenAI 模型与 Codex 工作流将进入 Google Cloud Model Garden</a>；目前计划几周内一般可用，价格、区域和模型清单仍待确认。</p><p><a href="https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes">Claude Security 加入持续扫描与修复跟踪</a>；当前面向 Claude Enterprise 公测。</p></section>
+</main></body></html>
